@@ -243,7 +243,7 @@ h1 {
 // Vybe clickable prototype (single file, vanilla JS, no backend).
 // ภาษาในแอปเป็นภาษาอังกฤษทั้งหมด คอมเมนต์ในโค้ดเป็นภาษาไทยเพื่อให้ทีมแก้ง่าย
 //
-// อ่านจากบนลงล่าง: 1 รูป → 2 ข้อมูล → 3 state → 4-5 ตัวช่วย → 6 หน้าจอ → 7 ตัวรัน
+// อ่านจากบนลงล่าง: 1 รูปแยกรายกิจกรรม → 2 ข้อมูล → 3 state → 4-5 ตัวช่วย → 6 หน้าจอ → 7 ตัวรัน
 //
 // ★ หลักสำคัญ: ข้อมูลทุกอย่างเขียน "ที่เดียว" ในส่วน 2 (DATA)
 //   - เพิ่มกิจกรรม = คัดลอกบล็อก { id: ... } 1 อันใน ACTIVITIES แล้วแก้ค่า
@@ -255,63 +255,138 @@ h1 {
 // ปุ่มในหน้า: data-go="screen:param" = ไปหน้าอื่น | data-a="action:x:y" = ทำงาน (ดูส่วน 7)
 
 // ════════════════════════════════════════════════════════════
-// 1. IMAGES — วางรูป base64 ที่นี่ (ใส่เฉพาะอันที่มีรูป ไม่ต้องใส่ครบ)
+// 1. IMAGES — กำหนดภาพ "รายกิจกรรม" ภายในแต่ละหมวด (ไม่ใช้ภาพหมวดร่วมกัน)
 // ════════════════════════════════════════════════════════════
-
 /*
-  วิธีใส่รูป
-  1) แปลงรูปเป็น base64 (data URI) แล้ววางเป็นคู่  id: 'data:image/...'
-     ตัวอย่าง:  activities: { run: 'data:image/jpeg;base64,/9j/4AAQ...', climb: 'data:...' }
-     id คือค่า id ของกิจกรรมใน ACTIVITIES (ส่วน 2) / id ของคลับใน CLUBS
-  2) รูปเดียวต่อกิจกรรมใช้ได้ทุกที่ที่กิจกรรมนั้นโผล่ (ระบบครอปแบบ cover ให้เอง)
-     ลำดับการหารูป: รูปของกิจกรรมนั้น → รูปประจำหมวด (categories) → กล่องสีเทา
-     ทางลัด: ใส่แค่ categories หมวดละรูป ทุกกิจกรรมในหมวดจะมีรูปทันที
-  3) ไม่ใส่ = กล่องสีเทา และคอมเมนต์ <!-- IMAGE SLOT ... key=id --> ในหน้าเว็บบอกตำแหน่ง
-  4) ตั้ง SHOW_SLOT_SIZES = false ถ้าไม่อยากให้กล่องเทาโชว์ตัวเลขขนาด
-
-  รูปกิจกรรม แนะนำ 1170×900 px (13:10) JPEG/WebP ไม่เกิน ~150 KB วางวัตถุสำคัญไว้กลางภาพ
-  ────────────────────────────────────────────────────────────
-  Event detail: ภาพบนสุด          390×300   →  780×600
-  Home: การ์ด Upcoming            160×92    →  320×184
-  Discovery: การ์ดผลลัพธ์         100×92    →  200×184
-  Recap: รูปในการ์ด               280×257   →  560×514
-  Profile: ช่อง Recap             106×97    →  212×194
-  Route: แผนที่                   350×200   →  700×400   (misc.map)
-  Sync contacts: รูปด้านบน        170×156   →  340×312   (misc.sync)
-  โลโก้คลับ (clubs)               200×200 px สี่เหลี่ยมจัตุรัส
-  รูป Recap: ไม่ต้องใส่ ใช้รูปของกิจกรรมนั้นให้อัตโนมัติ
+  วิธีเพิ่มภาพของแต่ละกิจกรรม (เช่น หมวด Running มีหลายภาพไม่ซ้ำกัน):
+  1. เลื่อนลงไปที่ IMAGES.activities.หมวดที่ต้องการ
+  2. วางที่ "id ของกิจกรรม" โดยแทน '' ด้วยภาพของกิจกรรมนั้น
+       Running: {
+         run: 'images/lumpini-run.jpg',       // Lumpini Sunrise Run
+         fun: 'images/benjakitti-run.jpg',    // City Fun Run 5K
+       }
+  3. ใส่ได้ทั้ง: URL https://... / ที่อยู่รูปในโฟลเดอร์ / data:image/jpeg;base64,...
+     ถ้าใช้ชื่อไฟล์ images/... ต้องวางโฟลเดอร์ images ไว้ข้างไฟล์ HTML
+     ถ้าต้องการเก็บเป็น HTML ไฟล์เดียว ให้วาง data URI (base64) ในช่องแต่ละกิจกรรม
+  4. ทุกหน้าของแอป (Home, Discover, Detail, Profile/Recap, ฯลฯ) จะใช้รูปตาม id เดียวกัน
+     กิจกรรมที่ยังไม่ได้ใส่รูป = ช่องสีเทา ไม่ดึงภาพจากกิจกรรมอื่นหรือหมวดเดียวกัน
+  5. ตอนเพิ่มกิจกรรมใหม่ใน ACTIVITIES ให้เพิ่ม id เดียวกันในหมวดนี้ด้วย (ใส่ '' รอไว้ได้)
+  หมายเหตุ: ชื่อหมวดต้องตรงกับ cat ใน ACTIVITIES และ id ต้องตรงกันทุกตัวอักษร
+  แนะนำรูป 1170×900 px (13:10) แบบ JPEG/WebP เพื่อให้โหลดเร็ว
 */
 const SHOW_SLOT_SIZES = true;
 
 // ── แผนที่จริงในหน้า Route ──
-// USE_LIVE_MAP = true → ฝัง Google Maps จริง (หน้าที่เผยแพร่บน claude.ai จะบล็อก จึงปิดไว้)
 const USE_LIVE_MAP = false;
 const MAPS_API_KEY = '';
 
 const IMAGES = {
+  // เปลี่ยน '' เป็นที่อยู่รูปหรือ base64 ตาม "แต่ละ id" (ไม่ใช้รูปเดียวกันทั้งหมวด)
   activities: {
-    // run: 'data:image/jpeg;base64,...',
+    Running: {
+      run: 'https://i.postimg.cc/J4pzXGt2/Golden-Hour-Lakeside-Group-Run.png', // Lumpini Sunrise Run
+      fun: 'https://i.postimg.cc/QtzqVX1T/Bangkok-Lakeside-City-Fun-Run.png', // City Fun Run 5K
+      trail: '', // Trail Run Workshop
+      track: '', // Track Tuesday Intervals
+      chinarun: '', // Chinatown Night Run
+      river: '', // Riverside Long Run
+      tread: '', // Treadmill Tempo Class
+      c25k: '', // Couch to 5K: Week 1
+      halloween: '', // Halloween Glow Run
+      social10: '', // Sunday Social 10K
+    },
+    Climbing: {
+      climb: 'https://i.postimg.cc/PxKrnCbT/Sunlit-Urban-Bouldering-Gym.png', // Climbing Session
+      indoor: '', // Indoor Climbing
+      boul: '', // Bouldering Night
+      boul101: '', // Bouldering 101
+      lead: '', // Lead Climbing Course
+      bcomp: '', // Boulder Comp Night
+      crag: '', // Outdoor Crag Day Trip
+    },
+    Yoga: {
+      yoga: 'https://i.postimg.cc/cHDcPJPG/Sunrise-Yoga-by-the-City-Lake.png', // Morning Yoga in the Park
+      yin: '', // Indoor Yoga
+      yoga2: '', // Sunset Yin Yoga
+      rooftop: '', // Rooftop Sunset Flow
+      vinyasa: '', // Power Vinyasa
+      aerial: '', // Aerial Yoga Intro
+      freeyoga: 'https://i.postimg.cc/pTPXSfFJ/Morning-Run-by-the-City-Lake.png', // Free Community Yoga
+      runyoga: '', // Yoga for Runners
+    },
+    Pilates: {
+      pil: '', // Reformer Pilates Intro
+      pil2: '', // Mat Pilates in the Park
+      jump: '', // Reformer Jump Board
+      posture: '', // Core & Posture Clinic
+      desk: '', // Pilates for Desk Workers
+      wall: '', // Wall Pilates Express
+    },
+    Cycling: {
+      cyc: 'https://i.postimg.cc/DZ7yNrXC/Sunrise-Cyclists-Along-Bangkok-s-Green-Canal.png', // Sunday Sunrise Ride
+      cyc2: 'https://i.postimg.cc/6qV9jQ9m/Moody-Rhythm-Spin-Studio.png', // Night Ride Bangkok
+      skylane: 'https://i.postimg.cc/Yqjq7tqJ/Sunrise-Peloton-by-the-Airport.png', // Sky Lane Loop Ride
+      spin: 'https://i.postimg.cc/6qV9jQ9m/Moody-Rhythm-Spin-Studio.png', // Rhythm Spin Class
+      cafe: 'https://i.postimg.cc/FHYKmNGR/Riverside-Cycling-Through-Tropical-Cafes.png', // Cafe Hop Ride
+    },
+    Hiking: {
+      hike: '', // Khao Yai Day Hike
+      hike2: '', // Doi Suthep Sunrise Trek
+      erawan: '', // Erawan Waterfall Trail
+      mangrove: '', // Mangrove Boardwalk Walk
+      ridge: '', // Pak Chong Ridge Hike
+      heritage: '', // Old Town Heritage Walk
+    },
+    Swimming: {
+      swim: '', // Open Water Swim Clinic
+      swim2: '', // Morning Lap Swim Club
+      learnswim: '', // Adult Learn to Swim
+      stroke: '', // Stroke Video Clinic
+      seaswim: '', // Bang Saen Sea Swim
+      masters: '', // Masters Swim Night
+    },
+    'Ice Bath': {
+      ice: 'https://i.postimg.cc/Vs9Rymb5/Golden-Hour-Rooftop-Ice-Bath-Spa.png', // Ice Bath Recovery
+      ice2: 'https://i.postimg.cc/Bn16PQ3t/Tropical-Wellness-Courtyard-Retreat.png', // Ice Bath & Sauna Social
+      breath: 'https://i.postimg.cc/Yq0V3vht/Sunrise-Rooftop-Wellness-Retreat.png', // Breathwork & Cold Plunge
+      contrast: 'https://i.postimg.cc/rpxd5MBJ/Urban-Rooftop-Sauna-Retreat.png', // Contrast Therapy Night
+    },
+    'Muay Thai': {
+      muay: '', // Muay Thai Basics
+      pads: '', // Pad Work & Conditioning
+      womenmt: '', // Women’s Muay Thai
+      fightnight: '', // Fight Night Outing
+      shadow: '', // Shadowboxing in the Park
+    },
+    Padel: {
+      padel: '', // Padel Taster Session
+      padel2: '', // Padel Mixer Night
+      americano: '', // Padel Americano
+    },
+    Dance: {
+      hiphop: '', // Hip-Hop Beginner Class
+      salsa: '', // Salsa Social Night
+      kpop: '', // K-Pop Dance Cover
+      dancefit: '', // Sunset Dance Fitness
+    },
+    Meditation: {
+      medi: '', // Morning Meditation in the Park
+      soundbath: '', // Sound Bath Evening
+      retreat: '', // Temple Meditation Day
+      breathe: '', // Lunchtime Breathwork
+    },
+    Paddle: {
+      sup: '', // Sunrise SUP on the River
+      kayak: '', // Klong Kayak Tour
+      supyoga: '', // SUP Yoga
+      mangkayak: '', // Mangrove Kayak Day Trip
+    },
   },
+  // โลโก้คลับ ใส่โดยใช้ id ของคลับ
   clubs: {
-    // brc: 'data:image/png;base64,...',
+    // brc: 'images/bangkok-running-community.png',
   },
-  // รูปประจำหมวด: หมวดละ 1 รูป ใช้กับทุกกิจกรรมในหมวดที่ยังไม่มีรูปของตัวเอง
-  categories: {
-    Running: '',
-    Climbing: '',
-    Yoga: '',
-    Pilates: '',
-    Cycling: '',
-    Hiking: '',
-    Swimming: '',
-    'Ice Bath': '',
-    'Muay Thai': '',
-    Padel: '',
-    Dance: '',
-    Meditation: '',
-    Paddle: '',
-  },
-  // รูป Recap: ใส่เฉพาะเมื่ออยากใช้รูปอื่นแทนรูปกิจกรรม เช่น r1: 'data:...'
+  // รูป Recap (ถ้าเว้นว่างระบบใช้รูปของกิจกรรมที่เกี่ยวข้อง)
   recaps: {},
   misc: {
     map: '', // route map
@@ -495,9 +570,6 @@ const ACTIVITIES = [
   { id: 'skylane', title: 'Sky Lane Loop Ride', cat: 'Cycling', club: 'bcc', date: '2026-10-25', time: '06:00', mins: 120, price: 100,
     place: 'Sky Lane Suvarnabhumi', area: 'Lat Krabang', level: 'All levels', indoor: false, going: 50, solo: 7, rating: 4.7, reviews: 66, km: 28,
     about: 'Car-free laps on the 23 km airport bike track. Rentals on site.' },
-  { id: 'gravel', title: 'Gravel Intro Ride', cat: 'Cycling', club: 'gvl', date: '2026-11-01', time: '06:00', mins: 180, price: 300,
-    place: 'Nakhon Nayok Backroads', area: 'Nakhon Nayok', level: 'Intermediate', indoor: false, going: 9, solo: 1, rating: 4.7, reviews: 11, km: 105,
-    about: 'Dirt roads, rice fields and a waterfall stop.' },
   { id: 'spin', title: 'Rhythm Spin Class', cat: 'Cycling', club: 'nrd', date: '2026-10-21', time: '19:00', mins: 45, price: 380,
     place: 'Spin House Sukhumvit', area: 'Asok', level: 'All levels', indoor: true, going: 20, solo: 6, rating: 4.5, reviews: 48, km: 3.2,
     about: 'Ride to the beat in a dark room with club lighting.' },
@@ -555,9 +627,6 @@ const ACTIVITIES = [
   { id: 'breath', title: 'Breathwork & Cold Plunge', cat: 'Ice Bath', club: 'cpc', date: '2026-10-24', time: '09:00', mins: 75, price: 500,
     place: 'Cold Plunge Club House', area: 'Ari', level: 'Beginner', indoor: true, going: 10, solo: 4, rating: 4.7, reviews: 18, km: 6.0,
     about: 'Learn a breathing method, then put it to the test in the tub.' },
-  { id: 'postrun', title: 'Post-Run Plunge', cat: 'Ice Bath', club: 'cpc', date: '2026-10-25', time: '08:00', mins: 30, price: 250,
-    place: 'Benjakitti Park', area: 'Asok', level: 'All levels', indoor: false, going: 20, solo: 5, rating: 4.5, reviews: 12, km: 3.4,
-    about: 'Pop-up ice tubs at the finish line of Sunday runs.' },
   { id: 'contrast', title: 'Contrast Therapy Night', cat: 'Ice Bath', club: 'rcs', date: '2026-10-29', time: '19:00', mins: 60, price: 550,
     place: 'Recovery Studio', area: 'Thong Lo', level: 'Intermediate', indoor: true, going: 8, solo: 2, rating: 4.6, reviews: 9, km: 5.0,
     about: 'Longer sauna and plunge rounds for regulars.' },
@@ -881,8 +950,14 @@ const FULL = [
 let SN = 0,
   CX = '';
 
-// ลำดับการหารูปของกิจกรรม: รูปเฉพาะกิจกรรม → รูปประจำหมวด → กล่องสีเทา
-const activityImg = (id) => IMAGES.activities[id] || IMAGES.categories[(A[id] || {}).cat] || '';
+// หารูปเฉพาะกิจกรรมตาม id ภายในหมวดเท่านั้น — ไม่ดึงรูปหมวดหรือภาพกิจกรรมอื่น
+// สามารถตั้ง image: '...' ใน ACTIVITIES เป็นทางเลือกได้ (มีลำดับความสำคัญสูงกว่า)
+const activityImg = (id) => {
+  const activity = A[id];
+  if (!activity) return '';
+  const group = IMAGES.activities[activity.cat] || {};
+  return activity.image || group[id] || '';
+};
 
 const imgSrc = (key) => {
   const t = key.split(':')[0],
