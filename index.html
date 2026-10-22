@@ -1,187 +1,2261 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vybe Prototype</title>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 <style>
-:root{--n:#10328F;--b:#5B88D6;--y:#F2C230;--ys:#FFF3C4;--l:#EEF3FF;--bd:#E3EAFA;--mu:#5B6896;--bg:#E7ECF8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1431}}
-:root[data-theme="dark"]{--bg:#0D1431}
-html,body{height:100%;margin:0}
-body{background:var(--bg);font-family:Prompt,sans-serif;color:var(--n);display:flex;align-items:center;justify-content:center}
-#app{width:390px;height:min(844px,100%);background:#fff;border-radius:36px;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(16,50,143,.25)}
-@media(max-width:500px){#app{width:100%;height:100%;border-radius:0}}
-#scr{position:absolute;inset:0 0 76px;overflow-y:auto;padding-bottom:16px}
-#scr.full{bottom:0}
-button{font-family:inherit;cursor:pointer;border:0;color:inherit;background:none}
-h1{margin:0}.p{padding:0 20px}.mu{color:var(--mu)}.row{display:flex;align-items:center;gap:10px}
-.btn{height:50px;border-radius:25px;font-weight:700;font-size:15px;width:100%}
-.y{background:var(--y);color:var(--n)}.nb{background:var(--n);color:#fff}.bb{background:var(--b);color:#fff}.lb{background:var(--l)}.gr{background:#EEF1F8}
-.card{border:1.5px solid var(--bd);border-radius:20px;padding:10px}
-.chip{flex:none;padding:8px 18px;border-radius:20px;font-size:14px;font-weight:600;border:1.5px solid #B9C9EE}.chip.on{background:var(--b);color:#fff;border-color:var(--b)}
-.tag{background:var(--ys);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
-.inp{height:48px;border:1.5px solid var(--bd);border-radius:12px;padding:0 14px;font:inherit;font-size:15px;color:var(--n);width:100%;box-sizing:border-box}
-#nav{position:absolute;left:0;right:0;bottom:0;height:76px;background:#fff;border-top:1.5px solid var(--bd);display:flex;justify-content:space-around;align-items:center}
-#nav.hide{display:none}
-#nav button{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:600;width:80px;color:var(--mu)}
-#nav button.on{color:var(--n)}#nav button.on svg{stroke:var(--y)}
-.sheet{position:absolute;inset:0;background:rgba(16,50,143,.45);display:flex;align-items:flex-end}
-.sheet>div{background:#fff;border-radius:28px 28px 0 0;padding:20px;width:100%;box-sizing:border-box}
-.opt{display:flex;gap:12px;align-items:center;border:1.5px solid var(--bd);border-radius:16px;padding:12px 14px;margin-top:10px;width:100%;text-align:left}.opt.on{border-color:var(--b);background:var(--l)}
-.rad{width:20px;height:20px;border-radius:10px;border:2px solid #B9C9EE;flex:none}.on .rad{border:6px solid var(--b)}
-#toast{position:absolute;left:20px;right:20px;bottom:92px;background:var(--n);color:#fff;border-radius:16px;padding:12px 16px;font-size:13px;opacity:0;transition:opacity .25s;pointer-events:none;text-align:center}#toast.s{opacity:1}
-:focus-visible{outline:3px solid var(--y);outline-offset:2px}
+:root {
+  --n: #10328f;
+  --b: #5b88d6;
+  --y: #f2c230;
+  --ys: #fff3c4;
+  --l: #eef3ff;
+  --bd: #e3eafa;
+  --mu: #5b6896;
+  --bg: #e7ecf8;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1431;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1431;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: var(--bg);
+  font-family: Prompt, sans-serif;
+  color: var(--n);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#app {
+  width: 390px;
+  height: min(844px, 100%);
+  background: #fff;
+  border-radius: 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(16, 50, 143, 0.25);
+}
+@media (max-width: 500px) {
+  #app {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+#scr {
+  position: absolute;
+  inset: 0 0 76px;
+  overflow-y: auto;
+  padding-bottom: 16px;
+}
+#scr.full {
+  bottom: 0;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: 0;
+  color: inherit;
+  background: none;
+}
+h1 {
+  margin: 0;
+}
+.p {
+  padding: 0 20px;
+}
+.mu {
+  color: var(--mu);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn {
+  height: 50px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 15px;
+  width: 100%;
+}
+.y {
+  background: var(--y);
+  color: var(--n);
+}
+.nb {
+  background: var(--n);
+  color: #fff;
+}
+.bb {
+  background: var(--b);
+  color: #fff;
+}
+.lb {
+  background: var(--l);
+}
+.gr {
+  background: #eef1f8;
+}
+.card {
+  border: 1.5px solid var(--bd);
+  border-radius: 20px;
+  padding: 10px;
+}
+.chip {
+  flex: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1.5px solid #b9c9ee;
+}
+.chip.on {
+  background: var(--b);
+  color: #fff;
+  border-color: var(--b);
+}
+.tag {
+  background: var(--ys);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.inp {
+  height: 48px;
+  border: 1.5px solid var(--bd);
+  border-radius: 12px;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--n);
+  width: 100%;
+  box-sizing: border-box;
+}
+#nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 76px;
+  background: #fff;
+  border-top: 1.5px solid var(--bd);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#nav.hide {
+  display: none;
+}
+#nav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  width: 80px;
+  color: var(--mu);
+}
+#nav button.on {
+  color: var(--n);
+}
+#nav button.on svg {
+  stroke: var(--y);
+}
+.sheet {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 50, 143, 0.45);
+  display: flex;
+  align-items: flex-end;
+}
+.sheet > div {
+  background: #fff;
+  border-radius: 28px 28px 0 0;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.opt {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1.5px solid var(--bd);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  width: 100%;
+  text-align: left;
+}
+.opt.on {
+  border-color: var(--b);
+  background: var(--l);
+}
+.rad {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid #b9c9ee;
+  flex: none;
+}
+.on .rad {
+  border: 6px solid var(--b);
+}
+#toast {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 92px;
+  background: var(--n);
+  color: #fff;
+  border-radius: 16px;
+  padding: 12px 16px;
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+  text-align: center;
+}
+#toast.s {
+  opacity: 1;
+}
+:focus-visible {
+  outline: 3px solid var(--y);
+  outline-offset: 2px;
+}
 </style></head><body>
 <div id="app"><div id="scr"></div><div id="nav"></div><div id="toast" role="status"></div></div>
 <script>
-/* ===== IMAGE SLOT MAP (every blank grey box = one image to drop in; each also has an HTML comment + data-slot id in the rendered DOM) =====
- home      up to 6 Upcoming Events cards (160px, cropped to 92px) + 3-4 Recommendation thumbnails (66px); content changes with the category chip
- discover  one 100px image per search result (search/category/filters change the list)
- event     #1 hero image, full width 390x300 (top of page)
- schedule  one thumbnail (56px) per activity in the day list
- community one attached-activity thumbnail (60px) per post | club logo/cover (56px) per club in the Clubs tab
- buddypost / postdetail  attached-activity thumbnail (64px / 60px)
- newpost   attached-activity thumbnail (64px)
- payment   activity thumbnail (64px)
- replan    #1-#2 suggested activity images (70px)
- profile   one 106px tile per past activity in Recap (each recap is a different activity; new ones are added when you finish an activity)
- recap     #1 activity photo (280px)
- sync      #1 illustration (170px)
- event     also: organizer club logo (48px) | club page: club logo/cover (72px) | route: map image (350x200) | recap: activity photo (280px)
- To use real images: replace the grey div inside ill() with <img src=... style="object-fit:cover"> keyed by slot id or event id. */
-const st=(c,w=7)=>`stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" fill="none"`;
-const tree=(x,y,r)=>`<rect x="${x-2}" y="${y}" width="5" height="${r+6}" fill="#8A5A3C"/><circle cx="${x}" cy="${y}" r="${r}" fill="#4FB286"/>`;
-const sun=(x=96,y=22)=>`<circle cx="${x}" cy="${y}" r="11" fill="#F2C230"/><ellipse cx="30" cy="18" rx="14" ry="5" fill="#fff"/>`;
-const N="#10328F",B="#5B88D6",G1="#9ADBB0";
-let SN=0,CX='';
-const ill=(k,w,r,lab)=>{SN++;const id=CX+' #'+SN,L=lab||k;return `<!-- IMAGE SLOT ${id}: ${L} | ${w}px wide -->`+`<div data-slot="${id}" role="img" aria-label="Image placeholder: ${L}" style="width:${w}px;height:${Math.round(w*110/120)}px;border-radius:${r==null?16:r}px;background:#E6EAF3;flex:none"></div>`};
-const E={
-run:{k:'run',t:'Lumpini Sunrise Run',w:'Sat 17 Oct · 06:00',p:'Free',loc:'Lumpini Park',org:'Bangkok Running Community',n:24,tag:'Beginner Friendly'},
-climb:{k:'climb',t:'Climbing Session',w:'Sat 17 Oct · 13:00',p:'฿400',loc:'Climbing Gym A',org:'Climb Collective',n:5,tag:'Beginner Friendly'},
-yoga:{k:'yoga',t:'Morning Yoga in the Park',w:'Sun 18 Oct · 07:00',p:'฿350',loc:'Benjakitti Park',org:'Park Yoga Club',n:6,tag:'All levels'},
-ice:{k:'ice',t:'Ice Bath Recovery',w:'Sat 17 Oct · 16:00',p:'฿400',loc:'Recovery Studio',org:'Recovery Studio',n:10,tag:'Recovery'},
-fun:{k:'run',t:'City Fun Run 5K',w:'Sat 24 Oct · 06:30',p:'฿350',loc:'Benjakitti Park',org:'Run Club Bangkok',n:45,tag:'Official partner'},
-indoor:{k:'climb',t:'Indoor Climbing',w:'Sat 17 Oct · 08:00',p:'฿450',loc:'Climbing Gym A',org:'Climb Collective',n:5,tag:'Indoor · no dust'},
-yin:{k:'yoga',t:'Indoor Yoga',w:'Sat 17 Oct · 08:00',p:'฿300',loc:'Studio K',org:'Studio K',n:8,tag:'Indoor · all levels'}};
-const M={run:['4.8 (120)','2.1 กม.'],fun:['4.7 (86)','3.4 กม.'],climb:['4.6 (41)','4.0 กม.'],yoga:['4.5 (30)','2.8 กม.'],ice:['4.4 (22)','5.0 กม.']};
-const S={cmp:[],rt:0,pj:{},chats:{},recaps:[{id:'r1',t:'Saturday Morning Run',pl:'Lumpini Park',dt:'10 Oct 2026',du:'1 hr 20 min',n:8,cl:'Bangkok Running Community'},{id:'r2',t:'Bouldering Night',pl:'Boulder Lab',dt:'8 Oct 2026',du:'1 hr 45 min',n:6,cl:'Climb Collective'},{id:'r3',t:'Sunset Yin Yoga',pl:'Studio K',dt:'3 Oct 2026',du:'1 hr',n:12,cl:'Studio K'},{id:'r4',t:'Sunday Sunrise Ride',pl:'Bang Kachao',dt:'27 Sep 2026',du:'2 hr 10 min',n:18,cl:'Bangkok Cycling Crew'},{id:'r5',t:'Ice Bath Recovery',pl:'Recovery Studio',dt:'20 Sep 2026',du:'45 min',n:5,cl:'Recovery Studio'},{id:'r6',t:'Reformer Pilates Intro',pl:'Studio Flow',dt:'13 Sep 2026',du:'50 min',n:7,cl:'Studio Flow'}],pid:10,cat:'All',q:'',fb:false,fs:false,fc:false,fav:[],ctab:'Feed',cq:'',ps:'',fol:{},posts:[{id:1,name:'Lisa',col:'#A8D8F0',time:'12 min ago',text:'อยากไปวิ่งแต่ไม่มีเพื่อน มีใครสนใจไปบ้าง',ev:'fun',type:'buddy',int:[]},{id:2,name:'Rose',col:'#FFB6D0',time:'1 hr ago',text:'หาเพื่อนไป Climbing ด้วยกัน #มือใหม่',ev:'boul',type:'buddy',int:[]},{id:3,name:'Mint',col:'#C9E8B8',time:'3 hr ago',text:'เพิ่งไปปั่นจักรยานมา บรรยากาศดีมาก',ev:'cyc',type:'share',int:[]},{id:4,name:'Jisoo',col:'#FFE680',time:'5 hr ago',text:'ใครอยากลอง Reformer Pilates ครั้งแรกบ้าง',ev:'pil',type:'buddy',int:[]}],att:null,pt:'',tg:{sc:true,al:true},stack:[],tab:'home',plan:[['run','Booked'],['climb','Booked'],['ice','Unpaid']],conn:{},alt:'indoor',how:'buddy'};
-const IC={home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',schedule:'<rect x="4" y="5" width="16" height="16" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/>',community:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 3-5.5 6-5.5s6 2 6 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5c3 .3 5 2 5 5"/>',profile:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'};
-const LB={home:'Home',schedule:'My Schedule',community:'Community',profile:'Profile'};
-const logo=s=>`<span style="font-family:'Playfair Display',serif;font-style:italic;font-size:${s}px;color:var(--y);font-weight:600">Vybe</span>`;
-const back=`<button data-a="back" aria-label="Back" style="width:44px;height:44px;border-radius:22px;background:var(--l);font-size:22px;margin:24px 20px 0">‹</button>`;
-const hdr=(s,t,r='')=>`<div class="p row" style="padding-top:26px;justify-content:space-between"><div><div style="font-size:13px;color:var(--b);font-weight:600">${s}</div><h1 style="font-size:28px;font-weight:800;line-height:1.15">${t}</h1></div>${r}</div>`;
-const ev=(id,sm)=>{const e=E[id];return `<button data-go="event:${id}" class="card row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px">${ill(e.k,66,18)}<span style="flex:1"><b style="font-size:15px;display:block">${e.t}</b><span class="mu" style="font-size:11px;display:block">${e.w} · ${e.loc}</span><span class="row" style="gap:6px;margin-top:4px"><b style="color:#2A4DA8">${e.p}</b><span class="tag">${e.tag}</span></span></span><span class="bb" style="padding:8px 14px;border-radius:17px;font-size:12px;font-weight:700">Join</span></button>`};
+// Vybe clickable prototype (single file, vanilla JS, no backend).
+// ภาษาในแอปเป็นภาษาอังกฤษทั้งหมด คอมเมนต์ในโค้ดเป็นภาษาไทยเพื่อให้ทีมแก้ง่าย
+//
+// อ่านจากบนลงล่าง: 1 รูป → 2 ข้อมูล → 3 state → 4-5 ตัวช่วย → 6 หน้าจอ → 7 ตัวรัน
+//
+// ★ หลักสำคัญ: ข้อมูลทุกอย่างเขียน "ที่เดียว" ในส่วน 2 (DATA)
+//   - เพิ่มกิจกรรม = คัดลอกบล็อก { id: ... } 1 อันใน ACTIVITIES แล้วแก้ค่า
+//     กิจกรรมจะโผล่เองทุกหน้า: Home, Discover, ค้นหา, Compare, หน้าคลับ, หน้าแนบโพสต์, Replan
+//   - เพิ่มคลับ = เพิ่ม 1 บรรทัดใน CLUBS แล้วใส่ id ของคลับในช่อง club ของกิจกรรม
+//   - เพิ่มหมวด = เพิ่มชื่อใน CATEGORIES (ปุ่มหมวดในหน้า Home/Discover สร้างให้เอง)
+//   - ที่อื่น (แผน, โพสต์, Recap, เพื่อน, แจ้งเตือน) อ้างถึงกิจกรรมด้วย id อย่างเดียว ไม่ต้องพิมพ์ชื่อ/เวลา/ราคาซ้ำ
+//
+// ปุ่มในหน้า: data-go="screen:param" = ไปหน้าอื่น | data-a="action:x:y" = ทำงาน (ดูส่วน 7)
 
-const CATS=['All','Running','Climbing','Yoga','Pilates','Cycling','Hiking','Swimming','Ice Bath'];
-const mm=id=>M[id]||['4.5 (20)','3.0 กม.'];
-Object.entries({run:'Running',climb:'Climbing',yoga:'Yoga',ice:'Ice Bath',fun:'Running',indoor:'Climbing',yin:'Yoga'}).forEach(([k,c])=>E[k].c=c);
-const mk=(c,t,w,p,loc,org,n,tag)=>({k:'run',c,t,w,p,loc,org,n,tag});
-Object.assign(E,{
-pil:mk('Pilates','Reformer Pilates Intro','Sun 18 Oct · 09:00','฿500','Studio Flow','Studio Flow',8,'Beginner Friendly'),
-pil2:mk('Pilates','Mat Pilates in the Park','Sat 24 Oct · 07:30','Free','Suan Rot Fai','Park Pilates Club',22,'All levels'),
-cyc:mk('Cycling','Sunday Sunrise Ride','Sun 18 Oct · 05:30','Free','Bang Kachao','Bangkok Cycling Crew',31,'Beginner Friendly'),
-cyc2:mk('Cycling','Night Ride Bangkok','Sat 24 Oct · 20:00','฿150','Rama VIII Bridge','Night Riders',18,'Intermediate'),
-hike:mk('Hiking','Khao Yai Day Hike','Sat 24 Oct · 06:00','฿650','Khao Yai','Trail Buddies TH',14,'Beginner Friendly'),
-hike2:mk('Hiking','Doi Suthep Sunrise Trek','Sun 25 Oct · 04:30','฿500','Chiang Mai','Trail Buddies TH',9,'Intermediate'),
-swim:mk('Swimming','Open Water Swim Clinic','Sun 18 Oct · 08:00','฿350','Bangkok Aquatic Center','Swim Lab',12,'Beginner Friendly'),
-swim2:mk('Swimming','Morning Lap Swim Club','Sat 17 Oct · 07:00','฿120','Lumpini Pool','Lap Club BKK',16,'All levels'),
-boul:mk('Climbing','Bouldering Night','Sat 17 Oct · 19:00','฿350','Boulder Lab','Climb Collective',20,'Beginner Friendly'),
-trail:mk('Running','Trail Run Workshop','Sun 18 Oct · 07:00','฿250','Suan Luang Rama IX','Bangkok Running Community',10,'Intermediate'),
-yoga2:mk('Yoga','Sunset Yin Yoga','Fri 16 Oct · 18:00','฿300','Studio K','Studio K',15,'All levels'),
-ice2:mk('Ice Bath','Ice Bath & Sauna Social','Sun 18 Oct · 17:00','฿450','Recovery Studio','Recovery Studio',12,'Recovery')});
-Object.values(E).forEach(e=>{e.b=!/Intermediate/.test(e.tag);e.s=2;e.cl=/Club|Community|Collective|Crew|Riders|Buddies|Lab/.test(e.org)});
-const LST=()=>Object.keys(E).filter(i=>i!='indoor'&&i!='yin');
-const ok=id=>{const e=E[id];return(S.cat=='All'||e.c==S.cat)&&(!S.fb||e.b)&&(!S.fs||e.s>0)&&(!S.fc||e.cl)&&(!S.q||(e.t+e.loc+e.org+e.c).toLowerCase().includes(S.q.toLowerCase()))};
-const catChips=()=>CATS.map(c=>`<button data-a="cat:${c}" class="chip ${S.cat==c?'on':''}">${c}</button>`).join('');
-const dcard=id=>{const e=E[id],on=S.cmp.includes(id);return `<button data-go="event:${id}" class="card row" style="margin:10px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px;align-items:stretch">${ill(e.k,100,16,'DISCOVERY › result card image · '+e.t)}<span style="flex:1"><b style="font-size:15px;display:block">${e.t}</b><span style="font-size:11px;font-weight:700;color:#2A4DA8;display:block">${e.org}</span><span class="mu" style="font-size:11px;display:block">${e.c} · ${e.loc} · ${mm(id)[1]}</span><span class="mu" style="font-size:11px;display:block">${e.w}</span><span class="row" style="justify-content:space-between;margin-top:6px"><b style="color:#2A4DA8">${e.p}</b><span data-a="cmp:${id}" style="border:1.5px solid var(--b);border-radius:16px;padding:5px 12px;font-size:12px;font-weight:700;${on?'background:var(--l)':''}">${on?'✓':'+'} Compare</span></span></span></button>`};
-const dlist=()=>{const f=LST().filter(ok);return `<div class="p row" style="margin-top:14px;justify-content:space-between"><span><b>${f.length} activities</b><br><span class="mu" style="font-size:11px">Oct 2026 · within 5 km</span></span><b style="font-size:12px;color:#2A4DA8">Sort: Best match</b></div>`+(f.length?f.map(dcard).join(''):'<div class="p mu" style="margin-top:24px;text-align:center">ไม่พบกิจกรรม ลองเปลี่ยนคำค้นหาหรือตัวกรอง</div>')+(S.cmp.length?`<div class="nb row" style="position:sticky;bottom:8px;margin:12px 16px 0;border-radius:24px;padding:8px 8px 8px 18px;justify-content:space-between"><span style="font-size:12px"><b>Compare</b><br>${S.cmp.length} selected · add up to 3</span><button data-go="compare" class="y" style="padding:10px 20px;border-radius:18px;font-weight:700">Compare</button></div>`:'')};
-const plist=()=>{const f=LST().filter(i=>!S.ps||(E[i].t+E[i].c+E[i].loc).toLowerCase().includes(S.ps.toLowerCase())).slice(0,8);return f.map(i=>{const e=E[i];return `<button data-a="att:${i}" class="card row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:10px;${S.att==i?'border-color:var(--b);background:var(--l)':''}">${ill(e.k,48,12,'CREATE POST › search result thumbnail')}<span style="flex:1"><b style="font-size:13px;display:block">${e.t}</b><span class="mu" style="font-size:11px">${e.c} · ${e.w} · ${e.p}</span></span><b>${S.att==i?'✓':''}</b></button>`}).join('')||'<div class="p mu" style="margin-top:12px">ไม่พบกิจกรรม</div>'};
-const FR=[['เพื่อน A','#FF8FA3','Running · Yoga','run'],['เพื่อน B','#8FD3C7','Climbing · ย่านใกล้คุณ','boul'],['เพื่อน C','#FFE680','ไป Lumpini Sunrise Run เสาร์นี้','run'],['เพื่อน D','#8FA8E6','Cycling','cyc']];
-const CL=[['Bangkok Running Community','Running','312'],['Climb Collective','Climbing','186'],['Park Yoga Club','Yoga','94'],['Studio Flow','Pilates','120'],['Bangkok Cycling Crew','Cycling','240'],['Trail Buddies TH','Hiking','158']];
-const pc=p=>{const e=E[p.ev];return `<div style="margin:12px 20px 0;border:1.5px solid var(--bd);border-radius:22px;padding:12px"><div class="row"><span style="width:36px;height:36px;border-radius:18px;background:${p.col}"></span><div style="flex:1"><b>${p.name}</b><div class="mu" style="font-size:11px">${p.time}</div></div>${p.type=='buddy'?'<span class="tag">Looking for buddy</span>':''}</div><div style="margin:8px 0;font-size:14px">${p.text}</div><button data-go="event:${p.ev}" class="card row" style="width:100%;text-align:left;gap:10px">${ill(e.k,60,14,'COMMUNITY › attached activity thumbnail')}<span><b style="font-size:13px;display:block">${e.t}</b><span class="mu" style="font-size:11px">${e.w}</span><b style="display:block;color:#2A4DA8;font-size:13px">${e.p} · ดูกิจกรรม ›</b></span></button>`+(p.mine?`<button data-go="postdetail:${p.id}" class="btn lb" style="height:40px;margin-top:10px;font-size:13px">${p.int.length?p.int.length+' คนสนใจ · ดูผู้สนใจ ›':'รอเพื่อนตอบรับ...'}</button>`:`<div class="row" style="margin-top:10px">${S.pj[p.id]=='joined'?`<button data-go="chat:${p.ev}" class="nb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:12px">Joined ✓ Group chat</button>`:S.pj[p.id]=='pending'?`<button disabled class="lb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px;opacity:.7">Requested…</button>`:`<button data-a="pj:${p.id}" class="bb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px">Join</button>`}<button data-go="chat:dm~${p.name}~${p.ev}" class="y" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px">Chat</button></div>`)+`</div>`};
-const clist=()=>{const q=(S.cq||'').toLowerCase(),t=S.ctab;if(t=='Buddies')return FR.map((f,i)=>({f,i})).filter(o=>!q||(o.f[0]+o.f[2]).toLowerCase().includes(q)).map(o=>`<div class="row" style="margin:0 20px;padding:10px 0;border-bottom:1px solid #EEF1FA"><span style="width:40px;height:40px;border-radius:20px;background:${o.f[1]};flex:none"></span><button data-go="event:${o.f[3]}" style="flex:1;text-align:left"><b style="font-size:14px">${o.f[0]}</b><div class="mu" style="font-size:11px">${o.f[2]}</div></button><button data-a="conn:${o.i}" class="${S.conn[o.i]?'lb':'nb'}" style="width:92px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${S.conn[o.i]?'Added':'Connect'}</button></div>`).join('')||'<div class="p mu" style="margin-top:20px">ไม่พบเพื่อน</div>';
-if(t=='Clubs')return CL.filter(c=>!q||(c[0]+c[1]).toLowerCase().includes(q)).map(c=>`<div class="card row" style="margin:10px 20px 0;gap:12px"><button data-go="club:${c[0]}" class="row" style="flex:1;text-align:left;gap:12px">${ill('run',56,14,'COMMUNITY › club logo/cover')}<span><b style="font-size:14px;display:block">${c[0]}</b><span class="mu" style="font-size:11px">${c[1]} · ${c[2]} members</span></span></button><button data-a="fol:${c[0]}" class="${S.fol[c[0]]?'lb':'nb'}" style="width:84px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${S.fol[c[0]]?'Following':'Follow'}</button></div>`).join('')||'<div class="p mu" style="margin-top:20px">ไม่พบ Club</div>';
-return S.posts.filter(p=>(t!='Looking for buddy'||p.type=='buddy')&&(!q||(p.name+p.text+E[p.ev].t).toLowerCase().includes(q))).map(pc).join('')||'<div class="p mu" style="margin-top:20px">ยังไม่มีโพสต์ที่ตรงกัน</div>'};
-const mkpost=ev=>{const id=++S.pid;S.posts.unshift({id,name:'Jennie Kim',col:'#FFE680',time:'just now',text:S.pt||'หาเพื่อนไปด้วยกัน',ev,type:'buddy',mine:true,int:[]});S.pt='';S.att=null;S.stack=[];S.tab='community';S.ctab='Feed';render();toast('โพสต์แล้ว');setTimeout(()=>{const p=S.posts.find(q=>q.id==id);if(p){p.int=[['เพื่อน A','#FF8FA3',false],['เพื่อน B','#8FD3C7',false]];toast('เพื่อน A และเพื่อน B สนใจโพสต์ของคุณ');render()}},2200)};
+// ════════════════════════════════════════════════════════════
+// 1. IMAGES — วางรูป base64 ที่นี่ (ใส่เฉพาะอันที่มีรูป ไม่ต้องใส่ครบ)
+// ════════════════════════════════════════════════════════════
 
-const TP=()=>(S.plan.find(p=>p[1]!='Done')||S.plan[0])[0];
-const hhmm=()=>new Date().toTimeString().slice(0,5);
-const getChat=id=>S.chats[id]||(S.chats[id]=id.startsWith('dm~')?[[id.split('~')[1],'หวัดดี! สนใจไป '+E[id.split('~')[2]].t+' ด้วยกันไหม?',hhmm()]]:[['เพื่อน A','เจอกันหน้าทางเข้านะ','10:02'],['Lisa','พกน้ำมาด้วยน้า','10:05'],['เพื่อน B','เดี๋ยวไปถึงใน 5 นาที','10:08']]);
-const clubInfo=n=>{const c=CL.find(x=>x[0]==n);return{m:c?c[2]:'50',cat:c?c[1]:(Object.values(E).find(e=>e.org==n)||{c:'Wellness'}).c}};
-const DUR=[35,22,65,25],MODES=[['MRT/BTS','35 นาที','฿42'],['Taxi/Grab','22 นาที','฿180'],['เดิน','1 ชม. 5 นาที','ฟรี'],['ขับรถ','25 นาที','ค่าจอดรถ']];
-const bub=m=>m[0]=='คุณ'?`<div style="display:flex;justify-content:flex-end;margin:8px 20px 0"><div style="background:var(--y);border-radius:18px 18px 4px 18px;padding:8px 14px;max-width:75%;font-size:14px">${m[1]}<div style="font-size:9px;text-align:right">${m[2]}</div></div></div>`:`<div style="display:flex;margin:8px 20px 0"><div style="background:var(--l);border-radius:18px 18px 18px 4px;padding:8px 14px;max-width:75%;font-size:14px"><b style="font-size:11px;display:block">${m[0]}</b>${m[1]}<div style="font-size:9px;color:var(--mu)">${m[2]}</div></div></div>`;
-const SC={
-signup:()=>`<div style="text-align:center;padding-top:110px">${logo(72)}</div><div style="text-align:center;margin-top:40px;font-weight:700;font-size:18px">Create an account</div><div class="mu" style="text-align:center;font-size:13px;margin:4px 28px 0">Enter your phone number to sign up for this app</div><div class="row" style="margin:20px 28px 0"><div class="inp row" style="width:70px;justify-content:center;font-weight:600">+66</div><input class="inp" aria-label="เบอร์โทรศัพท์" placeholder="08X XXX XXXX" inputmode="tel"></div><div style="margin:12px 28px 0"><button class="btn" data-go="otp" style="background:#5DB4F0;color:#fff">Continue</button></div><div class="mu" style="margin:16px 0;text-align:center;font-size:12px">or</div><div style="margin:0 28px"><button class="btn gr" data-go="sync">Continue with Google</button><button class="btn gr" data-go="sync" style="margin-top:10px">Continue with Apple</button></div><div class="mu" style="margin:22px 40px 0;text-align:center;font-size:11px">By clicking continue, you agree to our Terms of Service and Privacy Policy</div>`,
-otp:()=>back+`<h1 class="p" style="font-size:28px;font-weight:800;margin-top:12px;line-height:1.2">ยืนยันเบอร์<br>โทรศัพท์ของคุณ</h1><div class="p mu" style="font-size:13px;margin-top:8px">ส่งรหัส 6 หลักไปที่ +66 8X XXX XXXX</div><div class="p row" style="margin-top:24px;justify-content:space-between">${[4,2,7,1,9,0].map(d=>`<input class="inp" aria-label="OTP" maxlength="1" value="${d}" style="width:46px;height:56px;text-align:center;font-size:22px;font-weight:700;padding:0">`).join('')}</div><div class="p mu" style="font-size:12px;margin-top:12px">ส่งรหัสอีกครั้งใน 0:30</div><div style="margin:28px 20px 0"><button class="btn y" data-go="sync">ยืนยันและไปต่อ</button></div>`,
-sync:()=>`<div style="padding-top:60px;display:flex;justify-content:center">${ill('yoga',170,26,'SYNC CONTACTS › top illustration')}</div><h1 style="margin:20px 24px 0;font-size:26px;font-weight:800;line-height:1.2;text-align:center">หาเพื่อนที่ใช้ Vybe<br>จากรายชื่อติดต่อ</h1><div style="margin:8px 28px 0">${[['เห็นว่าเพื่อนไปกิจกรรมอะไร','ชวนไปด้วยกันได้ง่ายขึ้น'],['แนะนำเพื่อนที่สนใจเหมือนกัน','จากเบอร์ที่ลงทะเบียนตรงกัน'],['ไม่ส่งข้อความหาใครเอง','ถ้าคุณไม่กดเชิญเอง']].map(p=>`<div class="row" style="align-items:flex-start;margin-top:12px"><span style="width:28px;height:28px;border-radius:14px;background:var(--ys);flex:none;text-align:center;line-height:28px;font-weight:700">✓</span><div><b style="font-size:14px">${p[0]}</b><div class="mu" style="font-size:12px">${p[1]}</div></div></div>`).join('')}</div><div class="lb" style="margin:16px 24px 0;border-radius:16px;padding:10px 14px;font-size:11px"><b style="font-size:12px">คุณคุมได้เอง</b><br><span class="mu">เลือกซิงก์หรือข้ามก็ได้ และปิดได้ทุกเมื่อในตั้งค่า</span></div><div style="margin:16px 24px 0"><button class="btn y" data-go="friends">อนุญาตเข้าถึงรายชื่อติดต่อ</button><button data-go="home" style="width:100%;margin-top:10px;font-weight:600;padding:8px">ไว้ทีหลัง</button></div>`,
-friends:()=>hdr('Contacts','เพื่อนของคุณ')+`<div class="p mu" style="font-size:13px;margin-top:6px">พบ 4 คนที่ใช้ Vybe</div>`+[['เพื่อน A','#FF8FA3','Running · Yoga'],['เพื่อน B','#8FD3C7','Climbing · ย่านใกล้คุณ'],['เพื่อน C','#FFE680','ไป Lumpini Sunrise Run เสาร์นี้'],['เพื่อน D','#8FA8E6','Cycling']].map((f,i)=>`<div class="row" style="margin:0 20px;padding:10px 0;border-bottom:1px solid #EEF1FA"><span style="width:40px;height:40px;border-radius:20px;background:${f[1]};flex:none"></span><div style="flex:1"><b style="font-size:14px">${f[0]}</b><div class="mu" style="font-size:11px">${f[2]}</div></div><button data-a="conn:${i}" class="${S.conn[i]?'lb':'nb'}" style="width:92px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${S.conn[i]?'Added':'Connect'}</button></div>`).join('')+`<div style="margin:20px 20px 0"><button class="btn y" data-go="home">เริ่มใช้ Vybe</button></div>`,
-home:()=>{const f=LST().filter(i=>S.cat=='All'||E[i].c==S.cat),up=f.slice(0,6),rc=f.length>4?f.slice(2,6):f.slice(0,3);return `<div class="p row" style="padding-top:26px;justify-content:space-between"><span class="row" style="gap:6px">${logo(38)}</span><button data-go="notif" aria-label="Notifications" style="position:relative;width:42px;height:42px;border-radius:21px;border:1.5px solid var(--bd);font-size:17px">🔔<i style="position:absolute;top:-2px;right:-2px;background:var(--y);font-size:10px;font-style:normal;font-weight:700;width:16px;height:16px;border-radius:8px;line-height:16px">2</i></button></div><div class="p mu" style="font-size:13px;margin-top:6px">Good morning,</div><div class="p" style="font-size:28px;font-weight:600">Jennie Kim</div><button data-go="discover" class="lb row" style="width:calc(100% - 40px);text-align:left;margin:12px 20px 0;height:46px;border-radius:23px;border:1.5px solid var(--bd);padding:0 6px 0 16px;font-size:13px;color:var(--mu);justify-content:space-between">ค้นหากิจกรรมที่คุณสนใจ...<span class="bb" style="width:36px;height:36px;border-radius:18px"></span></button><div class="p row" style="margin-top:12px;overflow-x:auto">${catChips()}</div>`+(f.length?`<div class="p row" style="margin-top:16px;justify-content:space-between;font-weight:800;font-size:16px">Upcoming Events<button data-go="discover" style="font-size:13px;font-weight:500">View all ›</button></div><div class="p row" style="margin-top:10px;overflow-x:auto;align-items:stretch">${up.map(i=>`<button data-go="event:${i}" class="card" style="flex:none;width:168px;text-align:left;padding:6px 6px 10px"><div style="height:92px;overflow:hidden;border-radius:16px;position:relative">${ill(E[i].k,160,16,'HOME › Upcoming Events card image · '+E[i].t)}<span class="tag" style="position:absolute;left:6px;top:6px;background:#fff">${E[i].tag}</span></div><b style="font-size:13px;display:block;margin:8px 4px 2px">${E[i].t}</b><span class="mu" style="font-size:11px;margin:0 4px;display:block">${E[i].loc} · ${E[i].n} members</span></button>`).join('')}</div><div class="p row" style="margin-top:16px;justify-content:space-between;font-weight:800;font-size:16px">Recommendations<button data-go="discover" style="font-size:13px;font-weight:500">View all ›</button></div>${rc.map(i=>ev(i)).join('')}`:'<div class="p mu" style="margin-top:30px;text-align:center">ยังไม่มีกิจกรรมในหมวดนี้</div>')},
-event:id=>{const e=E[id],fv=S.fav.includes(id);return `<div style="position:relative">${ill(e.k,390,0,'EVENT DETAIL › hero image · '+e.t+' · 390x300').replace('height:358px','height:300px')}<button data-a="back" aria-label="Back" style="position:absolute;left:20px;top:24px;width:44px;height:44px;border-radius:22px;background:#fff;font-size:22px">‹</button><button data-a="fav:${id}" aria-label="Save activity" aria-pressed="${fv}" style="position:absolute;right:20px;top:24px;width:44px;height:44px;border-radius:22px;background:#fff;font-size:20px;color:${fv?'#E5334F':'#8A96BE'}">${fv?'♥':'♡'}</button></div><div class="p" style="margin-top:16px"><span class="tag">${e.c} · ${e.tag}</span><h1 style="font-size:26px;font-weight:800;margin-top:6px;line-height:1.15">${e.t}</h1><div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:14px">${[['เวลา',e.w],['สถานที่',e.loc],['ราคา',e.p],['ผู้เข้าร่วม',e.n+' คน · 3 มาคนเดียว']].map(r=>`<div class="row" style="justify-content:space-between"><span class="mu">${r[0]}</span><b>${r[1]}</b></div>`).join('')}</div><button data-go="club:${e.org}" class="card row" style="margin-top:12px;width:100%;text-align:left;gap:12px">${ill('run',48,24,'EVENT DETAIL › organizer club logo (48px)')}<span style="flex:1"><span class="mu" style="font-size:11px">จัดโดย</span><b style="display:block">${e.org}</b><span class="mu" style="font-size:11px">★ 4.7 · ${clubInfo(e.org).m} members</span></span>›</button><div style="margin-top:18px;font-weight:800">Reviews <span class="mu" style="font-weight:400;font-size:12px">(ตัวอย่าง)</span></div>${[['Mint','★ 5','บรรยากาศดีมาก เหมาะกับมือใหม่'],['Ploy','★ 4','คนไม่เยอะ จัดเวลาดี']].map(r=>`<div class="lb" style="margin-top:8px;border-radius:16px;padding:10px 14px;font-size:13px"><b>${r[0]}</b> ${r[1]}<div class="mu">${r[2]}</div></div>`).join('')}</div><div style="margin:20px 20px 0"><button class="btn y" data-a="join:${id}">Join</button></div>`},
-schedule:()=>'<div class="p row" style="padding-top:26px;justify-content:space-between"><div><h1 style="font-size:28px;font-weight:800">My Schedule</h1><div class="mu" style="font-size:12px">ตุลาคม 2026 · '+S.plan.length+' กิจกรรมในสัปดาห์นี้</div></div><span class="row"><button data-a="toast:เปิดปฏิทิน" aria-label="Calendar" style="width:42px;height:42px;border-radius:21px;border:1.5px solid var(--bd)">📅</button><button data-go="discover" aria-label="Add activity" class="y" style="width:42px;height:42px;border-radius:21px;font-size:24px">+</button></span></div>'+`<div class="nb" style="margin:14px 20px 0;border-radius:24px;padding:16px;background:var(--b);position:relative"><div style="position:absolute;right:14px;top:14px;width:84px;background:#fff;border-radius:14px;padding:8px;text-align:center;color:var(--n)"><div style="width:60px;height:60px;margin:auto;background:repeating-conic-gradient(#10328F 0 25%,#fff 0 50%) 0 0/12px 12px"></div><div style="font-size:9px;font-weight:700;margin-top:4px">RUN-2417</div></div><div style="font-size:11px;font-weight:700;color:var(--ys)">Today</div><div style="font-size:20px;font-weight:800;color:#fff;margin-top:2px">${E[TP()].t}</div><div style="font-size:12px;color:#fff;margin-top:2px">${E[TP()].w} · ${E[TP()].loc}</div><div class="row" style="margin-top:12px"><button data-go="route:${TP()}" class="y" style="padding:9px 18px;border-radius:18px;font-weight:700;font-size:13px">Route</button><button data-go="chat:${TP()}" style="padding:9px 18px;border-radius:18px;font-weight:700;font-size:13px;background:rgba(255,255,255,.25);color:#fff">Group chat</button></div><button data-a="finish:${TP()}" style="margin-top:10px;color:#fff;font-size:12px;font-weight:600;text-decoration:underline">เช็คอินแล้ว · จบกิจกรรมและสร้าง Recap</button></div>`+(S.plan.some(p=>p[0]=='run')?`<button data-go="notif" class="row" style="margin:12px 20px 0;width:calc(100% - 40px);background:#FFECEF;border-radius:18px;padding:10px 14px;text-align:left"><span style="flex:1;font-size:12px"><b>Run Club: ค่าฝุ่นสูงถึง 136</b><br>ควรเปลี่ยนแผนการทำกิจกรรม · ปรับแพลน</span>›</button>`:'')+`<div class="p" style="margin-top:16px;font-weight:800">Sat, 17 Oct · ${S.plan.length} activities</div>`+S.plan.map(p=>{const e=E[p[0]];return `<button data-go="event:${p[0]}" class="card row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px">${ill(e.k,56,14)}<span style="flex:1"><b style="font-size:14px;display:block">${e.t}</b><span class="mu" style="font-size:11px">${e.w.split('· ')[1]} · ${e.loc}</span><span style="display:block;font-size:12px;margin-top:2px"><span class="tag">${p[1]}</span> <b>${e.p}</b></span></span>${p[1]=='Unpaid'?'<span data-a="pay:'+p[0]+'" class="y" style="padding:8px 12px;border-radius:16px;font-size:12px;font-weight:700">Pay now</span>':''}</button>`}).join('')+`<div class="row" style="margin:12px 20px 0;background:var(--l);border-radius:18px;padding:12px 16px;justify-content:space-between"><span style="font-size:13px">Estimated budget</span><b style="font-size:18px">฿${S.plan.reduce((a,p)=>a+(+E[p[0]].p.replace(/\D/g,'')||0),0)}</b></div>`,
-community:()=>`<div class="p row" style="padding-top:26px"><span style="width:40px;height:40px;border-radius:20px;background:var(--ys);flex:none"></span><input id="cq" class="inp" aria-label="Find friends or clubs" placeholder="Find friends or clubs" value="${S.cq}" style="height:44px;border-radius:22px"></div><div class="p row" style="margin-top:12px;overflow-x:auto">${['Feed','Buddies','Clubs','Looking for buddy'].map(t=>`<button data-a="ctab:${t}" class="chip ${S.ctab==t?'on':''}">${t}</button>`).join('')}</div><div id="cl">${clist()}</div><button data-go="newpost" class="y" style="position:sticky;bottom:12px;display:block;margin:12px 16px 0 auto;height:48px;padding:0 20px;border-radius:24px;font-weight:700">+ Post</button>`,
-profile:()=>hdr('Profile','Jennie Kim','<button data-go="settings" aria-label="Menu" style="font-size:26px">☰</button>')+`<div class="p row" style="margin-top:14px;gap:16px"><span style="width:84px;height:84px;border-radius:42px;background:var(--ys);overflow:hidden;flex:none;display:block;position:relative"><svg viewBox="0 0 120 110" width="84" height="84"><circle cx="60" cy="40" r="22" fill="#10328F"/><path d="M20 110Q60 50 100 110Z" fill="#5B88D6"/></svg></span><div class="row" style="gap:24px"><div style="text-align:center"><b style="font-size:20px">${S.recaps.length}</b><div class="mu" style="font-size:11px">Activities</div></div><div style="text-align:center"><b style="font-size:20px">${7+Object.values(S.conn).filter(Boolean).length}</b><div class="mu" style="font-size:11px">Friends</div></div></div></div><div class="p row" style="margin-top:12px"><span class="chip" style="padding:4px 12px;font-size:12px">Running</span><span class="chip" style="padding:4px 12px;font-size:12px">Climbing</span></div><div class="p" style="margin-top:16px;font-weight:700">Recap</div><div class="p" style="margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${S.recaps.map(r=>`<button data-go="recap:${r.id}" aria-label="Recap ${r.t}" style="text-align:left">${ill('run',106,16,'PROFILE › recap tile image · '+r.t)}<b style="display:block;font-size:11px;margin-top:4px;line-height:1.2">${r.t}</b><span class="mu" style="font-size:10px">${r.dt}</span></button>`).join('')}</div>`,
-notif:()=>back+hdr('Notifications','แจ้งเตือน')+[['PM2.5 สูง','#E5334F','#FFECEF','ฝุ่น PM2.5 สูงที่ Lumpini Park','ไม่เหมาะกับการวิ่งกลางแจ้งช่วงเช้านี้','Lumpini Sunrise Run · เสาร์ 06:00'],['น้ำท่วมขัง','#2A6FD6','#E4F0FF','น้ำท่วมขังแถวสวนเบญจกิติ','เส้นทางเดินทางอาจใช้เวลานานขึ้น','City Fun Run 5K · 24 ต.ค.']].map(a=>`<div style="margin:12px 20px 0;background:${a[2]};border-radius:22px;padding:14px 16px"><span style="background:${a[1]};color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px">${a[0]}</span><b style="font-size:16px;display:block;margin-top:8px">${a[3]}</b><div style="font-size:13px;margin-top:2px">${a[4]}</div><div style="font-size:12px;margin-top:8px;background:#fff;border-radius:12px;padding:8px 12px">กระทบแผน: <b>${a[5]}</b></div><button data-go="replan" class="btn nb" style="height:42px;margin-top:10px;font-size:13px">ดูแผนใหม่ที่แนะนำ</button></div>`).join(''),
-replan:()=>back+`<h1 class="p" style="font-size:24px;font-weight:800;margin-top:10px;line-height:1.2">แพลนวันเสาร์<br>ได้รับผลกระทบ</h1><div class="row" style="margin:12px 20px 0;background:#FFECEF;border-radius:18px;padding:12px 16px;justify-content:space-between"><span><b>Lumpini Sunrise Run</b><br><span style="font-size:12px">เสาร์ 06:00 · Lumpini Park</span></span><span style="background:#E5334F;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:10px">PM2.5 สูง</span></div><div class="p" style="margin-top:16px;font-weight:800">Vybe แนะนำแทน</div>`+['indoor','yin'].map(i=>`<button data-a="alt:${i}" class="row" style="margin:10px 20px 0;width:calc(100% - 40px);text-align:left;border-radius:22px;padding:10px;gap:12px;border:1.5px solid ${S.alt==i?'var(--y)':'var(--bd)'};background:${S.alt==i?'var(--ys)':'#fff'}">${ill(E[i].k,70,16)}<span style="flex:1"><b style="font-size:15px">${E[i].t}</b><span style="display:block;font-size:12px">${E[i].w.split('· ')[1]} · ${E[i].loc}</span><span class="mu" style="font-size:11px">${E[i].tag}</span></span><b style="color:#2A4DA8">${E[i].p}</b></button>`).join('')+`<div class="lb" style="margin:12px 20px 0;border-radius:16px;padding:10px 14px;font-size:12px"><b>แจ้ง 8 คนที่จะไปด้วยกันอัตโนมัติ</b><br><span class="mu">ส่งข้อความในกลุ่มและชวนไปแผนใหม่</span></div><div class="row" style="margin:14px 20px 0"><button data-a="usealt" class="btn y" style="flex:3">ใช้แผนใหม่</button><button data-a="back" class="btn lb" style="flex:2;font-size:13px">คงแผนเดิม</button></div>`,
-recap:x=>{const r=S.recaps.find(q=>q.id==x)||S.recaps[0];return back+`<div style="text-align:center;margin-top:6px">${logo(40)}</div><div style="margin:14px 28px 0;background:var(--y);border-radius:28px;padding:18px;text-align:center"><div style="font-size:12px">Recap ${r.dt}</div><div style="font-size:22px;font-weight:800;margin:2px 0 12px">${r.t}</div>${ill('run',280,22,'RECAP › activity photo · '+r.t)}<div style="text-align:left;margin-top:14px;display:flex;flex-direction:column;gap:6px;font-size:14px">${[['สถานที่',r.pl],['เวลา',r.du],['ไปด้วยกัน',r.n+' People'],['Community',r.cl]].map(q=>`<div class="row" style="justify-content:space-between"><span>${q[0]}</span><b style="text-align:right">${q[1]}</b></div>`).join('')}</div></div><div class="row" style="margin:16px 28px 0"><button data-a="share:${r.id}" class="btn nb" style="flex:1;height:46px;font-size:13px">แชร์ Recap</button><button data-a="toast:ส่งคำขอ Connect แล้ว" class="btn nb" style="flex:1;height:46px;font-size:13px;background:var(--b)">Connect เพื่อน</button></div>`},
-route:id=>{const e=E[id],t=e.w.match(/(\d\d):(\d\d)/),dep=t?(+t[1]*60+ +t[2]-DUR[S.rt]-10):0,hm=m=>String(Math.floor(((m%1440)+1440)%1440/60)).padStart(2,'0')+':'+String(((m%60)+60)%60).padStart(2,'0');return back+hdr('Route','เส้นทางไป '+e.loc)+`<div style="margin:14px 20px 0">${ill('run',350,22,'ROUTE › map image (replace with real map, 350x200)').replace('height:321px','height:200px')}</div><div class="card" style="margin:12px 20px 0"><div class="row"><span style="width:10px;height:10px;border-radius:5px;background:var(--b)"></span>ตำแหน่งของคุณ</div><div style="margin:4px 4px;border-left:2px dotted #B9C9EE;height:14px"></div><div class="row"><span style="width:10px;height:10px;border-radius:5px;background:var(--y)"></span><b>${e.loc}</b></div></div><div class="p row" style="margin-top:12px;overflow-x:auto">${MODES.map((m,i)=>`<button data-a="rt:${i}" class="chip ${S.rt==i?'on':''}" style="text-align:left;line-height:1.3">${m[0]}<br><span style="font-size:11px;font-weight:400">${m[1]} · ${m[2]}</span></button>`).join('')}</div><div class="lb" style="margin:12px 20px 0;border-radius:16px;padding:10px 14px;font-size:13px">${e.w}<br><b>ควรออกเดินทางภายใน ${hm(dep)}</b> เพื่อไปถึงก่อนเริ่ม 10 นาที<div class="mu" style="font-size:11px">เวลาเดินทางเป็นค่าประมาณตัวอย่าง</div></div><div style="margin:14px 20px 0"><a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(e.loc+' Bangkok')}" target="_blank" rel="noopener" class="btn y" style="display:flex;align-items:center;justify-content:center;text-decoration:none;box-sizing:border-box">เปิดใน Google Maps</a><button data-go="chat:${id}" class="btn lb" style="margin-top:10px">ส่งตำแหน่งนัดพบในแชทกลุ่ม</button></div>`},
-chat:id=>{const dm=id.startsWith('dm~'),pr=id.split('~'),eid=dm?pr[2]:id,e=E[eid],ms=getChat(id);return `<div class="p row" style="padding-top:20px;gap:10px"><button data-a="back" aria-label="Back" style="width:40px;height:40px;border-radius:20px;background:var(--l);font-size:22px">‹</button><div style="flex:1"><b>${dm?pr[1]:e.t}</b><div class="mu" style="font-size:11px">${dm?'Direct message · '+e.t:'Group chat · 5 members'}</div></div></div><div class="lb row" style="margin:10px 20px 0;border-radius:16px;padding:10px 14px;justify-content:space-between"><span style="font-size:12px"><b>${e.w}</b><br>${e.loc}</span><button data-go="route:${eid}" class="bb" style="padding:8px 14px;border-radius:16px;font-size:12px;font-weight:700">Route</button></div>${ms.map(bub).join('')}<div style="position:sticky;bottom:0;background:#fff;padding:10px 16px;display:flex;gap:8px;margin-top:12px"><input id="cm" class="inp" aria-label="ข้อความ" placeholder="พิมพ์ข้อความ..." style="border-radius:24px"><button data-a="send:${id}" class="y" style="width:60px;border-radius:24px;font-weight:700">ส่ง</button></div>`},
-discover:()=>`<div class="p row" style="padding-top:26px"><button data-a="back" aria-label="Back" style="font-size:22px;width:28px">‹</button><input id="dq" class="inp" aria-label="ค้นหากิจกรรม" placeholder="ค้นหากิจกรรม สถานที่ ผู้จัด..." value="${S.q}" style="flex:1;height:44px;border-radius:22px"></div><div class="p row" style="margin-top:12px;overflow-x:auto">${catChips()}</div><div class="p row" style="margin-top:8px;overflow-x:auto">${[['fb','Beginner Friendly'],['fs','Solo-friendly'],['fc','Clubs']].map(x=>`<button data-a="flt:${x[0]}" aria-pressed="${S[x[0]]}" class="chip ${S[x[0]]?'on':''}" style="padding:5px 14px;font-size:12px">${x[1]}</button>`).join('')}</div><div id="dl">${dlist()}</div>`,
-compare:()=>{const ids=S.cmp.length?S.cmp:['run','climb'];const rows=[['ราคา',i=>E[i].p],['Rating',i=>'★ '+mm(i)[0]],['ระยะทาง',i=>mm(i)[1]],['ระดับ',i=>E[i].tag],['สมาชิก',i=>E[i].n+' คน']];return back+hdr('Compare','เปรียบเทียบ')+`<div class="p" style="margin-top:14px;overflow-x:auto"><div style="display:grid;grid-template-columns:64px repeat(${ids.length},1fr);gap:8px;font-size:12px;align-items:center"><span></span>${ids.map(i=>`<b style="font-size:13px">${E[i].t}</b>`).join('')}${rows.map(r=>`<span class="mu">${r[0]}</span>${ids.map(i=>`<b>${r[1](i)}</b>`).join('')}`).join('')}<span></span>${ids.map(i=>`<button data-go="event:${i}" class="btn y" style="height:38px;font-size:12px">ดูกิจกรรม</button>`).join('')}</div></div><div class="p mu" style="font-size:11px;margin-top:12px">ข้อมูลตัวอย่างสำหรับต้นแบบ</div>`},
-payment:id=>{const e=E[id];return back+hdr('Payment','ชำระเงิน')+`<div class="card row" style="margin:14px 20px 0;gap:12px">${ill(e.k,64,14,'PAYMENT › activity thumbnail')}<span><b style="display:block">${e.t}</b><span class="mu" style="font-size:12px">${e.w}</span></span></div><div class="p" style="margin-top:14px;font-weight:700">วิธีชำระเงิน</div><div class="p"><button class="opt on" style="width:100%"><span style="flex:1"><b>PromptPay QR</b></span><span class="rad"></span></button><button class="opt" style="width:100%"><span style="flex:1"><b>บัตรเครดิต/เดบิต</b></span><span class="rad"></span></button></div><div class="row" style="margin:16px 20px 0;justify-content:space-between"><span>รวม</span><b style="font-size:20px">${e.p}</b></div><div style="margin:16px 20px 0"><button data-a="paid:${id}" class="btn y">Pay now</button></div>`},
-newpost:()=>back+hdr('Community','สร้างโพสต์')+`<div class="p" style="margin-top:14px"><textarea id="pt" class="inp" aria-label="ข้อความโพสต์" placeholder="หาเพื่อนไป Climbing วันเสาร์..." style="height:90px;padding:12px;font-family:inherit">${S.pt}</textarea></div><div class="p" style="margin-top:12px;font-weight:700;font-size:14px">จากแผนของฉัน</div><div class="p row" style="margin-top:8px;overflow-x:auto">${S.plan.map(p=>`<button data-a="att:${p[0]}" class="chip ${S.att==p[0]?'on':''}">${E[p[0]].t}</button>`).join('')}</div><div class="p" style="margin-top:14px;font-weight:700;font-size:14px">หรือค้นหากิจกรรมอื่น</div><div class="p" style="margin-top:8px"><input id="ps" class="inp" aria-label="ค้นหากิจกรรมที่จะแนบ" placeholder="เช่น Climbing, Pilates, Khao Yai" value="${S.ps}"></div><div id="pl">${plist()}</div><div style="position:sticky;bottom:0;background:#fff;padding:12px 20px"><button data-a="post" class="btn y">Post</button></div>`,
-buddypost:id=>{const e=E[id];return `<div class="p" style="padding-top:36px;text-align:center"><span class="tag" style="background:#DFF5E6">จองแล้ว ✓</span><h1 style="font-size:26px;font-weight:800;margin-top:10px;line-height:1.2">หาเพื่อนไป<br>${e.t} ไหม?</h1></div><div class="p" style="margin-top:16px"><textarea id="pt" class="inp" aria-label="ข้อความโพสต์" style="height:84px;padding:12px;font-family:inherit">${S.pt}</textarea></div><div class="card row" style="margin:12px 20px 0;gap:10px">${ill(e.k,64,14,'BUDDY POST › attached activity thumbnail')}<span><b style="font-size:13px;display:block">${e.t}</b><span class="mu" style="font-size:11px">${e.w} · ${e.loc}</span><b style="display:block;font-size:13px;color:#2A4DA8">${e.p}</b></span></div><div class="p mu" style="margin-top:12px;font-size:12px">โพสต์ไปยัง: ผู้ติดตามของคุณใน Vybe และ Group ของกิจกรรมนี้</div><div style="margin:20px 20px 0"><button data-a="mypost:${id}" class="btn y">โพสต์หาเพื่อน</button><button data-go="schedule" style="width:100%;margin-top:10px;font-weight:600;padding:10px">ข้ามไปก่อน</button></div>`},
-postdetail:x=>{const p=S.posts.find(q=>q.id==x),e=E[p.ev],acc=p.int.filter(i=>i[2]).length;return back+hdr('Your post','โพสต์ของคุณ')+`<div class="p" style="margin-top:12px;font-size:16px">${p.text}</div><button data-go="event:${p.ev}" class="card row" style="margin:12px 20px 0;width:calc(100% - 40px);text-align:left;gap:10px">${ill(e.k,60,14,'POST DETAIL › attached activity thumbnail')}<span><b style="font-size:13px;display:block">${e.t}</b><span class="mu" style="font-size:11px">${e.w}</span><b style="display:block;color:#2A4DA8;font-size:13px">${e.p} · ดูกิจกรรม ›</b></span></button><div class="p" style="margin-top:16px;font-weight:800">${p.int.length} คนสนใจ</div>`+(p.int.length?p.int.map((q,j)=>`<div class="row" style="margin:0 20px;padding:10px 0;border-bottom:1px solid #EEF1FA"><span style="width:40px;height:40px;border-radius:20px;background:${q[1]};flex:none"></span><b style="flex:1">${q[0]}</b><button data-a="acc:${p.id}:${j}" class="${q[2]?'lb':'nb'}" style="width:96px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${q[2]?'ตอบรับแล้ว':'Accept'}</button></div>`).join(''):'<div class="p mu" style="margin-top:8px;font-size:13px">ยังไม่มีคนสนใจ กลับมาดูอีกครั้งในอีกสักครู่</div>')+(acc?`<div style="margin:16px 20px 0"><button data-go="chat:${p.ev}" class="btn y">Group chat · ไปด้วยกัน ${acc+1} คน</button></div>`:'')},
-saved:()=>back+hdr('Saved','กิจกรรมที่บันทึก')+(S.fav.length?S.fav.map(i=>ev(i)).join(''):'<div class="p mu" style="margin-top:20px">ยังไม่มีกิจกรรมที่บันทึก กดหัวใจในหน้ากิจกรรม</div>'),
-club:p=>{const n=p||'Bangkok Running Community',ci=clubInfo(n),evs=LST().filter(i=>E[i].org==n);return back+`<div class="p row" style="gap:14px;margin-top:14px">${ill('run',72,36,'CLUB › logo / cover (72px)')}<div style="flex:1"><h1 style="font-size:22px;font-weight:800;line-height:1.15">${n}</h1><div class="mu" style="font-size:12px">${ci.cat} · ${ci.m} members</div></div></div><div class="p row" style="margin-top:14px"><button data-a="fol:${n}" class="btn ${S.fol[n]?'lb':'nb'}" style="height:42px;font-size:13px">${S.fol[n]?'Following':'Follow'}</button><button data-a="toast:ส่งข้อความถึงคลับแล้ว" class="btn lb" style="height:42px;font-size:13px">Message</button></div><div class="p" style="margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${[[ci.m,'สมาชิก'],[evs.length,'กิจกรรม'],['★ 4.7','Rating']].map(x=>`<div class="lb" style="border-radius:16px;padding:12px"><b style="font-size:20px">${x[0]}</b><div style="font-size:11px">${x[1]}</div></div>`).join('')}</div><div class="p" style="margin-top:16px;font-weight:800">กิจกรรมของคลับ</div>`+(evs.length?evs.map(i=>ev(i)).join(''):'<div class="p mu" style="margin-top:8px">ยังไม่มีกิจกรรมที่เปิดรับ</div>')},
-settings:()=>{const tg=(k,t)=>`<div class="row" style="margin:0 20px;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between"><span>${t}</span><button data-a="tg:${k}" role="switch" aria-checked="${S.tg[k]}" aria-label="${t}" style="width:46px;height:28px;border-radius:14px;position:relative;background:${S.tg[k]?'var(--b)':'#CBD3EA'}"><span style="position:absolute;top:3px;left:${S.tg[k]?21:3}px;width:22px;height:22px;border-radius:11px;background:#fff"></span></button></div>`;return back+hdr('Settings','ตั้งค่า')+`<div class="row" style="margin:14px 20px 0;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between"><span>เบอร์โทรศัพท์</span><b>+66 8X XXX XXXX</b></div>`+`<button data-go="saved" class="row" style="margin:0 20px;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between;width:calc(100% - 40px)"><span>กิจกรรมที่บันทึก (${S.fav.length})</span>›</button>`+tg('sc','ซิงก์รายชื่อติดต่อ')+tg('al','แจ้งเตือนฝุ่น PM2.5 / น้ำท่วม')+`<div style="margin:24px 20px 0"><button data-a="logout" class="btn gr">Log out</button></div>`},
+/*
+  วิธีใส่รูป
+  1) แปลงรูปเป็น base64 (data URI) แล้ววางเป็นคู่  id: 'data:image/...'
+     ตัวอย่าง:  activities: { run: 'data:image/jpeg;base64,/9j/4AAQ...', climb: 'data:...' }
+     id คือค่า id ของกิจกรรมใน ACTIVITIES (ส่วน 2) / id ของคลับใน CLUBS
+  2) รูปเดียวต่อกิจกรรมใช้ได้ทุกที่ที่กิจกรรมนั้นโผล่ (ระบบครอปแบบ cover ให้เอง)
+     ลำดับการหารูป: รูปของกิจกรรมนั้น → รูปประจำหมวด (categories) → กล่องสีเทา
+     ทางลัด: ใส่แค่ categories หมวดละรูป ทุกกิจกรรมในหมวดจะมีรูปทันที
+  3) ไม่ใส่ = กล่องสีเทา และคอมเมนต์ <!-- IMAGE SLOT ... key=id --> ในหน้าเว็บบอกตำแหน่ง
+  4) ตั้ง SHOW_SLOT_SIZES = false ถ้าไม่อยากให้กล่องเทาโชว์ตัวเลขขนาด
+
+  รูปกิจกรรม แนะนำ 1170×900 px (13:10) JPEG/WebP ไม่เกิน ~150 KB วางวัตถุสำคัญไว้กลางภาพ
+  ────────────────────────────────────────────────────────────
+  Event detail: ภาพบนสุด          390×300   →  780×600
+  Home: การ์ด Upcoming            160×92    →  320×184
+  Discovery: การ์ดผลลัพธ์         100×92    →  200×184
+  Recap: รูปในการ์ด               280×257   →  560×514
+  Profile: ช่อง Recap             106×97    →  212×194
+  Route: แผนที่                   350×200   →  700×400   (misc.map)
+  Sync contacts: รูปด้านบน        170×156   →  340×312   (misc.sync)
+  โลโก้คลับ (clubs)               200×200 px สี่เหลี่ยมจัตุรัส
+  รูป Recap: ไม่ต้องใส่ ใช้รูปของกิจกรรมนั้นให้อัตโนมัติ
+*/
+const SHOW_SLOT_SIZES = true;
+
+// ── แผนที่จริงในหน้า Route ──
+// USE_LIVE_MAP = true → ฝัง Google Maps จริง (หน้าที่เผยแพร่บน claude.ai จะบล็อก จึงปิดไว้)
+const USE_LIVE_MAP = false;
+const MAPS_API_KEY = '';
+
+const IMAGES = {
+  activities: {
+    // run: 'data:image/jpeg;base64,...',
+  },
+  clubs: {
+    // brc: 'data:image/png;base64,...',
+  },
+  // รูปประจำหมวด: หมวดละ 1 รูป ใช้กับทุกกิจกรรมในหมวดที่ยังไม่มีรูปของตัวเอง
+  categories: {
+    Running: '',
+    Climbing: '',
+    Yoga: '',
+    Pilates: '',
+    Cycling: '',
+    Hiking: '',
+    Swimming: '',
+    'Ice Bath': '',
+    'Muay Thai': '',
+    Padel: '',
+    Dance: '',
+    Meditation: '',
+    Paddle: '',
+  },
+  // รูป Recap: ใส่เฉพาะเมื่ออยากใช้รูปอื่นแทนรูปกิจกรรม เช่น r1: 'data:...'
+  recaps: {},
+  misc: {
+    map: '', // route map
+    sync: '', // contact-sync screen picture
+  },
 };
-const FULL=['signup','otp','sync','friends','event','notif','replan','recap','compare','payment','newpost','club','settings','route','chat','buddypost','postdetail','saved'];
-function sheet(id){const e=E[id],o=[['solo','Join solo','ไปคนเดียว ดูคนที่มาแบบ Solo'],['buddy','Find a buddy','โพสต์หาเพื่อนให้ฟีด Community'],['friends','Join with friends','ชวนเพื่อนในแอปไปด้วยกัน']];
-return `<div class="sheet" data-a="closesheet"><div data-stop><b style="font-size:18px">ต้องการเข้าร่วมแบบไหน?</b><div class="mu" style="font-size:12px">${e.t} · ${e.w}</div>${o.map(x=>`<button data-a="how:${x[0]}:${id}" class="opt ${S.how==x[0]?'on':''}"><span style="flex:1"><b style="font-size:14px">${x[1]}</b><span class="mu" style="display:block;font-size:11px">${x[2]}</span></span><span class="rad"></span></button>`).join('')}<button data-a="confirm:${id}" class="btn bb" style="margin-top:16px">Continue</button></div></div>`}
-const $=s=>document.querySelector(s);
-function render(){const cur=S.stack[S.stack.length-1]||{n:S.tab};const [n,p]=[cur.n,cur.p];const scr=$('#scr');
-const sv=scr.scrollTop,same=render.l===n+p;render.l=n+p;SN=0;CX=n;scr.innerHTML=SC[n](p)+(cur.sheet?sheet(p):'');scr.classList.toggle('full',FULL.includes(n));scr.scrollTop=same?sv:0;if(n=='chat'){scr.scrollTop=scr.scrollHeight;if(same){const c=$('#cm');if(c)c.focus()}}
-const nv=$('#nav');nv.classList.toggle('hide',FULL.includes(n));
-nv.innerHTML=Object.keys(IC).map(k=>`<button data-tab="${k}" class="${S.tab==k?'on':''}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>${LB[k]}</button>`).join('')}
-function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('s');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('s'),1800)}
-function go(s){const [n,p]=s.split(':');S.stack.push({n,p});render()}
-document.addEventListener('click',e=>{
-if(e.target.closest('[data-stop]')&&!e.target.closest('[data-a],[data-go]'))return;
-const t=e.target.closest('[data-tab],[data-go],[data-a]');if(!t)return;if($('#pt'))S.pt=$('#pt').value;
-if(t.dataset.tab){S.tab=t.dataset.tab;S.stack=[];render();return}
-if(t.dataset.go){go(t.dataset.go);return}
-const [a,x,y]=t.dataset.a.split(':'),cur=S.stack[S.stack.length-1];
-if(a=='back'){S.stack.pop();if(!S.stack.length&&!SC[S.tab])S.tab='home';render()}
-else if(a=='toast')toast(t.dataset.a.slice(6));
-else if(a=='conn'){S.conn[x]=!S.conn[x];render()}
-else if(a=='join'){cur.sheet=true;render()}
-else if(a=='closesheet'){if(e.target.classList.contains('sheet')){cur.sheet=false;render()}}
-else if(a=='how'){S.how=x;render()}
-else if(a=='confirm'){if(!S.plan.some(p=>p[0]==x))S.plan.push([x,E[x].p=='Free'?'Booked':'Unpaid']);const e=E[x];if(S.how=='buddy'){S.pt='หาเพื่อนไป '+e.t+' '+e.w.split(' ·')[0];S.att=x;S.stack=[{n:'buddypost',p:x}];render();toast('เพิ่มเข้าแผนแล้ว · โพสต์หาเพื่อนต่อได้เลย')}else{S.stack=[];S.tab='schedule';render();toast('เพิ่มเข้า My Schedule แล้ว')}}
-else if(a=='pay'){go('payment:'+x)}
-else if(a=='paid'){S.plan.find(q=>q[0]==x)[1]='Booked';S.stack=[];S.tab='schedule';render();toast('ชำระเงินแล้ว (จำลอง)')}
-else if(a=='cmp'){const q=S.cmp.indexOf(x);if(q>-1)S.cmp.splice(q,1);else if(S.cmp.length<3)S.cmp.push(x);else toast('เลือกได้สูงสุด 3 รายการ');render()}
-else if(a=='att'){S.att=x;render()}
-else if(a=='post'){if(!S.att){toast('แนบกิจกรรมก่อนโพสต์');return}mkpost(S.att)}
-else if(a=='mypost'){mkpost(x)}
-else if(a=='cat'){S.cat=x;render()}
-else if(a=='flt'){S[x]=!S[x];render()}
-else if(a=='ctab'){S.ctab=x;render()}
-else if(a=='fol'){S.fol[x]=!S.fol[x];render();toast(S.fol[x]?'ติดตาม '+x+' แล้ว':'เลิกติดตามแล้ว')}
-else if(a=='fav'){const q=S.fav.indexOf(x);if(q>-1)S.fav.splice(q,1);else S.fav.push(x);render();toast(q>-1?'ลบออกจากที่บันทึกแล้ว':'บันทึกกิจกรรมแล้ว')}
-else if(a=='acc'){const p=S.posts.find(q=>q.id==x);p.int[y][2]=true;render();toast(p.int[y][0]+' ถูกเพิ่มเข้า Group chat แล้ว')}
-else if(a=='pj'){const p=S.posts.find(q=>q.id==x);S.pj[x]='pending';render();toast('ส่งคำขอไปที่ '+p.name+' แล้ว');setTimeout(()=>{S.pj[x]='joined';if(!S.plan.some(q=>q[0]==p.ev))S.plan.push([p.ev,E[p.ev].p=='Free'?'Booked':'Unpaid']);getChat(p.ev).push([p.name,'ยินดีต้อนรับนะ เจอกันที่งาน!',hhmm()]);render();toast(p.name+' ตอบรับแล้ว · เพิ่มเข้า My Schedule และ Group chat แล้ว')},2200)}
-else if(a=='rt'){S.rt=+x;render()}
-else if(a=='finish'){const e=E[x];let r=S.recaps.find(q=>q.id=='e'+x);if(!r){r={id:'e'+x,t:e.t,pl:e.loc,dt:'17 Oct 2026',du:'1 hr 20 min',n:e.n,cl:e.org};S.recaps.unshift(r)}const p=S.plan.find(q=>q[0]==x);if(p)p[1]='Done';S.stack=[{n:'recap',p:r.id}];render();toast('สร้าง Recap แล้ว · เพิ่มในโปรไฟล์')}
-else if(a=='share'){const r=S.recaps.find(q=>q.id==x),txt=r.t+' @ '+r.pl+' · '+r.du+' with '+r.n+' people #Vybe';if(navigator.share)navigator.share({title:'Vybe Recap',text:txt}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>toast('คัดลอกข้อความ Recap แล้ว'),()=>toast('แชร์ไม่ได้ในหน้านี้'));else toast('แชร์ไม่ได้ในหน้านี้')}
-else if(a=='send'){const el=$('#cm'),v=el&&el.value.trim();if(!v)return;getChat(x).push(['คุณ',v,hhmm()]);render();setTimeout(()=>{const c=S.stack[S.stack.length-1];if(c&&c.n=='chat'&&c.p==x){const ans=['ได้เลย 👍','โอเค เจอกันนะ','ขอบคุณที่บอกนะ','ไปถึงแล้ว รอตรงทางเข้า'];getChat(x).push([(x.startsWith('dm~')?x.split('~')[1]:['เพื่อน A','Lisa','เพื่อน B'][Math.floor(Math.random()*3)]),ans[Math.floor(Math.random()*4)],hhmm()]);render()}},1400)}
-else if(a=='tg'){S.tg[x]=!S.tg[x];render()}
-else if(a=='publish'){S.stack.pop();render();toast('เผยแพร่ Event แล้ว (จำลอง)')}
-else if(a=='logout'){S.stack=[{n:'signup'}];render()}
-else if(a=='alt'){S.alt=x;render()}
-else if(a=='usealt'){const i=S.plan.findIndex(p=>p[0]=='run');if(i>-1)S.plan[i]=[S.alt,E[S.alt].p=='Free'?'Booked':'Unpaid'];S.stack=[];S.tab='schedule';render();toast('เปลี่ยนเป็น' + E[S.alt].t + ' แล้ว · แจ้งเพื่อน 8 คนแล้ว')}
+
+// ════════════════════════════════════════════════════════════
+// 2. DATA — แก้/เพิ่มข้อมูลที่นี่ที่เดียว (ข้อมูลตัวอย่างทั้งหมด)
+// ════════════════════════════════════════════════════════════
+
+// วันที่ "วันนี้" ในต้นแบบ (ใช้แยกกิจกรรมที่จะมาถึง / ผ่านไปแล้ว)
+const TODAY = '2026-10-17';
+
+const USER = { name: 'Jennie Kim', phone: '+66 8X XXX XXXX', color: '#FFE680' };
+
+// หมวดกิจกรรม (ลำดับ = ลำดับปุ่มบนหน้าจอ)
+const CATEGORIES = [
+  'Running', 'Climbing', 'Yoga', 'Pilates', 'Cycling', 'Hiking', 'Swimming',
+  'Ice Bath', 'Muay Thai', 'Padel', 'Dance', 'Meditation', 'Paddle',
+];
+
+// ── CLUBS — ผู้จัดกิจกรรม (ผู้ใช้ทั่วไปสร้าง Event ไม่ได้)
+// type: 'club' = คลับ/ชุมชน (ขึ้นในตัวกรอง "Clubs") | 'studio' = สตูดิโอ/ยิม
+const CLUBS = [
+  { id: 'brc', name: 'Bangkok Running Community', cat: 'Running', type: 'club', members: 312, rating: 4.8 },
+  { id: 'rcb', name: 'Run Club Bangkok', cat: 'Running', type: 'club', members: 540, rating: 4.7 },
+  { id: 'ntr', name: 'Night Track Runners', cat: 'Running', type: 'club', members: 128, rating: 4.6 },
+  { id: 'ccl', name: 'Climb Collective', cat: 'Climbing', type: 'club', members: 186, rating: 4.7 },
+  { id: 'bdl', name: 'Boulder Lab', cat: 'Climbing', type: 'studio', members: 210, rating: 4.6 },
+  { id: 'vtw', name: 'Vertical Wall BKK', cat: 'Climbing', type: 'studio', members: 95, rating: 4.5 },
+  { id: 'pyc', name: 'Park Yoga Club', cat: 'Yoga', type: 'club', members: 94, rating: 4.6 },
+  { id: 'stk', name: 'Studio K', cat: 'Yoga', type: 'studio', members: 150, rating: 4.7 },
+  { id: 'rfy', name: 'Rooftop Flow Yoga', cat: 'Yoga', type: 'studio', members: 88, rating: 4.8 },
+  { id: 'sfl', name: 'Studio Flow', cat: 'Pilates', type: 'studio', members: 120, rating: 4.7 },
+  { id: 'ppc', name: 'Park Pilates Club', cat: 'Pilates', type: 'club', members: 76, rating: 4.5 },
+  { id: 'cor', name: 'Core Lab Pilates', cat: 'Pilates', type: 'studio', members: 64, rating: 4.6 },
+  { id: 'bcc', name: 'Bangkok Cycling Crew', cat: 'Cycling', type: 'club', members: 240, rating: 4.7 },
+  { id: 'nrd', name: 'Night Riders', cat: 'Cycling', type: 'club', members: 132, rating: 4.5 },
+  { id: 'gvl', name: 'Gravel Gang TH', cat: 'Cycling', type: 'club', members: 58, rating: 4.6 },
+  { id: 'tbt', name: 'Trail Buddies TH', cat: 'Hiking', type: 'club', members: 158, rating: 4.8 },
+  { id: 'wkn', name: 'Weekend Nature Walkers', cat: 'Hiking', type: 'club', members: 102, rating: 4.6 },
+  { id: 'swl', name: 'Swim Lab', cat: 'Swimming', type: 'studio', members: 80, rating: 4.6 },
+  { id: 'lcb', name: 'Lap Club BKK', cat: 'Swimming', type: 'club', members: 112, rating: 4.5 },
+  { id: 'ows', name: 'Open Water Society', cat: 'Swimming', type: 'club', members: 47, rating: 4.7 },
+  { id: 'rcs', name: 'Recovery Studio', cat: 'Ice Bath', type: 'studio', members: 70, rating: 4.6 },
+  { id: 'cpc', name: 'Cold Plunge Club', cat: 'Ice Bath', type: 'club', members: 66, rating: 4.7 },
+  { id: 'mtg', name: 'Muay Thai Garage', cat: 'Muay Thai', type: 'studio', members: 140, rating: 4.8 },
+  { id: 'elc', name: 'Eight Limbs Club', cat: 'Muay Thai', type: 'club', members: 98, rating: 4.6 },
+  { id: 'pdl', name: 'Padel Social BKK', cat: 'Padel', type: 'club', members: 175, rating: 4.7 },
+  { id: 'dnc', name: 'Dance Hall 22', cat: 'Dance', type: 'studio', members: 130, rating: 4.6 },
+  { id: 'grv', name: 'Groove Crew', cat: 'Dance', type: 'club', members: 84, rating: 4.5 },
+  { id: 'mnd', name: 'Mindful Bangkok', cat: 'Meditation', type: 'club', members: 160, rating: 4.8 },
+  { id: 'ssh', name: 'Sound & Stillness', cat: 'Meditation', type: 'studio', members: 52, rating: 4.7 },
+  { id: 'sup', name: 'Chao Phraya SUP Club', cat: 'Paddle', type: 'club', members: 72, rating: 4.7 },
+  { id: 'kyk', name: 'Klong Paddlers', cat: 'Paddle', type: 'club', members: 45, rating: 4.6 },
+];
+
+// ── ACTIVITIES — กิจกรรมทั้งหมด เขียนครั้งเดียว ใช้ได้ทุกหน้า
+// ช่องที่ต้องมี:
+//   id       รหัสสั้น ๆ ห้ามซ้ำ (ใช้อ้างถึงจากแผน โพสต์ รูป)
+//   title    ชื่อกิจกรรม            cat    หมวด (ต้องตรงกับ CATEGORIES)
+//   club     id ของคลับผู้จัด       date   'YYYY-MM-DD'      time  'HH:MM'
+//   mins     ความยาว (นาที)         price  ตัวเลขบาท (0 = Free)
+//   place    สถานที่                area   ย่าน/จังหวัด
+//   level    'Beginner' | 'All levels' | 'Intermediate' | 'Advanced'
+//   indoor   true = ในร่ม (ใช้แนะนำแผนใหม่ตอนฝุ่น/น้ำท่วม)
+//   going    จำนวนคนที่ไป          solo   จำนวนคนที่มาคนเดียว
+//   rating   คะแนน                 reviews จำนวนรีวิว        km  ระยะทางจากผู้ใช้
+//   about    คำอธิบาย 1 ประโยค
+// ช่องเสริม: badge (ป้ายพิเศษแทนป้ายระดับ เช่น 'Official partner')
+const ACTIVITIES = [
+  // Running
+  { id: 'run', title: 'Lumpini Sunrise Run', cat: 'Running', club: 'brc', date: '2026-10-17', time: '06:00', mins: 60, price: 0,
+    place: 'Lumpini Park', area: 'Silom', level: 'Beginner', indoor: false, going: 24, solo: 3, rating: 4.8, reviews: 120, km: 2.1,
+    about: 'An easy 5 km loop around the lake at a chatty pace, with pacers for every group.' },
+  { id: 'fun', title: 'City Fun Run 5K', cat: 'Running', club: 'rcb', date: '2026-10-24', time: '06:30', mins: 75, price: 350,
+    place: 'Benjakitti Park', area: 'Asok', level: 'Beginner', indoor: false, going: 45, solo: 6, rating: 4.7, reviews: 86, km: 3.4,
+    badge: 'Official partner', about: 'A timed 5K with medals, music and a post-run breakfast.' },
+  { id: 'trail', title: 'Trail Run Workshop', cat: 'Running', club: 'brc', date: '2026-10-18', time: '07:00', mins: 120, price: 250,
+    place: 'Suan Luang Rama IX', area: 'Prawet', level: 'Intermediate', indoor: false, going: 10, solo: 1, rating: 4.6, reviews: 28, km: 9.5,
+    about: 'Learn uphill and downhill technique on the park’s dirt trails.' },
+  { id: 'track', title: 'Track Tuesday Intervals', cat: 'Running', club: 'ntr', date: '2026-10-20', time: '19:00', mins: 60, price: 0,
+    place: 'Chulalongkorn Stadium', area: 'Pathum Wan', level: 'Intermediate', indoor: false, going: 32, solo: 4, rating: 4.6, reviews: 54, km: 1.8,
+    about: '400 m repeats under the stadium lights. Bring a watch.' },
+  { id: 'chinarun', title: 'Chinatown Night Run', cat: 'Running', club: 'rcb', date: '2026-10-23', time: '20:00', mins: 60, price: 150,
+    place: 'Yaowarat Road', area: 'Samphanthawong', level: 'All levels', indoor: false, going: 38, solo: 5, rating: 4.7, reviews: 61, km: 4.6,
+    about: '7 km through Chinatown’s street-food lanes, finishing with dessert.' },
+  { id: 'river', title: 'Riverside Long Run', cat: 'Running', club: 'brc', date: '2026-10-25', time: '05:30', mins: 120, price: 0,
+    place: 'Chao Phraya Riverside', area: 'Khlong San', level: 'Intermediate', indoor: false, going: 18, solo: 2, rating: 4.7, reviews: 40, km: 5.2,
+    about: '16 km at an easy pace along the river path, with water stops every 4 km.' },
+  { id: 'tread', title: 'Treadmill Tempo Class', cat: 'Running', club: 'ntr', date: '2026-10-17', time: '08:00', mins: 45, price: 300,
+    place: 'Run Lab Studio', area: 'Ari', level: 'All levels', indoor: true, going: 12, solo: 3, rating: 4.4, reviews: 18, km: 6.0,
+    about: 'A coach-led tempo session on treadmills in an air-conditioned studio.' },
+  { id: 'c25k', title: 'Couch to 5K: Week 1', cat: 'Running', club: 'rcb', date: '2026-10-31', time: '07:00', mins: 45, price: 0,
+    place: 'Benjakitti Park', area: 'Asok', level: 'Beginner', indoor: false, going: 40, solo: 9, rating: 4.9, reviews: 72, km: 3.4,
+    about: 'The first session of an 8-week plan for total beginners, using walk-run intervals.' },
+  { id: 'halloween', title: 'Halloween Glow Run', cat: 'Running', club: 'ntr', date: '2026-10-31', time: '19:00', mins: 60, price: 200,
+    place: 'Lumpini Park', area: 'Silom', level: 'All levels', indoor: false, going: 60, solo: 8, rating: 4.8, reviews: 33, km: 2.1,
+    about: 'Dress up and run a glow-in-the-dark 5K. Best costume wins a free month of classes.' },
+  { id: 'social10', title: 'Sunday Social 10K', cat: 'Running', club: 'brc', date: '2026-11-08', time: '06:00', mins: 80, price: 0,
+    place: 'Suan Rot Fai', area: 'Chatuchak', level: 'All levels', indoor: false, going: 28, solo: 4, rating: 4.6, reviews: 47, km: 8.0,
+    about: '10 km at a social pace, followed by coffee together.' },
+
+  // Climbing
+  { id: 'climb', title: 'Climbing Session', cat: 'Climbing', club: 'ccl', date: '2026-10-17', time: '13:00', mins: 120, price: 400,
+    place: 'Climbing Gym A', area: 'Lat Phrao', level: 'Beginner', indoor: true, going: 5, solo: 2, rating: 4.6, reviews: 41, km: 4.0,
+    about: 'Top-rope climbing with belay coaching. Shoes and harness included.' },
+  { id: 'indoor', title: 'Indoor Climbing', cat: 'Climbing', club: 'ccl', date: '2026-10-17', time: '08:00', mins: 90, price: 450,
+    place: 'Climbing Gym A', area: 'Lat Phrao', level: 'Beginner', indoor: true, going: 5, solo: 2, rating: 4.6, reviews: 39, km: 4.0,
+    about: 'A morning auto-belay and top-rope session. A great plan for rainy or smoggy days.' },
+  { id: 'boul', title: 'Bouldering Night', cat: 'Climbing', club: 'ccl', date: '2026-10-17', time: '19:00', mins: 120, price: 350,
+    place: 'Boulder Lab', area: 'Ekkamai', level: 'Beginner', indoor: true, going: 20, solo: 4, rating: 4.7, reviews: 63, km: 5.5,
+    about: 'Social bouldering with new routes every week and music all night.' },
+  { id: 'boul101', title: 'Bouldering 101', cat: 'Climbing', club: 'bdl', date: '2026-10-21', time: '18:30', mins: 90, price: 300,
+    place: 'Boulder Lab', area: 'Ekkamai', level: 'Beginner', indoor: true, going: 10, solo: 4, rating: 4.6, reviews: 34, km: 5.5,
+    about: 'Footwork, falling safely and reading routes for first-timers.' },
+  { id: 'lead', title: 'Lead Climbing Course', cat: 'Climbing', club: 'vtw', date: '2026-10-24', time: '10:00', mins: 180, price: 1200,
+    place: 'Vertical Wall BKK', area: 'Bang Na', level: 'Advanced', indoor: true, going: 6, solo: 1, rating: 4.8, reviews: 15, km: 11.2,
+    about: 'Learn to clip, fall and lead-belay. Top-rope experience required.' },
+  { id: 'bcomp', title: 'Boulder Comp Night', cat: 'Climbing', club: 'bdl', date: '2026-10-30', time: '19:00', mins: 180, price: 250,
+    place: 'Boulder Lab', area: 'Ekkamai', level: 'All levels', indoor: true, going: 45, solo: 6, rating: 4.7, reviews: 22, km: 5.5,
+    about: 'A friendly in-house comp with 30 new problems and prizes.' },
+  { id: 'crag', title: 'Outdoor Crag Day Trip', cat: 'Climbing', club: 'ccl', date: '2026-11-07', time: '06:00', mins: 600, price: 1800,
+    place: 'Khao Chin Lae', area: 'Lopburi', level: 'Intermediate', indoor: false, going: 12, solo: 2, rating: 4.9, reviews: 12, km: 150,
+    about: 'A day on limestone sport routes. Transport and gear included.' },
+
+  // Yoga
+  { id: 'yoga', title: 'Morning Yoga in the Park', cat: 'Yoga', club: 'pyc', date: '2026-10-18', time: '07:00', mins: 60, price: 350,
+    place: 'Benjakitti Park', area: 'Asok', level: 'All levels', indoor: false, going: 6, solo: 2, rating: 4.5, reviews: 30, km: 2.8,
+    about: 'Gentle hatha flow on the lawn by the lake. Mats provided.' },
+  { id: 'yin', title: 'Indoor Yoga', cat: 'Yoga', club: 'stk', date: '2026-10-17', time: '08:00', mins: 60, price: 300,
+    place: 'Studio K', area: 'Thong Lo', level: 'All levels', indoor: true, going: 8, solo: 3, rating: 4.7, reviews: 52, km: 3.1,
+    about: 'A calm morning flow in a filtered-air studio.' },
+  { id: 'yoga2', title: 'Sunset Yin Yoga', cat: 'Yoga', club: 'stk', date: '2026-10-16', time: '18:00', mins: 75, price: 300,
+    place: 'Studio K', area: 'Thong Lo', level: 'All levels', indoor: true, going: 15, solo: 3, rating: 4.7, reviews: 44, km: 3.1,
+    about: 'Long, slow holds to unwind after the week.' },
+  { id: 'rooftop', title: 'Rooftop Sunset Flow', cat: 'Yoga', club: 'rfy', date: '2026-10-23', time: '17:30', mins: 60, price: 450,
+    place: 'Sky Deck Silom', area: 'Silom', level: 'All levels', indoor: false, going: 14, solo: 4, rating: 4.8, reviews: 37, km: 2.6,
+    about: 'Vinyasa flow above the city skyline as the sun goes down.' },
+  { id: 'vinyasa', title: 'Power Vinyasa', cat: 'Yoga', club: 'rfy', date: '2026-10-19', time: '07:00', mins: 60, price: 400,
+    place: 'Sky Deck Silom', area: 'Silom', level: 'Intermediate', indoor: true, going: 10, solo: 2, rating: 4.6, reviews: 21, km: 2.6,
+    about: 'A strong, sweaty flow to start the work week.' },
+  { id: 'aerial', title: 'Aerial Yoga Intro', cat: 'Yoga', club: 'stk', date: '2026-10-24', time: '14:00', mins: 75, price: 650,
+    place: 'Studio K', area: 'Thong Lo', level: 'Beginner', indoor: true, going: 6, solo: 2, rating: 4.7, reviews: 19, km: 3.1,
+    about: 'Try inversions in a silk hammock with a step-by-step teacher.' },
+  { id: 'freeyoga', title: 'Free Community Yoga', cat: 'Yoga', club: 'pyc', date: '2026-10-25', time: '08:00', mins: 60, price: 0,
+    place: 'Lumpini Park', area: 'Silom', level: 'Beginner', indoor: false, going: 40, solo: 10, rating: 4.6, reviews: 88, km: 2.1,
+    about: 'A donation-based class for everyone. Bring your own mat.' },
+  { id: 'runyoga', title: 'Yoga for Runners', cat: 'Yoga', club: 'pyc', date: '2026-11-01', time: '08:30', mins: 60, price: 250,
+    place: 'Suan Rot Fai', area: 'Chatuchak', level: 'All levels', indoor: false, going: 18, solo: 4, rating: 4.6, reviews: 26, km: 8.0,
+    about: 'Stretch hips, hamstrings and calves after your long run.' },
+
+  // Pilates
+  { id: 'pil', title: 'Reformer Pilates Intro', cat: 'Pilates', club: 'sfl', date: '2026-10-18', time: '09:00', mins: 50, price: 500,
+    place: 'Studio Flow', area: 'Phrom Phong', level: 'Beginner', indoor: true, going: 8, solo: 3, rating: 4.7, reviews: 58, km: 3.0,
+    about: 'Learn the reformer basics in a small class of eight.' },
+  { id: 'pil2', title: 'Mat Pilates in the Park', cat: 'Pilates', club: 'ppc', date: '2026-10-24', time: '07:30', mins: 60, price: 0,
+    place: 'Suan Rot Fai', area: 'Chatuchak', level: 'All levels', indoor: false, going: 22, solo: 6, rating: 4.5, reviews: 31, km: 8.0,
+    about: 'Free core-focused mat class under the trees.' },
+  { id: 'jump', title: 'Reformer Jump Board', cat: 'Pilates', club: 'sfl', date: '2026-10-24', time: '08:00', mins: 50, price: 650,
+    place: 'Studio Flow', area: 'Phrom Phong', level: 'Intermediate', indoor: true, going: 6, solo: 1, rating: 4.6, reviews: 14, km: 3.0,
+    about: 'Low-impact cardio intervals on the reformer jump board.' },
+  { id: 'posture', title: 'Core & Posture Clinic', cat: 'Pilates', club: 'cor', date: '2026-10-20', time: '18:30', mins: 60, price: 400,
+    place: 'Core Lab Pilates', area: 'Ari', level: 'Beginner', indoor: true, going: 8, solo: 3, rating: 4.6, reviews: 20, km: 6.2,
+    about: 'Fix rounded shoulders and build deep core strength.' },
+  { id: 'desk', title: 'Pilates for Desk Workers', cat: 'Pilates', club: 'cor', date: '2026-10-27', time: '12:15', mins: 45, price: 350,
+    place: 'Core Lab Pilates', area: 'Ari', level: 'Beginner', indoor: true, going: 10, solo: 4, rating: 4.7, reviews: 17, km: 6.2,
+    about: 'A lunch-hour class for stiff backs and tight shoulders.' },
+  { id: 'wall', title: 'Wall Pilates Express', cat: 'Pilates', club: 'ppc', date: '2026-11-03', time: '19:00', mins: 40, price: 250,
+    place: 'Ari Community Space', area: 'Ari', level: 'All levels', indoor: true, going: 12, solo: 3, rating: 4.4, reviews: 9, km: 6.0,
+    about: 'A quick full-body burn using only a wall and a mat.' },
+
+  // Cycling
+  { id: 'cyc', title: 'Sunday Sunrise Ride', cat: 'Cycling', club: 'bcc', date: '2026-10-18', time: '05:30', mins: 150, price: 0,
+    place: 'Bang Kachao', area: 'Phra Pradaeng', level: 'Beginner', indoor: false, going: 31, solo: 5, rating: 4.8, reviews: 92, km: 9.0,
+    about: 'A flat, shady 25 km loop through Bangkok’s green lung.' },
+  { id: 'cyc2', title: 'Night Ride Bangkok', cat: 'Cycling', club: 'nrd', date: '2026-10-24', time: '20:00', mins: 120, price: 150,
+    place: 'Rama VIII Bridge', area: 'Bang Phlat', level: 'Intermediate', indoor: false, going: 18, solo: 2, rating: 4.6, reviews: 40, km: 7.5,
+    about: 'A 30 km city ride past lit-up temples and bridges.' },
+  { id: 'skylane', title: 'Sky Lane Loop Ride', cat: 'Cycling', club: 'bcc', date: '2026-10-25', time: '06:00', mins: 120, price: 100,
+    place: 'Sky Lane Suvarnabhumi', area: 'Lat Krabang', level: 'All levels', indoor: false, going: 50, solo: 7, rating: 4.7, reviews: 66, km: 28,
+    about: 'Car-free laps on the 23 km airport bike track. Rentals on site.' },
+  { id: 'gravel', title: 'Gravel Intro Ride', cat: 'Cycling', club: 'gvl', date: '2026-11-01', time: '06:00', mins: 180, price: 300,
+    place: 'Nakhon Nayok Backroads', area: 'Nakhon Nayok', level: 'Intermediate', indoor: false, going: 9, solo: 1, rating: 4.7, reviews: 11, km: 105,
+    about: 'Dirt roads, rice fields and a waterfall stop.' },
+  { id: 'spin', title: 'Rhythm Spin Class', cat: 'Cycling', club: 'nrd', date: '2026-10-21', time: '19:00', mins: 45, price: 380,
+    place: 'Spin House Sukhumvit', area: 'Asok', level: 'All levels', indoor: true, going: 20, solo: 6, rating: 4.5, reviews: 48, km: 3.2,
+    about: 'Ride to the beat in a dark room with club lighting.' },
+  { id: 'cafe', title: 'Cafe Hop Ride', cat: 'Cycling', club: 'bcc', date: '2026-10-31', time: '07:00', mins: 180, price: 200,
+    place: 'Bang Kachao', area: 'Phra Pradaeng', level: 'Beginner', indoor: false, going: 25, solo: 6, rating: 4.7, reviews: 30, km: 9.0,
+    about: 'An easy ride between three cafes. Bike rental on site.' },
+
+  // Hiking
+  { id: 'hike', title: 'Khao Yai Day Hike', cat: 'Hiking', club: 'tbt', date: '2026-10-24', time: '06:00', mins: 600, price: 650,
+    place: 'Khao Yai National Park', area: 'Nakhon Ratchasima', level: 'Beginner', indoor: false, going: 14, solo: 3, rating: 4.8, reviews: 45, km: 165,
+    about: 'Jungle trails, hornbills and a waterfall. Van from Victory Monument.' },
+  { id: 'hike2', title: 'Doi Suthep Sunrise Trek', cat: 'Hiking', club: 'tbt', date: '2026-10-25', time: '04:30', mins: 300, price: 500,
+    place: 'Doi Suthep', area: 'Chiang Mai', level: 'Intermediate', indoor: false, going: 9, solo: 2, rating: 4.9, reviews: 23, km: 690,
+    about: 'The Monk’s Trail up to the temple in time for sunrise.' },
+  { id: 'erawan', title: 'Erawan Waterfall Trail', cat: 'Hiking', club: 'wkn', date: '2026-11-01', time: '06:00', mins: 600, price: 750,
+    place: 'Erawan National Park', area: 'Kanchanaburi', level: 'Beginner', indoor: false, going: 20, solo: 5, rating: 4.8, reviews: 38, km: 190,
+    about: 'Hike all seven tiers and swim in the turquoise pools.' },
+  { id: 'mangrove', title: 'Mangrove Boardwalk Walk', cat: 'Hiking', club: 'wkn', date: '2026-10-18', time: '07:30', mins: 120, price: 0,
+    place: 'Bang Pu Nature Reserve', area: 'Samut Prakan', level: 'Beginner', indoor: false, going: 16, solo: 4, rating: 4.5, reviews: 22, km: 35,
+    about: 'A flat walk through the mangroves with seagull spotting.' },
+  { id: 'ridge', title: 'Pak Chong Ridge Hike', cat: 'Hiking', club: 'tbt', date: '2026-11-07', time: '05:30', mins: 480, price: 900,
+    place: 'Pak Chong Hills', area: 'Nakhon Ratchasima', level: 'Intermediate', indoor: false, going: 11, solo: 2, rating: 4.7, reviews: 14, km: 155,
+    about: 'A steady climb to a ridge viewpoint over the valley.' },
+  { id: 'heritage', title: 'Old Town Heritage Walk', cat: 'Hiking', club: 'wkn', date: '2026-10-25', time: '16:00', mins: 150, price: 0,
+    place: 'Rattanakosin Island', area: 'Phra Nakhon', level: 'Beginner', indoor: false, going: 30, solo: 8, rating: 4.6, reviews: 52, km: 6.8,
+    about: 'A 10,000-step walk past temples, palaces and old shophouses.' },
+
+  // Swimming
+  { id: 'swim', title: 'Open Water Swim Clinic', cat: 'Swimming', club: 'swl', date: '2026-10-18', time: '08:00', mins: 90, price: 350,
+    place: 'Bangkok Aquatic Center', area: 'Hua Mak', level: 'Beginner', indoor: false, going: 12, solo: 3, rating: 4.6, reviews: 26, km: 10.4,
+    about: 'Practise sighting and drafting before your first open-water race.' },
+  { id: 'swim2', title: 'Morning Lap Swim Club', cat: 'Swimming', club: 'lcb', date: '2026-10-17', time: '07:00', mins: 60, price: 120,
+    place: 'Lumpini Pool', area: 'Silom', level: 'All levels', indoor: false, going: 16, solo: 4, rating: 4.5, reviews: 35, km: 2.1,
+    about: 'Shared lanes sorted by pace, with a coach on deck.' },
+  { id: 'learnswim', title: 'Adult Learn to Swim', cat: 'Swimming', club: 'swl', date: '2026-10-20', time: '19:00', mins: 60, price: 450,
+    place: 'Swim Lab Pool', area: 'Sathorn', level: 'Beginner', indoor: true, going: 6, solo: 3, rating: 4.8, reviews: 29, km: 2.9,
+    about: 'Never too late. Small groups in a warm indoor pool.' },
+  { id: 'stroke', title: 'Stroke Video Clinic', cat: 'Swimming', club: 'swl', date: '2026-10-24', time: '10:00', mins: 90, price: 600,
+    place: 'Swim Lab Pool', area: 'Sathorn', level: 'Intermediate', indoor: true, going: 8, solo: 2, rating: 4.7, reviews: 12, km: 2.9,
+    about: 'Underwater filming and feedback on your freestyle.' },
+  { id: 'seaswim', title: 'Bang Saen Sea Swim', cat: 'Swimming', club: 'ows', date: '2026-11-01', time: '06:30', mins: 180, price: 400,
+    place: 'Bang Saen Beach', area: 'Chonburi', level: 'Advanced', indoor: false, going: 15, solo: 2, rating: 4.8, reviews: 10, km: 95,
+    about: 'A 2 km guided sea swim with kayak support.' },
+  { id: 'masters', title: 'Masters Swim Night', cat: 'Swimming', club: 'lcb', date: '2026-10-28', time: '19:30', mins: 75, price: 150,
+    place: 'Lumpini Pool', area: 'Silom', level: 'Intermediate', indoor: false, going: 22, solo: 3, rating: 4.5, reviews: 19, km: 2.1,
+    about: 'Structured sets for regular swimmers chasing faster times.' },
+
+  // Ice Bath
+  { id: 'ice', title: 'Ice Bath Recovery', cat: 'Ice Bath', club: 'rcs', date: '2026-10-17', time: '16:00', mins: 45, price: 400,
+    place: 'Recovery Studio', area: 'Thong Lo', level: 'Beginner', indoor: true, going: 10, solo: 3, rating: 4.4, reviews: 22, km: 5.0,
+    about: 'A guided 3-minute plunge with breathing coaching.' },
+  { id: 'ice2', title: 'Ice Bath & Sauna Social', cat: 'Ice Bath', club: 'rcs', date: '2026-10-18', time: '17:00', mins: 90, price: 450,
+    place: 'Recovery Studio', area: 'Thong Lo', level: 'All levels', indoor: true, going: 12, solo: 3, rating: 4.6, reviews: 27, km: 5.0,
+    about: 'Hot and cold rounds with music and herbal tea.' },
+  { id: 'breath', title: 'Breathwork & Cold Plunge', cat: 'Ice Bath', club: 'cpc', date: '2026-10-24', time: '09:00', mins: 75, price: 500,
+    place: 'Cold Plunge Club House', area: 'Ari', level: 'Beginner', indoor: true, going: 10, solo: 4, rating: 4.7, reviews: 18, km: 6.0,
+    about: 'Learn a breathing method, then put it to the test in the tub.' },
+  { id: 'postrun', title: 'Post-Run Plunge', cat: 'Ice Bath', club: 'cpc', date: '2026-10-25', time: '08:00', mins: 30, price: 250,
+    place: 'Benjakitti Park', area: 'Asok', level: 'All levels', indoor: false, going: 20, solo: 5, rating: 4.5, reviews: 12, km: 3.4,
+    about: 'Pop-up ice tubs at the finish line of Sunday runs.' },
+  { id: 'contrast', title: 'Contrast Therapy Night', cat: 'Ice Bath', club: 'rcs', date: '2026-10-29', time: '19:00', mins: 60, price: 550,
+    place: 'Recovery Studio', area: 'Thong Lo', level: 'Intermediate', indoor: true, going: 8, solo: 2, rating: 4.6, reviews: 9, km: 5.0,
+    about: 'Longer sauna and plunge rounds for regulars.' },
+
+  // Muay Thai
+  { id: 'muay', title: 'Muay Thai Basics', cat: 'Muay Thai', club: 'mtg', date: '2026-10-17', time: '10:00', mins: 60, price: 400,
+    place: 'Muay Thai Garage', area: 'Sathorn', level: 'Beginner', indoor: true, going: 14, solo: 6, rating: 4.8, reviews: 77, km: 3.3,
+    about: 'Stance, punches and kicks. Gloves and wraps provided.' },
+  { id: 'pads', title: 'Pad Work & Conditioning', cat: 'Muay Thai', club: 'mtg', date: '2026-10-21', time: '18:00', mins: 75, price: 450,
+    place: 'Muay Thai Garage', area: 'Sathorn', level: 'Intermediate', indoor: true, going: 12, solo: 3, rating: 4.7, reviews: 40, km: 3.3,
+    about: 'Rounds on the pads with trainers, then a conditioning finisher.' },
+  { id: 'womenmt', title: 'Women’s Muay Thai', cat: 'Muay Thai', club: 'elc', date: '2026-10-24', time: '11:00', mins: 60, price: 350,
+    place: 'Eight Limbs Gym', area: 'Ratchada', level: 'Beginner', indoor: true, going: 16, solo: 7, rating: 4.9, reviews: 35, km: 7.4,
+    about: 'A women-only class with female coaches.' },
+  { id: 'fightnight', title: 'Fight Night Outing', cat: 'Muay Thai', club: 'elc', date: '2026-10-30', time: '18:00', mins: 240, price: 1500,
+    place: 'Rajadamnern Stadium', area: 'Phra Nakhon', level: 'All levels', indoor: true, going: 24, solo: 5, rating: 4.6, reviews: 15, km: 7.0,
+    about: 'Watch live bouts with a coach explaining the action.' },
+  { id: 'shadow', title: 'Shadowboxing in the Park', cat: 'Muay Thai', club: 'elc', date: '2026-11-08', time: '07:00', mins: 60, price: 0,
+    place: 'Chatuchak Park', area: 'Chatuchak', level: 'Beginner', indoor: false, going: 30, solo: 9, rating: 4.5, reviews: 20, km: 8.1,
+    about: 'A free outdoor class. No equipment needed.' },
+
+  // Padel
+  { id: 'padel', title: 'Padel Taster Session', cat: 'Padel', club: 'pdl', date: '2026-10-18', time: '16:00', mins: 90, price: 500,
+    place: 'Padel Social Courts', area: 'On Nut', level: 'Beginner', indoor: true, going: 8, solo: 4, rating: 4.7, reviews: 44, km: 7.8,
+    about: 'Learn the rules and basic shots. Rackets included.' },
+  { id: 'padel2', title: 'Padel Mixer Night', cat: 'Padel', club: 'pdl', date: '2026-10-23', time: '19:00', mins: 120, price: 600,
+    place: 'Padel Social Courts', area: 'On Nut', level: 'All levels', indoor: true, going: 16, solo: 8, rating: 4.8, reviews: 31, km: 7.8,
+    about: 'Rotating doubles, so you meet someone new every game.' },
+  { id: 'americano', title: 'Padel Americano', cat: 'Padel', club: 'pdl', date: '2026-11-01', time: '15:00', mins: 150, price: 550,
+    place: 'Padel Social Courts', area: 'On Nut', level: 'Intermediate', indoor: true, going: 16, solo: 4, rating: 4.6, reviews: 13, km: 7.8,
+    about: 'A points-based mini tournament with changing partners.' },
+
+  // Dance
+  { id: 'hiphop', title: 'Hip-Hop Beginner Class', cat: 'Dance', club: 'dnc', date: '2026-10-20', time: '19:30', mins: 60, price: 300,
+    place: 'Dance Hall 22', area: 'Siam', level: 'Beginner', indoor: true, going: 18, solo: 7, rating: 4.6, reviews: 38, km: 1.5,
+    about: 'Learn grooves and a short routine. No experience needed.' },
+  { id: 'salsa', title: 'Salsa Social Night', cat: 'Dance', club: 'grv', date: '2026-10-23', time: '20:00', mins: 150, price: 250,
+    place: 'The Ballroom Ari', area: 'Ari', level: 'All levels', indoor: true, going: 40, solo: 15, rating: 4.7, reviews: 56, km: 6.1,
+    about: 'A 45-minute lesson, then open dancing. Come solo, everyone rotates.' },
+  { id: 'kpop', title: 'K-Pop Dance Cover', cat: 'Dance', club: 'dnc', date: '2026-10-24', time: '13:00', mins: 90, price: 350,
+    place: 'Dance Hall 22', area: 'Siam', level: 'All levels', indoor: true, going: 22, solo: 9, rating: 4.8, reviews: 61, km: 1.5,
+    about: 'Learn this month’s chart-topping choreography and film it.' },
+  { id: 'dancefit', title: 'Sunset Dance Fitness', cat: 'Dance', club: 'grv', date: '2026-11-01', time: '17:30', mins: 60, price: 0,
+    place: 'Benjakitti Park', area: 'Asok', level: 'Beginner', indoor: false, going: 50, solo: 14, rating: 4.5, reviews: 29, km: 3.4,
+    about: 'A free, high-energy dance workout on the park plaza.' },
+
+  // Meditation
+  { id: 'medi', title: 'Morning Meditation in the Park', cat: 'Meditation', club: 'mnd', date: '2026-10-18', time: '06:30', mins: 45, price: 0,
+    place: 'Lumpini Park', area: 'Silom', level: 'Beginner', indoor: false, going: 25, solo: 12, rating: 4.7, reviews: 64, km: 2.1,
+    about: 'A guided sit by the lake before the city wakes up.' },
+  { id: 'soundbath', title: 'Sound Bath Evening', cat: 'Meditation', club: 'ssh', date: '2026-10-22', time: '19:00', mins: 75, price: 550,
+    place: 'Sound & Stillness Studio', area: 'Phrom Phong', level: 'All levels', indoor: true, going: 14, solo: 6, rating: 4.9, reviews: 47, km: 3.0,
+    about: 'Lie back while singing bowls and gongs do the work.' },
+  { id: 'retreat', title: 'Temple Meditation Day', cat: 'Meditation', club: 'mnd', date: '2026-11-07', time: '08:00', mins: 420, price: 0,
+    place: 'Wat Mahathat', area: 'Phra Nakhon', level: 'Beginner', indoor: true, going: 30, solo: 14, rating: 4.9, reviews: 40, km: 7.2,
+    about: 'A full day of guided sitting and walking meditation. Wear white. Donation-based.' },
+  { id: 'breathe', title: 'Lunchtime Breathwork', cat: 'Meditation', club: 'ssh', date: '2026-10-24', time: '12:00', mins: 30, price: 200,
+    place: 'Sound & Stillness Studio', area: 'Phrom Phong', level: 'Beginner', indoor: true, going: 10, solo: 5, rating: 4.6, reviews: 15, km: 3.0,
+    about: 'A 30-minute reset to calm a busy mind.' },
+
+  // Paddle (SUP & kayak)
+  { id: 'sup', title: 'Sunrise SUP on the River', cat: 'Paddle', club: 'sup', date: '2026-10-18', time: '06:00', mins: 120, price: 900,
+    place: 'Khlong San Pier', area: 'Khlong San', level: 'Beginner', indoor: false, going: 10, solo: 3, rating: 4.8, reviews: 33, km: 4.5,
+    about: 'Stand-up paddle past temples at dawn. Board and life vest included.' },
+  { id: 'kayak', title: 'Klong Kayak Tour', cat: 'Paddle', club: 'kyk', date: '2026-10-25', time: '07:00', mins: 150, price: 800,
+    place: 'Khlong Bang Luang', area: 'Phasi Charoen', level: 'Beginner', indoor: false, going: 12, solo: 4, rating: 4.8, reviews: 41, km: 8.6,
+    about: 'Paddle through old canal communities and stop at a floating cafe.' },
+  { id: 'supyoga', title: 'SUP Yoga', cat: 'Paddle', club: 'sup', date: '2026-11-01', time: '07:30', mins: 90, price: 1000,
+    place: 'Suan Luang Rama IX Lake', area: 'Prawet', level: 'Intermediate', indoor: false, going: 8, solo: 2, rating: 4.7, reviews: 12, km: 9.5,
+    about: 'Yoga poses on a floating board. Expect to get wet.' },
+  { id: 'mangkayak', title: 'Mangrove Kayak Day Trip', cat: 'Paddle', club: 'kyk', date: '2026-11-07', time: '07:00', mins: 480, price: 1500,
+    place: 'Samut Songkhram Mangroves', area: 'Samut Songkhram', level: 'All levels', indoor: false, going: 14, solo: 3, rating: 4.9, reviews: 9, km: 75,
+    about: 'Kayak the mangroves, then visit the Maeklong railway market.' },
+];
+
+// ── FRIENDS — เพื่อนที่พบจากรายชื่อติดต่อ (going = id กิจกรรมที่เพื่อนจะไป)
+const FRIENDS = [
+  { name: 'Ploy', color: '#FF8FA3', likes: ['Running', 'Yoga'], going: 'run' },
+  { name: 'Beam', color: '#8FD3C7', likes: ['Climbing'], going: 'boul' },
+  { name: 'Champ', color: '#FFE680', likes: ['Running'], going: 'run' },
+  { name: 'Dao', color: '#8FA8E6', likes: ['Cycling'], going: 'cyc' },
+  { name: 'Fern', color: '#F5B98A', likes: ['Dance', 'Pilates'], going: 'kpop' },
+  { name: 'Ton', color: '#B7A6F0', likes: ['Padel', 'Muay Thai'], going: 'padel2' },
+];
+
+// ── ALERTS — แจ้งเตือนฝุ่น/น้ำท่วม (act = id กิจกรรมที่ได้รับผลกระทบ)
+// ข้อความ สถานที่ และเวลาดึงจากกิจกรรมให้เอง / แผนใหม่ = กิจกรรมในร่มวันเดียวกันที่เวลาใกล้เคียง
+const ALERT_TYPES = {
+  pm25: { label: 'High PM2.5', color: '#E5334F', bg: '#FFECEF', title: (a) => 'High PM2.5 at ' + a.place },
+  flood: { label: 'Flooding', color: '#2A6FD6', bg: '#E4F0FF', title: (a) => 'Flooding near ' + a.place },
+};
+const ALERTS = [
+  { id: 'al1', type: 'pm25', act: 'run', value: 136, note: 'Not a good time for outdoor running this morning.' },
+  { id: 'al2', type: 'flood', act: 'fun', note: 'Roads nearby are flooded. Travel may take longer.' },
+];
+
+// ── REVIEWS — รีวิวตัวอย่าง (ข้อความที่คนเขียน = ภาษาไทย) แต่ละกิจกรรมได้ 2 อันแบบคงที่
+const REVIEWS = [
+  ['Mint', 5, 'บรรยากาศดีมาก เหมาะกับมือใหม่สุด ๆ'],
+  ['Ploy', 4, 'คนไม่เยอะ จัดเวลาดี เริ่มตรงเวลา'],
+  ['Beam', 5, 'โค้ชใส่ใจ ช่วยแนะนำตลอดเลย'],
+  ['Fern', 4, 'รอบหน้าจะชวนเพื่อนมาด้วยแน่นอน'],
+  ['Nam', 5, 'ได้เจอเพื่อนใหม่เยอะมาก ประทับใจ'],
+  ['Ton', 4, 'คุ้มราคา อุปกรณ์ครบ'],
+];
+
+// ── CHAT — ข้อความตัวอย่างในแชท (ภาษาไทย)
+const CHAT_TEXT = {
+  groupSeed: [
+    ['Ploy', 'เจอกันหน้าทางเข้านะ', '10:02'],
+    ['Lisa', 'อย่าลืมพกน้ำมาด้วยน้า', '10:05'],
+    ['Beam', 'อีก 5 นาทีถึง', '10:08'],
+  ],
+  dmHello: (title) => 'สวัสดี! สนใจไป ' + title + ' ด้วยกันไหม?',
+  welcome: 'ยินดีต้อนรับนะ เจอกันที่งาน!',
+  replies: ['ได้เลย 👍', 'โอเค เจอกันนะ', 'ขอบคุณที่บอกนะ', 'ถึงแล้ว รออยู่หน้าทางเข้า'],
+  clubHello: (name) => 'สวัสดีค่ะ ยินดีต้อนรับสู่ ' + name + ' 👋 สอบถามเรื่องกิจกรรมได้เลยนะคะ',
+  clubFallback: 'ขอบคุณที่ทักมานะคะ แอดมินจะตอบกลับโดยเร็วที่สุดค่ะ 🙏',
+};
+
+// ── CLUB_FAQ — คำถามด่วนในแชทกับคลับ [คำถาม, คำตอบของคลับ]
+const CLUB_FAQ = [
+  ['มือใหม่ไปได้ไหมคะ', 'ได้เลยค่ะ ทุกกิจกรรมมีโค้ชดูแลมือใหม่ ไม่ต้องมีประสบการณ์มาก่อน'],
+  ['ต้องเตรียมอะไรไปบ้าง', 'ชุดที่ใส่สบาย ขวดน้ำ และผ้าเช็ดตัวค่ะ อุปกรณ์หลักทางคลับเตรียมให้'],
+  ['มีที่จอดรถไหม', 'มีที่จอดฟรีจำนวนจำกัดค่ะ แนะนำมา BTS/MRT จะสะดวกกว่า'],
+  ['ยกเลิกแล้วได้เงินคืนไหม', 'ยกเลิกก่อนเริ่มกิจกรรม 24 ชั่วโมง คืนเงินเต็มจำนวนค่ะ'],
+];
+
+// ── PAYMENT — วิธีชำระเงิน โค้ดส่วนลด ค่าบริการ (จำลองทั้งหมด ไม่มีการตัดเงินจริง)
+const PAY_METHODS = [
+  { id: 'promptpay', name: 'PromptPay QR', note: 'Scan with any Thai banking app' },
+  { id: 'card', name: 'Credit / debit card', note: 'Visa, Mastercard, JCB' },
+  { id: 'truemoney', name: 'TrueMoney Wallet', note: 'Confirm in the TrueMoney app' },
+  { id: 'mbank', name: 'Mobile banking', note: 'Open your bank app to confirm' },
+];
+const PROMOS = {
+  VYBE10: { label: '10% off', pct: 10 },
+  FIRSTVYBE: { label: '฿50 off', off: 50 },
+};
+const SERVICE_FEE = 10; // บาทต่อบัตร (กิจกรรมฟรีไม่มีค่าบริการ)
+const MAX_TICKETS = 4;
+const DECLINED_CARD = '4000000000000002'; // เลขบัตรทดสอบที่จะถูกปฏิเสธ
+
+// ── ตัวเลือกการเดินทาง (เวลา/ค่าใช้จ่ายคำนวณจาก km ของกิจกรรม)
+const TRAVEL_MODES = [
+  { name: 'MRT/BTS', mins: (km) => 10 + km * 5, cost: (km) => '฿' + Math.min(62, Math.round(16 + km * 4)) },
+  { name: 'Taxi/Grab', mins: (km) => 8 + km * 3.2, cost: (km) => '฿' + Math.round(35 + km * 7) },
+  { name: 'Walk', mins: (km) => km * 13, cost: () => 'Free', maxKm: 5 },
+  { name: 'Drive', mins: (km) => 6 + km * 1.2 + Math.min(km, 15) * 1.8, cost: () => 'Parking fee' },
+];
+
+const NAV_ICONS = {
+  home: '<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  schedule: '<rect x="4" y="5" width="16" height="16" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  community:
+    '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 3-5.5 6-5.5s6 2 6 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5c3 .3 5 2 5 5"/>',
+  profile: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
+};
+const NAV_LABELS = { home: 'Home', schedule: 'My Schedule', community: 'Community', profile: 'Profile' };
+
+// ════════════════════════════════════════════════════════════
+// 2b. DERIVED — สร้างค่าที่แสดงผลจากข้อมูลด้านบนอัตโนมัติ (ไม่ต้องแก้ส่วนนี้)
+// ════════════════════════════════════════════════════════════
+
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const toDate = (d) => {
+  const [y, m, dd] = d.split('-').map(Number);
+  return new Date(y, m - 1, dd);
+};
+const fmtDay = (d) => {
+  const x = toDate(d);
+  return DAYS[x.getDay()] + ' ' + x.getDate() + ' ' + MONTHS[x.getMonth()];
+};
+const fmtDate = (d) => {
+  const x = toDate(d);
+  return x.getDate() + ' ' + MONTHS[x.getMonth()] + ' ' + x.getFullYear();
+};
+const fmtMins = (m) => {
+  m = Math.max(1, Math.round(m));
+  const h = Math.floor(m / 60),
+    r = m % 60;
+  return (h ? h + ' hr' : '') + (h && r ? ' ' : '') + (r ? r + ' min' : '');
+};
+const money = (n) => (n ? '฿' + n.toLocaleString('en-US') : 'Free');
+
+const CLUB = Object.fromEntries(CLUBS.map((c) => [c.id, c]));
+
+// A[id] = กิจกรรมพร้อมค่าที่ใช้แสดงผล
+const A = {};
+ACTIVITIES.forEach((a) => {
+  const c = CLUB[a.club] || { name: a.club, type: 'club' };
+  A[a.id] = Object.assign({}, a, {
+    clubName: c.name,
+    day: fmtDay(a.date),
+    when: fmtDay(a.date) + ' · ' + a.time,
+    priceLabel: money(a.price),
+    duration: fmtMins(a.mins),
+    tag: a.badge || a.level + (a.indoor ? ' · Indoor' : ''),
+    beginner: a.level == 'Beginner' || a.level == 'All levels',
+    byClub: c.type == 'club',
+    kmLabel: a.km + ' km',
+    ratingLabel: a.rating.toFixed(1) + ' (' + a.reviews + ')',
+  });
 });
-document.addEventListener('input',e=>{const t=e.target;if(t.id=='dq'){S.q=t.value;$('#dl').innerHTML=dlist()}else if(t.id=='ps'){S.ps=t.value;$('#pl').innerHTML=plist()}else if(t.id=='cq'){S.cq=t.value;$('#cl').innerHTML=clist()}});
-document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='cm'){const b=document.querySelector('[data-a^="send:"]');if(b)b.click()}});
-S.stack=[{n:'signup'}];render();
+
+const sortKey = (a) => a.date + ' ' + a.time;
+// กิจกรรมที่ยังมาไม่ถึง เรียงตามวันเวลา
+const UPCOMING = Object.values(A)
+  .filter((a) => a.date >= TODAY)
+  .sort((x, y) => (sortKey(x) < sortKey(y) ? -1 : 1))
+  .map((a) => a.id);
+
+const clubActivities = (clubId) => UPCOMING.filter((i) => A[i].club == clubId);
+const clubByName = (n) => CLUBS.find((c) => c.name == n || c.id == n) || CLUBS[0];
+
+// แผนใหม่ที่แนะนำ: กิจกรรมในร่ม วันเดียวกัน ยังไม่อยู่ในแผน เรียงตามเวลาที่ใกล้เคียงที่สุด
+const toMin = (t) => +t.slice(0, 2) * 60 + +t.slice(3, 5);
+const indoorAlternatives = (id, n = 3) => {
+  const a = A[id];
+  return Object.values(A)
+    .filter((x) => x.indoor && x.date == a.date && x.id != id && !S.plan.some((p) => p.id == x.id))
+    .sort((x, y) => Math.abs(toMin(x.time) - toMin(a.time)) - Math.abs(toMin(y.time) - toMin(a.time)))
+    .slice(0, n)
+    .map((x) => x.id);
+};
+
+// ════════════════════════════════════════════════════════════
+// 3. STATE — ค่าที่เปลี่ยนตามการใช้งาน (อ้างกิจกรรมด้วย id เท่านั้น)
+// ════════════════════════════════════════════════════════════
+
+const S = {
+  // แผนของฉัน: status = 'Booked' | 'Unpaid' | 'Done'  · ref = เลขการจอง (มีเมื่อจองสำเร็จ)
+  plan: [
+    { id: 'run', status: 'Booked', ref: 'VY-24790', qty: 1 },
+    { id: 'climb', status: 'Booked', ref: 'VY-24817', qty: 1 },
+    { id: 'ice', status: 'Unpaid' },
+  ],
+  // ประวัติการชำระเงิน (ใบเสร็จ)
+  payments: [
+    { ref: 'VY-24817', act: 'climb', qty: 1, sub: 400, fee: 10, discount: 0, total: 410, method: 'PromptPay QR', at: '15 Oct 2026 · 21:14' },
+  ],
+  savedCard: null, // บัตรที่บันทึกไว้ เช่น { brand: 'Visa', last4: '4242' }
+  // Recap ที่ไปมาแล้ว: ชื่อ สถานที่ คลับ ดึงจากกิจกรรม (act) ให้เอง
+  recaps: [
+    { id: 'r1', act: 'run', date: '2026-10-10', people: 8 },
+    { id: 'r2', act: 'boul', date: '2026-10-08', people: 6 },
+    { id: 'r3', act: 'yoga2', date: '2026-10-03', people: 12 },
+    { id: 'r4', act: 'cyc', date: '2026-09-27', people: 18 },
+    { id: 'r5', act: 'ice', date: '2026-09-20', people: 5 },
+    { id: 'r6', act: 'pil', date: '2026-09-13', people: 7 },
+  ],
+  // โพสต์ใน Community: act = id กิจกรรมที่แนบ · type 'buddy' = หาเพื่อน, 'share' = เล่าประสบการณ์
+  posts: [
+    { id: 1, name: 'Lisa', color: '#A8D8F0', time: '12 min ago', type: 'buddy', act: 'fun',
+      text: 'อยากไปวิ่งแต่ไม่มีเพื่อนไปด้วย มีใครสนใจไปด้วยกันบ้าง' },
+    { id: 2, name: 'Rose', color: '#FFB6D0', time: '1 hr ago', type: 'buddy', act: 'boul',
+      text: 'หาเพื่อนไป Climbing ด้วยกัน #มือใหม่' },
+    { id: 3, name: 'Mint', color: '#C9E8B8', time: '3 hr ago', type: 'share', act: 'cyc',
+      text: 'เพิ่งปั่นจักรยานกลับมา บรรยากาศดีมาก อากาศเย็นสบาย' },
+    { id: 4, name: 'Jisoo', color: '#FFE680', time: '5 hr ago', type: 'buddy', act: 'pil',
+      text: 'ใครอยากลอง Reformer Pilates ครั้งแรกด้วยกันบ้าง' },
+    { id: 5, name: 'Ton', color: '#B7A6F0', time: '6 hr ago', type: 'buddy', act: 'padel2',
+      text: 'ขาดอีก 1 คนสำหรับ Padel Mixer Night ใครว่างมาเลย!' },
+    { id: 6, name: 'Pim', color: '#F5B98A', time: '8 hr ago', type: 'buddy', act: 'erawan',
+      text: 'ไปเอราวัณ 1 พ.ย. ใครไปด้วยบ้าง รถตู้ยังมีที่ว่าง' },
+    { id: 7, name: 'Nam', color: '#9FD8E8', time: 'Yesterday', type: 'share', act: 'yoga2',
+      text: 'Sunset Yin ที่ Studio K ดีมาก ผ่อนคลายสุด ๆ หลังทำงานมาทั้งสัปดาห์' },
+    { id: 8, name: 'Beam', color: '#8FD3C7', time: 'Yesterday', type: 'buddy', act: 'muay',
+      text: 'คลาสมวยไทยครั้งแรกเสาร์นี้ ตื่นเต้นมาก ใครไปด้วยกันบ้าง' },
+    { id: 9, name: 'Champ', color: '#FFE680', time: 'Yesterday', type: 'buddy', act: 'run',
+      text: 'ใครไปวิ่งลุมพินีเสาร์นี้บ้าง ไปเป็นแก๊งกัน' },
+    { id: 10, name: 'Fern', color: '#F5B98A', time: '2 days ago', type: 'buddy', act: 'kpop',
+      text: 'สายเต้น K-Pop มาคัฟเวอร์ด้วยกันค่ะ มือใหม่ก็มาได้' },
+  ],
+  nextPostId: 100,
+  nextRef: 24900,
+  chats: {},
+  joinReq: {}, // คำขอ Join โพสต์ของคนอื่น: 'pending' | 'joined'
+  connected: {}, // เพื่อนที่กด Connect แล้ว (index ใน FRIENDS)
+  following: { brc: true, ccl: true }, // คลับที่ติดตาม (club id) → ได้แจ้งเตือนกิจกรรมใหม่
+  read: {}, // แจ้งเตือนที่อ่านแล้ว
+  saved: [],
+  compare: [],
+  cat: 'All',
+  q: '',
+  fBeginner: false,
+  fSolo: false,
+  fClubs: false,
+  ctab: 'Feed',
+  cq: '',
+  ps: '',
+  att: null,
+  postType: 'buddy',
+  addPlan: true,
+  draft: '',
+  route: 0,
+  how: 'buddy',
+  alt: null,
+  calMonth: '2026-10',
+  calDay: TODAY,
+  pay: null, // สถานะหน้าชำระเงิน (สร้างใหม่ทุกครั้งที่เปิด ดู resetPay)
+  lastRef: null,
+  qrStart: 0,
+  toggles: { sync: true, alerts: true, clubs: true, calendar: false },
+  stack: [],
+  tab: 'home',
+};
+
+// หน้าที่แสดงเต็มจอ (ไม่มีแถบเมนูล่าง)
+const FULL = [
+  'signup', 'otp', 'sync', 'friends', 'event', 'notif', 'replan', 'recap', 'compare', 'payment',
+  'newpost', 'club', 'settings', 'route', 'chat', 'buddypost', 'postdetail', 'saved', 'calendar',
+  'inbox', 'payqr', 'processing', 'receipt', 'ticket', 'payments',
+];
+
+// ════════════════════════════════════════════════════════════
+// 4. IMAGE HELPERS — ตัวสร้างกล่องรูป (ใส่รูปจริงหรือกล่องเทา)
+// ════════════════════════════════════════════════════════════
+
+let SN = 0,
+  CX = '';
+
+// ลำดับการหารูปของกิจกรรม: รูปเฉพาะกิจกรรม → รูปประจำหมวด → กล่องสีเทา
+const activityImg = (id) => IMAGES.activities[id] || IMAGES.categories[(A[id] || {}).cat] || '';
+
+const imgSrc = (key) => {
+  const t = key.split(':')[0],
+    id = key.slice(t.length + 1);
+  if (t == 'club') return IMAGES.clubs[id] || '';
+  if (t == 'misc') return IMAGES.misc[id] || '';
+  if (t == 'recap') {
+    const r = S.recaps.find((q) => q.id == id);
+    return IMAGES.recaps[id] || (r ? activityImg(r.act) : '');
+  }
+  return activityImg(key);
+};
+
+const mapBlock = (a) => {
+  if (!USE_LIVE_MAP) return imgSlot('misc:map', 350, 22, 'ROUTE › map image', 200);
+  const q = encodeURIComponent(a.place + ' ' + a.area);
+  const src = MAPS_API_KEY
+    ? `https://www.google.com/maps/embed/v1/place?key=${MAPS_API_KEY}&q=${q}`
+    : `https://maps.google.com/maps?q=${q}&z=15&output=embed`;
+  return `<iframe title="Map of ${a.place}" src="${src}" width="350" height="200" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="border:0;border-radius:22px;display:block"></iframe>`;
+};
+
+const imgSlot = (key, w, r, label, h) => {
+  h = h || Math.round((w * 110) / 120);
+  const src = imgSrc(key),
+    L = label || key,
+    rad = r == null ? 16 : r;
+  if (src)
+    return `<img src="${src}" alt="${L}" width="${w}" height="${h}" style="width:${w}px;height:${h}px;border-radius:${rad}px;object-fit:cover;flex:none;display:block">`;
+  SN++;
+  const id = CX + ' #' + SN;
+  return (
+    `<!-- IMAGE SLOT ${id}: ${L} | key=${key} | ${w}x${h} CSS px (export ${w * 2}x${h * 2}) -->` +
+    `<div data-slot="${id}" data-key="${key}" role="img" aria-label="Image placeholder: ${L}" style="width:${w}px;height:${h}px;border-radius:${rad}px;background:#E6EAF3;flex:none;display:flex;align-items:center;justify-content:center;text-align:center;font-size:9px;line-height:1.3;color:#8A96BE;overflow:hidden">${SHOW_SLOT_SIZES ? (w >= 80 ? w + '×' + h + '<br>use ' + w * 2 + '×' + h * 2 : w >= 44 ? w + '×' + h : '') : ''}</div>`
+  );
+};
+
+// ════════════════════════════════════════════════════════════
+// 5. HELPERS — ชิ้นส่วน UI และตรรกะที่ใช้ซ้ำ
+// ════════════════════════════════════════════════════════════
+
+const $ = (s) => document.querySelector(s);
+const hhmm = () => new Date().toTimeString().slice(0, 5);
+const pad2 = (n) => String(n).padStart(2, '0');
+
+// ไอคอนเส้น (ใช้สีตามข้อความรอบ ๆ)
+const ICON = {
+  search: (c = 'currentColor', s = 18) =>
+    `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>`,
+  chat: (s = 20) =>
+    `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>`,
+  calendar: (s = 20) =>
+    `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>`,
+  bell: (s = 20) =>
+    `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg>`,
+  check: (c = '#fff', s = 36) =>
+    `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`,
+};
+
+// ── แผน / การจอง
+const planItem = (id) => S.plan.find((p) => p.id == id);
+const inPlan = (id) => !!planItem(id);
+const newRef = () => 'VY-' + ++S.nextRef;
+const addToPlan = (id) => {
+  if (!inPlan(id)) S.plan.push(A[id].price ? { id, status: 'Unpaid' } : { id, status: 'Booked', ref: newRef(), qty: 1 });
+};
+const planSorted = () => S.plan.slice().sort((x, y) => (sortKey(A[x.id]) < sortKey(A[y.id]) ? -1 : 1));
+const nextUp = () => (planSorted().find((p) => p.status != 'Done') || planSorted()[0] || {}).id;
+
+// ── แจ้งเตือน: ฝุ่น/น้ำท่วม + กิจกรรมใหม่จากคลับที่ติดตาม
+const activeAlerts = () => (S.toggles.alerts ? ALERTS.filter((al) => inPlan(al.act)) : []);
+const AGO = ['1 hr ago', '3 hr ago', 'Yesterday', '2 days ago', '3 days ago'];
+const clubUpdates = () =>
+  S.toggles.clubs
+    ? CLUBS.filter((c) => S.following[c.id]).flatMap((c, ci) =>
+        clubActivities(c.id)
+          .slice(0, 2)
+          .map((id, j) => ({ key: 'cl:' + id, club: c, act: id, ago: AGO[(ci + j) % AGO.length] })),
+      )
+    : [];
+const unreadCount = () =>
+  activeAlerts().filter((al) => !S.read['al:' + al.id]).length + clubUpdates().filter((u) => !S.read[u.key]).length;
+
+const empty = (t) => `<div class="p mu" style="margin-top:20px;text-align:center">${t}</div>`;
+const avatar = (c, s = 40) =>
+  `<span style="width:${s}px;height:${s}px;border-radius:${s / 2}px;background:${c};flex:none;display:inline-block"></span>`;
+const friendLine = (f) => f.likes.join(' · ') + (f.going ? ' · Going to ' + A[f.going].title : '');
+const recapView = (r) => {
+  const a = A[r.act];
+  return { ...r, title: a.title, place: a.place, club: a.clubName, dateLabel: fmtDate(r.date), duration: a.duration };
+};
+const qrBox = (size, label) =>
+  `<div style="width:${size}px;height:${size}px;margin:auto;background:repeating-conic-gradient(#10328F 0 25%,#fff 0 50%) 0 0/${Math.round(size / 6)}px ${Math.round(size / 6)}px;border-radius:6px" role="img" aria-label="${label}"></div>`;
+
+const logo = (s) =>
+  `<span style="font-family:'Playfair Display',serif;font-style:italic;font-size:${s}px;color:var(--y);font-weight:600">Vybe</span>`;
+
+const back = `<button data-a="back" aria-label="Back" style="width:44px;height:44px;border-radius:22px;background:var(--l);font-size:22px;margin:24px 20px 0">‹</button>`;
+
+const hdr = (s, t, r = '') =>
+  `<div class="p row" style="padding-top:26px;justify-content:space-between"><div><div style="font-size:13px;color:var(--b);font-weight:600">${s}</div>
+<h1 style="font-size:28px;font-weight:800;line-height:1.15">${t}</h1></div>${r}</div>`;
+
+const section = (t, link = '') =>
+  `<div class="p row" style="margin-top:18px;justify-content:space-between;font-weight:800;font-size:16px">${t}${link}</div>`;
+
+const kv = (rows) =>
+  `<div style="display:flex;flex-direction:column;gap:8px;font-size:14px">${rows
+    .filter(Boolean)
+    .map((r) => `<div class="row" style="justify-content:space-between;align-items:flex-start"><span class="mu">${r[0]}</span><b style="text-align:right">${r[1]}</b></div>`)
+    .join('')}</div>`;
+
+const iconBtn = (attr, label, inner, extra = '') =>
+  `<button ${attr} aria-label="${label}" style="position:relative;width:42px;height:42px;border-radius:21px;border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;${extra}">${inner}</button>`;
+const badge = (n) =>
+  n ? `<i style="position:absolute;top:-3px;right:-3px;background:var(--y);color:var(--n);font-size:10px;font-style:normal;font-weight:700;min-width:16px;height:16px;border-radius:8px;line-height:16px;padding:0 3px">${n}</i>` : '';
+
+// การ์ดกิจกรรมแบบรายการ (Home, Saved, หน้าคลับ, ปฏิทิน)
+const actRow = (id) => {
+  const a = A[id];
+  return `<button data-go="event:${id}" class="card row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px">${imgSlot(id, 66, 18, 'LIST › thumbnail · ' + a.title)}<span style="flex:1"><b style="font-size:15px;display:block">${a.title}</b><span class="mu" style="font-size:11px;display:block">${a.when} · ${a.place}</span><span class="row" style="gap:6px;margin-top:4px"><b style="color:#2A4DA8">${a.priceLabel}</b><span class="tag">${a.tag}</span></span></span><span class="bb" style="padding:8px 14px;border-radius:17px;font-size:12px;font-weight:700">${inPlan(id) ? '✓' : 'Join'}</span></button>`;
+};
+
+// การ์ดกิจกรรมแบบแนวนอน (Home)
+const actTile = (id, sub) => {
+  const a = A[id];
+  return `<button data-go="event:${id}" class="card" style="flex:none;width:168px;text-align:left;padding:6px 6px 10px"><div style="height:92px;overflow:hidden;border-radius:16px;position:relative">${imgSlot(id, 160, 16, 'HOME › card · ' + a.title, 92)}<span class="tag" style="position:absolute;left:6px;top:6px;background:#fff">${a.cat}</span></div>
+<b style="font-size:13px;display:block;margin:8px 4px 2px">${a.title}</b><span class="mu" style="font-size:11px;margin:0 4px;display:block">${sub || a.day + ' · ' + a.going + ' going'}</span></button>`;
+};
+
+// การ์ดกิจกรรมขนาดเล็กที่แนบในโพสต์/แชท
+const actMini = (id, label) => {
+  const a = A[id];
+  return `<button data-go="event:${id}" class="card row" style="width:100%;text-align:left;gap:10px">${imgSlot(id, 60, 14, label + ' · ' + a.title)}<span><b style="font-size:13px;display:block">${a.title}</b><span class="mu" style="font-size:11px">${a.when}</span><b style="display:block;color:#2A4DA8;font-size:13px">${a.priceLabel} · View activity ›</b></span></button>`;
+};
+
+const catChips = () =>
+  ['All', ...CATEGORIES]
+    .map((c) => `<button data-a="cat:${c}" class="chip ${S.cat == c ? 'on' : ''}">${c}</button>`)
+    .join('');
+
+const bubble = (m) =>
+  m[0] == 'You'
+    ? `<div style="display:flex;justify-content:flex-end;margin:8px 20px 0"><div style="background:var(--y);border-radius:18px 18px 4px 18px;padding:8px 14px;max-width:75%;font-size:14px">${m[1]}<div style="font-size:9px;text-align:right">${m[2]}</div></div></div>`
+    : `<div style="display:flex;margin:8px 20px 0"><div style="background:var(--l);border-radius:18px 18px 18px 4px;padding:8px 14px;max-width:75%;font-size:14px"><b style="font-size:11px;display:block">${m[0]}</b>${m[1]}<div style="font-size:9px;color:var(--mu)">${m[2]}</div></div></div>`;
+
+// ── แชท: id แบบ 'run' = แชทกลุ่มกิจกรรม | 'dm~ชื่อ~กิจกรรม' = แชทส่วนตัว | 'club~clubId' = แชทกับคลับ
+const chatKind = (id) => (id.startsWith('dm~') ? 'dm' : id.startsWith('club~') ? 'club' : 'group');
+const getChat = (id) => {
+  if (S.chats[id]) return S.chats[id];
+  const k = chatKind(id),
+    pr = id.split('~');
+  S.chats[id] =
+    k == 'dm'
+      ? [[pr[1], CHAT_TEXT.dmHello(A[pr[2]].title), hhmm()]]
+      : k == 'club'
+        ? [[CLUB[pr[1]].name, CHAT_TEXT.clubHello(CLUB[pr[1]].name), '09:00']]
+        : CHAT_TEXT.groupSeed.map((m) => m.slice());
+  return S.chats[id];
+};
+const chatTitle = (id) => {
+  const k = chatKind(id),
+    pr = id.split('~');
+  return k == 'dm' ? pr[1] : k == 'club' ? CLUB[pr[1]].name : A[id].title;
+};
+const replyLater = (id, who, text) =>
+  setTimeout(() => {
+    getChat(id).push([who, text, hhmm()]);
+    const c = S.stack[S.stack.length - 1];
+    if (c && c.n == 'chat' && c.p == id) render();
+    else toast(who + ': ' + text);
+  }, 1300);
+
+// ── Discover: ตัวกรองและผลลัพธ์
+const matches = (id) => {
+  const a = A[id];
+  return (
+    (S.cat == 'All' || a.cat == S.cat) &&
+    (!S.fBeginner || a.beginner) &&
+    (!S.fSolo || a.solo > 0) &&
+    (!S.fClubs || a.byClub) &&
+    (!S.q || [a.title, a.place, a.area, a.clubName, a.cat].join(' ').toLowerCase().includes(S.q.toLowerCase()))
+  );
+};
+
+const resultCard = (id) => {
+  const a = A[id],
+    on = S.compare.includes(id);
+  return `<button data-go="event:${id}" class="card row" style="margin:10px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px;align-items:stretch">${imgSlot(id, 100, 16, 'DISCOVERY › result card · ' + a.title)}<span style="flex:1"><b style="font-size:15px;display:block">${a.title}</b><span style="font-size:11px;font-weight:700;color:#2A4DA8;display:block">${a.clubName}</span><span class="mu" style="font-size:11px;display:block">${a.cat} · ${a.area} · ${a.kmLabel}</span><span class="mu" style="font-size:11px;display:block">${a.when} · ${a.solo} solo</span><span class="row" style="justify-content:space-between;margin-top:6px"><b style="color:#2A4DA8">${a.priceLabel}</b><span data-a="cmp:${id}" style="border:1.5px solid var(--b);border-radius:16px;padding:5px 12px;font-size:12px;font-weight:700;${on ? 'background:var(--l)' : ''}">${on ? '✓' : '+'} Compare</span></span></span></button>`;
+};
+
+const discoverList = () => {
+  const f = UPCOMING.filter(matches);
+  return (
+    `<div class="p row" style="margin-top:14px;justify-content:space-between"><span><b>${f.length} activities</b><br><span class="mu" style="font-size:11px">Oct–Nov 2026 · Bangkok & day trips</span></span><b style="font-size:12px;color:#2A4DA8">Sort: Soonest</b></div>` +
+    (f.length ? f.map(resultCard).join('') : empty('No activities found. Try another search or filter.')) +
+    (S.compare.length
+      ? `<div class="nb row" style="position:sticky;bottom:8px;margin:12px 16px 0;border-radius:24px;padding:8px 8px 8px 18px;justify-content:space-between"><span style="font-size:12px"><b>Compare</b><br>${S.compare.length} selected · up to 3</span><button data-go="compare" class="y" style="padding:10px 20px;border-radius:18px;font-weight:700">Compare</button></div>`
+      : '')
+  );
+};
+
+// ── Create post: กิจกรรมที่แนบได้
+const attachCard = (i) => {
+  const a = A[i];
+  return `<button data-a="att:${i}" class="card row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:10px;${S.att == i ? 'border-color:var(--b);background:var(--l)' : ''}">${imgSlot(i, 48, 12, 'CREATE POST › activity · ' + a.title)}<span style="flex:1"><b style="font-size:13px;display:block">${a.title}</b><span class="mu" style="font-size:11px">${a.cat} · ${a.when} · ${a.priceLabel}</span></span><b>${S.att == i ? '✓' : ''}</b></button>`;
+};
+const attachList = () => {
+  const f = UPCOMING.filter(
+    (i) => !S.ps || [A[i].title, A[i].cat, A[i].place, A[i].area].join(' ').toLowerCase().includes(S.ps.toLowerCase()),
+  ).slice(0, 10);
+  return f.map(attachCard).join('') || empty('No activities found');
+};
+
+// ── Community: การ์ดโพสต์
+const postCard = (p, compact) => {
+  const actions = p.mine
+    ? p.type == 'buddy'
+      ? `<button data-go="postdetail:${p.id}" class="btn lb" style="height:40px;margin-top:10px;font-size:13px">${p.interested.length ? p.interested.length + ' interested · See who ›' : 'Waiting for replies…'}</button>`
+      : ''
+    : `<div class="row" style="margin-top:10px">${
+        p.type != 'buddy'
+          ? ''
+          : S.joinReq[p.id] == 'joined'
+            ? `<button data-go="chat:${p.act}" class="nb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:12px">Joined ✓ Group chat</button>`
+            : S.joinReq[p.id] == 'pending'
+              ? `<button disabled class="lb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px;opacity:.7">Requested…</button>`
+              : `<button data-a="pj:${p.id}" class="bb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px">Join</button>`
+      }<button data-go="chat:dm~${p.name}~${p.act}" class="y" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px">Chat</button></div>`;
+  return `<div style="margin:12px 20px 0;border:1.5px solid var(--bd);border-radius:22px;padding:12px"><div class="row">${avatar(p.color, 36)}<div style="flex:1"><b>${p.name}</b><div class="mu" style="font-size:11px">${p.time}</div></div><span class="tag">${p.type == 'buddy' ? 'Looking for buddy' : 'Shared'}</span></div>
+<div style="margin:8px 0;font-size:14px">${p.text}</div>${compact ? '' : actMini(p.act, 'COMMUNITY › attached activity')}${actions}</div>`;
+};
+
+const friendRow = (f, i, linkToActivity) =>
+  `<div class="row" style="margin:0 20px;padding:10px 0;border-bottom:1px solid #EEF1FA">${avatar(f.color)}<${linkToActivity ? `button data-go="event:${f.going}"` : 'div'} style="flex:1;text-align:left"><b style="font-size:14px">${f.name}</b><div class="mu" style="font-size:11px">${friendLine(f)}</div></${linkToActivity ? 'button' : 'div'}><button data-a="conn:${i}" class="${S.connected[i] ? 'lb' : 'nb'}" style="width:92px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${S.connected[i] ? 'Added' : 'Connect'}</button></div>`;
+
+const clubRow = (c) =>
+  `<div class="card row" style="margin:10px 20px 0;gap:12px"><button data-go="club:${c.id}" class="row" style="flex:1;text-align:left;gap:12px">${imgSlot('club:' + c.id, 56, 14, 'COMMUNITY › club logo · ' + c.name)}<span><b style="font-size:14px;display:block">${c.name}</b><span class="mu" style="font-size:11px">${c.cat} · ${c.members} members · ${clubActivities(c.id).length} upcoming</span></span></button><button data-a="fol:${c.id}" class="${S.following[c.id] ? 'lb' : 'nb'}" style="width:84px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${S.following[c.id] ? 'Following' : 'Follow'}</button></div>`;
+
+const communityList = () => {
+  const q = (S.cq || '').toLowerCase(),
+    t = S.ctab;
+  if (t == 'Buddies')
+    return (
+      FRIENDS.map((f, i) => [f, i])
+        .filter(([f]) => !q || (f.name + f.likes.join(' ')).toLowerCase().includes(q))
+        .map(([f, i]) => friendRow(f, i, true))
+        .join('') || empty('No friends found')
+    );
+  if (t == 'Clubs') {
+    const list = CLUBS.filter((c) => !q || (c.name + c.cat).toLowerCase().includes(q)).sort(
+      (x, y) => !!S.following[y.id] - !!S.following[x.id],
+    );
+    return list.map(clubRow).join('') || empty('No clubs found');
+  }
+  return (
+    S.posts
+      .filter(
+        (p) =>
+          (t != 'Looking for buddy' || p.type == 'buddy') &&
+          (!q || (p.name + p.text + A[p.act].title).toLowerCase().includes(q)),
+      )
+      .map((p) => postCard(p))
+      .join('') || empty('No matching posts yet')
+  );
+};
+
+const makePost = (act, type = 'buddy') => {
+  const id = ++S.nextPostId,
+    a = A[act];
+  let added = false;
+  if (type == 'buddy' && S.addPlan && !inPlan(act)) {
+    addToPlan(act);
+    added = true;
+  }
+  S.posts.unshift({
+    id, name: USER.name, color: USER.color, time: 'just now', type, mine: true, interested: [], act,
+    text: S.draft || (type == 'buddy' ? 'หาเพื่อนไป ' + a.title + ' ด้วยกัน ใครสนใจทักมาได้เลย' : 'ไป ' + a.title + ' มาแล้ว ดีมาก แนะนำเลย!'),
+  });
+  S.draft = '';
+  S.att = null;
+  S.addPlan = true;
+  S.stack = [];
+  S.tab = 'community';
+  S.ctab = 'Feed';
+  render();
+  toast(added ? 'Posted · added to My Schedule' : 'Posted');
+  if (type != 'buddy') return;
+  setTimeout(() => {
+    const p = S.posts.find((q) => q.id == id);
+    if (!p) return;
+    p.interested = FRIENDS.slice(0, 2).map((f) => ({ name: f.name, color: f.color, accepted: false }));
+    toast(FRIENDS[0].name + ' and ' + FRIENDS[1].name + ' are interested in your post');
+    render();
+  }, 2200);
+};
+
+function joinSheet(id) {
+  const a = A[id],
+    o = [
+      ['solo', 'Join solo', 'Go on your own and see who else is coming solo'],
+      ['buddy', 'Find a buddy', 'Post to the Community feed to find someone to go with'],
+      ['friends', 'Join with friends', 'Invite your friends on Vybe and book 2 tickets'],
+    ];
+  return `<div class="sheet" data-a="closesheet"><div data-stop><b style="font-size:18px">How do you want to join?</b><div class="mu" style="font-size:12px">${a.title} · ${a.when} · ${a.priceLabel}</div>${o.map((x) => `<button data-a="how:${x[0]}:${id}" class="opt ${S.how == x[0] ? 'on' : ''}"><span style="flex:1"><b style="font-size:14px">${x[1]}</b><span class="mu" style="display:block;font-size:11px">${x[2]}</span></span><span class="rad"></span></button>`).join('')}<button data-a="confirm:${id}" class="btn bb" style="margin-top:16px">${a.price ? 'Continue to payment' : 'Confirm booking'}</button></div></div>`;
+}
+
+const alertCard = (al, isNew) => {
+  const a = A[al.act],
+    T = ALERT_TYPES[al.type];
+  return `<div style="margin:12px 20px 0;background:${T.bg};border-radius:22px;padding:14px 16px"><span style="background:${T.color};color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px">${T.label}${al.value ? ' · ' + al.value : ''}</span>${isNew ? ' <b style="font-size:11px">· New</b>' : ''}<b style="font-size:16px;display:block;margin-top:8px">${T.title(a)}</b><div style="font-size:13px;margin-top:2px">${al.note}</div>
+<div style="font-size:12px;margin-top:8px;background:#fff;border-radius:12px;padding:8px 12px">Affects your plan: <b>${a.title} · ${a.when}</b></div><button data-go="replan:${al.id}" class="btn nb" style="height:42px;margin-top:10px;font-size:13px">See suggested new plan</button></div>`;
+};
+
+// ── PAYMENT helpers
+const resetPay = (qty = 1) => {
+  S.pay = {
+    method: S.savedCard ? 'card' : 'promptpay',
+    useSaved: !!S.savedCard,
+    qty,
+    promo: '',
+    promoOk: null,
+    card: { num: '', exp: '', cvc: '', name: '' },
+    save: true,
+    err: '',
+  };
+};
+const quote = (id) => {
+  const a = A[id],
+    q = S.pay.qty,
+    sub = a.price * q,
+    fee = a.price ? SERVICE_FEE * q : 0,
+    p = S.pay.promoOk && PROMOS[S.pay.promoOk],
+    discount = p ? (p.pct ? Math.round((sub * p.pct) / 100) : Math.min(p.off, sub)) : 0;
+  return { qty: q, sub, fee, discount, total: sub + fee - discount };
+};
+const methodName = () => {
+  if (S.pay.method == 'card') {
+    if (S.pay.useSaved && S.savedCard) return S.savedCard.brand + ' •••• ' + S.savedCard.last4;
+    const n = S.pay.card.num.replace(/\D/g, '');
+    if (n.length == 16) return cardBrand(n) + ' •••• ' + n.slice(-4);
+  }
+  return PAY_METHODS.find((m) => m.id == S.pay.method).name;
+};
+const cardBrand = (n) => (/^4/.test(n) ? 'Visa' : /^5/.test(n) ? 'Mastercard' : /^35/.test(n) ? 'JCB' : 'Card');
+const cardError = () => {
+  const c = S.pay.card,
+    n = c.num.replace(/\D/g, ''),
+    m = c.exp.match(/^(\d\d)\/(\d\d)$/);
+  if (n.length != 16) return 'Enter the 16-digit card number.';
+  if (!m || +m[1] < 1 || +m[1] > 12) return 'Enter the expiry date as MM/YY.';
+  if (+m[2] < 26 || (+m[2] == 26 && +m[1] < 10)) return 'This card has expired. Use another card.';
+  if (!/^\d{3,4}$/.test(c.cvc)) return 'Enter the 3-digit security code on the back of the card.';
+  if (!c.name.trim()) return 'Enter the name on the card.';
+  return '';
+};
+const startProcessing = (id, declined) => {
+  S.stack.push({ n: 'processing', p: id });
+  render();
+  setTimeout(() => {
+    if (declined) {
+      S.stack.pop();
+      S.pay.err = 'Your card was declined. Try another card or another payment method.';
+      render();
+      return;
+    }
+    completePayment(id);
+  }, 1600);
+};
+const completePayment = (id) => {
+  const q = quote(id),
+    ref = newRef(),
+    now = new Date();
+  addToPlan(id);
+  Object.assign(planItem(id), { status: 'Booked', ref, qty: q.qty });
+  if (S.pay.method == 'card' && !S.pay.useSaved && S.pay.save) {
+    const n = S.pay.card.num.replace(/\D/g, '');
+    S.savedCard = { brand: cardBrand(n), last4: n.slice(-4) };
+  }
+  S.payments.unshift({ ref, act: id, ...q, method: methodName(), at: fmtDate(TODAY) + ' · ' + pad2(now.getHours()) + ':' + pad2(now.getMinutes()) });
+  S.lastRef = ref;
+  S.stack = [{ n: 'receipt', p: ref }];
+  S.tab = 'schedule';
+  render();
+};
+
+// ════════════════════════════════════════════════════════════
+// 6. SCREENS — หน้าจอทั้งหมด (จัดกลุ่มตามหมวด)
+// ════════════════════════════════════════════════════════════
+
+const SC = {
+  // ── ONBOARDING — สมัครด้วยเบอร์โทร / OTP / ซิงก์รายชื่อ / เพื่อนที่พบ
+  signup: () => `<div style="text-align:center;padding-top:110px">${logo(72)}</div>
+<div style="text-align:center;margin-top:40px;font-weight:700;font-size:18px">Create an account</div>
+<div class="mu" style="text-align:center;font-size:13px;margin:4px 28px 0">Enter your phone number to sign up for this app</div>
+<div class="row" style="margin:20px 28px 0"><div class="inp row" style="width:70px;justify-content:center;font-weight:600">+66</div>
+<input class="inp" aria-label="Phone number" placeholder="08X XXX XXXX" inputmode="tel"></div>
+<div style="margin:12px 28px 0"><button class="btn" data-go="otp" style="background:#5DB4F0;color:#fff">Continue</button></div>
+<div class="mu" style="margin:16px 0;text-align:center;font-size:12px">or</div>
+<div style="margin:0 28px"><button class="btn gr" data-go="sync">Continue with Google</button><button class="btn gr" data-go="sync" style="margin-top:10px">Continue with Apple</button></div>
+<div class="mu" style="margin:22px 40px 0;text-align:center;font-size:11px">By clicking continue, you agree to our Terms of Service and Privacy Policy</div>`,
+  otp: () =>
+    back +
+    `<h1 class="p" style="font-size:28px;font-weight:800;margin-top:12px;line-height:1.2">Verify your<br>phone number</h1><div class="p mu" style="font-size:13px;margin-top:8px">We sent a 6-digit code to ${USER.phone}</div>
+<div class="p row" style="margin-top:24px;justify-content:space-between">${[4, 2, 7, 1, 9, 0].map((d) => `<input class="inp" aria-label="OTP digit" maxlength="1" value="${d}" style="width:46px;height:56px;text-align:center;font-size:22px;font-weight:700;padding:0">`).join('')}</div>
+<div class="p mu" style="font-size:12px;margin-top:12px">Resend code in 0:30</div>
+<div style="margin:28px 20px 0"><button class="btn y" data-go="sync">Verify and continue</button></div>`,
+  sync: () => `<div style="padding-top:60px;display:flex;justify-content:center">${imgSlot('misc:sync', 170, 26, 'SYNC CONTACTS › top picture')}</div>
+<h1 style="margin:20px 24px 0;font-size:26px;font-weight:800;line-height:1.2;text-align:center">Find friends on Vybe<br>from your contacts</h1><div style="margin:8px 28px 0">${[
+    ['See what your friends are going to', 'Makes it easy to invite each other'],
+    ['Get matched with friends who like the same things', 'Based on matching registered numbers'],
+    ['We never message anyone for you', 'Unless you tap Invite yourself'],
+  ]
+    .map(
+      (p) =>
+        `<div class="row" style="align-items:flex-start;margin-top:12px"><span style="width:28px;height:28px;border-radius:14px;background:var(--ys);flex:none;text-align:center;line-height:28px;font-weight:700">✓</span><div><b style="font-size:14px">${p[0]}</b><div class="mu" style="font-size:12px">${p[1]}</div></div></div>`,
+    )
+    .join('')}</div>
+<div class="lb" style="margin:16px 24px 0;border-radius:16px;padding:10px 14px;font-size:11px"><b style="font-size:12px">You’re in control</b><br><span class="mu">Sync or skip. You can turn it off anytime in Settings.</span></div>
+<div style="margin:16px 24px 0"><button class="btn y" data-go="friends">Allow contact access</button><button data-go="home" style="width:100%;margin-top:10px;font-weight:600;padding:8px">Not now</button></div>`,
+  friends: () =>
+    hdr('Contacts', 'Your friends') +
+    `<div class="p mu" style="font-size:13px;margin-top:6px">Found ${FRIENDS.length} people on Vybe</div>` +
+    FRIENDS.map((f, i) => friendRow(f, i, false)).join('') +
+    `<div style="margin:20px 20px 0"><button class="btn y" data-go="home">Start using Vybe</button></div>`,
+
+  // ── HOME & DISCOVERY — หน้าแรก ค้นหา เปรียบเทียบ รายการที่บันทึก
+  home: () => {
+    const f = UPCOMING.filter((i) => S.cat == 'All' || A[i].cat == S.cat),
+      upcoming = f.slice(0, 8),
+      recs = f
+        .slice()
+        .sort((x, y) => A[y].rating - A[x].rating)
+        .filter((i) => !upcoming.includes(i) || f.length < 10)
+        .slice(0, 5),
+      fromClubs = f.filter((i) => S.following[A[i].club]).slice(0, 8);
+    return (
+      `<div class="p row" style="padding-top:26px;justify-content:space-between"><span class="row" style="gap:6px">${logo(38)}</span>${iconBtn('data-go="notif"', 'Notifications', ICON.bell() + badge(unreadCount()))}</div>
+<div class="p mu" style="font-size:13px;margin-top:6px">Good morning,</div>
+<div class="p" style="font-size:28px;font-weight:600">${USER.name}</div>
+<button data-go="discover" aria-label="Search" class="lb row" style="width:calc(100% - 40px);text-align:left;margin:12px 20px 0;height:46px;border-radius:23px;border:1.5px solid var(--bd);padding:0 5px 0 16px;font-size:13px;color:var(--mu);justify-content:space-between">Search activities, places, clubs…<span class="bb" style="width:36px;height:36px;border-radius:18px;display:flex;align-items:center;justify-content:center">${ICON.search('#fff')}</span></button><div class="p row" style="margin-top:12px;overflow-x:auto">${catChips()}</div>` +
+      (f.length
+        ? section('Upcoming Events', `<button data-go="discover" style="font-size:13px;font-weight:500">View all ›</button>`) +
+          `<div class="p row" style="margin-top:10px;overflow-x:auto;align-items:stretch">${upcoming.map((i) => actTile(i)).join('')}</div>` +
+          (fromClubs.length
+            ? section('From clubs you follow', `<button data-a="ctab-go:Clubs" style="font-size:13px;font-weight:500">Manage ›</button>`) +
+              `<div class="p row" style="margin-top:10px;overflow-x:auto;align-items:stretch">${fromClubs.map((i) => actTile(i, A[i].clubName)).join('')}</div>`
+            : '') +
+          section('Top rated for you', `<button data-go="discover" style="font-size:13px;font-weight:500">View all ›</button>`) +
+          recs.map(actRow).join('')
+        : empty('No activities in this category yet'))
+    );
+  },
+  discover: () =>
+    `<div class="p row" style="padding-top:26px"><button data-a="back" aria-label="Back" style="font-size:22px;width:28px">‹</button><div style="flex:1;position:relative"><span style="position:absolute;left:14px;top:13px;color:var(--mu)">${ICON.search()}</span><input id="dq" class="inp" aria-label="Search activities" placeholder="Search activities, places, clubs…" value="${S.q}" style="height:44px;border-radius:22px;padding-left:40px;width:100%;box-sizing:border-box"></div></div>
+<div class="p row" style="margin-top:12px;overflow-x:auto">${catChips()}</div>
+<div class="p row" style="margin-top:8px;overflow-x:auto">${[
+      ['fBeginner', 'Beginner Friendly'],
+      ['fSolo', 'Solo-friendly'],
+      ['fClubs', 'Clubs'],
+    ]
+      .map(
+        (x) =>
+          `<button data-a="flt:${x[0]}" aria-pressed="${S[x[0]]}" class="chip ${S[x[0]] ? 'on' : ''}" style="padding:5px 14px;font-size:12px">${x[1]}</button>`,
+      )
+      .join('')}</div>
+<div id="dl">${discoverList()}</div>`,
+  compare: () => {
+    const ids = S.compare.length ? S.compare : S.plan.slice(0, 2).map((p) => p.id);
+    const rows = [
+      ['Price', (a) => a.priceLabel],
+      ['Rating', (a) => '★ ' + a.ratingLabel],
+      ['Distance', (a) => a.kmLabel],
+      ['Level', (a) => a.level],
+      ['Setting', (a) => (a.indoor ? 'Indoor' : 'Outdoor')],
+      ['Length', (a) => a.duration],
+      ['Going', (a) => a.going + ' people'],
+    ];
+    return (
+      back +
+      hdr('Compare', 'Side by side') +
+      `<div class="p" style="margin-top:14px;overflow-x:auto"><div style="display:grid;grid-template-columns:64px repeat(${ids.length},1fr);gap:8px;font-size:12px;align-items:center"><span></span>${ids.map((i) => `<b style="font-size:13px">${A[i].title}</b>`).join('')}${rows.map((r) => `<span class="mu">${r[0]}</span>${ids.map((i) => `<b>${r[1](A[i])}</b>`).join('')}`).join('')}<span></span>${ids.map((i) => `<button data-go="event:${i}" class="btn y" style="height:38px;font-size:12px">View</button>`).join('')}</div>
+</div><div class="p mu" style="font-size:11px;margin-top:12px">Sample data for this prototype</div>`
+    );
+  },
+  saved: () =>
+    back +
+    hdr('Saved', 'Saved activities') +
+    (S.saved.length ? S.saved.map(actRow).join('') : empty('Nothing saved yet. Tap the heart on an activity to save it.')),
+
+  // ── EVENT — รายละเอียดกิจกรรม (ผู้จัด = คลับ) + โพสต์หาเพื่อนของกิจกรรมนี้
+  event: (id) => {
+    const a = A[id],
+      c = CLUB[a.club],
+      fv = S.saved.includes(id),
+      k = ACTIVITIES.findIndex((x) => x.id == id),
+      revs = [REVIEWS[k % REVIEWS.length], REVIEWS[(k + 3) % REVIEWS.length]],
+      pi = planItem(id),
+      buddyPosts = S.posts.filter((p) => p.act == id && p.type == 'buddy');
+    const cta = !pi
+      ? `<button class="btn y" data-a="join:${id}">Join · ${a.priceLabel}</button>`
+      : pi.status == 'Unpaid'
+        ? `<button class="btn y" data-a="pay:${id}">Complete payment</button><div class="mu" style="font-size:12px;text-align:center;margin-top:6px">In your plan · not paid yet</div>`
+        : pi.status == 'Done'
+          ? `<button class="btn lb" disabled>Completed ✓</button>`
+          : `<div class="row"><button class="btn y" data-go="ticket:${id}" style="flex:1">View ticket</button><button class="btn lb" data-go="chat:${id}" style="flex:1">Group chat</button></div>`;
+    return `<div style="position:relative">${imgSlot(id, 390, 0, 'EVENT DETAIL › hero · ' + a.title, 300)}<button data-a="back" aria-label="Back" style="position:absolute;left:20px;top:24px;width:44px;height:44px;border-radius:22px;background:#fff;font-size:22px">‹</button><button data-a="fav:${id}" aria-label="Save activity" aria-pressed="${fv}" style="position:absolute;right:20px;top:24px;width:44px;height:44px;border-radius:22px;background:#fff;font-size:20px;color:${fv ? '#E5334F' : '#8A96BE'}">${fv ? '♥' : '♡'}</button></div>
+<div class="p" style="margin-top:16px"><span class="tag">${a.cat} · ${a.tag}</span><h1 style="font-size:26px;font-weight:800;margin-top:6px;line-height:1.15">${a.title}</h1><div style="font-size:14px;margin:6px 0 12px">${a.about}</div>${kv([
+      ['When', a.when + ' · ' + a.duration],
+      ['Where', a.place + ', ' + a.area],
+      ['Price', a.priceLabel + (a.price ? ' + ฿' + SERVICE_FEE + ' service fee' : '')],
+      ['Level', a.level + ' · ' + (a.indoor ? 'Indoor' : 'Outdoor')],
+      ['Going', a.going + ' people · ' + a.solo + ' coming solo'],
+      ['Rating', '★ ' + a.ratingLabel],
+    ])}
+<div class="card" style="margin-top:12px"><button data-go="club:${a.club}" class="row" style="width:100%;text-align:left;gap:12px">${imgSlot('club:' + a.club, 48, 24, 'EVENT DETAIL › organizer club logo · ' + a.clubName)}<span style="flex:1"><span class="mu" style="font-size:11px">Hosted by</span><b style="display:block">${a.clubName}</b><span class="mu" style="font-size:11px">★ ${c.rating} · ${c.members} members</span></span>›</button><div class="row" style="margin-top:10px"><button data-a="fol:${a.club}" class="${S.following[a.club] ? 'lb' : 'nb'}" style="flex:1;height:36px;border-radius:18px;font-size:12px;font-weight:700">${S.following[a.club] ? 'Following' : 'Follow club'}</button><button data-go="chat:club~${a.club}" class="lb" style="flex:1;height:36px;border-radius:18px;font-size:12px;font-weight:700">Ask the club</button></div></div>
+<div class="row" style="margin-top:18px;justify-content:space-between"><b>Looking for a buddy (${buddyPosts.length})</b><button data-a="postfor:${id}" style="font-size:13px;font-weight:600;color:#2A4DA8">+ Post</button></div></div>
+${buddyPosts.length ? buddyPosts.slice(0, 3).map((p) => postCard(p, true)).join('') : '<div class="p mu" style="font-size:13px;margin-top:6px">No one is looking yet. Post first and find someone to go with.</div>'}
+<div class="p"><div style="margin-top:18px;font-weight:800">Reviews <span class="mu" style="font-weight:400;font-size:12px">(sample)</span></div>${revs
+      .map((r) => `<div class="lb" style="margin-top:8px;border-radius:16px;padding:10px 14px;font-size:13px"><b>${r[0]}</b> ★ ${r[1]}<div class="mu">${r[2]}</div></div>`)
+      .join('')}</div>
+<div style="margin:20px 20px 0">${cta}</div>`;
+  },
+
+  // ── PAYMENT — ชำระเงิน: จำนวนบัตร โค้ดส่วนลด วิธีชำระ ฟอร์มบัตร → QR / กำลังดำเนินการ → ใบเสร็จ → บัตรเข้างาน
+  payment: (id) => {
+    if (!S.pay) resetPay();
+    const a = A[id],
+      P = S.pay,
+      q = quote(id);
+    const methods = PAY_METHODS.map((m) => {
+      const on = P.method == m.id;
+      let extra = '';
+      if (on && m.id == 'card') {
+        extra =
+          S.savedCard && P.useSaved
+            ? `<div class="lb row" style="margin-top:8px;border-radius:14px;padding:10px 12px;justify-content:space-between;font-size:13px"><b>${S.savedCard.brand} •••• ${S.savedCard.last4}</b><span data-a="newcard" style="font-weight:600;color:#2A4DA8">Use another card</span></div>`
+            : `<div data-stop style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<input id="cnum" class="inp" aria-label="Card number" placeholder="Card number" inputmode="numeric" autocomplete="cc-number" value="${P.card.num}" style="grid-column:1/-1">
+<input id="cexp" class="inp" aria-label="Expiry date" placeholder="MM/YY" inputmode="numeric" autocomplete="cc-exp" value="${P.card.exp}">
+<input id="ccvc" class="inp" aria-label="Security code" placeholder="CVC" inputmode="numeric" autocomplete="cc-csc" maxlength="4" value="${P.card.cvc}">
+<input id="cname" class="inp" aria-label="Name on card" placeholder="Name on card" autocomplete="cc-name" value="${P.card.name}" style="grid-column:1/-1">
+<span data-a="savecard" role="checkbox" aria-checked="${P.save}" style="grid-column:1/-1;font-size:12px;display:flex;gap:8px;align-items:center"><span style="width:18px;height:18px;border-radius:5px;border:1.5px solid var(--b);background:${P.save ? 'var(--b)' : '#fff'};color:#fff;font-size:12px;text-align:center;line-height:16px">${P.save ? '✓' : ''}</span>Save this card for next time</span>
+<span class="mu" style="grid-column:1/-1;font-size:11px">Demo: 4242 4242 4242 4242 is approved · 4000 0000 0000 0002 is declined</span></div>`;
+      }
+      return `<div class="opt ${on ? 'on' : ''}" style="display:block;cursor:pointer" data-a="pm:${m.id}"><div class="row"><span style="flex:1"><b style="font-size:14px">${m.name}</b><span class="mu" style="display:block;font-size:11px">${m.note}</span></span><span class="rad" style="box-sizing:border-box"></span></div>${extra}</div>`;
+    }).join('');
+    return (
+      back +
+      hdr('Payment', 'Checkout') +
+      `<div class="card row" style="margin:14px 20px 0;gap:12px">${imgSlot(id, 64, 14, 'PAYMENT › activity thumbnail · ' + a.title)}<span style="flex:1"><b style="display:block">${a.title}</b><span class="mu" style="font-size:12px">${a.when} · ${a.place}</span></span></div>
+<div class="row" style="margin:14px 20px 0;justify-content:space-between"><span><b>Tickets</b><br><span class="mu" style="font-size:12px">${a.priceLabel} each</span></span><span class="row" style="gap:12px"><button data-a="qty:-1" aria-label="Fewer tickets" class="lb" style="width:36px;height:36px;border-radius:18px;font-size:20px" ${q.qty <= 1 ? 'disabled' : ''}>−</button><b style="font-size:18px;min-width:16px;text-align:center">${q.qty}</b><button data-a="qty:1" aria-label="More tickets" class="lb" style="width:36px;height:36px;border-radius:18px;font-size:20px" ${q.qty >= MAX_TICKETS ? 'disabled' : ''}>+</button></span></div>
+<div class="p" style="margin-top:16px;font-weight:700">Payment method</div><div class="p">${methods}</div>
+<div class="p" style="margin-top:14px;font-weight:700">Promo code</div>
+<div class="p row" style="margin-top:6px"><input id="promo" class="inp" aria-label="Promo code" placeholder="e.g. VYBE10" value="${P.promo}" style="text-transform:uppercase"><button data-a="promo" class="nb" style="height:44px;padding:0 18px;border-radius:14px;font-weight:700">Apply</button></div>
+${P.promoOk ? `<div class="p" style="font-size:12px;margin-top:6px;color:#1E7A46"><b>${P.promoOk}</b> applied · ${PROMOS[P.promoOk].label} <span data-a="rmpromo" style="text-decoration:underline;margin-left:6px">Remove</span></div>` : ''}
+<div class="lb" style="margin:16px 20px 0;border-radius:18px;padding:14px 16px">${kv([
+        ['Tickets', a.priceLabel + ' × ' + q.qty],
+        ['Subtotal', money(q.sub)],
+        ['Service fee', money(q.fee)],
+        q.discount ? ['Discount', '−' + money(q.discount)] : null,
+      ])}<div class="row" style="justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--bd)"><b>Total</b><b style="font-size:22px">${money(q.total)}</b></div></div>
+${P.err ? `<div role="alert" style="margin:12px 20px 0;background:#FFECEF;color:#B0203A;border-radius:14px;padding:10px 14px;font-size:13px">${P.err}</div>` : ''}
+<div class="mu" style="margin:10px 20px 0;font-size:11px">Free cancellation up to 24 hours before start. This is a simulated payment. No money is charged.</div>
+<div style="position:sticky;bottom:0;background:#fff;padding:12px 20px"><button data-a="paynow:${id}" class="btn y">Pay ${money(q.total)}</button></div>`
+    );
+  },
+  payqr: (id) => {
+    const q = quote(id);
+    return (
+      back +
+      hdr('PromptPay', 'Scan to pay') +
+      `<div class="card" style="margin:16px 20px 0;text-align:center;padding:20px"><div class="mu" style="font-size:12px">Vybe Co., Ltd. · ${A[id].title}</div><div style="margin:14px 0">${qrBox(200, 'PromptPay QR code')}</div><b style="font-size:26px">${money(q.total)}</b><div class="mu" style="font-size:12px;margin-top:4px">QR expires in <b id="qrt">15:00</b></div></div>
+<div class="p" style="margin-top:14px;font-size:13px">${['Open any Thai banking app', 'Scan this QR code or save it and upload', 'Check the amount, then confirm'].map((s, i) => `<div class="row" style="margin-top:6px"><b style="width:22px;height:22px;border-radius:11px;background:var(--ys);text-align:center;line-height:22px;font-size:12px;flex:none">${i + 1}</b>${s}</div>`).join('')}</div>
+<div style="margin:18px 20px 0"><button data-a="qrpaid:${id}" class="btn y">I’ve paid</button><button data-a="toast:QR code saved to Photos (simulated)" class="btn lb" style="margin-top:10px">Save QR code</button></div>`
+    );
+  },
+  processing: () =>
+    `<style>@keyframes vspin{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){.vspin{animation-duration:3s!important}}</style><div style="padding-top:220px;text-align:center"><div class="vspin" style="width:56px;height:56px;margin:auto;border-radius:28px;border:5px solid var(--l);border-top-color:var(--b);animation:vspin 0.9s linear infinite"></div><b style="display:block;margin-top:20px;font-size:18px">Processing payment…</b><div class="mu" style="font-size:13px;margin-top:4px">${methodName()} · Please don’t close the app</div></div>`,
+  receipt: (ref) => {
+    const p = S.payments.find((x) => x.ref == ref),
+      a = A[p.act],
+      fresh = S.lastRef == ref;
+    return (
+      (fresh
+        ? `<div style="padding-top:44px;text-align:center"><div style="width:72px;height:72px;border-radius:36px;background:#2FA866;margin:auto;display:flex;align-items:center;justify-content:center">${ICON.check()}</div><h1 style="font-size:24px;font-weight:800;margin-top:14px">Payment successful</h1><div class="mu" style="font-size:13px">You’re booked for ${a.title}</div></div>`
+        : back + hdr('Receipt', ref)) +
+      `<div class="card" style="margin:18px 20px 0;padding:16px">${kv([
+        ['Booking ref', p.ref],
+        ['Activity', a.title],
+        ['Date', a.when],
+        ['Place', a.place],
+        ['Tickets', a.priceLabel + ' × ' + p.qty],
+        ['Service fee', money(p.fee)],
+        p.discount ? ['Discount', '−' + money(p.discount)] : null,
+        ['Total paid', money(p.total)],
+        ['Paid with', p.method],
+        ['Paid at', p.at],
+      ])}</div>
+<div style="margin:16px 20px 0"><button data-go="ticket:${p.act}" class="btn y">View ticket</button>${fresh ? `<button data-a="postfor:${p.act}" class="btn lb" style="margin-top:10px">Find a buddy to go with</button><button data-a="done" style="width:100%;margin-top:10px;font-weight:600;padding:10px">Back to My Schedule</button>` : ''}</div>`
+    );
+  },
+  ticket: (id) => {
+    const a = A[id],
+      pi = planItem(id);
+    if (!pi || !pi.ref) return back + hdr('Ticket', a.title) + empty('No ticket yet. Complete payment to get your ticket.');
+    return (
+      back +
+      `<div style="margin:16px 20px 0;background:var(--b);border-radius:28px;padding:20px;color:#fff;text-align:center"><div style="font-size:12px;font-weight:700;color:var(--ys)">E-TICKET · ${pi.qty || 1} ${pi.qty > 1 ? 'people' : 'person'}</div><div style="font-size:22px;font-weight:800;margin-top:4px">${a.title}</div><div style="font-size:13px">${a.when} · ${a.place}</div><div style="background:#fff;border-radius:20px;padding:16px;margin-top:16px;color:var(--n)">${qrBox(180, 'Check-in QR code')}<b style="display:block;margin-top:10px;letter-spacing:2px">${pi.ref}</b><div class="mu" style="font-size:11px">Show this QR to the club at check-in</div></div></div>
+<div class="row" style="margin:16px 20px 0"><button data-go="route:${id}" class="btn lb" style="flex:1">Route</button><button data-a="addcal:${id}" class="btn lb" style="flex:1">Add to calendar</button></div>` +
+      (S.payments.some((x) => x.ref == pi.ref) ? `<div style="margin:10px 20px 0"><button data-go="receipt:${pi.ref}" class="btn gr">View receipt</button></div>` : '')
+    );
+  },
+  payments: () =>
+    back +
+    hdr('Settings', 'Payments') +
+    section('Saved card') +
+    (S.savedCard
+      ? `<div class="card row" style="margin:8px 20px 0;justify-content:space-between"><b>${S.savedCard.brand} •••• ${S.savedCard.last4}</b><button data-a="rmcard" style="font-weight:600;color:#B0203A">Remove</button></div>`
+      : '<div class="p mu" style="font-size:13px;margin-top:6px">No saved card. Tick “Save this card” at checkout to add one.</div>') +
+    section('Receipts') +
+    (S.payments.length
+      ? S.payments
+          .map(
+            (p) =>
+              `<button data-go="receipt:${p.ref}" class="card row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;justify-content:space-between"><span><b style="display:block;font-size:14px">${A[p.act].title}</b><span class="mu" style="font-size:11px">${p.ref} · ${p.at}</span></span><b>${money(p.total)}</b></button>`,
+          )
+          .join('')
+      : empty('No payments yet')),
+
+  // ── MY SCHEDULE & TRIP — ตารางของฉัน ปฏิทิน เส้นทาง แชท
+  schedule: () => {
+    const nx = nextUp(),
+      a = nx && A[nx],
+      pi = nx && planItem(nx),
+      list = planSorted(),
+      days = [...new Set(list.map((p) => A[p.id].date))],
+      unpaid = S.plan.filter((p) => p.status == 'Unpaid').reduce((s, p) => s + A[p.id].price, 0),
+      total = S.plan.reduce((s, p) => s + A[p.id].price * (p.qty || 1), 0);
+    const today = a
+      ? `<div class="nb" style="margin:14px 20px 0;border-radius:24px;padding:16px;background:var(--b);position:relative"><button data-go="ticket:${nx}" aria-label="Open ticket" style="position:absolute;right:14px;top:14px;width:84px;background:#fff;border-radius:14px;padding:8px;text-align:center;color:var(--n)">${qrBox(60, 'Check-in QR')}<div style="font-size:9px;font-weight:700;margin-top:4px">${pi.ref || 'NOT PAID'}</div></button><div style="font-size:11px;font-weight:700;color:var(--ys)">${a.date == TODAY ? 'Today' : 'Next up · ' + a.day}</div>
+<div style="font-size:20px;font-weight:800;color:#fff;margin-top:2px;padding-right:90px">${a.title}</div>
+<div style="font-size:12px;color:#fff;margin-top:2px;padding-right:90px">${a.time} · ${a.place}</div>
+<div class="row" style="margin-top:12px"><button data-go="route:${nx}" class="y" style="padding:9px 18px;border-radius:18px;font-weight:700;font-size:13px">Route</button><button data-go="chat:${nx}" style="padding:9px 18px;border-radius:18px;font-weight:700;font-size:13px;background:rgba(255,255,255,.25);color:#fff">Group chat</button></div>
+<button data-a="finish:${nx}" style="margin-top:10px;color:#fff;font-size:12px;font-weight:600;text-decoration:underline">Checked in · Finish and create Recap</button></div>`
+      : empty('Your plan is empty. Tap + to add an activity.');
+    const banners = activeAlerts()
+      .map((al) => {
+        const T = ALERT_TYPES[al.type];
+        return `<button data-go="replan:${al.id}" class="row" style="margin:12px 20px 0;width:calc(100% - 40px);background:${T.bg};border-radius:18px;padding:10px 14px;text-align:left"><span style="flex:1;font-size:12px"><b>${T.label}${al.value ? ' (' + al.value + ')' : ''}: ${A[al.act].title}</b><br>Consider changing your plan · Replan</span>›</button>`;
+      })
+      .join('');
+    const items = days
+      .map(
+        (d) =>
+          `<div class="p" style="margin-top:16px;font-weight:800">${fmtDay(d)}</div>` +
+          list
+            .filter((p) => A[p.id].date == d)
+            .map((p) => {
+              const e = A[p.id];
+              const act =
+                p.status == 'Unpaid'
+                  ? `<span data-a="pay:${p.id}" class="y" style="padding:8px 12px;border-radius:16px;font-size:12px;font-weight:700">Pay now</span>`
+                  : p.status == 'Booked'
+                    ? `<span data-go="ticket:${p.id}" class="lb" style="padding:8px 12px;border-radius:16px;font-size:12px;font-weight:700">Ticket</span>`
+                    : '';
+              return `<button data-go="event:${p.id}" class="card row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px">${imgSlot(p.id, 56, 14, 'SCHEDULE › activity thumbnail · ' + e.title)}<span style="flex:1"><b style="font-size:14px;display:block">${e.title}</b><span class="mu" style="font-size:11px">${e.time} · ${e.place}</span><span style="display:block;font-size:12px;margin-top:2px"><span class="tag">${p.status}</span> <b>${e.priceLabel}${p.qty > 1 ? ' × ' + p.qty : ''}</b></span></span>${act}</button>`;
+            })
+            .join(''),
+      )
+      .join('');
+    return (
+      `<div class="p row" style="padding-top:26px;justify-content:space-between"><div><h1 style="font-size:28px;font-weight:800">My Schedule</h1><div class="mu" style="font-size:12px">${S.plan.length} activities planned</div></div><span class="row">${iconBtn('data-go="calendar"', 'Calendar', ICON.calendar())}<button data-go="discover" aria-label="Add activity" class="y" style="width:42px;height:42px;border-radius:21px;font-size:24px">+</button></span></div>` +
+      today +
+      banners +
+      items +
+      (S.plan.length
+        ? `<div class="row" style="margin:12px 20px 0;background:var(--l);border-radius:18px;padding:12px 16px;justify-content:space-between"><span style="font-size:13px">Estimated budget${unpaid ? '<br><span class="mu" style="font-size:11px">' + money(unpaid) + ' still to pay</span>' : ''}</span><b style="font-size:18px">${money(total)}</b></div>`
+        : '')
+    );
+  },
+  calendar: () => {
+    const [y, m] = S.calMonth.split('-').map(Number),
+      first = new Date(y, m - 1, 1),
+      nDays = new Date(y, m, 0).getDate(),
+      planDates = new Set(S.plan.map((p) => A[p.id].date)),
+      count = {};
+    UPCOMING.forEach((i) => (count[A[i].date] = (count[A[i].date] || 0) + 1));
+    const cells = [];
+    for (let i = 0; i < first.getDay(); i++) cells.push('<span></span>');
+    for (let d = 1; d <= nDays; d++) {
+      const ds = y + '-' + pad2(m) + '-' + pad2(d),
+        sel = ds == S.calDay,
+        planned = planDates.has(ds);
+      cells.push(
+        `<button data-a="calday:${ds}" aria-label="${fmtDay(ds)}${planned ? ', has plans' : ''}" style="height:44px;border-radius:14px;font-weight:${planned || sel ? 700 : 500};font-size:14px;position:relative;${sel ? 'background:var(--n);color:#fff;' : ds == TODAY ? 'border:1.5px solid var(--b);' : ''}${ds < TODAY && !sel ? 'opacity:.4;' : ''}">${d}<span style="position:absolute;left:50%;bottom:5px;transform:translateX(-50%);display:flex;gap:2px">${planned ? '<i style="width:6px;height:6px;border-radius:3px;background:var(--y)"></i>' : ''}${count[ds] && !planned ? '<i style="width:4px;height:4px;border-radius:2px;background:' + (sel ? '#fff' : '#9AAAD6') + '"></i>' : ''}</span></button>`,
+      );
+    }
+    const mine = planSorted().filter((p) => A[p.id].date == S.calDay),
+      others = UPCOMING.filter((i) => A[i].date == S.calDay && !inPlan(i));
+    return (
+      back +
+      `<div class="p row" style="margin-top:12px;justify-content:space-between"><button data-a="calm:-1" aria-label="Previous month" class="lb" style="width:40px;height:40px;border-radius:20px;font-size:20px">‹</button><h1 style="font-size:22px;font-weight:800">${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][m - 1]} ${y}</h1><button data-a="calm:1" aria-label="Next month" class="lb" style="width:40px;height:40px;border-radius:20px;font-size:20px">›</button></div>
+<div class="p" style="margin-top:12px;display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center">${DAYS.map((d) => `<span class="mu" style="font-size:11px;font-weight:600">${d}</span>`).join('')}${cells.join('')}</div>
+<div class="p row mu" style="margin-top:8px;font-size:11px;gap:14px"><span class="row" style="gap:5px"><i style="width:8px;height:8px;border-radius:4px;background:var(--y)"></i>In your plan</span><span class="row" style="gap:5px"><i style="width:6px;height:6px;border-radius:3px;background:#9AAAD6"></i>Activities available</span></div>` +
+      section(fmtDay(S.calDay) + (S.calDay == TODAY ? ' · Today' : '')) +
+      (mine.length
+        ? mine
+            .map((p) => {
+              const e = A[p.id];
+              return `<button data-go="event:${p.id}" class="row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px;background:var(--ys);border-radius:18px;padding:10px 12px"><b style="font-size:13px;width:44px">${e.time}</b><span style="flex:1"><b style="font-size:14px;display:block">${e.title}</b><span class="mu" style="font-size:11px">${e.place} · ${e.duration}</span></span><span class="tag">${p.status}</span></button>`;
+            })
+            .join('')
+        : '<div class="p mu" style="font-size:13px;margin-top:6px">Nothing planned this day.</div>') +
+      (others.length ? section('Also happening', `<span class="mu" style="font-size:12px;font-weight:500">${others.length} activities</span>`) + others.slice(0, 8).map(actRow).join('') : '') +
+      `<div style="margin:18px 20px 0"><button data-a="calsync" class="btn lb">${S.toggles.calendar ? 'Synced with phone calendar ✓' : 'Sync my plan to phone calendar'}</button></div>`
+    );
+  },
+  route: (id) => {
+    const a = A[id],
+      modes = TRAVEL_MODES.filter((m) => !m.maxKm || a.km <= m.maxKm),
+      m = modes[Math.min(S.route, modes.length - 1)],
+      travel = Math.round(m.mins(a.km)),
+      dep = toMin(a.time) - travel - 10,
+      hm = (x) => {
+        x = ((x % 1440) + 1440) % 1440;
+        return pad2(Math.floor(x / 60)) + ':' + pad2(x % 60);
+      };
+    return (
+      back +
+      hdr('Route', 'Getting to ' + a.place) +
+      `<div style="margin:14px 20px 0">${mapBlock(a)}</div>
+<div class="card" style="margin:12px 20px 0"><div class="row"><span style="width:10px;height:10px;border-radius:5px;background:var(--b)"></span>Your location</div>
+<div style="margin:4px 4px;border-left:2px dotted #B9C9EE;height:14px"></div>
+<div class="row"><span style="width:10px;height:10px;border-radius:5px;background:var(--y)"></span><b>${a.place}</b><span class="mu" style="font-size:11px">${a.kmLabel}</span></div>
+</div><div class="p row" style="margin-top:12px;overflow-x:auto">${modes.map((x, i) => `<button data-a="rt:${i}" class="chip ${m == x ? 'on' : ''}" style="text-align:left;line-height:1.3">${x.name}<br><span style="font-size:11px;font-weight:400">${fmtMins(x.mins(a.km))} · ${x.cost(a.km)}</span></button>`).join('')}</div>
+<div class="lb" style="margin:12px 20px 0;border-radius:16px;padding:10px 14px;font-size:13px">${a.when}<br><b>Leave by ${hm(dep)}</b> to arrive 10 minutes early<div class="mu" style="font-size:11px">Travel times are sample estimates</div>
+</div><div style="margin:14px 20px 0"><a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(a.place + ' ' + a.area)}" target="_blank" rel="noopener" class="btn y" style="display:flex;align-items:center;justify-content:center;text-decoration:none;box-sizing:border-box">Open in Google Maps</a><button data-go="chat:${id}" class="btn lb" style="margin-top:10px">Share meeting point in group chat</button></div>`
+    );
+  },
+  chat: (id) => {
+    const k = chatKind(id),
+      pr = id.split('~'),
+      ms = getChat(id);
+    let sub, pin;
+    if (k == 'club') {
+      const c = CLUB[pr[1]],
+        nx = clubActivities(c.id)[0];
+      sub = 'Club chat · usually replies within an hour';
+      pin = nx
+        ? `<div class="lb row" style="margin:10px 20px 0;border-radius:16px;padding:10px 14px;justify-content:space-between"><span style="font-size:12px">Next activity<br><b>${A[nx].title} · ${A[nx].day}</b></span><button data-go="event:${nx}" class="bb" style="padding:8px 14px;border-radius:16px;font-size:12px;font-weight:700">View</button></div>`
+        : '';
+    } else {
+      const eid = k == 'dm' ? pr[2] : id,
+        a = A[eid];
+      sub = k == 'dm' ? 'Direct message · ' + a.title : 'Group chat · ' + a.going + ' going';
+      pin = `<div class="lb row" style="margin:10px 20px 0;border-radius:16px;padding:10px 14px;justify-content:space-between"><span style="font-size:12px"><b>${a.when}</b><br>${a.place}</span><button data-go="route:${eid}" class="bb" style="padding:8px 14px;border-radius:16px;font-size:12px;font-weight:700">Route</button></div>`;
+    }
+    const faq =
+      k == 'club'
+        ? `<div class="row" style="overflow-x:auto;padding:0 16px 8px;gap:6px">${CLUB_FAQ.map((f, i) => `<button data-a="faq:${id}:${i}" class="chip" style="flex:none;font-size:12px;padding:5px 12px">${f[0]}</button>`).join('')}</div>`
+        : '';
+    return `<div class="p row" style="padding-top:20px;gap:10px"><button data-a="back" aria-label="Back" style="width:40px;height:40px;border-radius:20px;background:var(--l);font-size:22px">‹</button>${k == 'club' ? `<button data-go="club:${pr[1]}">${imgSlot('club:' + pr[1], 40, 20, 'CHAT › club logo')}</button>` : ''}<div style="flex:1"><b>${chatTitle(id)}</b><div class="mu" style="font-size:11px">${sub}</div></div></div>
+${pin}${ms.map(bubble).join('')}<div style="position:sticky;bottom:0;background:#fff;padding-top:10px;margin-top:12px">${faq}<div style="display:flex;gap:8px;padding:0 16px 10px"><input id="cm" class="inp" aria-label="Message" placeholder="Type a message…" style="border-radius:24px"><button data-a="send:${id}" class="y" style="width:64px;border-radius:24px;font-weight:700">Send</button></div></div>`;
+  },
+  inbox: () => {
+    const keys = [...new Set([...Object.keys(S.chats).reverse(), ...planSorted().map((p) => p.id), 'club~' + (Object.keys(S.following).find((c) => S.following[c]) || 'brc')])];
+    return (
+      back +
+      hdr('Community', 'Messages') +
+      keys
+        .map((id) => {
+          const k = chatKind(id),
+            last = getChat(id).slice(-1)[0],
+            pic =
+              k == 'club'
+                ? imgSlot('club:' + id.split('~')[1], 44, 22, 'INBOX › club logo')
+                : k == 'dm'
+                  ? avatar((S.posts.find((p) => p.name == id.split('~')[1]) || { color: 'var(--ys)' }).color, 44)
+                  : imgSlot(id, 44, 22, 'INBOX › group activity');
+          return `<button data-go="chat:${id}" class="row" style="margin:0 20px;padding:12px 0;border-bottom:1px solid #EEF1FA;width:calc(100% - 40px);text-align:left;gap:12px">${pic}<span style="flex:1;min-width:0"><span class="row" style="justify-content:space-between"><b style="font-size:14px">${chatTitle(id)}</b><span class="mu" style="font-size:11px">${last[2]}</span></span><span class="mu" style="font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${k == 'club' ? 'Club · ' : k == 'group' ? 'Group · ' : ''}${last[0] == 'You' ? 'You: ' : ''}${last[1]}</span></span></button>`;
+        })
+        .join('')
+    );
+  },
+
+  // ── COMMUNITY — ฟีด โพสต์ ผู้สนใจ และหน้าคลับ
+  community: () =>
+    `<div class="p row" style="padding-top:26px">${avatar('var(--ys)')}<input id="cq" class="inp" aria-label="Find friends or clubs" placeholder="Find friends, clubs or posts" value="${S.cq}" style="height:44px;border-radius:22px">${iconBtn('data-go="inbox"', 'Messages', ICON.chat(), 'flex:none')}</div>
+<div class="p row" style="margin-top:12px;overflow-x:auto">${['Feed', 'Buddies', 'Clubs', 'Looking for buddy'].map((t) => `<button data-a="ctab:${t}" class="chip ${S.ctab == t ? 'on' : ''}">${t}</button>`).join('')}</div>
+<div id="cl">${communityList()}</div>
+<button data-a="newpost" class="y" style="position:sticky;bottom:12px;display:block;margin:12px 16px 0 auto;height:48px;padding:0 20px;border-radius:24px;font-weight:700">+ Post</button>`,
+  newpost: () => {
+    const buddy = S.postType == 'buddy',
+      been = [...new Set(S.recaps.map((r) => r.act))];
+    return (
+      back +
+      hdr('Community', 'Create a post') +
+      `<div class="p row" style="margin-top:12px">${[
+        ['buddy', 'Find a buddy'],
+        ['share', 'Share an experience'],
+      ]
+        .map((t) => `<button data-a="ptype:${t[0]}" class="chip ${S.postType == t[0] ? 'on' : ''}">${t[1]}</button>`)
+        .join('')}</div>
+<div class="p" style="margin-top:12px"><textarea id="pt" class="inp" aria-label="Post text" placeholder="${buddy ? 'หาเพื่อนไป Climbing วันเสาร์นี้…' : 'เล่าให้เพื่อนฟังหน่อยว่าเป็นยังไงบ้าง…'}" style="height:90px;padding:12px;font-family:inherit;width:100%;box-sizing:border-box">${S.draft}</textarea></div>
+<div class="p mu" style="font-size:12px;margin-top:6px">Every post is linked to an activity, so friends can view it and join in one tap.</div>` +
+      (buddy
+        ? `<div class="p" style="margin-top:12px;font-weight:700;font-size:14px">From my plan</div>
+<div class="p row" style="margin-top:8px;overflow-x:auto">${S.plan.map((p) => `<button data-a="att:${p.id}" class="chip ${S.att == p.id ? 'on' : ''}">${A[p.id].title}</button>`).join('')}</div>
+<div class="p" style="margin-top:14px;font-weight:700;font-size:14px">Or search all activities</div>
+<div class="p" style="margin-top:8px"><input id="ps" class="inp" aria-label="Search activity to attach" placeholder="e.g. Climbing, Padel, Khao Yai" value="${S.ps}"></div>
+<div id="pl">${attachList()}</div>`
+        : `<div class="p" style="margin-top:12px;font-weight:700;font-size:14px">Activities you’ve been to</div>${been.map(attachCard).join('')}`) +
+      `<div style="position:sticky;bottom:0;background:#fff;padding:12px 20px">${
+        buddy && S.att && !inPlan(S.att)
+          ? `<div data-a="addplan" role="checkbox" aria-checked="${S.addPlan}" style="font-size:12px;display:flex;gap:8px;align-items:center;margin-bottom:10px;cursor:pointer"><span style="width:18px;height:18px;border-radius:5px;border:1.5px solid var(--b);background:${S.addPlan ? 'var(--b)' : '#fff'};color:#fff;font-size:12px;text-align:center;line-height:16px">${S.addPlan ? '✓' : ''}</span>Also add ${A[S.att].title} to My Schedule</div>`
+          : ''
+      }<button data-a="post" class="btn y">Post</button></div>`
+    );
+  },
+  buddypost: (id) => {
+    const a = A[id];
+    return `<div class="p" style="padding-top:36px;text-align:center"><span class="tag" style="background:#DFF5E6">In your plan ✓</span><h1 style="font-size:26px;font-weight:800;margin-top:10px;line-height:1.2">Find a buddy for<br>${a.title}?</h1></div>
+<div class="p" style="margin-top:16px"><textarea id="pt" class="inp" aria-label="Post text" style="height:84px;padding:12px;font-family:inherit;width:100%;box-sizing:border-box">${S.draft}</textarea></div>
+<div class="card row" style="margin:12px 20px 0;gap:10px">${imgSlot(id, 64, 14, 'BUDDY POST › attached activity · ' + a.title)}<span><b style="font-size:13px;display:block">${a.title}</b><span class="mu" style="font-size:11px">${a.when} · ${a.place}</span><b style="display:block;font-size:13px;color:#2A4DA8">${a.priceLabel}</b></span></div>
+<div class="p mu" style="margin-top:12px;font-size:12px">Posting to: your followers on Vybe and this activity’s page</div>
+<div style="margin:20px 20px 0"><button data-a="mypost:${id}" class="btn y">Post and find a buddy</button><button data-a="skipbuddy:${id}" style="width:100%;margin-top:10px;font-weight:600;padding:10px">${a.price && planItem(id).status == 'Unpaid' ? 'Skip and pay now' : 'Skip for now'}</button></div>`;
+  },
+  postdetail: (x) => {
+    const p = S.posts.find((q) => q.id == x),
+      acc = p.interested.filter((i) => i.accepted).length;
+    return (
+      back +
+      hdr('Community', 'Your post') +
+      `<div class="p" style="margin-top:12px;font-size:16px">${p.text}</div>
+<div style="margin:12px 20px 0">${actMini(p.act, 'POST DETAIL › attached activity')}</div><div class="p" style="margin-top:16px;font-weight:800">${p.interested.length} interested</div>` +
+      (p.interested.length
+        ? p.interested
+            .map(
+              (q, j) =>
+                `<div class="row" style="margin:0 20px;padding:10px 0;border-bottom:1px solid #EEF1FA">${avatar(q.color)}<b style="flex:1">${q.name}</b><button data-a="acc:${p.id}:${j}" class="${q.accepted ? 'lb' : 'nb'}" style="width:96px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${q.accepted ? 'Accepted' : 'Accept'}</button></div>`,
+            )
+            .join('')
+        : '<div class="p mu" style="margin-top:8px;font-size:13px">No one yet. Check back in a moment.</div>') +
+      (acc
+        ? `<div style="margin:16px 20px 0"><button data-go="chat:${p.act}" class="btn y">Group chat · ${acc + 1} going together</button></div>`
+        : '')
+    );
+  },
+  club: (cid) => {
+    const c = clubByName(cid),
+      evs = clubActivities(c.id),
+      fol = S.following[c.id];
+    return (
+      back +
+      `<div class="p row" style="gap:14px;margin-top:14px">${imgSlot('club:' + c.id, 72, 36, 'CLUB PAGE › logo · ' + c.name)}<div style="flex:1"><h1 style="font-size:22px;font-weight:800;line-height:1.15">${c.name}</h1><div class="mu" style="font-size:12px">${c.cat} · ${c.type == 'club' ? 'Community club' : 'Studio'}</div></div></div>
+<div class="p row" style="margin-top:14px"><button data-a="fol:${c.id}" class="btn ${fol ? 'lb' : 'nb'}" style="height:42px;font-size:13px">${fol ? 'Following ✓' : 'Follow'}</button><button data-go="chat:club~${c.id}" class="btn lb" style="height:42px;font-size:13px">Message</button></div>
+<div class="p mu" style="font-size:12px;margin-top:8px">${fol ? 'You’ll get a notification when this club posts a new activity.' : 'Follow to get notified when this club posts a new activity.'}</div>
+<div class="p" style="margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${[
+        [c.members + (fol ? 1 : 0), 'Members'],
+        [evs.length, 'Upcoming'],
+        ['★ ' + c.rating, 'Rating'],
+      ]
+        .map((x) => `<div class="lb" style="border-radius:16px;padding:12px"><b style="font-size:20px">${x[0]}</b><div style="font-size:11px">${x[1]}</div></div>`)
+        .join('')}</div>` +
+      section('Upcoming activities') +
+      (evs.length ? evs.map(actRow).join('') : empty('No open activities yet'))
+    );
+  },
+
+  // ── ALERTS — แจ้งเตือนฝุ่น/น้ำท่วม + กิจกรรมใหม่จากคลับที่ติดตาม
+  notif: () => {
+    const al = activeAlerts(),
+      ups = clubUpdates(),
+      html =
+        back +
+        hdr('Notifications', 'Notifications') +
+        (al.length ? section('Weather & air alerts') + al.map((x) => alertCard(x, !S.read['al:' + x.id])).join('') : '') +
+        section('From clubs you follow', `<button data-a="ctab-go:Clubs" style="font-size:13px;font-weight:500">Manage ›</button>`) +
+        (ups.length
+          ? ups
+              .map(
+                (u) =>
+                  `<button data-go="event:${u.act}" class="row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px;border-radius:18px;padding:10px 12px;${S.read[u.key] ? 'border:1.5px solid var(--bd)' : 'background:var(--l)'}">${imgSlot('club:' + u.club.id, 44, 22, 'NOTIFICATION › club logo')}<span style="flex:1"><span style="font-size:13px"><b>${u.club.name}</b> posted a new activity</span><b style="display:block;font-size:14px;margin-top:2px">${A[u.act].title}</b><span class="mu" style="font-size:11px">${A[u.act].when} · ${u.ago}</span></span>${S.read[u.key] ? '' : '<i style="width:8px;height:8px;border-radius:4px;background:var(--b);flex:none"></i>'}</button>`,
+              )
+              .join('')
+          : '<div class="p mu" style="font-size:13px;margin-top:6px">Follow clubs to hear about their new activities.</div>');
+    al.forEach((x) => (S.read['al:' + x.id] = true));
+    ups.forEach((u) => (S.read[u.key] = true));
+    return html;
+  },
+  replan: (alId) => {
+    const al = ALERTS.find((x) => x.id == alId) || ALERTS[0],
+      a = A[al.act],
+      alts = indoorAlternatives(al.act),
+      T = ALERT_TYPES[al.type];
+    if (!alts.includes(S.alt)) S.alt = alts[0];
+    return (
+      back +
+      `<h1 class="p" style="font-size:24px;font-weight:800;margin-top:10px;line-height:1.2">Your ${DAYS[toDate(a.date).getDay()]} plan<br>is affected</h1><div class="row" style="margin:12px 20px 0;background:${T.bg};border-radius:18px;padding:12px 16px;justify-content:space-between"><span><b>${a.title}</b><br><span style="font-size:12px">${a.when} · ${a.place}</span></span><span style="background:${T.color};color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:10px">${T.label}</span></div>` +
+      section('Vybe suggests instead') +
+      (alts.length
+        ? alts
+            .map(
+              (i) =>
+                `<button data-a="alt:${i}" class="row" style="margin:10px 20px 0;width:calc(100% - 40px);text-align:left;border-radius:22px;padding:10px;gap:12px;border:1.5px solid ${S.alt == i ? 'var(--y)' : 'var(--bd)'};background:${S.alt == i ? 'var(--ys)' : '#fff'}">${imgSlot(i, 70, 16, 'REPLAN › suggested activity · ' + A[i].title)}<span style="flex:1"><b style="font-size:15px">${A[i].title}</b><span style="display:block;font-size:12px">${A[i].time} · ${A[i].place}</span><span class="mu" style="font-size:11px">${A[i].cat} · ${A[i].tag}</span></span><b style="color:#2A4DA8">${A[i].priceLabel}</b></button>`,
+            )
+            .join('')
+        : empty('No indoor activities that day')) +
+      `<div class="lb" style="margin:12px 20px 0;border-radius:16px;padding:10px 14px;font-size:12px"><b>We’ll let everyone going with you know</b><br><span class="mu">A message goes to the group chat inviting them to the new plan</span></div>
+<div class="row" style="margin:14px 20px 0"><button data-a="usealt:${al.id}" class="btn y" style="flex:3">Use new plan</button><button data-a="back" class="btn lb" style="flex:2;font-size:13px">Keep original</button></div>`
+    );
+  },
+
+  // ── PROFILE — โปรไฟล์ Recap และตั้งค่า
+  profile: () => {
+    const rs = S.recaps.map(recapView),
+      counts = {};
+    S.recaps.forEach((r) => (counts[A[r.act].cat] = (counts[A[r.act].cat] || 0) + 1));
+    const top = Object.keys(counts)
+      .sort((x, y) => counts[y] - counts[x])
+      .slice(0, 3);
+    return (
+      hdr('Profile', USER.name, '<button data-go="settings" aria-label="Menu" style="font-size:26px">☰</button>') +
+      `<div class="p row" style="margin-top:14px;gap:16px"><span style="width:84px;height:84px;border-radius:42px;background:var(--ys);overflow:hidden;flex:none;display:block;position:relative"><svg viewBox="0 0 120 110" width="84" height="84"><circle cx="60" cy="40" r="22" fill="#10328F"/><path d="M20 110Q60 50 100 110Z" fill="#5B88D6"/></svg></span><div class="row" style="gap:24px"><div style="text-align:center"><b style="font-size:20px">${rs.length}</b><div class="mu" style="font-size:11px">Activities</div></div><div style="text-align:center"><b style="font-size:20px">${7 + Object.values(S.connected).filter(Boolean).length}</b><div class="mu" style="font-size:11px">Friends</div></div><button data-a="ctab-go:Clubs" style="text-align:center"><b style="font-size:20px">${Object.values(S.following).filter(Boolean).length}</b><div class="mu" style="font-size:11px">Clubs</div></button></div></div>
+<div class="p row" style="margin-top:12px">${top.map((c) => `<span class="chip" style="padding:4px 12px;font-size:12px">${c}</span>`).join('')}</div>
+<div class="p" style="margin-top:16px;font-weight:700">Recap</div>
+<div class="p" style="margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${rs.map((r) => `<button data-go="recap:${r.id}" aria-label="Recap ${r.title}" style="text-align:left">${imgSlot('recap:' + r.id, 106, 16, 'PROFILE › recap tile · ' + r.title)}<b style="display:block;font-size:11px;margin-top:4px;line-height:1.2">${r.title}</b><span class="mu" style="font-size:10px">${r.dateLabel}</span></button>`).join('')}</div>`
+    );
+  },
+  recap: (x) => {
+    const r = recapView(S.recaps.find((q) => q.id == x) || S.recaps[0]);
+    return (
+      back +
+      `<div style="text-align:center;margin-top:6px">${logo(40)}</div>
+<div style="margin:14px 28px 0;background:var(--y);border-radius:28px;padding:18px;text-align:center"><div style="font-size:12px">Recap · ${r.dateLabel}</div>
+<div style="font-size:22px;font-weight:800;margin:2px 0 12px">${r.title}</div>${imgSlot('recap:' + r.id, 280, 22, 'RECAP › activity photo · ' + r.title)}<div style="text-align:left;margin-top:14px;display:flex;flex-direction:column;gap:6px;font-size:14px">${[
+        ['Place', r.place],
+        ['Time', r.duration],
+        ['Together', r.people + ' people'],
+        ['Community', r.club],
+      ]
+        .map((q) => `<div class="row" style="justify-content:space-between"><span>${q[0]}</span><b style="text-align:right">${q[1]}</b></div>`)
+        .join('')}</div>
+</div><div class="row" style="margin:16px 28px 0"><button data-a="share:${r.id}" class="btn nb" style="flex:1;height:46px;font-size:13px">Share Recap</button><button data-a="sharepost:${r.act}" class="btn nb" style="flex:1;height:46px;font-size:13px;background:var(--b)">Post to Community</button></div>`
+    );
+  },
+  settings: () => {
+    const tg = (k, t) =>
+      `<div class="row" style="margin:0 20px;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between"><span>${t}</span><button data-a="tg:${k}" role="switch" aria-checked="${S.toggles[k]}" aria-label="${t}" style="width:46px;height:28px;border-radius:14px;position:relative;background:${S.toggles[k] ? 'var(--b)' : '#CBD3EA'}"><span style="position:absolute;top:3px;left:${S.toggles[k] ? 21 : 3}px;width:22px;height:22px;border-radius:11px;background:#fff"></span></button></div>`;
+    const link = (go, t) =>
+      `<button data-go="${go}" class="row" style="margin:0 20px;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between;width:calc(100% - 40px)"><span>${t}</span>›</button>`;
+    return (
+      back +
+      hdr('Settings', 'Settings') +
+      `<div class="row" style="margin:14px 20px 0;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between"><span>Phone number</span><b>${USER.phone}</b></div>` +
+      link('saved', `Saved activities (${S.saved.length})`) +
+      link('payments', `Payments & receipts (${S.payments.length})`) +
+      tg('sync', 'Sync contacts') +
+      tg('calendar', 'Sync plan to phone calendar') +
+      tg('alerts', 'PM2.5 and flood alerts') +
+      tg('clubs', 'New activities from clubs I follow') +
+      `<div style="margin:24px 20px 0"><button data-a="logout" class="btn gr">Log out</button></div>`
+    );
+  },
+};
+
+// ════════════════════════════════════════════════════════════
+// 7. RUNTIME — วาดหน้าจอ รับการกด และเริ่มแอป
+// ════════════════════════════════════════════════════════════
+
+function render() {
+  const cur = S.stack[S.stack.length - 1] || { n: S.tab };
+  const [n, p] = [cur.n, cur.p];
+  const scr = $('#scr');
+  const sv = scr.scrollTop,
+    same = render.l === n + p;
+  render.l = n + p;
+  SN = 0;
+  CX = n;
+  scr.innerHTML = SC[n](p) + (cur.sheet ? joinSheet(p) : '');
+  scr.classList.toggle('full', FULL.includes(n));
+  scr.scrollTop = same ? sv : 0;
+  if (n == 'chat') {
+    scr.scrollTop = scr.scrollHeight;
+    if (same) {
+      const c = $('#cm');
+      if (c) c.focus();
+    }
+  }
+  const nv = $('#nav');
+  nv.classList.toggle('hide', FULL.includes(n));
+  nv.innerHTML = Object.keys(NAV_ICONS)
+    .map(
+      (k) =>
+        `<button data-tab="${k}" class="${S.tab == k ? 'on' : ''}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${NAV_ICONS[k]}</svg>${NAV_LABELS[k]}</button>`,
+    )
+    .join('');
+}
+
+function toast(t) {
+  const e = $('#toast');
+  e.textContent = t;
+  e.classList.add('s');
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => e.classList.remove('s'), 2000);
+}
+
+function go(s) {
+  const i = s.indexOf(':');
+  S.stack.push(i < 0 ? { n: s } : { n: s.slice(0, i), p: s.slice(i + 1) });
+  render();
+}
+
+const toTab = (tab, msg) => {
+  S.stack = [];
+  S.tab = tab;
+  render();
+  if (msg) toast(msg);
+};
+
+const openNewPost = (act, type = 'buddy') => {
+  S.postType = type;
+  S.att = act || null;
+  S.addPlan = true;
+  S.draft = '';
+  go('newpost');
+};
+
+const sendChat = (id, text) => {
+  getChat(id).push(['You', text, hhmm()]);
+  render();
+  const k = chatKind(id),
+    pr = id.split('~');
+  if (k == 'club') {
+    const f = CLUB_FAQ.find((x) => x[0] == text);
+    replyLater(id, CLUB[pr[1]].name, f ? f[1] : CHAT_TEXT.clubFallback);
+  } else {
+    const who = k == 'dm' ? pr[1] : [FRIENDS[0].name, 'Lisa', FRIENDS[1].name][Math.floor(Math.random() * 3)];
+    replyLater(id, who, CHAT_TEXT.replies[Math.floor(Math.random() * CHAT_TEXT.replies.length)]);
+  }
+};
+
+// ทุกปุ่ม data-a="ชื่อ:x:y" มาที่นี่
+const ACTIONS = {
+  back: () => {
+    S.stack.pop();
+    render();
+  },
+  done: () => toTab('schedule'),
+  conn: (x) => {
+    S.connected[x] = !S.connected[x];
+    render();
+  },
+  join: () => {
+    S.how = 'buddy';
+    S.stack[S.stack.length - 1].sheet = true;
+    render();
+  },
+  closesheet: (x, y, ev) => {
+    if (ev.target.classList.contains('sheet')) {
+      S.stack[S.stack.length - 1].sheet = false;
+      render();
+    }
+  },
+  how: (x) => {
+    S.how = x;
+    render();
+  },
+  confirm: (x) => {
+    addToPlan(x);
+    const a = A[x];
+    if (S.how == 'buddy') {
+      S.draft = 'หาเพื่อนไป ' + a.title + ' ' + a.day + ' ใครสนใจทักมาได้เลย';
+      S.att = x;
+      S.stack = [{ n: 'buddypost', p: x }];
+      render();
+      toast('Added to your plan · now find a buddy');
+    } else if (a.price) {
+      resetPay(S.how == 'friends' ? 2 : 1);
+      S.tab = 'schedule';
+      S.stack = [{ n: 'payment', p: x }];
+      render();
+      toast('Added to your plan · complete payment to confirm');
+    } else toTab('schedule', S.how == 'friends' ? 'Booked · invites sent to friends' : 'Booked · added to My Schedule');
+  },
+  skipbuddy: (x) => {
+    if (A[x].price && planItem(x).status == 'Unpaid') {
+      resetPay();
+      S.tab = 'schedule';
+      S.stack = [{ n: 'payment', p: x }];
+      render();
+    } else toTab('schedule');
+  },
+
+  // ── payment
+  pay: (x) => {
+    resetPay();
+    go('payment:' + x);
+  },
+  pm: (x) => {
+    if (S.pay.method == x) return;
+    S.pay.method = x;
+    S.pay.err = '';
+    render();
+  },
+  newcard: () => {
+    S.pay.useSaved = false;
+    render();
+  },
+  savecard: () => {
+    S.pay.save = !S.pay.save;
+    render();
+  },
+  qty: (x) => {
+    S.pay.qty = Math.max(1, Math.min(MAX_TICKETS, S.pay.qty + +x));
+    render();
+  },
+  promo: () => {
+    const c = S.pay.promo.trim().toUpperCase();
+    if (PROMOS[c]) {
+      S.pay.promoOk = c;
+      S.pay.err = '';
+      toast(c + ' applied · ' + PROMOS[c].label);
+    } else {
+      S.pay.promoOk = null;
+      S.pay.err = c ? 'The code “' + c + '” isn’t valid. Check the spelling and try again.' : 'Enter a promo code first.';
+    }
+    render();
+  },
+  rmpromo: () => {
+    S.pay.promoOk = null;
+    S.pay.promo = '';
+    render();
+  },
+  paynow: (x) => {
+    S.pay.err = '';
+    if (S.pay.method == 'card' && !(S.pay.useSaved && S.savedCard)) {
+      const er = cardError();
+      if (er) {
+        S.pay.err = er;
+        return render();
+      }
+      return startProcessing(x, S.pay.card.num.replace(/\D/g, '') == DECLINED_CARD);
+    }
+    if (S.pay.method == 'card') return startProcessing(x);
+    if (S.pay.method == 'promptpay') {
+      S.qrStart = Date.now();
+      return go('payqr:' + x);
+    }
+    toast('Opening ' + methodName() + '… (simulated)');
+    startProcessing(x);
+  },
+  qrpaid: (x) => startProcessing(x),
+  rmcard: () => {
+    S.savedCard = null;
+    render();
+    toast('Card removed');
+  },
+
+  // ── discover & compare
+  cmp: (x) => {
+    const q = S.compare.indexOf(x);
+    if (q > -1) S.compare.splice(q, 1);
+    else if (S.compare.length < 3) S.compare.push(x);
+    else toast('You can compare up to 3');
+    render();
+  },
+  cat: (x) => {
+    S.cat = x;
+    render();
+  },
+  flt: (x) => {
+    S[x] = !S[x];
+    render();
+  },
+
+  // ── community & posts
+  ctab: (x) => {
+    S.ctab = x;
+    render();
+  },
+  'ctab-go': (x) => {
+    S.ctab = x;
+    toTab('community');
+  },
+  newpost: () => openNewPost(null, 'buddy'),
+  postfor: (x) => openNewPost(x, 'buddy'),
+  sharepost: (x) => openNewPost(x, 'share'),
+  ptype: (x) => {
+    S.postType = x;
+    S.att = null;
+    render();
+  },
+  att: (x) => {
+    S.att = x;
+    render();
+  },
+  addplan: () => {
+    S.addPlan = !S.addPlan;
+    render();
+  },
+  post: () => (S.att ? makePost(S.att, S.postType) : toast('Attach an activity first')),
+  mypost: (x) => makePost(x, 'buddy'),
+  fol: (x) => {
+    S.following[x] = !S.following[x];
+    render();
+    toast(S.following[x] ? 'Following ' + CLUB[x].name + ' · you’ll be notified about new activities' : 'Unfollowed ' + CLUB[x].name);
+  },
+  fav: (x) => {
+    const q = S.saved.indexOf(x);
+    if (q > -1) S.saved.splice(q, 1);
+    else S.saved.push(x);
+    render();
+    toast(q > -1 ? 'Removed from saved' : 'Saved');
+  },
+  acc: (x, y) => {
+    const p = S.posts.find((q) => q.id == x);
+    p.interested[y].accepted = true;
+    render();
+    toast(p.interested[y].name + ' was added to the group chat');
+  },
+  pj: (x) => {
+    const p = S.posts.find((q) => q.id == x);
+    S.joinReq[x] = 'pending';
+    render();
+    toast('Request sent to ' + p.name);
+    setTimeout(() => {
+      S.joinReq[x] = 'joined';
+      addToPlan(p.act);
+      getChat(p.act).push([p.name, CHAT_TEXT.welcome, hhmm()]);
+      render();
+      toast(p.name + ' accepted · added to My Schedule and group chat');
+    }, 2200);
+  },
+
+  // ── chat
+  send: (x) => {
+    const el = $('#cm'),
+      v = el && el.value.trim();
+    if (v) sendChat(x, v);
+  },
+  faq: (x, y) => sendChat(x, CLUB_FAQ[+y][0]),
+
+  // ── schedule, calendar, route
+  rt: (x) => {
+    S.route = +x;
+    render();
+  },
+  calday: (x) => {
+    S.calDay = x;
+    render();
+  },
+  calm: (x) => {
+    let [y, m] = S.calMonth.split('-').map(Number);
+    m += +x;
+    if (m < 1) (m = 12), y--;
+    if (m > 12) (m = 1), y++;
+    S.calMonth = y + '-' + pad2(m);
+    render();
+  },
+  calsync: () => {
+    S.toggles.calendar = !S.toggles.calendar;
+    render();
+    toast(S.toggles.calendar ? S.plan.length + ' activities added to your phone calendar (simulated)' : 'Calendar sync turned off');
+  },
+  addcal: (x) => toast(A[x].title + ' added to your phone calendar (simulated)'),
+  finish: (x) => {
+    const a = A[x];
+    let r = S.recaps.find((q) => q.id == 'e' + x);
+    if (!r) {
+      r = { id: 'e' + x, act: x, date: a.date, people: a.going };
+      S.recaps.unshift(r);
+    }
+    const p = planItem(x);
+    if (p) p.status = 'Done';
+    S.stack = [{ n: 'recap', p: r.id }];
+    render();
+    toast('Recap created · added to your profile');
+  },
+  share: (x) => {
+    const r = recapView(S.recaps.find((q) => q.id == x)),
+      txt = 'ไป ' + r.title + ' ที่ ' + r.place + ' มา ' + r.duration + ' กับเพื่อน ' + r.people + ' คน #Vybe';
+    if (navigator.share) navigator.share({ title: 'Vybe Recap', text: txt }).catch(() => {});
+    else if (navigator.clipboard)
+      navigator.clipboard.writeText(txt).then(
+        () => toast('Recap text copied'),
+        () => toast('Sharing isn’t available here'),
+      );
+    else toast('Sharing isn’t available here');
+  },
+
+  // ── settings & alerts
+  tg: (x) => {
+    S.toggles[x] = !S.toggles[x];
+    render();
+  },
+  logout: () => {
+    S.stack = [{ n: 'signup' }];
+    render();
+  },
+  alt: (x) => {
+    S.alt = x;
+    render();
+  },
+  usealt: (x) => {
+    const al = ALERTS.find((q) => q.id == x),
+      i = S.plan.findIndex((p) => p.id == al.act);
+    if (!S.alt) return toast('No alternative selected');
+    if (i > -1) {
+      S.plan.splice(i, 1);
+      addToPlan(S.alt);
+    }
+    toTab('schedule', 'Switched to ' + A[S.alt].title + ' · group notified');
+  },
+};
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('[data-stop]') && !e.target.closest('[data-a],[data-go]')) return;
+  const t = e.target.closest('[data-tab],[data-go],[data-a]');
+  if (!t) return;
+  if ($('#pt')) S.draft = $('#pt').value;
+  if (t.dataset.tab) return toTab(t.dataset.tab);
+  if (t.dataset.go) {
+    e.preventDefault();
+    return go(t.dataset.go);
+  }
+  const raw = t.dataset.a;
+  if (raw.startsWith('toast:')) return toast(raw.slice(6));
+  const [a, x, y] = raw.split(':');
+  if (ACTIONS[a]) ACTIONS[a](x, y, e);
+});
+
+// ช่องพิมพ์: อัปเดต state โดยไม่วาดทั้งหน้าใหม่ (เคอร์เซอร์จะได้ไม่หลุด)
+const fmtCardNum = (v) => v.replace(/\D/g, '').slice(0, 16).replace(/(\d{4})(?=\d)/g, '$1 ');
+const fmtExp = (v) => {
+  const d = v.replace(/\D/g, '').slice(0, 4);
+  return d.length > 2 ? d.slice(0, 2) + '/' + d.slice(2) : d;
+};
+document.addEventListener('input', (e) => {
+  const t = e.target;
+  if (t.id == 'dq') {
+    S.q = t.value;
+    $('#dl').innerHTML = discoverList();
+  } else if (t.id == 'ps') {
+    S.ps = t.value;
+    $('#pl').innerHTML = attachList();
+  } else if (t.id == 'cq') {
+    S.cq = t.value;
+    $('#cl').innerHTML = communityList();
+  } else if (t.id == 'promo') S.pay.promo = t.value;
+  else if (t.id == 'cnum') S.pay.card.num = t.value = fmtCardNum(t.value);
+  else if (t.id == 'cexp') S.pay.card.exp = t.value = fmtExp(t.value);
+  else if (t.id == 'ccvc') S.pay.card.cvc = t.value = t.value.replace(/\D/g, '').slice(0, 4);
+  else if (t.id == 'cname') S.pay.card.name = t.value;
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && e.target.id === 'cm') {
+    const b = document.querySelector('[data-a^="send:"]');
+    if (b) b.click();
+  }
+  if (e.key === 'Enter' && e.target.id === 'promo') ACTIONS.promo();
+});
+
+// นับถอยหลังอายุ QR PromptPay
+setInterval(() => {
+  const el = $('#qrt');
+  if (!el) return;
+  const left = Math.max(0, 900 - Math.floor((Date.now() - S.qrStart) / 1000));
+  el.textContent = Math.floor(left / 60) + ':' + pad2(left % 60);
+}, 1000);
+
+S.stack = [{ n: 'signup' }];
+render();
 </script></body></html>
