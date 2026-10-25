@@ -9,6 +9,7 @@
   --b: #5b88d6;
   --y: #f2c230;
   --ys: #fff3c4;
+  --yt: #7a5a00; /* ตัวหนังสือบนพื้นเหลืองอ่อน (ป้าย ปุ่มรอง) */
   --l: #eef3ff;
   --bd: #e3eafa;
   --mu: #5b6896;
@@ -129,6 +130,7 @@ h1 {
 }
 .tag {
   background: var(--ys);
+  color: var(--yt);
   font-size: 10px;
   font-weight: 700;
   padding: 2px 8px;
@@ -938,7 +940,7 @@ const S = {
   cq: '',
   ps: '',
   att: null,
-  myPhoto: '', // รูปโปรไฟล์ที่ผู้ใช้เลือกในแอป
+  myPhoto: (() => { try { return localStorage.getItem('vybe.myPhoto') || ''; } catch (e) { return ''; } })(), // รูปโปรไฟล์ที่ผู้ใช้เลือก (จำไว้ในเครื่องนี้)
   etab: 'details', // แท็บในหน้ารายละเอียดกิจกรรม
   postType: 'buddy',
   addPlan: true,
@@ -1086,7 +1088,9 @@ const empty = (t) => `<div class="p mu" style="margin-top:20px;text-align:center
 // รูปโปรไฟล์คน: รูปจาก IMAGES.people (หรือรูปที่ผู้ใช้เลือกเอง) ถ้าไม่มี = วงกลมสี
 const personImg = (name) => {
   const key = !name || name == USER.name ? 'me' : name;
-  return key == 'me' ? S.myPhoto || IMAGES.people.me : (IMAGES.people || {})[key];
+  const ppl = IMAGES.people || {};
+  // รูปของผู้ใช้: รูปที่เลือกในแอป → people.me → people['ชื่อผู้ใช้'] (ใส่แบบไหนก็ขึ้นทุกหน้า)
+  return key == 'me' ? S.myPhoto || ppl.me || ppl[USER.name] || '' : ppl[key] || '';
 };
 const avatar = (c, s = 40, name) => {
   const src = name && personImg(name);
@@ -1236,8 +1240,8 @@ const postCard = (p, compact) => {
             : S.joinReq[p.id] == 'pending'
               ? `<button disabled class="lb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px;opacity:.7">Requested…</button>`
               : `<button data-a="pj:${p.id}" class="bb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px">Join</button>`
-      }<button data-go="chat:dm~${p.name}~${p.act}" class="y" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px">Chat</button></div>`;
-  return `<div style="margin:12px 20px 0;border:1.5px solid var(--bd);border-radius:22px;padding:12px"><div class="row">${avatar(p.color, 36, p.name)}<div style="flex:1"><b>${p.name}</b><div class="mu" style="font-size:11px">${p.time}</div></div><span class="tag">${p.type == 'buddy' ? 'Looking for buddy' : 'Shared'}</span></div>
+      }<button data-go="chat:dm~${p.name}~${p.act}" style="background:var(--ys);color:var(--yt);flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px">Chat</button></div>`;
+  return `<div style="margin:12px 20px 0;border:1.5px solid var(--bd);border-radius:22px;padding:12px"><div class="row">${p.mine ? `<button data-tab="profile" class="row" style="flex:1;gap:8px;text-align:left">${avatar(p.color, 36, p.name)}<span><b>${p.name}</b><span class="mu" style="font-size:11px;display:block">${p.time}</span></span></button>` : `${avatar(p.color, 36, p.name)}<div style="flex:1"><b>${p.name}</b><div class="mu" style="font-size:11px">${p.time}</div></div>`}<span class="tag">${p.type == 'buddy' ? 'Looking for buddy' : 'Shared'}</span></div>
 <div style="margin:8px 0;font-size:14px">${p.text}</div>${compact ? '' : actMini(p.act, 'COMMUNITY › attached activity')}${actions}</div>`;
 };
 
@@ -1530,12 +1534,12 @@ const SC = {
         ['reviews', 'Reviews (' + a.reviews + ')'],
       ];
     const cta = !pi
-      ? `<button class="btn" data-a="join:${id}" style="width:190px;height:52px;border-radius:16px;background:var(--b);color:#fff;font-weight:700;font-size:16px">Join</button>`
+      ? `<button class="btn" data-a="join:${id}" style="width:190px;height:52px;border-radius:16px;background:var(--y);color:var(--n);font-weight:700;font-size:16px">Join</button>`
       : pi.status == 'Unpaid'
         ? `<button class="btn y" data-a="pay:${id}" style="width:190px;height:52px;border-radius:16px">Complete payment</button>`
         : pi.status == 'Done'
           ? `<button class="btn lb" disabled style="width:190px;height:52px;border-radius:16px">Completed ✓</button>`
-          : `<span class="row" style="gap:8px"><button data-go="chat:${id}" aria-label="Group chat" style="${sq};height:52px;width:52px;border-radius:16px">${ICON.chat()}</button><button class="btn" data-go="ticket:${id}" style="width:140px;height:52px;border-radius:16px;background:var(--b);color:#fff;font-weight:700">View ticket</button></span>`;
+          : `<span class="row" style="gap:8px"><button data-go="chat:${id}" aria-label="Group chat" style="${sq};height:52px;width:52px;border-radius:16px;background:var(--ys);color:var(--yt)">${ICON.chat()}</button><button class="btn" data-go="ticket:${id}" style="width:140px;height:52px;border-radius:16px;background:var(--y);color:var(--n);font-weight:700">View ticket</button></span>`;
     const body =
       tab == 'buddies'
         ? (buddyPosts.length
@@ -1574,9 +1578,9 @@ const SC = {
 <div class="row" style="justify-content:space-between;padding:18px 20px 10px"><button data-a="back" aria-label="Back" style="${sq}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><b style="font-size:17px">Activity Details</b><button data-a="shareev:${id}" aria-label="Share" style="${sq}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M5 13v6h14v-6"/></svg></button></div>
 <div class="p" style="display:flex;flex-direction:column;gap:16px;margin-top:8px">
 <div style="position:relative"><div class="evhero">${imgSlot(id, 350, 24, 'EVENT DETAIL › photo · ' + a.title, 220)}</div><button data-a="fav:${id}" aria-label="Save activity" aria-pressed="${fv}" style="position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:20px;background:#fff;font-size:18px;color:${fv ? 'var(--b)' : 'var(--n)'}">${fv ? '♥' : '♡'}</button></div>
-<div class="row" style="gap:10px;flex-wrap:wrap"><h1 style="margin:0;font-size:26px;line-height:1.15;font-weight:700">${a.title}</h1><span style="background:#DCE7FA;font-size:11px;font-weight:700;letter-spacing:.6px;padding:5px 10px;border-radius:10px;text-transform:uppercase">${a.badge || a.cat + ' · ' + a.level}</span></div>
-<div class="row" style="gap:12px;background:#F7F9FD;border:1px solid var(--bd);border-radius:16px;padding:10px 12px"><button data-go="club:${a.club}" class="row" style="gap:10px;flex:1;min-width:0;text-align:left">${clubLogo(a.club, 40)}<span style="min-width:0"><span class="mu" style="display:block;font-size:11px">Hosted by</span><b style="display:block;font-size:14px;font-weight:600;line-height:1.3">${a.clubName}</b><span class="mu" style="display:block;font-size:11px">★ ${c.rating} · ${c.members} members</span></span></button><button data-go="chat:club~${a.club}" aria-label="Ask the club" style="width:38px;height:38px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none">${ICON.chat(18)}</button><button data-a="fol:${a.club}" style="height:38px;padding:0 12px;border-radius:12px;font-size:12px;font-weight:700;flex:none;${fol ? 'background:#fff;border:1.5px solid #DCE4F7' : 'background:var(--b);color:#fff;border:1.5px solid var(--b)'}">${fol ? 'Following' : 'Follow'}</button></div>
-<div style="display:flex;flex-direction:column;gap:10px">${line('cal', fmtDay(a.date).replace(' ', ', '))}${line('clock', a.time + ' – ' + endLabel + ' (' + a.mins + ' mins)')}${line('pin', a.place + ' · ' + a.area, `<button data-go="route:${id}" style="font-size:13px;font-weight:600;color:#2A4DA8">Map</button>`)}</div>
+<div class="row" style="gap:10px;flex-wrap:wrap"><h1 style="margin:0;font-size:26px;line-height:1.15;font-weight:700">${a.title}</h1><span style="background:var(--ys);color:var(--yt);font-size:11px;font-weight:700;letter-spacing:.6px;padding:5px 10px;border-radius:10px;text-transform:uppercase">${a.badge || a.cat + ' · ' + a.level}</span></div>
+<div class="row" style="gap:12px;background:#F7F9FD;border:1px solid var(--bd);border-radius:16px;padding:10px 12px"><button data-go="club:${a.club}" class="row" style="gap:10px;flex:1;min-width:0;text-align:left">${clubLogo(a.club, 40)}<span style="min-width:0"><span class="mu" style="display:block;font-size:11px">Hosted by</span><b style="display:block;font-size:14px;font-weight:600;line-height:1.3">${a.clubName}</b><span class="mu" style="display:block;font-size:11px">★ ${c.rating} · ${c.members} members</span></span></button><button data-go="chat:club~${a.club}" aria-label="Ask the club" style="width:38px;height:38px;border-radius:12px;background:var(--ys);color:var(--yt);display:flex;align-items:center;justify-content:center;flex:none">${ICON.chat(18)}</button><button data-a="fol:${a.club}" style="height:38px;padding:0 12px;border-radius:12px;font-size:12px;font-weight:700;flex:none;color:var(--yt);${fol ? 'background:#fff;border:1.5px solid var(--ys)' : 'background:var(--ys);border:1.5px solid var(--y)'}">${fol ? 'Following' : 'Follow'}</button></div>
+<div style="display:flex;flex-direction:column;gap:10px">${line('cal', fmtDay(a.date).replace(' ', ', '))}${line('clock', a.time + ' – ' + endLabel + ' (' + a.mins + ' mins)')}${line('pin', a.place + ' · ' + a.area, `<button data-go="route:${id}" style="font-size:13px;font-weight:700;background:var(--ys);color:var(--yt);padding:6px 14px;border-radius:12px">Map</button>`)}</div>
 <div role="tablist" class="row" style="border-bottom:1.5px solid var(--bd)">${tabs
       .map(
         (t) =>
@@ -1795,8 +1799,7 @@ ${P.err ? `<div role="alert" style="margin:12px 20px 0;background:#FFECEF;color:
     return (
       back +
       hdr('Route', 'Getting to ' + a.place) +
-      `<div style="margin:14px 20px 0">${mapBlock(a)}</div>
-<div class="card" style="margin:12px 20px 0"><div class="row"><span style="width:10px;height:10px;border-radius:5px;background:var(--b)"></span>Your location</div>
+      `<div class="card" style="margin:12px 20px 0"><div class="row"><span style="width:10px;height:10px;border-radius:5px;background:var(--b)"></span>Your location</div>
 <div style="margin:4px 4px;border-left:2px dotted #B9C9EE;height:14px"></div>
 <div class="row"><span style="width:10px;height:10px;border-radius:5px;background:var(--y)"></span><b>${a.place}</b><span class="mu" style="font-size:11px">${a.kmLabel}</span></div>
 </div><div class="p row" style="margin-top:12px;overflow-x:auto">${modes.map((x, i) => `<button data-a="rt:${i}" class="chip ${m == x ? 'on' : ''}" style="text-align:left;line-height:1.3">${x.name}<br><span style="font-size:11px;font-weight:400">${fmtMins(x.mins(a.km))} · ${x.cost(a.km)}</span></button>`).join('')}</div>
@@ -1852,7 +1855,7 @@ ${pin}${ms.map(bubble).join('')}<div style="position:sticky;bottom:0;background:
 
   // ── COMMUNITY — ฟีด โพสต์ ผู้สนใจ และหน้าคลับ
   community: () =>
-    `<div class="p row" style="padding-top:26px">${avatar('var(--ys)', 40, USER.name)}<input id="cq" class="inp" aria-label="Find friends or clubs" placeholder="Find friends, clubs or posts" value="${S.cq}" style="height:44px;border-radius:22px">${iconBtn('data-go="inbox"', 'Messages', ICON.chat(), 'flex:none')}</div>
+    `<div class="p row" style="padding-top:26px"><button data-tab="profile" aria-label="My profile" style="flex:none;border-radius:20px">${avatar('var(--ys)', 40, USER.name)}</button><input id="cq" class="inp" aria-label="Find friends or clubs" placeholder="Find friends, clubs or posts" value="${S.cq}" style="height:44px;border-radius:22px">${iconBtn('data-go="inbox"', 'Messages', ICON.chat(), 'flex:none')}</div>
 <div class="p row" style="margin-top:12px;overflow-x:auto">${['Feed', 'Buddies', 'Clubs', 'Looking for buddy'].map((t) => `<button data-a="ctab:${t}" class="chip ${S.ctab == t ? 'on' : ''}">${t}</button>`).join('')}</div>
 <div id="cl">${communityList()}</div>
 <button data-a="newpost" class="y" style="position:sticky;bottom:12px;display:block;margin:12px 16px 0 auto;height:48px;padding:0 20px;border-radius:24px;font-weight:700">+ Post</button>`,
@@ -2434,7 +2437,7 @@ document.addEventListener('input', (e) => {
   else if (t.id == 'cname') S.pay.card.name = t.value;
 });
 
-// เลือกรูปโปรไฟล์จากเครื่อง (เก็บไว้เฉพาะระหว่างเปิดแอปครั้งนี้)
+// เลือกรูปโปรไฟล์จากเครื่อง (จำไว้ในเบราว์เซอร์เครื่องนี้ รีเฟรชแล้วยังอยู่)
 document.addEventListener('change', (e) => {
   if (e.target.id != 'photo' || !e.target.files || !e.target.files[0]) return;
   const f = e.target.files[0];
@@ -2442,6 +2445,7 @@ document.addEventListener('change', (e) => {
   const r = new FileReader();
   r.onload = () => {
     S.myPhoto = r.result;
+    try { localStorage.setItem('vybe.myPhoto', r.result); } catch (e) {}
     render();
     toast('Profile photo updated');
   };
