@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vybe Prototype</title>
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 <style>
 :root {
   --n: #10328f;
@@ -33,7 +33,9 @@ body {
 }
 body {
   background: var(--bg);
-  font-family: Prompt, sans-serif;
+  font-family: 'Manrope', 'Noto Sans Thai', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   color: var(--n);
   display: flex;
   align-items: center;
@@ -73,6 +75,13 @@ button {
 }
 h1 {
   margin: 0;
+}
+h1, h2, h3 {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', Arial, sans-serif;
+  letter-spacing: -0.025em;
+}
+.btn, .chip, #nav button {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', Arial, sans-serif;
 }
 .p {
   padding: 0 20px;
@@ -300,22 +309,22 @@ const IMAGES = {
     },
     Climbing: {
       climb: 'https://i.postimg.cc/PxKrnCbT/Sunlit-Urban-Bouldering-Gym.png', // Climbing Session
-      indoor: '', // Indoor Climbing
-      boul: '', // Bouldering Night
-      boul101: '', // Bouldering 101
-      lead: '', // Lead Climbing Course
-      bcomp: '', // Boulder Comp Night
-      crag: '', // Outdoor Crag Day Trip
+      indoor: 'https://i.postimg.cc/7P7XthRD/Spacious-Indoor-Climbing-Gym-Adventure.png', // Indoor Climbing
+      boul: 'https://i.postimg.cc/XJ5hg855/Bouldering-Night-in-Bangkok.png', // Bouldering Night
+      boul101: 'https://i.postimg.cc/m23PnW45/Ekkamai-Night-Bouldering-Social.png', // Bouldering 101
+      lead: 'https://i.postimg.cc/gk1ggRYv/Sunlit-Urban-Climbing-Gym.png', // Lead Climbing Course
+      bcomp: 'https://i.postimg.cc/1ttR548W/Bouldering-Comp-Night-Climber-and-Crowd.png', // Boulder Comp Night
+      crag: 'https://i.postimg.cc/y8S4Yc6n/Outdoor-Crag-Day-Trip.png', // Outdoor Crag Day Trip
     },
     Yoga: {
       yoga: 'https://i.postimg.cc/cHDcPJPG/Sunrise-Yoga-by-the-City-Lake.png', // Morning Yoga in the Park
-      yin: '', // Indoor Yoga
+      yin: 'https://i.postimg.cc/k4NwjXJn/Serene-Sunlit-Garden-Yoga-Studio.png', // Indoor Yoga
       yoga2: '', // Sunset Yin Yoga
-      rooftop: '', // Rooftop Sunset Flow
-      vinyasa: '', // Power Vinyasa
-      aerial: '', // Aerial Yoga Intro
-      freeyoga: 'https://i.postimg.cc/pTPXSfFJ/Morning-Run-by-the-City-Lake.png', // Free Community Yoga
-      runyoga: '', // Yoga for Runners
+      rooftop: 'https://i.postimg.cc/DZW4ZxN9/Sunset-Skyline-Rooftop-Yoga.png', // Rooftop Sunset Flow
+      vinyasa: 'https://i.postimg.cc/t4K0FCR2/Sunrise-Yoga-Above-the-City.png', // Power Vinyasa
+      aerial: 'https://i.postimg.cc/jqMy2DZ2/Sunlit-Aerial-Yoga-Studio.png', // Aerial Yoga Intro
+      freeyoga: 'https://i.postimg.cc/cJZwbwF8/Sunrise-Yoga-by-the-Urban-Lake.png', // Free Community Yoga
+      runyoga: 'https://i.postimg.cc/QCz2dXFx/Sunlit-Park-Yoga-Gathering.png', // Yoga for Runners
     },
     Pilates: {
       pil: '', // Reformer Pilates Intro
@@ -395,9 +404,9 @@ const IMAGES = {
   // ผู้ใช้ยังเปลี่ยนรูปตัวเองในแอปได้ด้วย โดยกดรูปโปรไฟล์ในหน้า Profile
   people: {
     me: '', // Jennie Kim
-    Ploy: '',
-    Beam: '',
-    Champ: '',
+    Ploy: 'https://i.postimg.cc/3JXc4C0r/Golden-Hour-Lakeside-Running-Selfie.png',
+    Beam: 'https://i.postimg.cc/RVzzDLkR/Triumphant-Hiker-at-a-Forest-Waterfall.png',
+    Champ: 'https://i.postimg.cc/qgfn85qx/Runner-by-the-City-Lake.png',
     Dao: '',
     Fern: '',
     Ton: '',
@@ -482,244 +491,244 @@ const ACTIVITIES = [
   // Running
   { id: 'run', title: 'Lumpini Sunrise Run', cat: 'Running', club: 'brc', date: '2026-10-17', time: '06:00', mins: 60, price: 0,
     place: 'Lumpini Park', area: 'Silom', level: 'Beginner', indoor: false, going: 24, solo: 3, rating: 4.8, reviews: 120, km: 2.1,
-    about: 'วิ่งเบา ๆ รอบทะเลสาบ 5 กม. คุยไปวิ่งไปได้ มีเพเซอร์ดูแลทุกกลุ่ม' },
+    about: 'วิ่งรอบสวนลุมพินี 5 กม. เพซสบาย ๆ มีเพเซอร์ดูแลแต่ละกลุ่ม' },
   { id: 'fun', title: 'City Fun Run 5K', cat: 'Running', club: 'rcb', date: '2026-10-24', time: '06:30', mins: 75, price: 350,
     place: 'Benjakitti Park', area: 'Asok', level: 'Beginner', indoor: false, going: 45, solo: 6, rating: 4.7, reviews: 86, km: 3.4,
-    badge: 'Official partner', about: 'วิ่ง 5K จับเวลา มีเหรียญ ดนตรี และอาหารเช้าหลังวิ่ง' },
+    badge: 'Official partner', about: 'วิ่ง 5 กม. แบบจับเวลา มีเหรียญ ดนตรี และอาหารเช้าหลังวิ่ง' },
   { id: 'trail', title: 'Trail Run Workshop', cat: 'Running', club: 'brc', date: '2026-10-18', time: '07:00', mins: 120, price: 250,
     place: 'Suan Luang Rama IX', area: 'Prawet', level: 'Intermediate', indoor: false, going: 10, solo: 1, rating: 4.6, reviews: 28, km: 9.5,
     about: 'ฝึกเทคนิควิ่งขึ้นและลงเนินบนเส้นทางดินในสวน' },
   { id: 'track', title: 'Track Tuesday Intervals', cat: 'Running', club: 'ntr', date: '2026-10-20', time: '19:00', mins: 60, price: 0,
     place: 'Chulalongkorn Stadium', area: 'Pathum Wan', level: 'Intermediate', indoor: false, going: 32, solo: 4, rating: 4.6, reviews: 54, km: 1.8,
-    about: 'วิ่งอินเทอร์วัล 400 ม. ใต้แสงไฟสนาม พกนาฬิกามาด้วย' },
+    about: 'ฝึกวิ่งอินเทอร์วัลระยะ 400 เมตร ในสนามช่วงเย็น' },
   { id: 'chinarun', title: 'Chinatown Night Run', cat: 'Running', club: 'rcb', date: '2026-10-23', time: '20:00', mins: 60, price: 150,
     place: 'Yaowarat Road', area: 'Samphanthawong', level: 'All levels', indoor: false, going: 38, solo: 5, rating: 4.7, reviews: 61, km: 4.6,
-    about: 'วิ่ง 7 กม. ผ่านตรอกสตรีทฟู้ดเยาวราช แล้วปิดท้ายด้วยของหวาน' },
+    about: 'วิ่ง 7 กม. ผ่านย่านเยาวราช แล้วแวะกินของหวานหลังวิ่ง' },
   { id: 'river', title: 'Riverside Long Run', cat: 'Running', club: 'brc', date: '2026-10-25', time: '05:30', mins: 120, price: 0,
     place: 'Chao Phraya Riverside', area: 'Khlong San', level: 'Intermediate', indoor: false, going: 18, solo: 2, rating: 4.7, reviews: 40, km: 5.2,
-    about: 'วิ่งยาว 16 กม. เพซสบาย ๆ ริมแม่น้ำ มีจุดให้น้ำทุก 4 กม.' },
+    about: 'วิ่งระยะ 16 กม. ริมแม่น้ำ เพซสบาย ๆ มีจุดให้น้ำทุก 4 กม.' },
   { id: 'tread', title: 'Treadmill Tempo Class', cat: 'Running', club: 'ntr', date: '2026-10-17', time: '08:00', mins: 45, price: 300,
     place: 'Run Lab Studio', area: 'Ari', level: 'All levels', indoor: true, going: 12, solo: 3, rating: 4.4, reviews: 18, km: 6.0,
-    about: 'คลาสวิ่งเทมโปบนลู่วิ่งกับโค้ช ในสตูดิโอติดแอร์' },
+    about: 'คลาสฝึกวิ่งเทมโปบนลู่วิ่งในสตูดิโอ พร้อมโค้ชดูแล' },
   { id: 'c25k', title: 'Couch to 5K: Week 1', cat: 'Running', club: 'rcb', date: '2026-10-31', time: '07:00', mins: 45, price: 0,
     place: 'Benjakitti Park', area: 'Asok', level: 'Beginner', indoor: false, going: 40, solo: 9, rating: 4.9, reviews: 72, km: 3.4,
-    about: 'ครั้งแรกของโปรแกรม 8 สัปดาห์สำหรับมือใหม่ สลับเดินกับวิ่ง' },
+    about: 'โปรแกรมฝึกวิ่ง 5 กม. สำหรับมือใหม่ สัปดาห์แรกสลับเดินกับวิ่ง' },
   { id: 'halloween', title: 'Halloween Glow Run', cat: 'Running', club: 'ntr', date: '2026-10-31', time: '19:00', mins: 60, price: 200,
     place: 'Lumpini Park', area: 'Silom', level: 'All levels', indoor: false, going: 60, solo: 8, rating: 4.8, reviews: 33, km: 2.1,
-    about: 'แต่งคอสตูมมาวิ่ง 5K เรืองแสง ชุดเด่นสุดได้คลาสฟรี 1 เดือน' },
+    about: 'วิ่ง 5 กม. ธีมฮาโลวีน แต่งชุดแฟนซี มีรางวัลชุดยอดเยี่ยม' },
   { id: 'social10', title: 'Sunday Social 10K', cat: 'Running', club: 'brc', date: '2026-11-08', time: '06:00', mins: 80, price: 0,
     place: 'Suan Rot Fai', area: 'Chatuchak', level: 'All levels', indoor: false, going: 28, solo: 4, rating: 4.6, reviews: 47, km: 8.0,
-    about: 'วิ่ง 10 กม. เพซสบาย ๆ แล้วไปนั่งกินกาแฟด้วยกัน' },
+    about: 'วิ่ง 10 กม. แบบไม่เน้นทำเวลา แล้วแวะดื่มกาแฟด้วยกัน' },
 
   // Climbing
   { id: 'climb', title: 'Climbing Session', cat: 'Climbing', club: 'ccl', date: '2026-10-17', time: '13:00', mins: 120, price: 400,
     place: 'Climbing Gym A', area: 'Lat Phrao', level: 'Beginner', indoor: true, going: 5, solo: 2, rating: 4.6, reviews: 41, km: 4.0,
-    about: 'ปีนผาแบบท็อปโรปพร้อมโค้ชสอนบีเลย์ มีรองเท้าและฮาร์เนสให้' },
+    about: 'ปีนผาแบบท็อปโรป มีโค้ชสอนใช้อุปกรณ์ พร้อมรองเท้าและฮาร์เนส' },
   { id: 'indoor', title: 'Indoor Climbing', cat: 'Climbing', club: 'ccl', date: '2026-10-17', time: '08:00', mins: 90, price: 450,
     place: 'Climbing Gym A', area: 'Lat Phrao', level: 'Beginner', indoor: true, going: 5, solo: 2, rating: 4.6, reviews: 39, km: 4.0,
-    about: 'ปีนผาช่วงเช้าด้วยออโต้บีเลย์และท็อปโรป เหมาะกับวันฝนตกหรือฝุ่นเยอะ' },
+    about: 'ปีนผาในร่มด้วยระบบออโต้บีเลย์และท็อปโรป เหมาะกับมือใหม่' },
   { id: 'boul', title: 'Bouldering Night', cat: 'Climbing', club: 'ccl', date: '2026-10-17', time: '19:00', mins: 120, price: 350,
     place: 'Boulder Lab', area: 'Ekkamai', level: 'Beginner', indoor: true, going: 20, solo: 4, rating: 4.7, reviews: 63, km: 5.5,
-    about: 'โบลเดอริงสายสังคม มีเส้นทางใหม่ทุกสัปดาห์ และเปิดเพลงทั้งคืน' },
+    about: 'ปีนโบลเดอริงในยิม มีเส้นทางใหม่ให้ลองและเปิดเพลงระหว่างกิจกรรม' },
   { id: 'boul101', title: 'Bouldering 101', cat: 'Climbing', club: 'bdl', date: '2026-10-21', time: '18:30', mins: 90, price: 300,
     place: 'Boulder Lab', area: 'Ekkamai', level: 'Beginner', indoor: true, going: 10, solo: 4, rating: 4.6, reviews: 34, km: 5.5,
-    about: 'เรียนการวางเท้า การตกอย่างปลอดภัย และการอ่านเส้นทางสำหรับมือใหม่' },
+    about: 'เรียนพื้นฐานโบลเดอริง การวางเท้า การตกอย่างปลอดภัย และอ่านเส้นทาง' },
   { id: 'lead', title: 'Lead Climbing Course', cat: 'Climbing', club: 'vtw', date: '2026-10-24', time: '10:00', mins: 180, price: 1200,
     place: 'Vertical Wall BKK', area: 'Bang Na', level: 'Advanced', indoor: true, going: 6, solo: 1, rating: 4.8, reviews: 15, km: 11.2,
-    about: 'เรียนเกี่ยวเชือก การตก และการบีเลย์แบบลีด ต้องเคยปีนท็อปโรปมาก่อน' },
+    about: 'ฝึกปีนผาแบบลีด การคลิปเชือก การตก และบีเลย์ สำหรับผู้มีพื้นฐานท็อปโรป' },
   { id: 'bcomp', title: 'Boulder Comp Night', cat: 'Climbing', club: 'bdl', date: '2026-10-30', time: '19:00', mins: 180, price: 250,
     place: 'Boulder Lab', area: 'Ekkamai', level: 'All levels', indoor: true, going: 45, solo: 6, rating: 4.7, reviews: 22, km: 5.5,
-    about: 'แข่งโบลเดอริงแบบกันเอง มีโจทย์ใหม่ 30 เส้นทางและของรางวัล' },
+    about: 'แข่งขันโบลเดอริงแบบเป็นกันเอง มีโจทย์ปีน 30 เส้นทางและของรางวัล' },
   { id: 'crag', title: 'Outdoor Crag Day Trip', cat: 'Climbing', club: 'ccl', date: '2026-11-07', time: '06:00', mins: 600, price: 1800,
     place: 'Khao Chin Lae', area: 'Lopburi', level: 'Intermediate', indoor: false, going: 12, solo: 2, rating: 4.9, reviews: 12, km: 150,
-    about: 'ทริปปีนผาหินปูนจริง 1 วัน รวมรถรับส่งและอุปกรณ์' },
+    about: 'ทริปปีนหน้าผาหินปูนที่ลพบุรี รวมรถรับส่งและอุปกรณ์' },
 
   // Yoga
   { id: 'yoga', title: 'Morning Yoga in the Park', cat: 'Yoga', club: 'pyc', date: '2026-10-18', time: '07:00', mins: 60, price: 350,
     place: 'Benjakitti Park', area: 'Asok', level: 'All levels', indoor: false, going: 6, solo: 2, rating: 4.5, reviews: 30, km: 2.8,
-    about: 'หฐโยคะแบบนุ่มนวลบนสนามหญ้าริมทะเลสาบ มีเสื่อให้' },
+    about: 'ฝึกหฐโยคะเบา ๆ บนสนามหญ้าริมทะเลสาบ มีเสื่อให้' },
   { id: 'yin', title: 'Indoor Yoga', cat: 'Yoga', club: 'stk', date: '2026-10-17', time: '08:00', mins: 60, price: 300,
     place: 'Studio K', area: 'Thong Lo', level: 'All levels', indoor: true, going: 8, solo: 3, rating: 4.7, reviews: 52, km: 3.1,
-    about: 'โฟลว์ยามเช้าแบบสงบ ในสตูดิโอที่มีเครื่องกรองอากาศ' },
+    about: 'คลาสโยคะในสตูดิโอ เน้นเคลื่อนไหวช้า ๆ และผ่อนคลาย' },
   { id: 'yoga2', title: 'Sunset Yin Yoga', cat: 'Yoga', club: 'stk', date: '2026-10-16', time: '18:00', mins: 75, price: 300,
     place: 'Studio K', area: 'Thong Lo', level: 'All levels', indoor: true, going: 15, solo: 3, rating: 4.7, reviews: 44, km: 3.1,
-    about: 'ค้างท่านาน ๆ ช้า ๆ ผ่อนคลายหลังทำงานมาทั้งสัปดาห์' },
+    about: 'ฝึกหยินโยคะ ค้างท่าและยืดเหยียดช้า ๆ เพื่อคลายความตึง' },
   { id: 'rooftop', title: 'Rooftop Sunset Flow', cat: 'Yoga', club: 'rfy', date: '2026-10-23', time: '17:30', mins: 60, price: 450,
     place: 'Sky Deck Silom', area: 'Silom', level: 'All levels', indoor: false, going: 14, solo: 4, rating: 4.8, reviews: 37, km: 2.6,
-    about: 'วินยาสะโฟลว์บนดาดฟ้า ชมวิวเมืองตอนพระอาทิตย์ตก' },
+    about: 'ฝึกวินยาสะโยคะบนดาดฟ้า ชมวิวเมืองช่วงพระอาทิตย์ตก' },
   { id: 'vinyasa', title: 'Power Vinyasa', cat: 'Yoga', club: 'rfy', date: '2026-10-19', time: '07:00', mins: 60, price: 400,
     place: 'Sky Deck Silom', area: 'Silom', level: 'Intermediate', indoor: true, going: 10, solo: 2, rating: 4.6, reviews: 21, km: 2.6,
-    about: 'โฟลว์เข้มข้น เหงื่อออกเต็มที่ เริ่มต้นสัปดาห์ให้สดชื่น' },
+    about: 'คลาสวินยาสะโยคะแบบเข้มข้น เน้นความแข็งแรงและการเคลื่อนไหวต่อเนื่อง' },
   { id: 'aerial', title: 'Aerial Yoga Intro', cat: 'Yoga', club: 'stk', date: '2026-10-24', time: '14:00', mins: 75, price: 650,
     place: 'Studio K', area: 'Thong Lo', level: 'Beginner', indoor: true, going: 6, solo: 2, rating: 4.7, reviews: 19, km: 3.1,
-    about: 'ลองท่ากลับหัวบนผ้าไหม ครูสอนทีละขั้นตอน' },
+    about: 'ฝึกโยคะผ้าสำหรับมือใหม่ เรียนท่าพื้นฐานและท่ากลับหัวกับครู' },
   { id: 'freeyoga', title: 'Free Community Yoga', cat: 'Yoga', club: 'pyc', date: '2026-10-25', time: '08:00', mins: 60, price: 0,
     place: 'Lumpini Park', area: 'Silom', level: 'Beginner', indoor: false, going: 40, solo: 10, rating: 4.6, reviews: 88, km: 2.1,
-    about: 'คลาสสำหรับทุกคน จ่ายตามใจ (บริจาค) นำเสื่อมาเอง' },
+    about: 'โยคะกลางแจ้งสำหรับทุกระดับ นำเสื่อมาเอง บริจาคตามสมัครใจ' },
   { id: 'runyoga', title: 'Yoga for Runners', cat: 'Yoga', club: 'pyc', date: '2026-11-01', time: '08:30', mins: 60, price: 250,
     place: 'Suan Rot Fai', area: 'Chatuchak', level: 'All levels', indoor: false, going: 18, solo: 4, rating: 4.6, reviews: 26, km: 8.0,
-    about: 'ยืดสะโพก ต้นขาหลัง และน่อง หลังวิ่งระยะไกล' },
+    about: 'โยคะยืดสะโพก ต้นขาด้านหลัง และน่อง เหมาะสำหรับคนวิ่ง' },
 
   // Pilates
   { id: 'pil', title: 'Reformer Pilates Intro', cat: 'Pilates', club: 'sfl', date: '2026-10-18', time: '09:00', mins: 50, price: 500,
     place: 'Studio Flow', area: 'Phrom Phong', level: 'Beginner', indoor: true, going: 8, solo: 3, rating: 4.7, reviews: 58, km: 3.0,
-    about: 'เรียนพื้นฐานเครื่องรีฟอร์มเมอร์ในคลาสเล็ก 8 คน' },
+    about: 'เรียนพิลาทิสเครื่องรีฟอร์มเมอร์เบื้องต้น ในกลุ่มเล็ก 8 คน' },
   { id: 'pil2', title: 'Mat Pilates in the Park', cat: 'Pilates', club: 'ppc', date: '2026-10-24', time: '07:30', mins: 60, price: 0,
     place: 'Suan Rot Fai', area: 'Chatuchak', level: 'All levels', indoor: false, going: 22, solo: 6, rating: 4.5, reviews: 31, km: 8.0,
-    about: 'คลาสพิลาทิสบนเสื่อฟรี เน้นแกนกลางลำตัว ใต้ร่มไม้' },
+    about: 'พิลาทิสบนเสื่อในสวน เน้นฝึกกล้ามเนื้อแกนกลาง ฟรีไม่มีค่าใช้จ่าย' },
   { id: 'jump', title: 'Reformer Jump Board', cat: 'Pilates', club: 'sfl', date: '2026-10-24', time: '08:00', mins: 50, price: 650,
     place: 'Studio Flow', area: 'Phrom Phong', level: 'Intermediate', indoor: true, going: 6, solo: 1, rating: 4.6, reviews: 14, km: 3.0,
-    about: 'คาร์ดิโอแรงกระแทกต่ำบนจัมป์บอร์ดของรีฟอร์มเมอร์' },
+    about: 'พิลาทิสรีฟอร์มเมอร์พร้อมจัมป์บอร์ด เน้นคาร์ดิโอแรงกระแทกต่ำ' },
   { id: 'posture', title: 'Core & Posture Clinic', cat: 'Pilates', club: 'cor', date: '2026-10-20', time: '18:30', mins: 60, price: 400,
     place: 'Core Lab Pilates', area: 'Ari', level: 'Beginner', indoor: true, going: 8, solo: 3, rating: 4.6, reviews: 20, km: 6.2,
-    about: 'แก้ไหล่ห่อ และสร้างความแข็งแรงให้แกนกลางลำตัวชั้นลึก' },
+    about: 'ฝึกพิลาทิสเพื่อเสริมแกนกลางและปรับท่าทาง ลดอาการไหล่ห่อ' },
   { id: 'desk', title: 'Pilates for Desk Workers', cat: 'Pilates', club: 'cor', date: '2026-10-27', time: '12:15', mins: 45, price: 350,
     place: 'Core Lab Pilates', area: 'Ari', level: 'Beginner', indoor: true, going: 10, solo: 4, rating: 4.7, reviews: 17, km: 6.2,
-    about: 'คลาสช่วงพักเที่ยง สำหรับคนหลังตึงและไหล่แข็ง' },
+    about: 'คลาสพิลาทิสช่วงพักเที่ยง เน้นยืดหลังและไหล่สำหรับคนทำงานโต๊ะ' },
   { id: 'wall', title: 'Wall Pilates Express', cat: 'Pilates', club: 'ppc', date: '2026-11-03', time: '19:00', mins: 40, price: 250,
     place: 'Ari Community Space', area: 'Ari', level: 'All levels', indoor: true, going: 12, solo: 3, rating: 4.4, reviews: 9, km: 6.0,
-    about: 'เบิร์นทั้งตัวแบบเร็ว ๆ ใช้แค่ผนังกับเสื่อ' },
+    about: 'พิลาทิสแบบใช้ผนังและเสื่อ ฝึกกล้ามเนื้อทั่วร่างกายในคลาสสั้น ๆ' },
 
   // Cycling
   { id: 'cyc', title: 'Sunday Sunrise Ride', cat: 'Cycling', club: 'bcc', date: '2026-10-18', time: '05:30', mins: 150, price: 0,
     place: 'Bang Kachao', area: 'Phra Pradaeng', level: 'Beginner', indoor: false, going: 31, solo: 5, rating: 4.8, reviews: 92, km: 9.0,
-    about: 'ปั่นวนทางเรียบร่มรื่น 25 กม. ในปอดของกรุงเทพฯ' },
+    about: 'ปั่นจักรยานระยะ 25 กม. รอบบางกระเจ้า เส้นทางร่มรื่นและค่อนข้างราบ' },
   { id: 'cyc2', title: 'Night Ride Bangkok', cat: 'Cycling', club: 'nrd', date: '2026-10-24', time: '20:00', mins: 120, price: 150,
     place: 'Rama VIII Bridge', area: 'Bang Phlat', level: 'Intermediate', indoor: false, going: 18, solo: 2, rating: 4.6, reviews: 40, km: 7.5,
-    about: 'ปั่นในเมือง 30 กม. ผ่านวัดและสะพานยามเปิดไฟ' },
+    about: 'ปั่นจักรยานในกรุงเทพฯ ช่วงกลางคืน ระยะ 30 กม. ผ่านวัดและสะพาน' },
   { id: 'skylane', title: 'Sky Lane Loop Ride', cat: 'Cycling', club: 'bcc', date: '2026-10-25', time: '06:00', mins: 120, price: 100,
     place: 'Sky Lane Suvarnabhumi', area: 'Lat Krabang', level: 'All levels', indoor: false, going: 50, solo: 7, rating: 4.7, reviews: 66, km: 28,
-    about: 'ปั่นในเลนจักรยาน 23 กม. ข้างสนามบิน ไม่มีรถยนต์ มีจักรยานให้เช่า' },
+    about: 'ปั่นจักรยานบนสนาม Sky Lane ระยะรอบละ 23 กม. มีบริการเช่าจักรยาน' },
   { id: 'spin', title: 'Rhythm Spin Class', cat: 'Cycling', club: 'nrd', date: '2026-10-21', time: '19:00', mins: 45, price: 380,
     place: 'Spin House Sukhumvit', area: 'Asok', level: 'All levels', indoor: true, going: 20, solo: 6, rating: 4.5, reviews: 48, km: 3.2,
-    about: 'ปั่นตามจังหวะเพลงในห้องมืดกับไฟแบบผับ' },
+    about: 'คลาสปั่นจักรยานในร่มตามจังหวะเพลง พร้อมไฟและดนตรี' },
   { id: 'cafe', title: 'Cafe Hop Ride', cat: 'Cycling', club: 'bcc', date: '2026-10-31', time: '07:00', mins: 180, price: 200,
     place: 'Bang Kachao', area: 'Phra Pradaeng', level: 'Beginner', indoor: false, going: 25, solo: 6, rating: 4.7, reviews: 30, km: 9.0,
-    about: 'ปั่นสบาย ๆ แวะคาเฟ่ 3 ร้าน มีจักรยานให้เช่า' },
+    about: 'ปั่นจักรยานสบาย ๆ ในบางกระเจ้า แวะคาเฟ่ 3 ร้าน มีจักรยานให้เช่า' },
 
   // Hiking
   { id: 'hike', title: 'Khao Yai Day Hike', cat: 'Hiking', club: 'tbt', date: '2026-10-24', time: '06:00', mins: 600, price: 650,
     place: 'Khao Yai National Park', area: 'Nakhon Ratchasima', level: 'Beginner', indoor: false, going: 14, solo: 3, rating: 4.8, reviews: 45, km: 165,
-    about: 'เดินป่า ดูนกเงือก และน้ำตก มีรถตู้จากอนุสาวรีย์ชัยฯ' },
+    about: 'เดินป่าในเขาใหญ่ ชมนกเงือกและน้ำตก มีรถตู้จากอนุสาวรีย์ชัยฯ' },
   { id: 'hike2', title: 'Doi Suthep Sunrise Trek', cat: 'Hiking', club: 'tbt', date: '2026-10-25', time: '04:30', mins: 300, price: 500,
     place: 'Doi Suthep', area: 'Chiang Mai', level: 'Intermediate', indoor: false, going: 9, solo: 2, rating: 4.9, reviews: 23, km: 690,
-    about: 'เดินเส้นทางวัดผาลาดขึ้นดอยสุเทพ ทันชมพระอาทิตย์ขึ้น' },
+    about: 'เดินเส้นทางวัดผาลาดขึ้นดอยสุเทพ เพื่อชมพระอาทิตย์ขึ้น' },
   { id: 'erawan', title: 'Erawan Waterfall Trail', cat: 'Hiking', club: 'wkn', date: '2026-11-01', time: '06:00', mins: 600, price: 750,
     place: 'Erawan National Park', area: 'Kanchanaburi', level: 'Beginner', indoor: false, going: 20, solo: 5, rating: 4.8, reviews: 38, km: 190,
-    about: 'เดินครบทั้ง 7 ชั้น และเล่นน้ำในแอ่งสีเทอร์คอยส์' },
+    about: 'เดินเที่ยวน้ำตกเอราวัณทั้ง 7 ชั้น และแวะเล่นน้ำตามจุดที่อนุญาต' },
   { id: 'mangrove', title: 'Mangrove Boardwalk Walk', cat: 'Hiking', club: 'wkn', date: '2026-10-18', time: '07:30', mins: 120, price: 0,
     place: 'Bang Pu Nature Reserve', area: 'Samut Prakan', level: 'Beginner', indoor: false, going: 16, solo: 4, rating: 4.5, reviews: 22, km: 35,
-    about: 'เดินทางเรียบในป่าชายเลน พร้อมชมนกนางนวล' },
+    about: 'เดินศึกษาธรรมชาติบนทางเดินป่าชายเลนบางปู พร้อมดูนก' },
   { id: 'ridge', title: 'Pak Chong Ridge Hike', cat: 'Hiking', club: 'tbt', date: '2026-11-07', time: '05:30', mins: 480, price: 900,
     place: 'Pak Chong Hills', area: 'Nakhon Ratchasima', level: 'Intermediate', indoor: false, going: 11, solo: 2, rating: 4.7, reviews: 14, km: 155,
-    about: 'เดินขึ้นเขาต่อเนื่องสู่จุดชมวิวบนสันเขาเหนือหุบเขา' },
+    about: 'เดินขึ้นเขาที่ปากช่อง ไปยังจุดชมวิวบนสันเขา' },
   { id: 'heritage', title: 'Old Town Heritage Walk', cat: 'Hiking', club: 'wkn', date: '2026-10-25', time: '16:00', mins: 150, price: 0,
     place: 'Rattanakosin Island', area: 'Phra Nakhon', level: 'Beginner', indoor: false, going: 30, solo: 8, rating: 4.6, reviews: 52, km: 6.8,
-    about: 'เดิน 10,000 ก้าว ผ่านวัด วัง และตึกแถวเก่า' },
+    about: 'เดินชมย่านเมืองเก่าประมาณ 10,000 ก้าว ผ่านวัด วัง และตึกแถวเก่า' },
 
   // Swimming
   { id: 'swim', title: 'Open Water Swim Clinic', cat: 'Swimming', club: 'swl', date: '2026-10-18', time: '08:00', mins: 90, price: 350,
     place: 'Bangkok Aquatic Center', area: 'Hua Mak', level: 'Beginner', indoor: false, going: 12, solo: 3, rating: 4.6, reviews: 26, km: 10.4,
-    about: 'ฝึกมองทิศทางและว่ายตามหลังคนอื่น ก่อนลงแข่งในน้ำเปิดครั้งแรก' },
-  { id: 'swim2', title: 'Morning Lap Swim Club', cat: 'Swimming', club: 'lcb', date: '2026-10-17', time: '07:00', mins: 60, price: 120,
-    place: 'Lumpini Pool', area: 'Silom', level: 'All levels', indoor: false, going: 16, solo: 4, rating: 4.5, reviews: 35, km: 2.1,
-    about: 'แบ่งเลนตามความเร็ว มีโค้ชคอยดูอยู่ข้างสระ' },
+    about: 'ฝึกการมองทิศทางและว่ายตามกลุ่ม เพื่อเตรียมตัวว่ายน้ำเปิด' },
+  { id: 'swim2', title: 'Morning Lap Swim Club', cat: 'Swimming', club: 'lcb', date: '2026-10-17', time: '09:00', mins: 60, price: 120,
+    place: 'Visutdrarom Swimming Pool', area: 'Pathum Wan', level: 'All levels', indoor: false, going: 16, solo: 4, rating: 4.5, reviews: 35, km: 2.1,
+    about: 'ว่ายน้ำเป็นกลุ่ม แบ่งเลนตามความเร็ว มีโค้ชคอยแนะนำ' },
   { id: 'learnswim', title: 'Adult Learn to Swim', cat: 'Swimming', club: 'swl', date: '2026-10-20', time: '19:00', mins: 60, price: 450,
     place: 'Swim Lab Pool', area: 'Sathorn', level: 'Beginner', indoor: true, going: 6, solo: 3, rating: 4.8, reviews: 29, km: 2.9,
-    about: 'ไม่มีคำว่าสายเกินไป คลาสกลุ่มเล็กในสระในร่มน้ำอุ่น' },
+    about: 'เรียนว่ายน้ำพื้นฐานสำหรับผู้ใหญ่ แบบกลุ่มเล็กในสระในร่ม' },
   { id: 'stroke', title: 'Stroke Video Clinic', cat: 'Swimming', club: 'swl', date: '2026-10-24', time: '10:00', mins: 90, price: 600,
     place: 'Swim Lab Pool', area: 'Sathorn', level: 'Intermediate', indoor: true, going: 8, solo: 2, rating: 4.7, reviews: 12, km: 2.9,
-    about: 'ถ่ายวิดีโอใต้น้ำ แล้วให้คำแนะนำท่าฟรีสไตล์ของคุณ' },
+    about: 'ถ่ายวิดีโอใต้น้ำเพื่อวิเคราะห์และปรับท่าว่ายฟรีสไตล์' },
   { id: 'seaswim', title: 'Bang Saen Sea Swim', cat: 'Swimming', club: 'ows', date: '2026-11-01', time: '06:30', mins: 180, price: 400,
     place: 'Bang Saen Beach', area: 'Chonburi', level: 'Advanced', indoor: false, going: 15, solo: 2, rating: 4.8, reviews: 10, km: 95,
-    about: 'ว่ายน้ำทะเล 2 กม. มีไกด์และเรือคายัคคอยดูแล' },
+    about: 'ว่ายน้ำทะเลระยะ 2 กม. มีผู้นำทางและเรือคายัคดูแลความปลอดภัย' },
   { id: 'masters', title: 'Masters Swim Night', cat: 'Swimming', club: 'lcb', date: '2026-10-28', time: '19:30', mins: 75, price: 150,
     place: 'Lumpini Pool', area: 'Silom', level: 'Intermediate', indoor: false, going: 22, solo: 3, rating: 4.5, reviews: 19, km: 2.1,
-    about: 'โปรแกรมว่ายเป็นเซ็ตสำหรับคนว่ายประจำที่อยากเร็วขึ้น' },
+    about: 'ซ้อมว่ายน้ำเป็นเซ็ต เน้นเพิ่มความเร็วสำหรับคนที่ว่ายน้ำเป็นประจำ' },
 
   // Ice Bath
   { id: 'ice', title: 'Ice Bath Recovery', cat: 'Ice Bath', club: 'rcs', date: '2026-10-17', time: '16:00', mins: 45, price: 400,
     place: 'Recovery Studio', area: 'Thong Lo', level: 'Beginner', indoor: true, going: 10, solo: 3, rating: 4.4, reviews: 22, km: 5.0,
-    about: 'แช่น้ำแข็ง 3 นาทีพร้อมโค้ชสอนหายใจ' },
+    about: 'แช่น้ำแข็ง 3 นาที พร้อมโค้ชแนะนำการหายใจ' },
   { id: 'ice2', title: 'Ice Bath & Sauna Social', cat: 'Ice Bath', club: 'rcs', date: '2026-10-18', time: '17:00', mins: 90, price: 450,
     place: 'Recovery Studio', area: 'Thong Lo', level: 'All levels', indoor: true, going: 12, solo: 3, rating: 4.6, reviews: 27, km: 5.0,
-    about: 'สลับร้อนกับเย็นหลายรอบ พร้อมดนตรีและชาสมุนไพร' },
+    about: 'สลับเข้าเซาน่าและแช่น้ำเย็น พร้อมดนตรีและชาสมุนไพร' },
   { id: 'breath', title: 'Breathwork & Cold Plunge', cat: 'Ice Bath', club: 'cpc', date: '2026-10-24', time: '09:00', mins: 75, price: 500,
     place: 'Cold Plunge Club House', area: 'Ari', level: 'Beginner', indoor: true, going: 10, solo: 4, rating: 4.7, reviews: 18, km: 6.0,
-    about: 'เรียนเทคนิคการหายใจ แล้วไปลองจริงในอ่างน้ำแข็ง' },
+    about: 'ฝึกเทคนิคการหายใจ ก่อนทดลองแช่น้ำเย็นโดยมีผู้สอนดูแล' },
   { id: 'contrast', title: 'Contrast Therapy Night', cat: 'Ice Bath', club: 'rcs', date: '2026-10-29', time: '19:00', mins: 60, price: 550,
     place: 'Recovery Studio', area: 'Thong Lo', level: 'Intermediate', indoor: true, going: 8, solo: 2, rating: 4.6, reviews: 9, km: 5.0,
-    about: 'รอบซาวน่าและแช่เย็นที่นานขึ้น สำหรับคนที่มาประจำ' },
+    about: 'สลับเซาน่าและแช่น้ำเย็นรอบที่นานขึ้น เหมาะกับคนมีประสบการณ์' },
 
   // Muay Thai
   { id: 'muay', title: 'Muay Thai Basics', cat: 'Muay Thai', club: 'mtg', date: '2026-10-17', time: '10:00', mins: 60, price: 400,
     place: 'Muay Thai Garage', area: 'Sathorn', level: 'Beginner', indoor: true, going: 14, solo: 6, rating: 4.8, reviews: 77, km: 3.3,
-    about: 'ท่ายืน หมัด และเตะ มีนวมและผ้าพันมือให้' },
+    about: 'เรียนมวยไทยพื้นฐาน ท่ายืน หมัด และเตะ มีนวมและผ้าพันมือให้' },
   { id: 'pads', title: 'Pad Work & Conditioning', cat: 'Muay Thai', club: 'mtg', date: '2026-10-21', time: '18:00', mins: 75, price: 450,
     place: 'Muay Thai Garage', area: 'Sathorn', level: 'Intermediate', indoor: true, going: 12, solo: 3, rating: 4.7, reviews: 40, km: 3.3,
-    about: 'ซ้อมเป้ากับเทรนเนอร์หลายยก แล้วปิดท้ายด้วยเวทคาร์ดิโอ' },
+    about: 'ซ้อมเตะและต่อยเป้ากับเทรนเนอร์ ปิดท้ายด้วยฝึกความแข็งแรง' },
   { id: 'womenmt', title: 'Women’s Muay Thai', cat: 'Muay Thai', club: 'elc', date: '2026-10-24', time: '11:00', mins: 60, price: 350,
     place: 'Eight Limbs Gym', area: 'Ratchada', level: 'Beginner', indoor: true, going: 16, solo: 7, rating: 4.9, reviews: 35, km: 7.4,
-    about: 'คลาสสำหรับผู้หญิงล้วน สอนโดยโค้ชผู้หญิง' },
+    about: 'คลาสมวยไทยสำหรับผู้หญิงมือใหม่ สอนโดยโค้ชผู้หญิง' },
   { id: 'fightnight', title: 'Fight Night Outing', cat: 'Muay Thai', club: 'elc', date: '2026-10-30', time: '18:00', mins: 240, price: 1500,
     place: 'Rajadamnern Stadium', area: 'Phra Nakhon', level: 'All levels', indoor: true, going: 24, solo: 5, rating: 4.6, reviews: 15, km: 7.0,
-    about: 'ดูมวยสดข้างเวที มีโค้ชอธิบายจังหวะการชก' },
+    about: 'ชมการแข่งขันมวยไทยที่ราชดำเนิน พร้อมโค้ชช่วยอธิบายจังหวะการชก' },
   { id: 'shadow', title: 'Shadowboxing in the Park', cat: 'Muay Thai', club: 'elc', date: '2026-11-08', time: '07:00', mins: 60, price: 0,
     place: 'Chatuchak Park', area: 'Chatuchak', level: 'Beginner', indoor: false, going: 30, solo: 9, rating: 4.5, reviews: 20, km: 8.1,
-    about: 'คลาสกลางแจ้งฟรี ไม่ต้องใช้อุปกรณ์' },
+    about: 'ฝึกชกมวยลมกลางแจ้งในสวน ฟรีและไม่ต้องใช้อุปกรณ์' },
 
   // Padel
   { id: 'padel', title: 'Padel Taster Session', cat: 'Padel', club: 'pdl', date: '2026-10-18', time: '16:00', mins: 90, price: 500,
     place: 'Padel Social Courts', area: 'On Nut', level: 'Beginner', indoor: true, going: 8, solo: 4, rating: 4.7, reviews: 44, km: 7.8,
-    about: 'เรียนกติกาและช็อตพื้นฐาน มีไม้ให้' },
+    about: 'เรียนกติกาและการตีพาเดลเบื้องต้น มีไม้ให้ยืม' },
   { id: 'padel2', title: 'Padel Mixer Night', cat: 'Padel', club: 'pdl', date: '2026-10-23', time: '19:00', mins: 120, price: 600,
     place: 'Padel Social Courts', area: 'On Nut', level: 'All levels', indoor: true, going: 16, solo: 8, rating: 4.8, reviews: 31, km: 7.8,
-    about: 'สลับคู่ตีประเภทคู่ ได้เจอเพื่อนใหม่ทุกเกม' },
+    about: 'เล่นพาเดลประเภทคู่แบบสลับคู่ในแต่ละเกม เหมาะกับการพบเพื่อนใหม่' },
   { id: 'americano', title: 'Padel Americano', cat: 'Padel', club: 'pdl', date: '2026-11-01', time: '15:00', mins: 150, price: 550,
     place: 'Padel Social Courts', area: 'On Nut', level: 'Intermediate', indoor: true, going: 16, solo: 4, rating: 4.6, reviews: 13, km: 7.8,
-    about: 'ทัวร์นาเมนต์เล็ก ๆ นับแต้ม สลับคู่ทุกเกม' },
+    about: 'แข่งพาเดลแบบ Americano เก็บคะแนนและเปลี่ยนคู่ระหว่างเกม' },
 
   // Dance
   { id: 'hiphop', title: 'Hip-Hop Beginner Class', cat: 'Dance', club: 'dnc', date: '2026-10-20', time: '19:30', mins: 60, price: 300,
     place: 'Dance Hall 22', area: 'Siam', level: 'Beginner', indoor: true, going: 18, solo: 7, rating: 4.6, reviews: 38, km: 1.5,
-    about: 'เรียนกรูฟและท่าเต้นสั้น ๆ ไม่ต้องมีพื้นฐาน' },
+    about: 'เรียนฮิปฮอปพื้นฐานและท่าเต้นชุดสั้น ๆ ไม่ต้องมีประสบการณ์' },
   { id: 'salsa', title: 'Salsa Social Night', cat: 'Dance', club: 'grv', date: '2026-10-23', time: '20:00', mins: 150, price: 250,
     place: 'The Ballroom Ari', area: 'Ari', level: 'All levels', indoor: true, going: 40, solo: 15, rating: 4.7, reviews: 56, km: 6.1,
-    about: 'เรียน 45 นาที แล้วเต้นอิสระ มาคนเดียวได้ ทุกคนสลับคู่กัน' },
+    about: 'เรียนซัลซ่า 45 นาที แล้วเต้นอิสระและสลับคู่กัน' },
   { id: 'kpop', title: 'K-Pop Dance Cover', cat: 'Dance', club: 'dnc', date: '2026-10-24', time: '13:00', mins: 90, price: 350,
     place: 'Dance Hall 22', area: 'Siam', level: 'All levels', indoor: true, going: 22, solo: 9, rating: 4.8, reviews: 61, km: 1.5,
-    about: 'เรียนท่าเต้นเพลงฮิตประจำเดือน แล้วถ่ายคลิปด้วยกัน' },
+    about: 'เรียนท่าเต้นเพลง K-pop แล้วถ่ายคลิปเต้นด้วยกัน' },
   { id: 'dancefit', title: 'Sunset Dance Fitness', cat: 'Dance', club: 'grv', date: '2026-11-01', time: '17:30', mins: 60, price: 0,
     place: 'Benjakitti Park', area: 'Asok', level: 'Beginner', indoor: false, going: 50, solo: 14, rating: 4.5, reviews: 29, km: 3.4,
-    about: 'เต้นออกกำลังกายฟรีแบบจัดเต็ม ที่ลานในสวน' },
+    about: 'เต้นออกกำลังกายตามเพลงแบบกลุ่มที่สวน เข้าร่วมได้ฟรี' },
 
   // Meditation
   { id: 'medi', title: 'Morning Meditation in the Park', cat: 'Meditation', club: 'mnd', date: '2026-10-18', time: '06:30', mins: 45, price: 0,
     place: 'Lumpini Park', area: 'Silom', level: 'Beginner', indoor: false, going: 25, solo: 12, rating: 4.7, reviews: 64, km: 2.1,
-    about: 'นั่งสมาธิแบบมีผู้นำริมทะเลสาบ ก่อนเมืองจะตื่น' },
+    about: 'นั่งสมาธิแบบมีผู้นำกิจกรรมริมทะเลสาบในช่วงเช้า' },
   { id: 'soundbath', title: 'Sound Bath Evening', cat: 'Meditation', club: 'ssh', date: '2026-10-22', time: '19:00', mins: 75, price: 550,
     place: 'Sound & Stillness Studio', area: 'Phrom Phong', level: 'All levels', indoor: true, going: 14, solo: 6, rating: 4.9, reviews: 47, km: 3.0,
-    about: 'นอนพักแล้วปล่อยให้เสียงขันทิเบตและฆ้องช่วยผ่อนคลาย' },
+    about: 'นอนฟังเสียงขันทิเบตและฆ้องในคลาส Sound Bath เพื่อผ่อนคลาย' },
   { id: 'retreat', title: 'Temple Meditation Day', cat: 'Meditation', club: 'mnd', date: '2026-11-07', time: '08:00', mins: 420, price: 0,
     place: 'Wat Mahathat', area: 'Phra Nakhon', level: 'Beginner', indoor: true, going: 30, solo: 14, rating: 4.9, reviews: 40, km: 7.2,
-    about: 'ปฏิบัติธรรมเต็มวัน ทั้งนั่งและเดินจงกรม ใส่ชุดขาว ตามจิตศรัทธา' },
+    about: 'ฝึกนั่งสมาธิและเดินจงกรมเต็มวันที่วัด แต่งชุดขาว บริจาคตามศรัทธา' },
   { id: 'breathe', title: 'Lunchtime Breathwork', cat: 'Meditation', club: 'ssh', date: '2026-10-24', time: '12:00', mins: 30, price: 200,
     place: 'Sound & Stillness Studio', area: 'Phrom Phong', level: 'Beginner', indoor: true, going: 10, solo: 5, rating: 4.6, reviews: 15, km: 3.0,
-    about: 'รีเซ็ตใจ 30 นาที ให้หัวที่วุ่นวายสงบลง' },
+    about: 'ฝึกหายใจ 30 นาที ในช่วงพักกลางวัน เพื่อผ่อนคลาย' },
 
   // Paddle (SUP & kayak)
   { id: 'sup', title: 'Sunrise SUP on the River', cat: 'Paddle', club: 'sup', date: '2026-10-18', time: '06:00', mins: 120, price: 900,
     place: 'Khlong San Pier', area: 'Khlong San', level: 'Beginner', indoor: false, going: 10, solo: 3, rating: 4.8, reviews: 33, km: 4.5,
-    about: 'พายบอร์ดยืนผ่านวัดริมน้ำยามเช้า มีบอร์ดและเสื้อชูชีพให้' },
+    about: 'พายซัพบอร์ดชมวัดริมเจ้าพระยาตอนเช้า มีบอร์ดและเสื้อชูชีพให้' },
   { id: 'kayak', title: 'Klong Kayak Tour', cat: 'Paddle', club: 'kyk', date: '2026-10-25', time: '07:00', mins: 150, price: 800,
     place: 'Khlong Bang Luang', area: 'Phasi Charoen', level: 'Beginner', indoor: false, going: 12, solo: 4, rating: 4.8, reviews: 41, km: 8.6,
-    about: 'พายผ่านชุมชนริมคลองเก่า แวะคาเฟ่ลอยน้ำ' },
+    about: 'พายคายัคผ่านชุมชนริมคลองบางหลวง แล้วแวะคาเฟ่ริมน้ำ' },
   { id: 'supyoga', title: 'SUP Yoga', cat: 'Paddle', club: 'sup', date: '2026-11-01', time: '07:30', mins: 90, price: 1000,
     place: 'Suan Luang Rama IX Lake', area: 'Prawet', level: 'Intermediate', indoor: false, going: 8, solo: 2, rating: 4.7, reviews: 12, km: 9.5,
-    about: 'ทำท่าโยคะบนบอร์ดลอยน้ำ เตรียมตัวเปียกได้เลย' },
+    about: 'ฝึกโยคะบนซัพบอร์ดในน้ำ เน้นการทรงตัวและท่าพื้นฐาน' },
   { id: 'mangkayak', title: 'Mangrove Kayak Day Trip', cat: 'Paddle', club: 'kyk', date: '2026-11-07', time: '07:00', mins: 480, price: 1500,
     place: 'Samut Songkhram Mangroves', area: 'Samut Songkhram', level: 'All levels', indoor: false, going: 14, solo: 3, rating: 4.9, reviews: 9, km: 75,
-    about: 'พายคายัคในป่าชายเลน แล้วแวะตลาดร่มหุบแม่กลอง' },
+    about: 'พายคายัคในป่าชายเลนสมุทรสงคราม แล้วแวะตลาดร่มหุบ' },
 ];
 
 // ── FRIENDS — เพื่อนที่พบจากรายชื่อติดต่อ (going = id กิจกรรมที่เพื่อนจะไป)
@@ -1717,12 +1726,20 @@ ${opts}
                   `${i ? '<div style="height:1px;background:#EEF1FA"></div>' : ''}<div><div style="font-size:14px"><b style="font-weight:600">${r[0]}</b> <span style="color:#D9A400">★ ${r[1]}</span></div><div class="mu" style="font-size:14px;line-height:1.5;margin-top:2px">${r[2]}</div></div>`,
               )
               .join('')
-          : `<div><b style="font-size:15px">Description</b><p class="mu" style="margin:6px 0 0;font-size:14px;line-height:1.6">${a.about}</p></div>` +
+          : `<div><b style="font-size:15px">Description</b><p class="mu" style="margin:8px 0 0;font-size:14.5px;line-height:1.72">${a.about}</p></div>` +
             line('level', a.level + ' · ' + (a.indoor ? 'Indoor' : 'Outdoor')) +
             line('user', a.going + ' going · ' + a.solo + ' coming solo') +
             line('star', a.rating.toFixed(1) + ' (' + a.reviews + ' reviews)') +
             line('tag', a.priceLabel + (a.price ? ' + ฿' + SERVICE_FEE + ' service fee' : ''));
-    return `<style>.evhero>*{width:100%!important;height:220px!important}</style>
+    return `<style>
+/* เพิ่มน้ำหนักตัวอักษรเฉพาะหน้า Activity Details เท่านั้น */
+.evhero>*{width:100%!important;height:220px!important}
+#scr { font-weight:600; }
+#scr .mu { font-weight:600; }
+#scr h1, #scr b { font-weight:800!important; }
+#scr [role="tab"] { font-weight:700!important; }
+#scr [role="tab"][aria-selected="true"] { font-weight:800!important; }
+</style>
 <div class="row" style="justify-content:space-between;padding:18px 20px 10px"><button data-a="back" aria-label="Back" style="${sq}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><b style="font-size:17px">Activity Details</b><button data-a="shareev:${id}" aria-label="Share" style="${sq}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M5 13v6h14v-6"/></svg></button></div>
 <div class="p" style="display:flex;flex-direction:column;gap:16px;margin-top:8px">
 <div style="position:relative"><div class="evhero">${imgSlot(id, 350, 24, 'EVENT DETAIL › photo · ' + a.title, 220)}</div><button data-a="fav:${id}" aria-label="Save activity" aria-pressed="${fv}" style="position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:20px;background:#fff;font-size:18px;color:${fv ? 'var(--b)' : 'var(--n)'}">${fv ? '♥' : '♡'}</button></div>
