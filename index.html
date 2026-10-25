@@ -1508,18 +1508,18 @@ const SC = {
 <div class="p row" style="margin-top:24px;justify-content:space-between">${[4, 2, 7, 1, 9, 0].map((d) => `<input class="inp" aria-label="OTP digit" maxlength="1" value="${d}" style="width:46px;height:56px;text-align:center;font-size:22px;font-weight:700;padding:0">`).join('')}</div>
 <div class="p mu" style="font-size:12px;margin-top:12px">Resend code in 0:30</div>
 <div style="margin:28px 20px 0"><button class="btn y" data-go="setup">Verify and continue</button></div>`,
-  sync: () => `<div style="padding-top:60px;display:flex;justify-content:center">${imgSlot('misc:sync', 170, 26, 'SYNC CONTACTS › top picture')}</div>
+  sync: () => `<div style="padding-top:60px;display:flex;justify-content:center"></div>
 <h1 style="margin:20px 24px 0;font-size:26px;font-weight:800;line-height:1.2;text-align:center">Find friends on Vybe<br>from your contacts</h1><div style="margin:8px 28px 0">${[
-    ['See what your friends are going to', 'Makes it easy to invite each other'],
-    ['Get matched with friends who like the same things', 'Based on matching registered numbers'],
-    ['We never message anyone for you', 'Unless you tap Invite yourself'],
+    ['ดูว่าเพื่อนของคุณกำลังจะไปงานหรือกิจกรรมอะไรบ้าง', 'ช่วยให้คุณชวนกันไปได้ง่ายขึ้น'],
+    ['แนะนำเพื่อนที่สนใจเหมือนกัน', 'จากเบอร์ที่ลงทะเบียนตรงกัน'],
+    ['เราจะไม่ส่งข้อความหาใครแทนคุณ', 'ถ้าคุณไม่กดเชิญเอง'],
   ]
     .map(
       (p) =>
         `<div class="row" style="align-items:flex-start;margin-top:12px"><span style="width:28px;height:28px;border-radius:14px;background:var(--ys);flex:none;text-align:center;line-height:28px;font-weight:700">✓</span><div><b style="font-size:14px">${p[0]}</b><div class="mu" style="font-size:12px">${p[1]}</div></div></div>`,
     )
     .join('')}</div>
-<div class="lb" style="margin:16px 24px 0;border-radius:16px;padding:10px 14px;font-size:11px"><b style="font-size:12px">You’re in control</b><br><span class="mu">Sync or skip. You can turn it off anytime in Settings.</span></div>
+<div class="lb" style="margin:16px 24px 0;border-radius:16px;padding:10px 14px;font-size:11px"><b style="font-size:12px">คุณเป็นคนควบคุมทุกอย่างได้</b><br><span class="mu">เลือกซิงค์รายชื่อผู้ติดต่อหรือข้ามขั้นตอนนี้ก็ได้ และคุณสามารถปิดการซิงค์ได้ทุกเมื่อในการตั้งค่า</span></div>
 <div style="margin:16px 24px 0"><button class="btn y" data-go="friends">Allow contact access</button><button data-a="onbdone" style="width:100%;margin-top:10px;font-weight:600;padding:8px">Not now</button></div>`,
   friends: () =>
     hdr('Contacts', 'Your friends') +
