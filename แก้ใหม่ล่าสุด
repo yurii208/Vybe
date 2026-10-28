@@ -302,10 +302,10 @@ const IMAGES = {
       track: 'https://i.postimg.cc/FKf4hpX3/Joyful-Runners-at-Sunny-Stadium.png', // Track Tuesday Intervals
       chinarun: 'https://i.postimg.cc/HkzwT095/Neon-Chinatown-Night-Run.png', // Chinatown Night Run
       river: 'https://i.postimg.cc/NFLNhJHr/Riverside-Long-Run-Under-City-Lights-(1).png', // Riverside Long Run
-      tread: 'https://i.postimg.cc/BQz2wZN4/Luxury-Treadmill-Studio-at-Sunset.png', // Treadmill Tempo Class
-      c25k: '', // Couch to 5K: Week 1
-      halloween: '', // Halloween Glow Run
-      social10: '', // Sunday Social 10K
+      tread: 'https://i.postimg.cc/j2XVQF3s/Sunlit-Premium-Treadmill-Class.png', // Treadmill Tempo Class
+      c25k: 'https://i.postimg.cc/BZMPvQNL/Golden-Hour-Urban-Park-Run.png', // Couch to 5K: Week 1
+      halloween: 'https://i.postimg.cc/3J9q967F/Lumpini-Park-Halloween-Glow-Run-(2).png', // Halloween Glow Run
+      social10: 'https://i.postimg.cc/66FqqHDx/Sunday-Social-10K-Park-Meetup.png', // Sunday Social 10K
     },
     Climbing: {
       climb: 'https://i.postimg.cc/PxKrnCbT/Sunlit-Urban-Bouldering-Gym.png', // Climbing Session
