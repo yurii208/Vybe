@@ -298,14 +298,14 @@ const IMAGES = {
     Running: {
       run: 'https://i.postimg.cc/J4pzXGt2/Golden-Hour-Lakeside-Group-Run.png', // Lumpini Sunrise Run
       fun: 'https://i.postimg.cc/QtzqVX1T/Bangkok-Lakeside-City-Fun-Run.png', // City Fun Run 5K
-      trail: '', // Trail Run Workshop
-      track: '', // Track Tuesday Intervals
-      chinarun: '', // Chinatown Night Run
-      river: '', // Riverside Long Run
-      tread: '', // Treadmill Tempo Class
-      c25k: '', // Couch to 5K: Week 1
-      halloween: '', // Halloween Glow Run
-      social10: '', // Sunday Social 10K
+      trail: 'https://i.postimg.cc/ZYd170JK/Golden-Hour-Riverside-Trail-Runners.png', // Trail Run Workshop
+      track: 'https://i.postimg.cc/FKf4hpX3/Joyful-Runners-at-Sunny-Stadium.png', // Track Tuesday Intervals
+      chinarun: 'https://i.postimg.cc/HkzwT095/Neon-Chinatown-Night-Run.png', // Chinatown Night Run
+      river: 'https://i.postimg.cc/NFLNhJHr/Riverside-Long-Run-Under-City-Lights-(1).png', // Riverside Long Run
+      tread: 'https://i.postimg.cc/j2XVQF3s/Sunlit-Premium-Treadmill-Class.png', // Treadmill Tempo Class
+      c25k: 'https://i.postimg.cc/BZMPvQNL/Golden-Hour-Urban-Park-Run.png', // Couch to 5K: Week 1
+      halloween: 'https://i.postimg.cc/3J9q967F/Lumpini-Park-Halloween-Glow-Run-(2).png', // Halloween Glow Run
+      social10: 'https://i.postimg.cc/66FqqHDx/Sunday-Social-10K-Park-Meetup.png', // Sunday Social 10K
     },
     Climbing: {
       climb: 'https://i.postimg.cc/PxKrnCbT/Sunlit-Urban-Bouldering-Gym.png', // Climbing Session
@@ -1610,11 +1610,11 @@ ${opts}
 <div class="p" style="font-size:28px;font-weight:600">${USER.name}</div>
 <button data-go="discover" data-tour="search" aria-label="Search" class="lb row" style="width:calc(100% - 40px);text-align:left;margin:12px 20px 0;height:46px;border-radius:23px;border:1.5px solid var(--bd);padding:0 5px 0 16px;font-size:13px;color:var(--mu);justify-content:space-between">Search activities, places, clubs…<span class="bb" style="width:36px;height:36px;border-radius:18px;display:flex;align-items:center;justify-content:center">${ICON.search('#fff')}</span></button><div class="p row" data-tour="cats" style="margin-top:12px;overflow-x:auto">${catChips()}</div>` +
       (f.length
-        ? picksHtml +
+        ? 
           section('Upcoming Events', `<button data-go="discover" style="font-size:13px;font-weight:500">View all ›</button>`) +
           `<div class="p row" style="margin-top:10px;overflow-x:auto;align-items:stretch">${upcoming.map((i) => actTile(i)).join('')}</div>` +
           (fromClubs.length
-            ? section('From clubs you follow', `<button data-a="ctab-go:Clubs" style="font-size:13px;font-weight:500">Manage ›</button>`) +
+            ? section('From clubs you follow', `<button data-go="followedEvents" style="font-size:13px;font-weight:500">View all ›</button>`) +
               `<div class="p row" style="margin-top:10px;overflow-x:auto;align-items:stretch">${fromClubs.map((i) => actTile(i, A[i].clubName)).join('')}</div>`
             : '') +
           section('Top rated for you', `<button data-go="discover" style="font-size:13px;font-weight:500">View all ›</button>`) +
@@ -1636,6 +1636,34 @@ ${opts}
       )
       .join('')}</div>
 <div id="dl">${discoverList()}</div>`,
+  
+followedEvents: () => {
+  const ids = UPCOMING.filter(
+    (i) => S.following[A[i].club]
+  );
+
+  return (
+    back +
+    `<h1 class="p" style="font-size:28px;font-weight:800;line-height:1.15;margin-top:12px">
+      Activities from clubs 
+    </h1>` +
+    (ids.length
+      ? ids.map(resultCard).join('') +
+        (S.compare.length
+          ? `<div class="nb row" style="position:sticky;bottom:8px;margin:12px 16px 0;border-radius:24px;padding:8px 8px 8px 18px;justify-content:space-between">
+              <span style="font-size:12px">
+                <b>Compare</b><br>
+                ${S.compare.length} selected · up to 3
+              </span>
+              <button data-go="compare" class="y" style="padding:10px 20px;border-radius:18px;font-weight:700">
+                Compare
+              </button>
+            </div>`
+          : '')
+      : empty('No upcoming activities from clubs you follow yet'))
+  );
+},
+
   compare: () => {
     const ids = S.compare.length ? S.compare : S.plan.slice(0, 2).map((p) => p.id);
     const rows = [
