@@ -245,6 +245,257 @@ h1, h2, h3 {
 #toast.s {
   opacity: 1;
 }
+/* ── ACTIVITY ROOM — พื้นที่แห่งการเชื่อมต่อ (ดูโค้ดส่วน 6b) */
+.rm{position:absolute;inset:0;overflow:hidden;background:#06091f;color:#fff;font-family:'Noto Sans Thai','Manrope',Arial,sans-serif}
+.rm-bg{position:absolute;left:-6%;top:-6%;width:112%;height:112%;object-fit:cover;filter:saturate(1.1) brightness(.85);animation:rmKen 28s ease-in-out infinite alternate}
+.rm-in .rm-bg{animation:rmReveal 1.6s ease forwards,rmKen 28s ease-in-out 1.6s infinite alternate}
+.rm-tint{position:absolute;inset:0}
+.rm-cv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.rm-glass{background:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.22)}
+.rm-top{position:absolute;left:16px;right:16px;top:18px;display:flex;align-items:center;justify-content:space-between;gap:8px;z-index:3}
+.rm-ic{width:42px;height:42px;border-radius:21px;color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;flex:none}
+.rm-seg{display:flex;border-radius:20px;padding:3px}
+.rm-seg button{color:rgba(255,255,255,.85);font-size:12px;font-weight:700;padding:7px 12px;border-radius:16px}
+.rm-seg button.on{background:#fff;color:#10328f}
+.rm-head{position:absolute;left:22px;right:22px;top:78px;z-index:2}
+.rm-meta{text-transform:uppercase;font-size:10.5px;letter-spacing:1.5px;font-weight:700;color:var(--rm-accent);font-family:'Manrope',sans-serif}
+.rm-title{font-size:30px;line-height:1.08;margin-top:6px;color:#fff;font-weight:800;text-wrap:balance}
+.rm-mood{font-size:15px;margin-top:8px;color:rgba(255,255,255,.9);line-height:1.5}
+.rm-stage{position:absolute;left:0;right:0;top:206px;bottom:262px;z-index:2}
+.rm-p{position:absolute;opacity:0;animation:rmIn 1.2s cubic-bezier(.2,.8,.2,1) forwards}
+.rm-bob{display:flex;align-items:center;gap:8px;animation:rmBob 7s ease-in-out infinite}
+.rm-bob > img,.rm-bob > span{box-shadow:0 0 0 2px rgba(255,255,255,.75),0 0 18px var(--rm-accent)}
+.rm-note{background:rgba(255,255,255,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.22);border-radius:14px 14px 14px 4px;padding:6px 10px;font-size:12px;max-width:150px;line-height:1.35}
+.rm-note b{display:block;font-size:10px;color:var(--rm-accent);font-family:'Manrope',sans-serif}
+.rm-panel{position:absolute;left:12px;right:12px;bottom:14px;border-radius:26px;padding:16px;z-index:3;display:flex;flex-direction:column;gap:10px;box-sizing:border-box}
+.rm-count{font-size:26px;font-weight:800;font-family:'Plus Jakarta Sans','Noto Sans Thai',sans-serif}
+.rm-sub{font-size:13px;color:rgba(255,255,255,.88)}
+.rm-quick{display:flex;gap:6px;overflow-x:auto}
+.rm-quick button{flex:none;color:#fff;font-size:12px;padding:7px 12px;border-radius:16px;border:1px solid rgba(255,255,255,.4)}
+.rm-row{display:flex;gap:8px}
+.rm-btn{flex:1;height:46px;border-radius:16px;font-weight:700;font-size:14px;color:#fff;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center}
+.rm-btn-y{background:var(--y);color:var(--n)}
+.rm-btn-done{background:rgba(255,255,255,.92);color:var(--n)}
+.rm-mine{display:flex;align-items:center;gap:8px;font-size:12px;background:rgba(255,214,91,.24);border-radius:12px;padding:6px 10px}
+.rm-live{position:absolute;left:0;right:0;top:196px;bottom:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;z-index:2}
+.rm-ring{position:relative;width:200px;height:200px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.rm-ring::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,var(--rm-accent) 0%,rgba(255,255,255,0) 70%);opacity:.55;animation:rmBreath 4s ease-in-out infinite}
+.rm-ring-core{position:relative;width:136px;height:136px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.rm-ring-core b{font-size:46px;line-height:1;font-family:'Plus Jakarta Sans',sans-serif}
+.rm-ring-core span{font-size:12px;opacity:.88;margin-top:4px}
+.rm-ripple{position:absolute;inset:24px;border-radius:50%;border:2px solid var(--rm-accent);animation:rmRipple 1.6s ease-out forwards}
+.rm-ticker{font-size:14px;background:rgba(255,255,255,.14);border-radius:14px;padding:8px 14px;max-width:82%;text-align:center}
+.rm-ticker b{color:var(--rm-accent)}
+.rm-wall{position:absolute;left:16px;right:16px;top:194px;bottom:206px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;z-index:2;align-content:start}
+.rm-tile{margin:0;background:#fff;color:var(--n);border-radius:14px;padding:6px 6px 8px;transform:rotate(var(--r));opacity:0;animation:rmTile .9s ease forwards;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.rm-tile img,.rm-ph{width:100%;height:64px;object-fit:cover;border-radius:9px;display:block;background:#dde3f2}
+.rm-tile figcaption{display:flex;gap:6px;align-items:center;font-size:11px;margin-top:6px;line-height:1.3}
+.rm-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));text-align:center}
+.rm-stats b{display:block;font-size:19px;font-family:'Plus Jakarta Sans','Noto Sans Thai',sans-serif}
+.rm-stats span{font-size:11px;opacity:.88}
+.rm-gate{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;background:rgba(6,10,36,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);text-align:center;padding:0 30px;width:100%}
+.rm-gate-glow{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle,var(--rm-accent),rgba(255,255,255,0) 70%);animation:rmBreath 3s ease-in-out infinite;margin-bottom:6px}
+.rm-gate-k{font-size:11px;letter-spacing:3px;font-weight:700;color:var(--rm-accent);font-family:'Manrope',sans-serif}
+.rm-gate-t{font-size:28px;font-weight:800;line-height:1.1;font-family:'Plus Jakarta Sans','Noto Sans Thai',sans-serif}
+.rm-gate-s{font-size:15px;opacity:.92}
+.rm-gate-h{display:flex;gap:6px;align-items:center;font-size:12px;opacity:.78;margin-top:18px}
+.rm-enter{position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:8px;height:40px;padding:0 16px 0 12px;border-radius:20px;background:rgba(6,10,36,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font-size:13px;font-weight:700}
+.rm-enter i{width:10px;height:10px;border-radius:5px;background:var(--y);box-shadow:0 0 10px var(--y);animation:rmBreath 2.4s ease-in-out infinite}
+.rm-still .rm-p,.rm-still .rm-tile{animation:none;opacity:1}
+.rm-pill{padding:9px 14px;border-radius:18px;font-size:12px;font-weight:700;color:#fff}
+.rm-arrive{font-size:22px;font-weight:800;color:var(--rm-accent);font-family:'Plus Jakarta Sans','Noto Sans Thai',sans-serif;animation:rmPop .9s cubic-bezier(.2,1.4,.4,1) both;transition:opacity 1.2s,transform 1.2s}
+.rm-arrive.rm-fade{opacity:0;transform:translateY(-10px)}
+.rm-calm .rm-ring::before{animation-duration:7s;opacity:.32}
+.rm-calm .rm-ring-core{background:rgba(255,255,255,.08)}
+@keyframes rmPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes rmKen{from{transform:scale(1) translate(0,0)}to{transform:scale(1.08) translate(-2%,-1.5%)}}
+@keyframes rmReveal{from{transform:scale(1.18);filter:blur(10px) brightness(.6)}to{transform:scale(1);filter:saturate(1.1) brightness(.85)}}
+@keyframes rmIn{from{opacity:0;transform:translateY(24px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes rmBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes rmBreath{0%,100%{transform:scale(.88);opacity:.5}50%{transform:scale(1.08);opacity:.85}}
+@keyframes rmRipple{from{transform:scale(.7);opacity:.9}to{transform:scale(1.75);opacity:0}}
+@keyframes rmTile{from{opacity:0;transform:rotate(var(--r)) translateY(20px)}to{opacity:1;transform:rotate(var(--r))}}
+@media (prefers-reduced-motion:reduce){.rm *,.rm{animation:none!important}.rm-p,.rm-tile{opacity:1}}
+/* ── ภาษา · ยืนยันตัวตน · Home ใหม่ */
+.lang-tg{display:inline-flex;background:var(--l);border-radius:16px;padding:3px;gap:2px;flex:none}
+.lang-tg button{height:28px;min-width:36px;border-radius:13px;font-size:12px;font-weight:800;color:var(--mu);letter-spacing:.3px}
+.lang-tg button.on{background:#fff;color:var(--n);box-shadow:0 1px 4px rgba(16,50,143,.15)}
+.vb{display:inline-flex;vertical-align:-2px;margin-left:3px;flex:none}
+.from{font-size:10.5px;font-weight:700;color:var(--mu);background:#F1F4FA;border-radius:8px;padding:1px 7px}
+.ugc-tr{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;color:var(--b);margin-top:4px;padding:0}
+.nv{display:inline-block;margin-left:6px;font-size:10px;font-weight:700;color:var(--yt);background:var(--ys);border-radius:8px;padding:1px 7px;vertical-align:1px}
+.card{box-shadow:0 6px 18px rgba(16,50,143,.06);border-color:#E8EEFA}
+.tile{flex:none;width:172px;text-align:left;padding:6px 6px 10px;border-radius:22px}
+.tile-img{height:100px;overflow:hidden;border-radius:17px;position:relative}
+.tile-stk{position:absolute;left:6px;bottom:6px;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.92);border-radius:14px;padding:2px 8px 2px 3px}
+.stk{display:inline-flex}
+.stk>span{border-radius:50%;box-shadow:0 0 0 2px #fff;overflow:hidden;display:inline-block}
+.stk>span+span{margin-left:-7px}
+.stk-n{font-size:10.5px;font-weight:800;color:var(--n)}
+/* การ์ด "กรุงเทพฯ ตอนนี้" */
+.pulse{position:relative;display:block;width:100%;height:206px;border-radius:26px;overflow:hidden;text-align:left;color:#fff;padding:16px 18px;box-sizing:border-box;background:radial-gradient(120% 90% at 85% 0%,#2f5fc4 0%,#163a9e 45%,#0d2470 100%);box-shadow:0 14px 30px rgba(16,50,143,.28)}
+.pulse-map{position:absolute;inset:0;width:100%;height:100%}
+.spot{position:absolute;width:7px;height:7px;margin:-3.5px;border-radius:50%;background:var(--y);box-shadow:0 0 10px rgba(255,214,91,.8)}
+.spot::after{content:'';position:absolute;inset:-2px;border-radius:50%;border:1.5px solid rgba(255,214,91,.8);animation:spot 2.6s ease-out infinite;animation-delay:inherit}
+@keyframes spot{0%{transform:scale(1);opacity:.9}100%{transform:scale(5.5);opacity:0}}
+.pulse>span{position:relative;display:flex}
+.pulse-top{align-items:center;gap:7px;font-size:12px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;opacity:.92}
+.live{width:8px;height:8px;border-radius:50%;background:var(--y);box-shadow:0 0 0 0 rgba(255,214,91,.7);animation:live 1.6s infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 rgba(255,214,91,.7)}100%{box-shadow:0 0 0 9px rgba(255,214,91,0)}}
+.pulse-big{align-items:baseline;gap:8px;margin-top:6px}
+.pulse-big b{font-family:'Plus Jakarta Sans',sans-serif;font-size:40px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.pulse-big span{font-size:13px;font-weight:600;opacity:.9;max-width:150px;line-height:1.25}
+.pulse-tick{align-items:center;gap:9px;margin-top:12px;background:rgba(255,255,255,.13);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:7px 10px;max-width:66%}
+.pulse-tick.in{animation:tick .5s ease}
+@keyframes tick{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pulse-foot{position:absolute!important;left:18px;right:14px;bottom:12px;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;opacity:.95}
+.pulse-go{background:var(--y);color:var(--n);font-weight:800;font-size:12px;border-radius:14px;padding:6px 12px}
+.hm-av{border-radius:50%;box-shadow:0 0 0 3px var(--ys);flex:none;display:block;line-height:0}
+/* เพื่อนกำลังจะไป */
+.fg-row{margin-top:10px;overflow-x:auto;gap:12px;align-items:flex-start}
+.fg{flex:none;width:84px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px}
+.fg-ring{position:relative;padding:3px;border-radius:50%;background:conic-gradient(var(--y),var(--b),var(--y));line-height:0}
+.fg-ring>img,.fg-ring>span:first-child{box-shadow:0 0 0 2.5px #fff;border-radius:50%}
+.fg-vb{position:absolute;right:-2px;bottom:-1px;background:#fff;border-radius:50%;line-height:0;padding:1px}
+.fg-vb .vb{margin:0}
+.fg b{font-size:12.5px;margin-top:6px}
+.fg span[data-ugc]{font-size:10.5px;color:var(--mu);line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fg-day{font-size:10px;font-weight:800;color:var(--yt);background:var(--ys);border-radius:8px;padding:1px 6px;margin-top:3px}
+.vnudge{display:flex;align-items:center;gap:12px;margin:14px 20px 0;width:calc(100% - 40px);border-radius:20px;padding:12px 14px;background:var(--l);border:1.5px solid #D6E1F8}
+.vnudge-i{width:40px;height:40px;border-radius:14px;background:var(--b);display:flex;align-items:center;justify-content:center;flex:none}
+/* ความปลอดภัย */
+.safe{display:flex;align-items:center;gap:12px;background:#F3F6FD;border:1px solid #DCE5F8;border-radius:16px;padding:11px 12px;width:100%;box-sizing:border-box;text-align:left}
+.safe b{display:block;font-size:13.5px}
+.safe span span{display:block;font-size:12px;color:var(--mu);margin-top:1px;line-height:1.4}
+.safe-i{width:36px;height:36px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.dm-more{width:40px;height:40px;border-radius:20px;background:var(--l);font-size:20px;font-weight:800;flex:none}
+.s-card{display:flex;gap:12px;margin:12px 20px 0;padding:14px;border-radius:18px;border:1.5px solid var(--bd)}
+.s-card b{display:block;font-size:14.5px}
+.s-card .mu{display:block;font-size:12.5px;margin-top:3px;line-height:1.5}
+.s-i{width:40px;height:40px;border-radius:14px;background:var(--l);display:flex;align-items:center;justify-content:center;flex:none}
+.s-sos{margin:16px 20px 0;padding:14px;border-radius:18px;background:var(--ys);color:var(--yt)}
+.s-num{flex:1;background:#fff;border-radius:14px;padding:8px;text-align:center;text-decoration:none;color:var(--n)}
+.s-num b{display:block;font-size:18px}
+.s-num span{font-size:10.5px;color:var(--mu);font-weight:600}
+#ovl{z-index:40;animation:fadein .2s}
+#ovl>div{animation:sheetup .25s ease}
+@keyframes fadein{from{opacity:0}}
+@keyframes sheetup{from{transform:translateY(40px)}}
+/* หน้ายืนยันตัวตน */
+.v-hero,.v-done{width:96px;height:96px;margin:34px auto 0;border-radius:32px;background:linear-gradient(140deg,#5B88D6,#10328F);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(16,50,143,.25)}
+.v-done{background:none;box-shadow:none;animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+.v-list{margin:22px 20px 0;display:flex;flex-direction:column;gap:12px}
+.v-li{display:flex;gap:12px;align-items:flex-start}
+.v-li b{display:block;font-size:14.5px}
+.v-li .mu{display:block;font-size:12.5px;margin-top:2px}
+.v-n{width:28px;height:28px;border-radius:14px;background:var(--ys);color:var(--yt);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex:none}
+.v-scan{position:relative;margin:18px 20px 0;height:220px;border-radius:24px;background:#0d1a4a;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.v-card{width:240px;height:150px;border-radius:14px;background:linear-gradient(135deg,#eef3ff,#d6e1f8);display:flex;gap:14px;padding:18px;box-sizing:border-box}
+.v-card.passport{width:170px;height:200px;flex-direction:column;align-items:center;background:linear-gradient(160deg,#2a4da8,#10328f)}
+.v-photo{width:62px;height:76px;border-radius:8px;background:#b9c9ee;flex:none}
+.v-lines{flex:1;display:flex;flex-direction:column;gap:9px;padding-top:6px;width:100%}
+.v-lines i{display:block;height:8px;border-radius:4px;background:#b9c9ee}
+.v-c{position:absolute;width:26px;height:26px;border:3px solid var(--y)}
+.v-c.tl{left:34px;top:24px;border-right:0;border-bottom:0;border-radius:10px 0 0 0}.v-c.tr{right:34px;top:24px;border-left:0;border-bottom:0;border-radius:0 10px 0 0}
+.v-c.bl{left:34px;bottom:24px;border-right:0;border-top:0;border-radius:0 0 0 10px}.v-c.br{right:34px;bottom:24px;border-left:0;border-top:0;border-radius:0 0 10px 0}
+.v-beam{position:absolute;left:30px;right:30px;height:3px;top:30px;background:var(--y);box-shadow:0 0 16px var(--y);opacity:0}
+.v-scan.go .v-beam{opacity:1;animation:beam 1s ease-in-out infinite alternate}
+@keyframes beam{to{top:186px}}
+.v-face{position:relative;width:210px;height:210px;margin:24px auto 0;display:flex;align-items:center;justify-content:center}
+.v-head{width:160px;height:160px;border-radius:50%;overflow:hidden;background:var(--ys);display:flex;align-items:flex-end;justify-content:center}
+.v-head img{width:100%;height:100%;object-fit:cover}
+.v-ring{position:absolute;inset:0;border-radius:50%;border:4px solid var(--bd)}
+.v-face.go .v-ring{border-color:var(--b);border-top-color:var(--y);animation:spin 1s linear infinite}
+.v-face.go .r2{inset:-10px;border:2px solid rgba(91,136,214,.3);animation:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spot::after,.live,.v-beam,.v-ring,.pulse-tick.in{animation:none!important}}
+
+/* ── โปรไฟล์คนอื่น */
+.pp-cover{height:120px;background:radial-gradient(120% 120% at 20% 0%,var(--pc) 0%,#5B88D6 60%,#10328F 100%);position:relative}
+.pp-btn{width:40px;height:40px;border-radius:20px;background:rgba(255,255,255,.85);font-size:22px;backdrop-filter:blur(6px)}
+.pp-head{margin-top:-56px;text-align:center;position:relative}
+.pp-av{display:inline-block;padding:4px;background:#fff;border-radius:50%;line-height:0;box-shadow:0 10px 26px rgba(16,50,143,.18);view-transition-name:pav}
+.pp-name{font-size:26px;font-weight:800;margin-top:10px}
+.pp-chip{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;border-radius:10px;padding:3px 9px}
+.pp-chip.ok{background:var(--l);color:var(--b)}
+.pp-chip.warn{background:var(--ys);color:var(--yt)}
+.pp-bio{margin:12px 28px 0}
+.pp-bio .ugc-tr{justify-content:center}
+.pp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 20px 0}
+.pp-stats div{background:#F5F8FE;border-radius:16px;padding:10px 6px}
+.pp-stats b{display:block;font-size:17px}
+.pp-stats span{font-size:11px;color:var(--mu);font-weight:600}
+.who-row{display:flex;gap:10px;overflow-x:auto;margin-top:10px;padding-bottom:2px}
+.who{flex:none;width:58px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:700}
+.who-av{position:relative;line-height:0;border-radius:50%}
+.who-n{width:50px;height:50px;border-radius:25px;background:var(--l);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--b);line-height:1}
+.pname{font:inherit;font-weight:inherit;text-align:left;padding:0}
+.evhero{view-transition-name:hero}
+/* ── การเปลี่ยนหน้า */
+#scr{view-transition-name:scr}
+::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.22,.8,.24,1)}
+html[data-nav=fwd]::view-transition-old(scr){animation:vt-out .38s cubic-bezier(.4,0,.2,1) both}
+html[data-nav=fwd]::view-transition-new(scr){animation:vt-in .42s cubic-bezier(.22,.8,.24,1) both}
+html[data-nav=back]::view-transition-old(scr){animation:vt-in .36s cubic-bezier(.4,0,.2,1) reverse both}
+html[data-nav=back]::view-transition-new(scr){animation:vt-out .4s cubic-bezier(.22,.8,.24,1) reverse both}
+@keyframes vt-in{from{transform:translateX(42px);opacity:0}}
+@keyframes vt-out{to{transform:translateX(-24px);opacity:0}}
+::view-transition-image-pair(hero),::view-transition-image-pair(pav){isolation:auto}
+::view-transition-old(hero),::view-transition-new(hero),::view-transition-old(pav),::view-transition-new(pav){animation:none;mix-blend-mode:normal;height:100%;object-fit:cover;overflow:clip}
+#scr.nav-fwd{animation:vt-in .35s cubic-bezier(.22,.8,.24,1)}
+#scr.nav-back{animation:vt-back .3s cubic-bezier(.22,.8,.24,1)}
+@keyframes vt-back{from{transform:translateX(-30px);opacity:0}}
+@media (prefers-reduced-motion:reduce){#scr.nav-fwd,#scr.nav-back{animation:none}}
+.fg-p,.fg-e{display:flex;flex-direction:column;align-items:center;gap:1px;text-align:center}
+.fg-e span[data-ugc]{font-size:10.5px;color:var(--mu);line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+
+/* ── Home สไตล์ใหม่ (ตามไฟล์ตัวอย่าง): หัวสีตามช่วงเวลา · การ์ดภาพเต็มใบ · ชิปจุดสี · ไทม์ไลน์ */
+.hm .hmscroll{display:flex;gap:12px;overflow-x:auto;padding:2px 20px 4px;scroll-snap-type:x mandatory;scroll-padding:0 20px;scrollbar-width:none}
+.hm .hmscroll::-webkit-scrollbar{display:none}
+.hm .hmscroll>*{scroll-snap-align:start}
+.hmtile{position:relative;flex:none;border-radius:24px;overflow:hidden;text-align:left;color:#fff;padding:0}
+.hmtile>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.hmtile:hover>img{transform:scale(1.05)}
+.hmshade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,40,0) 38%,rgba(8,14,40,.84))}
+.hmcat{position:absolute;left:10px;top:10px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.92);color:#10328F;font-size:11px;font-weight:700;padding:5px 10px;border-radius:12px}
+.hmcat i{width:7px;height:7px;border-radius:4px}
+.hmin{position:absolute;right:10px;top:10px;background:var(--y);color:#10328F;font-size:11px;font-weight:700;padding:5px 9px;border-radius:12px}
+.hmtx{position:absolute;left:14px;right:14px;bottom:14px;display:flex;flex-direction:column;gap:3px}
+.hmtx b{font-family:'Plus Jakarta Sans','Noto Sans Thai',sans-serif;font-size:16px;line-height:1.2;letter-spacing:-.01em}
+.hmtx>span{font-size:11.5px;opacity:.9}
+.hmtx .hmstk{display:flex;align-items:center;gap:5px;margin-top:6px;opacity:1}
+.hmtx .stk>span{box-shadow:0 0 0 2px rgba(8,14,40,.6)}
+.hmtx .stk-n{color:#fff}
+.hmchip{flex:none;display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;background:#fff;border:1.5px solid var(--bd)}
+.hmchip i{width:8px;height:8px;border-radius:4px}
+.hmchip.on{background:var(--n);color:#fff;border-color:var(--n)}
+.hmsec{display:flex;justify-content:space-between;align-items:baseline;padding:0 20px;margin:28px 0 12px}
+.hmsec h2{margin:0;font-size:19px;font-weight:800}
+.hmsec button{font-size:13px;font-weight:600;color:var(--b)}
+.hmk{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:14px;display:block}
+.hm-me{position:relative;border-radius:21px;flex:none;line-height:0}
+.hm-me .fg-vb{right:-3px;bottom:-3px}
+.hm .fg-row{margin-top:0}
+.hm .vnudge{margin-top:18px;background:#fff;box-shadow:0 6px 20px rgba(16,50,143,.08)}
+@media (prefers-reduced-motion:reduce){.hmtile>img{transition:none}}
+/* ── เข้าหน้ากิจกรรม: ภาพขยายออกจากการ์ด + เนื้อหาลอยขึ้น + ภาพซูมช้า ๆ (ตามไฟล์ตัวอย่าง) */
+.evhero{overflow:hidden;border-radius:24px}
+.evhero img{animation:evkb 26s ease-in-out infinite alternate;animation-delay:var(--kb,0s)}
+@keyframes evkb{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-2%,-3%)}}
+#scr.ev-enter .evhero{animation:evzoom .75s cubic-bezier(.2,.8,.2,1) both}
+@keyframes evzoom{from{clip-path:inset(16% 6% 32% 6% round 24px)}to{clip-path:inset(0 0 0 0 round 24px)}}
+#scr.ev-enter .evbody>*:not(:first-child){animation:evup .75s cubic-bezier(.2,.8,.2,1) both}
+#scr.ev-enter .evbody>:nth-child(2){animation-delay:.12s}#scr.ev-enter .evbody>:nth-child(3){animation-delay:.18s}
+#scr.ev-enter .evbody>:nth-child(4){animation-delay:.24s}#scr.ev-enter .evbody>:nth-child(n+5){animation-delay:.3s}
+@keyframes evup{from{transform:translateY(50px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.evhero img,#scr.ev-enter .evhero,#scr.ev-enter .evbody>*{animation:none!important}}
+
+/* แถวเลื่อนแนวนอน: ลากด้วยเมาส์ได้ (บนมือถือปัดได้ตามปกติ) */
+@media (hover:hover) and (pointer:fine){.hmscroll,.fg-row,.who-row,.hscroll{cursor:grab}}
+.dragging{scroll-snap-type:none!important;cursor:grabbing!important;user-select:none}
+.dragging *{pointer-events:none}
 :focus-visible {
   outline: 3px solid var(--y);
   outline-offset: 2px;
@@ -767,9 +1018,10 @@ const CHAT_TEXT = {
   groupSeed: [
     ['Ploy', 'เจอกันหน้าทางเข้านะ', '10:02'],
     ['Lisa', 'อย่าลืมพกน้ำมาด้วยน้า', '10:05'],
+    ['Emma', 'I’ll be in a yellow cap, come say hi!', '10:06'],
     ['Beam', 'อีก 5 นาทีถึง', '10:08'],
   ],
-  dmHello: (title) => 'สวัสดี! สนใจไป ' + title + ' ด้วยกันไหม?',
+  dmHello: (title, who) => ({ en: 'Hi! Want to go to ' + title + ' together?', ja: 'こんにちは！' + title + 'に一緒に行きませんか？' })[personLang(who)] || 'สวัสดี! สนใจไป ' + title + ' ด้วยกันไหม?',
   welcome: 'ยินดีต้อนรับนะ เจอกันที่งาน!',
   replies: ['ได้เลย 👍', 'โอเค เจอกันนะ', 'ขอบคุณที่บอกนะ', 'ถึงแล้ว รออยู่หน้าทางเข้า'],
   clubHello: (name) => 'สวัสดีค่ะ ยินดีต้อนรับสู่ ' + name + ' 👋 สอบถามเรื่องกิจกรรมได้เลยนะคะ',
@@ -816,10 +1068,10 @@ const QUIZ = [
 
 // ── TOUR — ทัวร์แนะนำการใช้งานหน้า Home ครั้งแรก (sel = จุดที่ไฮไลต์)
 const TOUR = [
-  { sel: '[data-tour="picks"]', title: 'Personalized for you', text: 'กิจกรรมที่ตรงกับคำตอบของคุณ แก้คำตอบได้ทุกเมื่อในหน้า Settings' },
+  { sel: '[data-tour="picks"]', title: 'Personalized for you', text: 'กิจกรรมที่ตรงกับคำตอบของคุณ แก้คำตอบได้ทุกเมื่อในหน้าตั้งค่า' },
   { sel: '[data-tour="search"]', title: 'Search everything', text: 'ค้นหากิจกรรม สถานที่ และคลับ ลองพิมพ์ “yoga” หรือ “Lumpini” ดูสิ' },
   { sel: '[data-tour="cats"]', title: 'Browse by category', text: 'กดหมวดเพื่อกรองกิจกรรม หมวดที่คุณเลือกไว้จะขึ้นก่อน' },
-  { sel: '#nav [data-tab="schedule"]', title: 'Your plan lives here', text: 'การจอง ตั๋ว เส้นทาง และแชทกลุ่ม อยู่ที่ My Schedule ทั้งหมด' },
+  { sel: '#nav [data-tab="schedule"]', title: 'Your plan lives here', text: 'การจอง ตั๋ว เส้นทาง และแชทกลุ่ม อยู่ที่แผนของฉันทั้งหมด' },
   { sel: '#nav [data-tab="community"]', title: 'Find people to go with', text: 'โพสต์หาเพื่อนไปด้วย เข้าร่วมแผนของคนอื่น และติดตามคลับ' },
 ];
 
@@ -952,18 +1204,24 @@ const S = {
   posts: [
     { id: 1, name: 'Lisa', color: '#A8D8F0', time: '12 min ago', type: 'buddy', act: 'fun',
       text: 'อยากไปวิ่งแต่ไม่มีเพื่อนไปด้วย มีใครสนใจไปด้วยกันบ้าง' },
+    { id: 11, name: 'Emma', color: '#A8D8F0', time: '40 min ago', type: 'buddy', act: 'boul',
+      text: 'New in Bangkok and looking for a bouldering buddy this week. Total beginner here!' },
     { id: 2, name: 'Rose', color: '#FFB6D0', time: '1 hr ago', type: 'buddy', act: 'boul',
       text: 'หาเพื่อนไป Climbing ด้วยกัน #มือใหม่' },
     { id: 3, name: 'Mint', color: '#C9E8B8', time: '3 hr ago', type: 'share', act: 'cyc',
       text: 'เพิ่งปั่นจักรยานกลับมา บรรยากาศดีมาก อากาศเย็นสบาย' },
     { id: 4, name: 'Jisoo', color: '#FFE680', time: '5 hr ago', type: 'buddy', act: 'pil',
       text: 'ใครอยากลอง Reformer Pilates ครั้งแรกด้วยกันบ้าง' },
+    { id: 12, name: 'Yuki', color: '#FFB6D0', time: '5 hr ago', type: 'buddy', act: 'yoga',
+      text: '土曜日のヨガ、一緒に行ける人いますか？タイ語はまだ少ししか話せません。' },
     { id: 5, name: 'Ton', color: '#B7A6F0', time: '6 hr ago', type: 'buddy', act: 'padel2',
       text: 'ขาดอีก 1 คนสำหรับ Padel Mixer Night ใครว่างมาเลย!' },
     { id: 6, name: 'Pim', color: '#F5B98A', time: '8 hr ago', type: 'buddy', act: 'erawan',
       text: 'ไปเอราวัณ 1 พ.ย. ใครไปด้วยบ้าง รถตู้ยังมีที่ว่าง' },
     { id: 7, name: 'Nam', color: '#9FD8E8', time: 'Yesterday', type: 'share', act: 'yoga2',
       text: 'Sunset Yin ที่ Studio K ดีมาก ผ่อนคลายสุด ๆ หลังทำงานมาทั้งสัปดาห์' },
+    { id: 13, name: 'Daniel', color: '#B7A6F0', time: 'Yesterday', type: 'share', act: 'muay',
+      text: 'First Muay Thai class done. Sore everywhere, but the coaches were amazing and so patient.' },
     { id: 8, name: 'Beam', color: '#8FD3C7', time: 'Yesterday', type: 'buddy', act: 'muay',
       text: 'คลาสมวยไทยครั้งแรกเสาร์นี้ ตื่นเต้นมาก ใครไปด้วยกันบ้าง' },
     { id: 9, name: 'Champ', color: '#FFE680', time: 'Yesterday', type: 'buddy', act: 'run',
@@ -996,6 +1254,8 @@ const S = {
   quizFrom: null,
   tourStep: null, // ลำดับทัวร์ที่กำลังแสดง (null = ไม่แสดง)
   toured: lsGet('vybe.toured', false),
+  onboarded: lsGet('vybe.onboarded', false), // ผ่านขั้นตอนผู้ใช้ใหม่แล้ว (ตั้งค่าโปรไฟล์ · คำถาม · ซิงก์รายชื่อ)
+  loggedIn: lsGet('vybe.loggedIn', false), // ยังเข้าสู่ระบบอยู่ เปิดแอปครั้งต่อไปไป Home ได้เลย
   etab: 'details', // แท็บในหน้ารายละเอียดกิจกรรม
   postType: 'buddy',
   addPlan: true,
@@ -1008,14 +1268,14 @@ const S = {
   pay: null, // สถานะหน้าชำระเงิน (สร้างใหม่ทุกครั้งที่เปิด ดู resetPay)
   lastRef: null,
   qrStart: 0,
-  toggles: { sync: true, alerts: true, clubs: true, calendar: false },
+  toggles: { sync: true, alerts: true, clubs: true, calendar: false, demo: false }, // demo = Presentation mode (ตัวสลับช่วงในห้อง)
   stack: [],
   tab: 'home',
 };
 
 // หน้าที่แสดงเต็มจอ (ไม่มีแถบเมนูล่าง)
 const FULL = [
-  'setup', 'quiz',
+  'setup', 'quiz', 'room', 'verify', 'safety', 'person',
   'signup', 'otp', 'sync', 'friends', 'event', 'notif', 'replan', 'recap', 'compare', 'payment',
   'newpost', 'club', 'settings', 'route', 'chat', 'buddypost', 'postdetail', 'saved', 'calendar',
   'inbox', 'payqr', 'processing', 'receipt', 'ticket', 'payments',
@@ -1194,8 +1454,8 @@ const actRow = (id) => {
 // การ์ดกิจกรรมแบบแนวนอน (Home)
 const actTile = (id, sub) => {
   const a = A[id];
-  return `<button data-go="event:${id}" class="card" style="flex:none;width:168px;text-align:left;padding:6px 6px 10px"><div style="height:92px;overflow:hidden;border-radius:16px;position:relative">${imgSlot(id, 160, 16, 'HOME › card · ' + a.title, 92)}<span class="tag" style="position:absolute;left:6px;top:6px;background:#fff">${a.cat}</span></div>
-<b style="font-size:13px;display:block;margin:8px 4px 2px">${a.title}</b><span class="mu" style="font-size:11px;margin:0 4px;display:block">${sub || a.day + ' · ' + a.going + ' going'}</span></button>`;
+  return `<button data-go="event:${id}" class="card tile"><div class="tile-img">${imgSlot(id, 160, 17, 'HOME › card · ' + a.title, 100)}<span class="tag" style="position:absolute;left:6px;top:6px;background:#fff">${a.cat}</span><span class="tile-stk">${goingStack(id)}</span></div>
+<b style="font-size:13px;display:block;margin:8px 4px 2px;line-height:1.3">${a.title}</b><span class="mu" style="font-size:11px;margin:0 4px;display:block">${sub || a.day + ' · ' + a.going + ' going'}</span></button>`;
 };
 
 // การ์ดกิจกรรมขนาดเล็กที่แนบในโพสต์/แชท
@@ -1253,8 +1513,8 @@ const catChips = () =>
 
 const bubble = (m) =>
   m[0] == 'You'
-    ? `<div style="display:flex;justify-content:flex-end;margin:8px 20px 0"><div style="background:var(--y);border-radius:18px 18px 4px 18px;padding:8px 14px;max-width:75%;font-size:14px">${m[1]}<div style="font-size:9px;text-align:right">${m[2]}</div></div></div>`
-    : `<div style="display:flex;margin:8px 20px 0"><div style="background:var(--l);border-radius:18px 18px 18px 4px;padding:8px 14px;max-width:75%;font-size:14px"><b style="font-size:11px;display:block">${m[0]}</b>${m[1]}<div style="font-size:9px;color:var(--mu)">${m[2]}</div></div></div>`;
+    ? `<div style="display:flex;justify-content:flex-end;margin:8px 20px 0"><div data-ugc style="background:var(--y);border-radius:18px 18px 4px 18px;padding:8px 14px;max-width:75%;font-size:14px">${m[1]}<div style="font-size:9px;text-align:right">${m[2]}</div></div></div>`
+    : `<div style="display:flex;margin:8px 20px 0"><div style="background:var(--l);border-radius:18px 18px 18px 4px;padding:8px 14px;max-width:75%;font-size:14px"><button ${toPerson(m[0])} class="pname" style="font-size:11px;display:block;font-weight:800">${m[0]}${vb(m[0], 11)}</button>${ugc(m[1])}<div style="font-size:9px;color:var(--mu)">${m[2]}</div></div></div>`;
 
 // ── แชท: id แบบ 'run' = แชทกลุ่มกิจกรรม | 'dm~ชื่อ~กิจกรรม' = แชทส่วนตัว | 'club~clubId' = แชทกับคลับ
 const chatKind = (id) => (id.startsWith('dm~') ? 'dm' : id.startsWith('club~') ? 'club' : 'group');
@@ -1264,7 +1524,7 @@ const getChat = (id) => {
     pr = id.split('~');
   S.chats[id] =
     k == 'dm'
-      ? [[pr[1], CHAT_TEXT.dmHello(A[pr[2]].title), hhmm()]]
+      ? [[pr[1], CHAT_TEXT.dmHello(A[pr[2]].title, pr[1]), hhmm()]]
       : k == 'club'
         ? [[CLUB[pr[1]].name, CHAT_TEXT.clubHello(CLUB[pr[1]].name), '09:00']]
         : CHAT_TEXT.groupSeed.map((m) => m.slice());
@@ -1339,15 +1599,15 @@ const postCard = (p, compact) => {
               ? `<button disabled class="lb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px;opacity:.7">Requested…</button>`
               : `<button data-a="pj:${p.id}" class="bb" style="flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px">Join</button>`
       }<button data-go="chat:dm~${p.name}~${p.act}" style="background:var(--ys);color:var(--yt);flex:1;height:38px;border-radius:19px;font-weight:700;font-size:13px">Chat</button></div>`;
-  return `<div style="margin:12px 20px 0;border:1.5px solid var(--bd);border-radius:22px;padding:12px"><div class="row">${p.mine ? `<button data-tab="profile" class="row" style="flex:1;gap:8px;text-align:left">${avatar(p.color, 36, p.name)}<span><b>${p.name}</b><span class="mu" style="font-size:11px;display:block">${p.time}</span></span></button>` : `${avatar(p.color, 36, p.name)}<div style="flex:1"><b>${p.name}</b><div class="mu" style="font-size:11px">${p.time}</div></div>`}<span class="tag">${p.type == 'buddy' ? 'Looking for buddy' : 'Shared'}</span></div>
-<div style="margin:8px 0;font-size:14px">${p.text}</div>${compact ? '' : actMini(p.act, 'COMMUNITY › attached activity')}${actions}</div>`;
+  return `<div style="margin:12px 20px 0;border:1.5px solid var(--bd);border-radius:22px;padding:12px"><div class="row">${p.mine ? `<button data-tab="profile" class="row" style="flex:1;gap:8px;text-align:left">${avatar(p.color, 36, p.name)}<span><b>${p.name}</b>${vb(p.name)}<span class="mu" style="font-size:11px;display:block">${p.time}</span></span></button>` : `<button data-go="person:${p.name}" class="row" style="flex:1;gap:10px;text-align:left">${avatar(p.color, 36, p.name)}<span style="flex:1"><b>${p.name}</b>${vb(p.name)} ${fromTag(p.name)}<span class="mu" style="font-size:11px;display:block">${p.time}</span></span></button>`}<span class="tag">${p.type == 'buddy' ? 'Looking for buddy' : 'Shared'}</span></div>
+${ugc(p.text, 'margin:8px 0 2px;font-size:14px')}<div style="height:8px"></div>${compact ? '' : actMini(p.act, 'COMMUNITY › attached activity')}${actions}</div>`;
 };
 
 const friendRow = (f, i, linkToActivity) =>
-  `<div class="row" style="margin:0 20px;padding:10px 0;border-bottom:1px solid #EEF1FA">${avatar(f.color, 40, f.name)}<${linkToActivity ? `button data-go="event:${f.going}"` : 'div'} style="flex:1;text-align:left"><b style="font-size:14px">${f.name}</b><div class="mu" style="font-size:11px">${friendLine(f)}</div></${linkToActivity ? 'button' : 'div'}><button data-a="conn:${i}" class="${S.connected[i] ? 'lb' : 'nb'}" style="width:92px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${S.connected[i] ? 'Added' : 'Connect'}</button></div>`;
+  `<div class="row" style="margin:0 20px;padding:10px 0;border-bottom:1px solid #EEF1FA"><button data-go="person:${f.name}" aria-label="${f.name}" style="line-height:0;border-radius:50%">${avatar(f.color, 40, f.name)}</button><${linkToActivity ? `button data-go="event:${f.going}"` : 'div'} style="flex:1;text-align:left"><b style="font-size:14px">${f.name}</b>${vb(f.name)}<div class="mu" style="font-size:11px">${friendLine(f)}</div></${linkToActivity ? 'button' : 'div'}><button data-a="conn:${i}" class="${S.connected[i] ? 'lb' : 'nb'}" style="width:92px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${S.connected[i] ? 'Added' : 'Connect'}</button></div>`;
 
 const clubRow = (c) =>
-  `<div class="card row" style="margin:10px 20px 0;gap:12px"><button data-go="club:${c.id}" class="row" style="flex:1;text-align:left;gap:12px">${clubLogo(c.id, 56)}<span><b style="font-size:14px;display:block">${c.name}</b><span class="mu" style="font-size:11px">${c.cat} · ${c.members} members · ${clubActivities(c.id).length} upcoming</span></span></button><button data-a="fol:${c.id}" class="${S.following[c.id] ? 'lb' : 'nb'}" style="width:84px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${S.following[c.id] ? 'Following' : 'Follow'}</button></div>`;
+  `<div class="card row" style="margin:10px 20px 0;gap:12px"><button data-go="club:${c.id}" class="row" style="flex:1;text-align:left;gap:12px">${clubLogo(c.id, 56)}<span><b style="font-size:14px;display:block">${c.name}${cvb(c.id)}</b><span class="mu" style="font-size:11px">${c.cat} · ${c.members} members · ${clubActivities(c.id).length} upcoming</span></span></button><button data-a="fol:${c.id}" class="${S.following[c.id] ? 'lb' : 'nb'}" style="width:84px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${S.following[c.id] ? 'Following' : 'Follow'}</button></div>`;
 
 const communityList = () => {
   const q = (S.cq || '').toLowerCase(),
@@ -1369,6 +1629,7 @@ const communityList = () => {
     S.posts
       .filter(
         (p) =>
+          !S.blocked[p.name] &&
           (t != 'Looking for buddy' || p.type == 'buddy') &&
           (!q || (p.name + p.text + A[p.act].title).toLowerCase().includes(q)),
       )
@@ -1502,21 +1763,21 @@ const completePayment = (id) => {
 
 const SC = {
   // ── ONBOARDING — สมัครด้วยเบอร์โทร / OTP / ซิงก์รายชื่อ / เพื่อนที่พบ
-  signup: () => `<div style="text-align:center;padding-top:110px">${logo(72)}</div>
+  signup: () => `<div style="position:absolute;right:20px;top:22px">${langToggle()}</div><div style="text-align:center;padding-top:110px">${logo(72)}</div>
 <div style="text-align:center;margin-top:40px;font-weight:700;font-size:18px">Create an account</div>
 <div class="mu" style="text-align:center;font-size:13px;margin:4px 28px 0">Enter your phone number to sign up for this app</div>
 <div class="row" style="margin:20px 28px 0"><div class="inp row" style="width:70px;justify-content:center;font-weight:600">+66</div>
 <input class="inp" aria-label="Phone number" placeholder="08X XXX XXXX" inputmode="tel"></div>
 <div style="margin:12px 28px 0"><button class="btn" data-go="otp" style="background:var(--b);color:#fff">Continue</button></div>
 <div class="mu" style="margin:16px 0;text-align:center;font-size:12px">or</div>
-<div style="margin:0 28px"><button class="btn gr" data-go="setup">Continue with Google</button><button class="btn gr" data-go="setup" style="margin-top:10px">Continue with Apple</button></div>
+<div style="margin:0 28px"><button class="btn gr" data-a="auth">Continue with Google</button><button class="btn gr" data-a="auth" style="margin-top:10px">Continue with Apple</button></div>
 <div class="mu" style="margin:22px 40px 0;text-align:center;font-size:11px">By clicking continue, you agree to our Terms of Service and Privacy Policy</div>`,
   otp: () =>
     back +
     `<h1 class="p" style="font-size:28px;font-weight:800;margin-top:12px;line-height:1.2">Verify your<br>phone number</h1><div class="p mu" style="font-size:13px;margin-top:8px">We sent a 6-digit code to ${USER.phone}</div>
 <div class="p row" style="margin-top:24px;justify-content:space-between">${[4, 2, 7, 1, 9, 0].map((d) => `<input class="inp" aria-label="OTP digit" maxlength="1" value="${d}" style="width:46px;height:56px;text-align:center;font-size:22px;font-weight:700;padding:0">`).join('')}</div>
 <div class="p mu" style="font-size:12px;margin-top:12px">Resend code in 0:30</div>
-<div style="margin:28px 20px 0"><button class="btn y" data-go="setup">Verify and continue</button></div>`,
+<div style="margin:28px 20px 0"><button class="btn y" data-a="auth">Verify and continue</button></div>`,
   sync: () => `<div style="padding-top:60px;display:flex;justify-content:center"></div>
 <h1 style="margin:20px 24px 0;font-size:26px;font-weight:800;line-height:1.2;text-align:center">Find friends on Vybe<br>from your contacts</h1><div style="margin:8px 28px 0">${[
     ['ดูว่าเพื่อนของคุณกำลังจะไปงานหรือกิจกรรมอะไรบ้าง', 'ช่วยให้คุณชวนกันไปได้ง่ายขึ้น'],
@@ -1573,10 +1834,9 @@ ${opts}
   },
 
   home: () => {
-    // หน้า Home: 1) Personalized for you  2) From clubs you follow  3) Upcoming activities
+    // หน้า Home: หัวสีตามช่วงเวลาจริง · ค้นหา · หมวด (จุดสี) · กรุงเทพฯ ตอนนี้ · เพื่อนกำลังจะไป · Personalized · ไปคนเดียว · From clubs · Upcoming แบบไทม์ไลน์
     const f = UPCOMING.filter((i) => S.cat == 'All' || A[i].cat == S.cat),
-      upcoming = f.slice(0, 5), // เรียงวัน/เวลา จาก UPCOMING (ไม่เรียงตาม rating)
-      // ถ้าเลือกหมวดไว้ใน personalized ให้แนะนำเฉพาะหมวดที่เลือกจริง ๆ
+      upcoming = f.slice(0, 6),
       personalizedPool = f.filter((i) => !S.prefs.cats.length || S.prefs.cats.includes(A[i].cat)),
       fromClubs = f.filter((i) => S.following[A[i].club]).slice(0, 8),
       byScore = (loose) =>
@@ -1584,33 +1844,64 @@ ${opts}
           .map((i) => [i, prefScore(A[i], loose)])
           .filter((x) => x[1].s > 1)
           .sort((x, y) => y[1].s - x[1].s);
-
-    // ใช้คำตอบจาก onboarding / Edit preferences แบบเดิม และเติมตัวเลือกใกล้เคียงเมื่อมีน้อย
     let picks = hasPrefs() ? byScore(false).slice(0, 8) : [];
     const exact = picks.length;
-    if (hasPrefs() && exact < 4)
-      picks = picks.concat(byScore(true).filter((x) => !picks.some((p) => p[0] == x[0]))).slice(0, 8);
+    if (hasPrefs() && exact < 4) picks = picks.concat(byScore(true).filter((x) => !picks.some((p) => p[0] == x[0]))).slice(0, 8);
 
+    const hr = new Date().getHours(),
+      glow = HOME_GLOW[hr >= 19 || hr < 4 ? 'night' : hr < 12 ? 'dawn' : hr < 17 ? 'day' : 'dusk'],
+      greet = hr >= 4 && hr < 12 ? 'Good morning' : hr >= 12 && hr < 17 ? 'Good afternoon' : 'Good evening',
+      first = USER.name.split(' ')[0];
+    const chips = ['All', ...S.prefs.cats.filter((c) => CATEGORIES.includes(c)), ...CATEGORIES.filter((c) => !S.prefs.cats.includes(c))]
+      .map((c) => `<button data-a="cat:${c}" class="hmchip ${S.cat == c ? 'on' : ''}">${c == 'All' ? '' : `<i style="background:${catAccent(c)}"></i>`}${c}</button>`)
+      .join('');
+    const note =
+      exact < picks.length
+        ? `<div class="p mu" style="font-size:12px;margin:-6px 0 10px">${exact ? 'มีกิจกรรมที่ตรงทุกข้อ ' + exact + ' รายการ ที่เหลือเป็นกิจกรรมใกล้เคียง' : 'ยังไม่มีกิจกรรมที่ตรงทุกข้อ นี่คือกิจกรรมที่ใกล้เคียงที่สุด'}</div>`
+        : '';
     const picksHtml = hasPrefs()
-      ? picks.length
-        ? `<div data-tour="picks">${section('Personalized for you', `<button data-a="editprefs" style="font-size:13px;font-weight:500">Edit ›</button>`)}${exact < picks.length ? `<div class="p mu" style="font-size:12px;margin-top:2px">${exact ? 'มีกิจกรรมที่ตรงทุกข้อ ' + exact + ' รายการ ที่เหลือเป็นกิจกรรมใกล้เคียง' : 'ยังไม่มีกิจกรรมที่ตรงทุกข้อ นี่คือกิจกรรมที่ใกล้เคียงที่สุด'}</div>` : ''}<div class="p row" style="margin-top:10px;overflow-x:auto;align-items:stretch">${picks.map(([i, r]) => actTile(i, r.why.join(' · ') || A[i].day)).join('')}</div></div>`
-        : `<div data-tour="picks">${section('Personalized for you', `<button data-a="editprefs" style="font-size:13px;font-weight:500">Edit ›</button>`)}<div class="p mu" style="font-size:13px;margin-top:4px">ยังไม่มีกิจกรรมในหมวดนี้ที่ตรงกับคำตอบ ลองเลือกหมวด All หรือแก้คำตอบ</div></div>`
-      : `<div data-tour="picks" style="margin:16px 20px 0;background:var(--ys);border-radius:20px;padding:14px 16px" class="row"><span style="flex:1"><b style="font-size:15px">Get picks made for you</b><span style="display:block;font-size:12px;color:var(--yt)">ตอบคำถามสั้น ๆ 5 ข้อ</span></span><button data-a="editprefs" class="y" style="height:40px;padding:0 16px;border-radius:12px;font-weight:700">Start</button></div>`;
+      ? `<div data-tour="picks">${hmSec('Personalized for you', `<button data-a="editprefs">Edit ›</button>`)}${note}${
+          picks.length
+            ? `<div class="hmscroll">${picks.map(([i, r]) => hmTile(i, r.why.join(' · ') || A[i].day)).join('')}</div>`
+            : `<div class="p mu" style="font-size:13px">ยังไม่มีกิจกรรมในหมวดนี้ที่ตรงกับคำตอบ ลองเลือกหมวด All หรือแก้คำตอบ</div>`
+        }</div>`
+      : `<div data-tour="picks" style="margin:26px 20px 0;background:var(--n);border-radius:24px;padding:18px 18px 16px;color:#fff;position:relative;overflow:hidden"><span style="position:absolute;right:-34px;top:-34px;width:130px;height:130px;border-radius:65px;background:var(--y);opacity:.16"></span><span style="position:absolute;right:30px;bottom:-40px;width:80px;height:80px;border-radius:40px;background:var(--b);opacity:.5"></span><span class="hmk" style="color:var(--y)">Just for you</span><b style="font-size:19px;display:block;margin-top:2px;position:relative">Get picks made for you</b><span style="display:block;font-size:12.5px;opacity:.85;margin-top:3px;position:relative">ตอบคำถามสั้น ๆ 5 ข้อ แล้วเราจะคัดกิจกรรมที่ใช่ให้</span><button data-a="editprefs" class="y" style="margin-top:14px;height:42px;padding:0 20px;border-radius:14px;font-weight:700;position:relative">Start ›</button></div>`;
+    const days = [...new Set(upcoming.map((i) => A[i].date))],
+      timeline = days
+        .map(
+          (d) =>
+            `<div class="p" style="font-size:13px;font-weight:800;margin:6px 0 2px">${d == TODAY ? 'Today · ' : ''}${fmtDay(d)}</div>` +
+            upcoming
+              .filter((i) => A[i].date == d)
+              .map((i) => {
+                const a = A[i];
+                return `<button data-go="event:${i}" class="row" style="width:calc(100% - 40px);margin:0 20px;text-align:left;gap:12px;align-items:stretch"><span style="width:42px;flex:none;padding-top:24px;font-size:13px;font-weight:800">${a.time}</span><span style="width:2px;background:var(--bd);position:relative;flex:none"><i style="position:absolute;left:-4px;top:28px;width:10px;height:10px;border-radius:5px;background:${catAccent(a.cat)};box-shadow:0 0 0 3px #fff"></i></span><span class="row" style="flex:1;min-width:0;gap:12px;margin:6px 0;padding:10px;border:1.5px solid var(--bd);border-radius:18px;background:#fff">${imgSlot(i, 56, 14, 'HOME › upcoming · ' + a.title)}<span style="flex:1;min-width:0"><b style="font-size:14.5px;display:block;line-height:1.25">${a.title}</b><span class="mu" style="font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${a.place} · ${a.duration}</span><span class="row" style="gap:6px;margin-top:4px"><b style="color:#2A4DA8;font-size:13px">${a.priceLabel}</b><span class="tag">${a.tag}</span></span></span>${inPlan(i) ? '<span style="width:28px;height:28px;border-radius:14px;background:var(--b);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none;align-self:center">✓</span>' : ''}</span></button>`;
+              })
+              .join(''),
+        )
+        .join('');
 
     return (
-      `<div class="p row" style="padding-top:26px;justify-content:space-between"><span class="row" style="gap:6px">${logo(38)}</span>${iconBtn('data-go="notif"', 'Notifications', ICON.bell() + badge(unreadCount()))}</div>
-<div class="p mu" style="font-size:13px;margin-top:6px">Good morning,</div>
-<div class="p" style="font-size:28px;font-weight:600">${USER.name}</div>
-<button data-go="discover" data-tour="search" aria-label="Search" class="lb row" style="width:calc(100% - 40px);text-align:left;margin:12px 20px 0;height:46px;border-radius:23px;border:1.5px solid var(--bd);padding:0 5px 0 16px;font-size:13px;color:var(--mu);justify-content:space-between">Search activities, places, clubs…<span class="bb" style="width:36px;height:36px;border-radius:18px;display:flex;align-items:center;justify-content:center">${ICON.search('#fff')}</span></button><div class="p row" data-tour="cats" style="margin-top:12px;overflow-x:auto">${catChips()}</div>` +
+      `<div class="hm" style="padding-bottom:12px"><div style="background:linear-gradient(180deg,${glow}3D 0%,#fff 100%);padding:22px 20px 18px">
+<div class="row" style="justify-content:space-between">${logo(36)}<span class="row" style="gap:8px">${langToggle()}${iconBtn('data-go="notif"', 'Notifications', ICON.bell() + badge(unreadCount()), 'background:#fff')}<button data-tab="profile" aria-label="Profile" class="hm-me">${avatar(USER.color, 42, USER.name)}${S.verified ? `<span class="fg-vb">${vb(USER.name, 14)}</span>` : ''}</button></span></div>
+<div style="margin-top:18px;font-size:13px;font-weight:600;color:var(--mu)">${greet}, ${first}</div>
+<h1 style="font-size:30px;font-weight:800;line-height:1.12;margin-top:4px">What’s your<br>vybe today?</h1>
+<button data-go="discover" data-tour="search" aria-label="Search" class="row" style="width:100%;text-align:left;margin-top:16px;height:50px;border-radius:25px;background:#fff;box-shadow:0 6px 20px rgba(16,50,143,.10);border:1.5px solid var(--bd);padding:0 6px 0 16px;font-size:13px;color:var(--mu);gap:10px">${ICON.search('var(--mu)')}<span style="flex:1">Activities, places, clubs…</span><span class="bb" style="height:38px;padding:0 14px;border-radius:19px;display:flex;align-items:center;font-size:12px;font-weight:700">Explore</span></button></div>
+<div class="hmscroll" data-tour="cats" style="gap:8px">${chips}</div>
+<div style="margin:18px 20px 0">${pulseCard()}</div>` +
+      verifyNudge() +
+      friendsGoing() +
       picksHtml +
+      soloSection(f) +
       (f.length
         ? (fromClubs.length
-            ? section('From clubs you follow', `<button data-go="followedEvents" style="font-size:13px;font-weight:500">View all ›</button>`) +
-              `<div class="p row" style="margin-top:10px;overflow-x:auto;align-items:stretch">${fromClubs.map((i) => actTile(i, A[i].clubName)).join('')}</div>`
+            ? hmSec('From clubs you follow', `<button data-go="followedEvents">View all ›</button>`) +
+              `<div class="hmscroll">${fromClubs.map((i) => hmTile(i, A[i].clubName, 160, 200)).join('')}</div>`
             : '') +
-          section('Upcoming Activities', `<button data-go="discover" style="font-size:13px;font-weight:500">View all ›</button>`) +
-          upcoming.map(actRow).join('')
-        : empty('No activities in this category yet'))
+          hmSec('Upcoming', `<button data-go="discover">View all ›</button>`) +
+          timeline
+        : empty('No activities in this category yet')) +
+      `</div>`
     );
   },
   discover: () =>
@@ -1686,7 +1977,7 @@ followedEvents: () => {
       fv = S.saved.includes(id),
       fol = S.following[a.club],
       k = ACTIVITIES.findIndex((x) => x.id == id),
-      revs = [REVIEWS[k % REVIEWS.length], REVIEWS[(k + 3) % REVIEWS.length]],
+      revs = reviewsFor(id),
       pi = planItem(id),
       buddyPosts = S.posts.filter((p) => p.act == id && p.type == 'buddy'),
       end = toMin(a.time) + a.mins,
@@ -1722,7 +2013,7 @@ followedEvents: () => {
             ? buddyPosts
                 .map(
                   (p) =>
-                    `<div class="row" style="align-items:flex-start;gap:12px">${avatar(p.color, 36, p.name)}<div style="flex:1;min-width:0"><div style="font-size:14px"><b style="font-weight:600">${p.name}</b> <span class="mu" style="font-size:12px">· ${p.time}</span></div><div style="font-size:14px;line-height:1.5;margin-top:2px">${p.text}</div>${
+                    `<div class="row" style="align-items:flex-start;gap:12px"><button data-go="person:${p.name}" aria-label="${p.name}" style="line-height:0;border-radius:50%">${avatar(p.color, 36, p.name)}</button><div style="flex:1;min-width:0"><div style="font-size:14px"><button data-go="person:${p.name}" class="pname"><b style="font-weight:600">${p.name}</b></button>${vb(p.name)} ${fromTag(p.name)} <span class="mu" style="font-size:12px">· ${p.time}</span></div>${ugc(p.text, 'font-size:14px;line-height:1.5;margin-top:2px')}${
                       p.mine
                         ? `<button data-go="postdetail:${p.id}" style="margin-top:8px;height:34px;padding:0 14px;border-radius:10px;background:#F1F4FA;font-weight:600;font-size:13px">${p.interested.length} interested ›</button>`
                         : `<div class="row" style="gap:8px;margin-top:8px">${
@@ -1738,18 +2029,20 @@ followedEvents: () => {
             : '<div class="mu" style="font-size:14px">No one is looking yet. Post first and find someone to go with.</div>') +
           `<button data-a="postfor:${id}" style="height:44px;border:1.5px dashed #B9C9EE;border-radius:12px;font-weight:600;font-size:13px">+ Post to find a buddy</button>`
         : tab == 'reviews'
-          ? `<div class="row" style="gap:12px"><b style="font-size:34px;line-height:1">${a.rating.toFixed(1)}</b><span class="mu" style="font-size:12px"><span style="color:#D9A400;font-size:14px;letter-spacing:1px">★★★★★</span><br>${a.reviews} reviews (sample)</span></div>` +
+          ? `<div class="row" style="gap:12px"><b style="font-size:34px;line-height:1">${a.rating.toFixed(1)}</b><span class="mu" style="font-size:12px"><span style="color:#D9A400;font-size:14px;letter-spacing:1px">★★★★★</span><br>${a.reviews} reviews (sample)</span></div><div class="mu" style="font-size:11.5px;margin-top:-4px">${ICON.globe()} ${tx('Reviews stay in the language they were written in', 'รีวิวแสดงในภาษาที่ผู้เขียนใช้ กดดูคำแปลได้')}</div>` +
             revs
               .map(
                 (r, i) =>
-                  `${i ? '<div style="height:1px;background:#EEF1FA"></div>' : ''}<div><div style="font-size:14px"><b style="font-weight:600">${r[0]}</b> <span style="color:#D9A400">★ ${r[1]}</span></div><div class="mu" style="font-size:14px;line-height:1.5;margin-top:2px">${r[2]}</div></div>`,
+                  `${i ? '<div style="height:1px;background:#EEF1FA"></div>' : ''}<div class="row" style="align-items:flex-start;gap:10px"><button data-go="person:${r[0]}" aria-label="${r[0]}" style="line-height:0;border-radius:50%">${avatar(PERSON_COLOR[r[0]] || 'var(--ys)', 34, r[0])}</button><div style="flex:1;min-width:0"><div class="row" style="font-size:14px;gap:5px;flex-wrap:wrap"><button data-go="person:${r[0]}" class="pname"><b style="font-weight:600">${r[0]}</b></button>${vb(r[0])}${fromTag(r[0])}<span style="color:#D9A400;margin-left:auto">★ ${r[1]}</span></div>${ugc(r[2], 'font-size:14px;line-height:1.5;margin-top:2px;color:var(--mu)')}</div></div>`,
               )
               .join('')
           : `<div><b style="font-size:15px">Description</b><p class="mu" style="margin:8px 0 0;font-size:14.5px;line-height:1.72">${a.about}</p></div>` +
+            whoGoing(id) +
             line('level', a.level + ' · ' + (a.indoor ? 'Indoor' : 'Outdoor')) +
             line('user', a.going + ' going · ' + a.solo + ' coming solo') +
             line('star', a.rating.toFixed(1) + ' (' + a.reviews + ' reviews)') +
-            line('tag', a.priceLabel + (a.price ? ' + ฿' + SERVICE_FEE + ' service fee' : ''));
+            line('tag', a.priceLabel + (a.price ? ' + ฿' + SERVICE_FEE + ' service fee' : '')) +
+            safetyStrip(a);
     return `<style>
 /* เพิ่มน้ำหนักตัวอักษรเฉพาะหน้า Activity Details เท่านั้น */
 .evhero>*{width:100%!important;height:220px!important}
@@ -1760,11 +2053,12 @@ followedEvents: () => {
 #scr [role="tab"][aria-selected="true"] { font-weight:800!important; }
 </style>
 <div class="row" style="justify-content:space-between;padding:18px 20px 10px"><button data-a="back" aria-label="Back" style="${sq}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><b style="font-size:17px">Activity Details</b><button data-a="shareev:${id}" aria-label="Share" style="${sq}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M5 13v6h14v-6"/></svg></button></div>
-<div class="p" style="display:flex;flex-direction:column;gap:16px;margin-top:8px">
-<div style="position:relative"><div class="evhero">${imgSlot(id, 350, 24, 'EVENT DETAIL › photo · ' + a.title, 220)}</div><button data-a="fav:${id}" aria-label="Save activity" aria-pressed="${fv}" style="position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:20px;background:#fff;font-size:18px;color:${fv ? 'var(--b)' : 'var(--n)'}">${fv ? '♥' : '♡'}</button></div>
+<div class="p evbody" style="display:flex;flex-direction:column;gap:16px;margin-top:8px">
+<div style="position:relative"><div class="evhero" style="--kb:-${((Date.now() - (S.evT0 || Date.now())) / 1000).toFixed(2)}s">${imgSlot(id, 350, 24, 'EVENT DETAIL › photo · ' + a.title, 220)}</div><button data-a="fav:${id}" aria-label="Save activity" aria-pressed="${fv}" style="position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:20px;background:#fff;font-size:18px;color:${fv ? 'var(--b)' : 'var(--n)'}">${fv ? '♥' : '♡'}</button></div>
 <div class="row" style="gap:10px;flex-wrap:wrap"><h1 style="margin:0;font-size:26px;line-height:1.15;font-weight:700">${a.title}</h1><span style="background:var(--ys);color:var(--yt);font-size:11px;font-weight:700;letter-spacing:.6px;padding:5px 10px;border-radius:10px;text-transform:uppercase">${a.badge || a.cat + ' · ' + a.level}</span></div>
-<div class="row" style="gap:12px;background:#F7F9FD;border:1px solid var(--bd);border-radius:16px;padding:10px 12px"><button data-go="club:${a.club}" class="row" style="gap:10px;flex:1;min-width:0;text-align:left">${clubLogo(a.club, 40)}<span style="min-width:0"><span class="mu" style="display:block;font-size:11px">Hosted by</span><b style="display:block;font-size:14px;font-weight:600;line-height:1.3">${a.clubName}</b><span class="mu" style="display:block;font-size:11px">★ ${c.rating} · ${c.members} members</span></span></button><button data-go="chat:club~${a.club}" aria-label="Ask the club" style="width:38px;height:38px;border-radius:12px;background:var(--ys);color:var(--yt);display:flex;align-items:center;justify-content:center;flex:none">${ICON.chat(18)}</button><button data-a="fol:${a.club}" style="height:38px;padding:0 12px;border-radius:12px;font-size:12px;font-weight:700;flex:none;color:var(--yt);${fol ? 'background:#fff;border:1.5px solid var(--ys)' : 'background:var(--ys);border:1.5px solid var(--y)'}">${fol ? 'Following' : 'Follow'}</button></div>
+<div class="row" style="gap:12px;background:#F7F9FD;border:1px solid var(--bd);border-radius:16px;padding:10px 12px"><button data-go="club:${a.club}" class="row" style="gap:10px;flex:1;min-width:0;text-align:left">${clubLogo(a.club, 40)}<span style="min-width:0"><span class="mu" style="display:block;font-size:11px">Hosted by</span><b style="display:block;font-size:14px;font-weight:600;line-height:1.3">${a.clubName}${cvb(a.club)}</b><span class="mu" style="display:block;font-size:11px">★ ${c.rating} · ${c.members} members</span></span></button><button data-go="chat:club~${a.club}" aria-label="Ask the club" style="width:38px;height:38px;border-radius:12px;background:var(--ys);color:var(--yt);display:flex;align-items:center;justify-content:center;flex:none">${ICON.chat(18)}</button><button data-a="fol:${a.club}" style="height:38px;padding:0 12px;border-radius:12px;font-size:12px;font-weight:700;flex:none;color:var(--yt);${fol ? 'background:#fff;border:1.5px solid var(--ys)' : 'background:var(--ys);border:1.5px solid var(--y)'}">${fol ? 'Following' : 'Follow'}</button></div>
 <div style="display:flex;flex-direction:column;gap:10px">${line('cal', fmtDay(a.date).replace(' ', ', '))}${line('clock', a.time + ' – ' + endLabel + ' (' + a.mins + ' mins)')}${line('pin', a.place + ' · ' + a.area, `<button data-go="route:${id}" style="font-size:13px;font-weight:700;background:var(--ys);color:var(--yt);padding:6px 14px;border-radius:12px">Map</button>`)}</div>
+${roomHint(id)}
 <div role="tablist" class="row" style="border-bottom:1.5px solid var(--bd)">${tabs
       .map(
         (t) =>
@@ -1895,8 +2189,7 @@ ${P.err ? `<div role="alert" style="margin:12px 20px 0;background:#FFECEF;color:
       ? `<div class="nb" style="margin:14px 20px 0;border-radius:24px;padding:16px;background:var(--b);position:relative"><button data-go="ticket:${nx}" aria-label="Open ticket" style="position:absolute;right:14px;top:14px;width:84px;background:#fff;border-radius:14px;padding:8px;text-align:center;color:var(--n)">${qrBox(60, 'Check-in QR')}<div style="font-size:9px;font-weight:700;margin-top:4px">${pi.ref || 'NOT PAID'}</div></button><div style="font-size:11px;font-weight:700;color:var(--ys)">${a.date == TODAY ? 'Today' : 'Next up · ' + a.day}</div>
 <div style="font-size:20px;font-weight:800;color:#fff;margin-top:2px;padding-right:90px">${a.title}</div>
 <div style="font-size:12px;color:#fff;margin-top:2px;padding-right:90px">${a.time} · ${a.place}</div>
-<div class="row" style="margin-top:12px"><button data-go="route:${nx}" class="y" style="padding:9px 18px;border-radius:18px;font-weight:700;font-size:13px">Route</button><button data-go="chat:${nx}" style="padding:9px 18px;border-radius:18px;font-weight:700;font-size:13px;background:rgba(255,255,255,.25);color:#fff">Group chat</button></div>
-<button data-a="finish:${nx}" style="margin-top:10px;color:#fff;font-size:12px;font-weight:600;text-decoration:underline">Checked in · Finish and create Recap</button></div>`
+${todayActions(nx)}</div>`
       : empty('Your plan is empty. Tap + to add an activity.');
     const banners = activeAlerts()
       .map((al) => {
@@ -1918,7 +2211,7 @@ ${P.err ? `<div role="alert" style="margin:12px 20px 0;background:#FFECEF;color:
                   : p.status == 'Booked'
                     ? `<span data-go="ticket:${p.id}" class="lb" style="padding:8px 12px;border-radius:16px;font-size:12px;font-weight:700">Ticket</span>`
                     : '';
-              return `<button data-go="event:${p.id}" class="card row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px">${imgSlot(p.id, 56, 14, 'SCHEDULE › activity thumbnail · ' + e.title)}<span style="flex:1"><b style="font-size:14px;display:block">${e.title}</b><span class="mu" style="font-size:11px">${e.time} · ${e.place}</span><span style="display:block;font-size:12px;margin-top:2px"><span class="tag">${p.status}</span> <b>${e.priceLabel}${p.qty > 1 ? ' × ' + p.qty : ''}</b></span></span>${act}</button>`;
+              return `<button data-go="event:${p.id}" class="card row" style="margin:8px 20px 0;width:calc(100% - 40px);text-align:left;gap:12px">${imgSlot(p.id, 56, 14, 'SCHEDULE › activity thumbnail · ' + e.title)}<span style="flex:1"><b style="font-size:14px;display:block">${e.title}</b><span class="mu" style="font-size:11px">${e.time} · ${e.place}</span><span style="display:block;font-size:12px;margin-top:2px"><span class="tag">${p.status}</span>${p.status != 'Done' && roomAvailable(p.id) ? ' <span class="tag" style="background:var(--b);color:#fff">Room open</span>' : ''} <b>${e.priceLabel}${p.qty > 1 ? ' × ' + p.qty : ''}</b></span></span>${act}</button>`;
             })
             .join(''),
       )
@@ -2007,14 +2300,14 @@ ${P.err ? `<div role="alert" style="margin:12px 20px 0;background:#FFECEF;color:
       const eid = k == 'dm' ? pr[2] : id,
         a = A[eid];
       sub = k == 'dm' ? 'Direct message · ' + a.title : 'Group chat · ' + a.going + ' going';
-      pin = `<div class="lb row" style="margin:10px 20px 0;border-radius:16px;padding:10px 14px;justify-content:space-between"><span style="font-size:12px"><b>${a.when}</b><br>${a.place}</span><button data-go="route:${eid}" class="bb" style="padding:8px 14px;border-radius:16px;font-size:12px;font-weight:700">Route</button></div>`;
+      pin = `<div class="lb row" style="margin:10px 20px 0;border-radius:16px;padding:10px 14px;justify-content:space-between"><span style="font-size:12px"><b>${a.when}</b><br>${a.place}</span><span class="row" style="gap:6px">${k == 'group' && roomAvailable(eid) ? `<button data-go="room:${eid}" class="y" style="padding:8px 12px;border-radius:16px;font-size:12px;font-weight:700">Room ✦</button>` : ''}<button data-go="route:${eid}" class="bb" style="padding:8px 14px;border-radius:16px;font-size:12px;font-weight:700">Route</button></span></div>`;
     }
     const faq =
       k == 'club'
         ? `<div class="row" style="overflow-x:auto;padding:0 16px 8px;gap:6px">${CLUB_FAQ.map((f, i) => `<button data-a="faq:${id}:${i}" class="chip" style="flex:none;font-size:12px;padding:5px 12px">${f[0]}</button>`).join('')}</div>`
         : '';
-    return `<div class="p row" style="padding-top:20px;gap:10px"><button data-a="back" aria-label="Back" style="width:40px;height:40px;border-radius:20px;background:var(--l);font-size:22px">‹</button>${k == 'club' ? `<button data-go="club:${pr[1]}">${clubLogo(pr[1], 40)}</button>` : ''}<div style="flex:1"><b>${chatTitle(id)}</b><div class="mu" style="font-size:11px">${sub}</div></div></div>
-${pin}${ms.map(bubble).join('')}<div style="position:sticky;bottom:0;background:#fff;padding-top:10px;margin-top:12px">${faq}<div style="display:flex;gap:8px;padding:0 16px 10px"><input id="cm" class="inp" aria-label="Message" placeholder="Type a message…" style="border-radius:24px"><button data-a="send:${id}" class="y" style="width:64px;border-radius:24px;font-weight:700">Send</button></div></div>`;
+    return `<div class="p row" style="padding-top:20px;gap:10px"><button data-a="back" aria-label="Back" style="width:40px;height:40px;border-radius:20px;background:var(--l);font-size:22px">‹</button>${k == 'club' ? `<button data-go="club:${pr[1]}">${clubLogo(pr[1], 40)}</button>` : ''}<div style="flex:1;min-width:0">${k == 'dm' ? `<button data-go="person:${pr[1]}" class="pname"><b>${pr[1]}</b>${vb(pr[1])}</button>` : `<b>${chatTitle(id)}</b>${k == 'club' ? cvb(pr[1]) : ''}`}<div class="mu" style="font-size:11px">${sub}</div></div>${k == 'dm' ? `<button data-a="dmmenu:${id}" aria-label="Report or block" class="dm-more">⋯</button>` : ''}</div>
+${k == 'dm' ? dmSafety(pr[1]) : ''}${pin}${ms.map(bubble).join('')}<div style="position:sticky;bottom:0;background:#fff;padding-top:10px;margin-top:12px">${faq}<div style="display:flex;gap:8px;padding:0 16px 10px"><input id="cm" class="inp" aria-label="Message" placeholder="Type a message…" style="border-radius:24px"><button data-a="send:${id}" class="y" style="width:64px;border-radius:24px;font-weight:700">Send</button></div></div>`;
   },
   inbox: () => {
     const keys = [...new Set([...Object.keys(S.chats).reverse(), ...planSorted().map((p) => p.id), 'club~' + (Object.keys(S.following).find((c) => S.following[c]) || 'brc')])];
@@ -2085,13 +2378,13 @@ ${pin}${ms.map(bubble).join('')}<div style="position:sticky;bottom:0;background:
     return (
       back +
       hdr('Community', 'Your post') +
-      `<div class="p" style="margin-top:12px;font-size:16px">${p.text}</div>
+      `${ugc(p.text, 'margin-top:12px;font-size:16px;padding:0 20px')}
 <div style="margin:12px 20px 0">${actMini(p.act, 'POST DETAIL › attached activity')}</div><div class="p" style="margin-top:16px;font-weight:800">${p.interested.length} interested</div>` +
       (p.interested.length
         ? p.interested
             .map(
               (q, j) =>
-                `<div class="row" style="margin:0 20px;padding:10px 0;border-bottom:1px solid #EEF1FA">${avatar(q.color, 40, q.name)}<b style="flex:1">${q.name}</b><button data-a="acc:${p.id}:${j}" class="${q.accepted ? 'lb' : 'nb'}" style="width:96px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${q.accepted ? 'Accepted' : 'Accept'}</button></div>`,
+                `<div class="row" style="margin:0 20px;padding:10px 0;border-bottom:1px solid #EEF1FA"><button data-go="person:${q.name}" aria-label="${q.name}" style="line-height:0;border-radius:50%">${avatar(q.color, 40, q.name)}</button><b style="flex:1">${q.name}${vb(q.name)}${isVerified(q.name) ? '' : '<span class="nv">' + tx('Not verified', 'ยังไม่ยืนยันตัวตน') + '</span>'}</b><button data-a="acc:${p.id}:${j}" class="${q.accepted ? 'lb' : 'nb'}" style="width:96px;height:34px;border-radius:17px;font-size:12px;font-weight:700">${q.accepted ? 'Accepted' : 'Accept'}</button></div>`,
             )
             .join('')
         : '<div class="p mu" style="margin-top:8px;font-size:13px">No one yet. Check back in a moment.</div>') +
@@ -2106,7 +2399,7 @@ ${pin}${ms.map(bubble).join('')}<div style="position:sticky;bottom:0;background:
       fol = S.following[c.id];
     return (
       back +
-      `<div class="p row" style="gap:14px;margin-top:14px">${clubLogo(c.id, 72)}<div style="flex:1"><h1 style="font-size:22px;font-weight:800;line-height:1.15">${c.name}</h1><div class="mu" style="font-size:12px">${c.cat} · ${c.type == 'club' ? 'Community club' : 'Studio'}</div></div></div>
+      `<div class="p row" style="gap:14px;margin-top:14px">${clubLogo(c.id, 72)}<div style="flex:1"><h1 style="font-size:22px;font-weight:800;line-height:1.15">${c.name}${cvb(c.id, 18)}</h1><div class="mu" style="font-size:12px">${c.cat} · ${c.type == 'club' ? 'Community club' : 'Studio'}</div></div></div>${!UNVERIFIED_CLUBS.includes(c.id) ? `<div class="p" style="margin-top:12px"><div class="safe"><span class="safe-i">${ICON.shield(20, 'var(--b)')}</span><span><b>${tx('Verified club', 'คลับที่ยืนยันแล้ว')}</b><span>${tx('Business details and every host are checked by Vybe', 'Vybe ตรวจสอบข้อมูลธุรกิจและผู้จัดทุกคนแล้ว')}</span></span></div></div>` : `<div class="p" style="margin-top:12px"><div class="safe" style="background:var(--ys);border-color:var(--y)"><span class="safe-i">${ICON.shield(20, 'var(--yt)')}</span><span><b style="color:var(--yt)">${tx('Not verified yet', 'ยังไม่ผ่านการตรวจสอบ')}</b><span>${tx('This club hasn’t completed checks. Meet only at public venues.', 'คลับนี้ยังตรวจสอบไม่ครบ โปรดนัดเจอเฉพาะที่สาธารณะ')}</span></span></div></div>`}
 <div class="p row" style="margin-top:14px"><button data-a="fol:${c.id}" class="btn ${fol ? 'lb' : 'nb'}" style="height:42px;font-size:13px">${fol ? 'Following ✓' : 'Follow'}</button><button data-go="chat:club~${c.id}" class="btn lb" style="height:42px;font-size:13px">Message</button></div>
 <div class="p mu" style="font-size:12px;margin-top:8px">${fol ? 'You’ll get a notification when this club posts a new activity.' : 'Follow to get notified when this club posts a new activity.'}</div>
 <div class="p" style="margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${[
@@ -2174,10 +2467,10 @@ ${pin}${ms.map(bubble).join('')}<div style="position:sticky;bottom:0;background:
       .sort((x, y) => counts[y] - counts[x])
       .slice(0, 3);
     return (
-      hdr('Profile', USER.name, '<button data-go="settings" aria-label="Menu" style="font-size:26px">☰</button>') +
+      hdr('Profile', USER.name + vb(USER.name, 20), '<button data-go="settings" aria-label="Menu" style="font-size:26px">☰</button>') +
       `<div class="p row" style="margin-top:14px;gap:16px"><label for="photo" aria-label="Change profile photo" style="width:84px;height:84px;flex:none;display:block;position:relative;cursor:pointer"><span style="width:84px;height:84px;border-radius:42px;background:var(--ys);overflow:hidden;display:block">${personImg(USER.name) ? `<img src="${personImg(USER.name)}" alt="${USER.name}" style="width:84px;height:84px;object-fit:cover;display:block">` : '<svg viewBox="0 0 120 110" width="84" height="84" aria-hidden="true"><circle cx="60" cy="40" r="22" fill="#10328F"/><path d="M20 110Q60 50 100 110Z" fill="#5B88D6"/></svg>'}</span><span style="position:absolute;right:-2px;bottom:-2px;width:28px;height:28px;border-radius:14px;background:var(--b);border:2px solid #fff;color:#fff;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><input id="photo" type="file" accept="image/*" hidden></label><div class="row" style="gap:24px"><div style="text-align:center"><b style="font-size:20px">${rs.length}</b><div class="mu" style="font-size:11px">Activities</div></div><div style="text-align:center"><b style="font-size:20px">${7 + Object.values(S.connected).filter(Boolean).length}</b><div class="mu" style="font-size:11px">Friends</div></div><button data-a="ctab-go:Clubs" style="text-align:center"><b style="font-size:20px">${Object.values(S.following).filter(Boolean).length}</b><div class="mu" style="font-size:11px">Clubs</div></button></div></div>
 <div class="p row" style="margin-top:12px;flex-wrap:wrap">${(S.prefs.cats.length ? S.prefs.cats.slice(0, 4) : top).map((c) => `<span class="chip" style="padding:4px 12px;font-size:12px">${c}</span>`).join('')}</div>
-<div class="p" style="margin-top:16px;font-weight:700">Recap</div>
+${verifyNudge()}<div class="p" style="margin-top:16px;font-weight:700">Recap</div>
 <div class="p" style="margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${rs.map((r) => `<button data-go="recap:${r.id}" aria-label="Recap ${r.title}" style="text-align:left">${imgSlot('recap:' + r.id, 106, 16, 'PROFILE › recap tile · ' + r.title)}<b style="display:block;font-size:11px;margin-top:4px;line-height:1.2">${r.title}</b><span class="mu" style="font-size:10px">${r.dateLabel}</span></button>`).join('')}</div>`
     );
   },
@@ -2206,21 +2499,1554 @@ ${pin}${ms.map(bubble).join('')}<div style="position:sticky;bottom:0;background:
     return (
       back +
       hdr('Settings', 'Settings') +
+      `<div class="row" style="margin:14px 20px 0;padding:8px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between"><span data-ugc>Language · ภาษา</span>${langToggle()}</div>` +
       `<div class="row" style="margin:14px 20px 0;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between"><span>Phone number</span><b>${USER.phone}</b></div>` +
       link('saved', `Saved activities (${S.saved.length})`) +
       link('payments', `Payments & receipts (${S.payments.length})`) +
       `<div class="p" style="margin-top:20px;font-weight:800">Personalization</div>` +
       `<button data-a="editprefs" class="row" style="margin:0 20px;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between;width:calc(100% - 40px);text-align:left;gap:10px"><span style="min-width:0">Edit my preferences<span class="mu" style="display:block;font-size:12px">${hasPrefs() ? prefSummary() : 'Not set yet'}</span></span>›</button>` +
       `<button data-a="replaytour" class="row" style="margin:0 20px;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between;width:calc(100% - 40px)"><span>Replay app tour</span>›</button>` +
+      `<div class="p" style="margin-top:20px;font-weight:800">${tx('Safety', 'ความปลอดภัย')}</div>` +
+      `<button data-a="verify" class="row" style="margin:0 20px;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between;width:calc(100% - 40px);text-align:left"><span>${tx('Identity verification', 'การยืนยันตัวตน')}</span><span class="row" style="gap:4px;font-weight:700;font-size:13px;color:${S.verified ? 'var(--b)' : 'var(--yt)'}">${S.verified ? VB_SVG(16) + tx('Verified', 'ยืนยันแล้ว') : tx('Verify now', 'ยืนยันเลย')} ›</span></button>` +
+      tg('vonly', tx('Only ID-verified people can message me', 'รับข้อความเฉพาะคนที่ยืนยันตัวตนแล้ว')) +
+      tg('share', tx('Tell my trusted contact when I check in and finish', 'แจ้งผู้ติดต่อที่ไว้ใจเมื่อเช็คอินและจบกิจกรรม')) +
+      `<button data-a="trusted" class="row" style="margin:0 20px;padding:14px 0;border-bottom:1px solid #EEF1FA;justify-content:space-between;width:calc(100% - 40px);text-align:left"><span>${tx('Trusted contact', 'ผู้ติดต่อที่ไว้ใจ')}</span><span class="mu" style="font-size:13px" data-ugc>${S.trusted || tx('Add', 'เพิ่ม')} ›</span></button>` +
+      link('safety', tx('Safety center & tips', 'ศูนย์ความปลอดภัยและคำแนะนำ')) +
       `<div class="p" style="margin-top:20px;font-weight:800">Notifications & sync</div>` +
       tg('sync', 'Sync contacts') +
       tg('calendar', 'Sync plan to phone calendar') +
       tg('alerts', 'PM2.5 and flood alerts') +
       tg('clubs', 'New activities from clubs I follow') +
+      tg('demo', 'Presentation mode · switch room moments') +
       `<div style="margin:24px 20px 0"><button data-a="logout" class="btn gr">Log out</button><button data-a="resetdemo" style="width:100%;margin-top:10px;padding:10px;font-size:13px;font-weight:600;color:var(--mu)">Restart as a new user (demo)</button></div>`
     );
   },
 };
+
+// ════════════════════════════════════════════════════════════
+// 6b. ACTIVITY ROOM — "พื้นที่แห่งการเชื่อมต่อ" ของแต่ละกิจกรรม (ภาพ · เสียง · การเคลื่อนไหว · ข้อความของคน)
+// ════════════════════════════════════════════════════════════
+// ห้องผูกกับการไปจริง:
+//   before = ห้องรอ  → เปิดหลังจองแล้ว และก่อนเริ่มกิจกรรม ROOM.opensHours ชั่วโมง
+//   live   = จังหวะหัวใจ → เริ่มตอนกด Check in (สแกน QR ที่สถานที่จริง) มีพิธีมาถึงสั้น ๆ แล้วค่อยสงบลง
+//   after  = ความทรงจำ → เมื่อกด Finish หรือกิจกรรมจบ
+// เข้าได้จาก: การ์ด Today และรายการใน My Schedule · ปุ่ม Room ในแชทกลุ่ม · ป้ายในหน้ากิจกรรม (เมื่อจองแล้ว)
+// ตัวสลับ Before/Live/After แสดงเฉพาะเมื่อเปิด Settings → Presentation mode (ใช้ตอนพรีเซนต์)
+// แก้ข้อความ/คนในห้องได้ที่ ROOM ด้านล่าง · เสียงสร้างด้วยโค้ด (Web Audio) ไม่ต้องใช้ไฟล์เสียง
+
+const ROOM = {
+  opensHours: 12, // ห้องรอเปิดก่อนเริ่มกิจกรรมกี่ชั่วโมง
+  // คนทั่วไปที่เติมให้ห้องดูมีชีวิต (นอกเหนือจากเพื่อนและคนที่โพสต์ถึงกิจกรรมนี้)
+  crowd: [['Mild', '#FFB6D0'], ['Nok', '#A8D8F0'], ['Ice', '#C9E8B8'], ['Bank', '#FFE680'], ['June', '#B7A6F0'], ['Pond', '#F5B98A'], ['Aom', '#9FD8E8']],
+  notesBefore: ['ครั้งแรกเลย ตื่นเต้นมาก', 'มาคนเดียว เจอกันแล้วทักได้นะ', 'จะไปถึงก่อน 10 นาที', 'ใครนั่ง BTS ไปด้วยกันบ้าง', 'นอนเร็วเพื่อวันนี้เลย', 'พกน้ำมาเผื่อเพื่อนด้วย', 'มาครั้งที่ 5 แล้ว ชอบมาก'],
+  quick: ['ตื่นเต้นมาก!', 'มาคนเดียวครั้งแรก', 'ใครไปทางเดียวกันบ้าง', 'เจอกันหน้าทางเข้านะ'],
+  liveTicker: ['ถึงแล้ว!', 'วอร์มอัพกันอยู่', 'อากาศดีมาก', 'เจอกันที่จุดนัดพบ', 'พร้อมแล้ว!'],
+  notesAfter: ['ขอบคุณทุกคนนะ', 'เหนื่อยแต่สนุกมาก', 'ได้เพื่อนใหม่ 3 คน', 'รอบหน้าไปอีกแน่นอน', 'บรรยากาศดีสุด ๆ', 'ภูมิใจในตัวเองวันนี้'],
+  mood: {
+    before: 'คุณไม่ได้มาคนเดียว ทุกคนกำลังเตรียมตัวเหมือนคุณ',
+    live: 'ตอนนี้ทุกคนอยู่ตรงนี้ด้วยกัน',
+    after: 'ความทรงจำที่สร้างด้วยกัน',
+  },
+};
+
+// สีบรรยากาศตามเวลาของกิจกรรม: [แสงด้านบน, เงาด้านล่าง, สีเน้น]
+const ROOM_TONES = {
+  dawn: ['rgba(255,190,110,.42)', 'rgba(14,22,66,.92)', '#FFD65B'],
+  day: ['rgba(255,236,190,.28)', 'rgba(10,32,78,.9)', '#FFE9A6'],
+  dusk: ['rgba(255,125,110,.42)', 'rgba(44,12,70,.92)', '#FFB38A'],
+  night: ['rgba(80,100,210,.38)', 'rgba(6,10,36,.95)', '#A9BEFF'],
+};
+
+S.room = { phase: {}, notes: {}, live: {}, here: {}, rank: {}, arriving: {}, seen: {}, muted: false, open: false };
+
+const roomTone = (a) => {
+  const h = +a.time.slice(0, 2);
+  return h < 10 ? 'dawn' : h < 16 ? 'day' : h < 19 ? 'dusk' : 'night';
+};
+const roomKind = (a) => (['Swimming', 'Paddle', 'Ice Bath'].includes(a.cat) ? 'water' : a.indoor ? 'studio' : 'nature');
+const nowOnToday = () => {
+  const d = toDate(TODAY),
+    n = new Date();
+  d.setHours(n.getHours(), n.getMinutes());
+  return d;
+};
+const actStart = (a) => {
+  const d = toDate(a.date);
+  d.setHours(+a.time.slice(0, 2), +a.time.slice(3, 5));
+  return d;
+};
+// ช่วงของห้องตามการไปจริง: จบแล้ว → after · เช็คอินแล้ว → live · นอกนั้น → before
+const roomAutoPhase = (id) => {
+  const pi = planItem(id);
+  if (pi && pi.status == 'Done') return 'after';
+  return S.room.here[id] ? 'live' : 'before';
+};
+const roomPhase = (id) => (S.toggles.demo && S.room.phase[id]) || roomAutoPhase(id);
+const roomOpensAt = (id) => new Date(actStart(A[id]).getTime() - ROOM.opensHours * 3600000);
+// เข้าห้องได้เมื่อ: จอง (จ่าย) แล้ว และถึงเวลาเปิดห้อง หรือกิจกรรมจบแล้ว
+const roomAvailable = (id) => {
+  const pi = planItem(id);
+  return !!pi && pi.status != 'Unpaid' && (pi.status == 'Done' || S.room.here[id] || nowOnToday() >= roomOpensAt(id));
+};
+const roomOpensLabel = (id) => {
+  const d = roomOpensAt(id);
+  return DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + ' · ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+};
+const roomCountdown = (id) => {
+  const ms = actStart(A[id]) - nowOnToday();
+  if (ms <= 0) return 'See you at ' + A[id].time;
+  const m = Math.round(ms / 60000),
+    d = Math.floor(m / 1440),
+    h = Math.floor((m % 1440) / 60);
+  return 'Starts in ' + (d ? d + 'd ' : '') + (h ? h + 'h ' : '') + (d ? '' : (m % 60) + 'm');
+};
+// คนในห้อง: เพื่อนที่ไป → คนที่โพสต์ถึงกิจกรรมนี้ → คนทั่วไป (สูงสุด 6 คน)
+const roomPeople = (id, notes) => {
+  const seen = new Set(),
+    out = [],
+    add = (name, color) => !seen.has(name) && name != USER.name && seen.add(name) && out.push({ name, color });
+  FRIENDS.filter((f) => f.going == id).forEach((f) => add(f.name, f.color));
+  S.posts.filter((p) => p.act == id && !p.mine).forEach((p) => add(p.name, p.color));
+  ROOM.crowd.forEach((c) => add(c[0], c[1]));
+  const k = ACTIVITIES.findIndex((x) => x.id == id);
+  return out.slice(0, 6).map((p, i) => ({ ...p, note: roomOwnNote(p.name, notes) || notes[(k + i) % notes.length] }));
+};
+const buzz = (p) => {
+  try {
+    if (navigator.vibrate) navigator.vibrate(p);
+  } catch (e) {}
+};
+const hexA = (hex, a) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+};
+
+// ── เสียงบรรยากาศ (สังเคราะห์ด้วย Web Audio) — เริ่มได้หลังผู้ใช้แตะเท่านั้น (กฎของเบราว์เซอร์)
+const RoomAudio = {
+  ctx: null,
+  master: null,
+  live: [],
+  timers: [],
+  sig: '',
+  ensure() {
+    try {
+      if (!this.ctx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return false;
+        this.ctx = new AC();
+        this.master = this.ctx.createGain();
+        this.master.gain.value = 0;
+        this.master.connect(this.ctx.destination);
+      }
+      if (this.ctx.state == 'suspended') this.ctx.resume();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  },
+  vol: 0.6,
+  applyMute() {
+    if (!this.ctx) return;
+    const t = this.ctx.currentTime;
+    this.master.gain.cancelScheduledValues(t);
+    this.master.gain.setTargetAtTime(S.room.muted ? 0 : this.vol, t, 0.8);
+  },
+  level(v) {
+    this.vol = v;
+    this.applyMute();
+  },
+  stopLayers() {
+    this.timers.forEach(clearInterval);
+    this.timers = [];
+    this.live.forEach((n) => {
+      try {
+        n.stop();
+      } catch (e) {}
+    });
+    this.live = [];
+    this.sig = '';
+  },
+  stop() {
+    if (!this.ctx) return;
+    this.master.gain.cancelScheduledValues(this.ctx.currentTime);
+    this.master.gain.setValueAtTime(0, this.ctx.currentTime);
+    this.stopLayers();
+  },
+  osc(type, f, g, dest) {
+    const o = this.ctx.createOscillator(),
+      gn = this.ctx.createGain();
+    o.type = type;
+    o.frequency.value = f;
+    gn.gain.value = g;
+    o.connect(gn).connect(dest);
+    o.start();
+    this.live.push(o);
+  },
+  // คอร์ดนุ่ม ๆ ที่ "หายใจ" ช้า ๆ
+  pad(freqs, level, cutoff) {
+    const c = this.ctx,
+      f = c.createBiquadFilter(),
+      g = c.createGain(),
+      lfo = c.createOscillator(),
+      lg = c.createGain();
+    f.type = 'lowpass';
+    f.frequency.value = cutoff;
+    g.gain.value = level;
+    f.connect(g).connect(this.master);
+    lfo.frequency.value = 0.07;
+    lg.gain.value = level * 0.45;
+    lfo.connect(lg).connect(g.gain);
+    lfo.start();
+    this.live.push(lfo);
+    freqs.forEach((fr) => {
+      this.osc('sine', fr, 0.16, f);
+      this.osc('triangle', fr * 1.004, 0.05, f);
+    });
+  },
+  // เสียงลม / น้ำ / ห้อง (noise ผ่านฟิลเตอร์ + คลื่นช้า ๆ)
+  noise(cutoff, level, rate) {
+    const c = this.ctx,
+      len = c.sampleRate * 2,
+      buf = c.createBuffer(1, len, c.sampleRate),
+      d = buf.getChannelData(0);
+    let last = 0;
+    for (let i = 0; i < len; i++) {
+      last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02;
+      d[i] = last * 3.5;
+    }
+    const src = c.createBufferSource(),
+      f = c.createBiquadFilter(),
+      g = c.createGain(),
+      lfo = c.createOscillator(),
+      lg = c.createGain();
+    src.buffer = buf;
+    src.loop = true;
+    f.type = 'lowpass';
+    f.frequency.value = cutoff;
+    g.gain.value = level;
+    lfo.frequency.value = rate;
+    lg.gain.value = level * 0.6;
+    lfo.connect(lg).connect(g.gain);
+    src.connect(f).connect(g).connect(this.master);
+    src.start();
+    lfo.start();
+    this.live.push(src, lfo);
+  },
+  blip(freq, dur, level, slide) {
+    const c = this.ctx,
+      t = c.currentTime,
+      o = c.createOscillator(),
+      g = c.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(freq, t);
+    if (slide) o.frequency.exponentialRampToValueAtTime(freq * slide, t + dur * 0.7);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(level, t + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(this.master);
+    o.start(t);
+    o.stop(t + dur + 0.05);
+  },
+  birds() {
+    this.timers.push(
+      setInterval(() => {
+        if (Math.random() < 0.55) {
+          const base = 2300 + Math.random() * 1700,
+            n = 1 + Math.floor(Math.random() * 3);
+          for (let k = 0; k < n; k++) setTimeout(() => this.ctx && this.blip(base, 0.12, 0.035, 1.45), k * 150);
+        }
+      }, 1700),
+    );
+  },
+  pulse(bpm) {
+    this.timers.push(
+      setInterval(() => {
+        const c = this.ctx,
+          t = c.currentTime,
+          o = c.createOscillator(),
+          g = c.createGain();
+        o.frequency.setValueAtTime(95, t);
+        o.frequency.exponentialRampToValueAtTime(42, t + 0.16);
+        g.gain.setValueAtTime(0.32, t);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+        o.connect(g).connect(this.master);
+        o.start(t);
+        o.stop(t + 0.25);
+      }, 60000 / bpm),
+    );
+  },
+  bells(freqs) {
+    this.timers.push(setInterval(() => this.blip(freqs[Math.floor(Math.random() * freqs.length)] * 2, 2.4, 0.045), 3200));
+  },
+  chime() {
+    if (this.ctx && this.live.length && !S.room.muted) this.blip(1318.5, 1.2, 0.05);
+  },
+  play(a, phase) {
+    const kind = roomKind(a),
+      tone = roomTone(a),
+      sig = a.id + phase;
+    if (this.sig == sig && this.live.length) return this.applyMute();
+    this.stopLayers();
+    if (!this.ensure()) return;
+    this.sig = sig;
+    this.vol = phase == 'live' && !S.room.arriving[a.id] ? 0.32 : 0.6;
+    const amb = { nature: [750, 0.05, 0.12], water: [420, 0.09, 0.16], studio: [300, 0.025, 0.05] }[kind];
+    const fast = ['Running', 'Cycling', 'Dance', 'Muay Thai', 'Padel', 'Climbing'].includes(a.cat);
+    if (phase == 'after') {
+      this.pad([293.66, 369.99, 440, 587.33], 0.5, 1400);
+      this.noise(amb[0], amb[1] * 0.6, amb[2]);
+      this.bells([293.66, 369.99, 440]);
+    } else {
+      this.pad([220, 277.18, 329.63, 415.3], phase == 'live' ? 0.42 : 0.5, phase == 'live' ? 1900 : 1100);
+      this.noise(amb[0], amb[1], amb[2]);
+      if (kind == 'nature' && tone != 'night') this.birds();
+      if (phase == 'live') this.pulse(fast ? 112 : 64);
+    }
+    this.applyMute();
+  },
+};
+
+// ── อนุภาคแสง (ฝุ่นแสงลอยขึ้น / ฟองน้ำสำหรับกิจกรรมทางน้ำ)
+let roomStopFx = null,
+  roomTimers = [],
+  roomMounted = false;
+const roomParticles = (cv, a, phase) => {
+  const ctx = cv.getContext('2d'),
+    dpr = window.devicePixelRatio || 1,
+    W = cv.clientWidth,
+    H = cv.clientHeight,
+    kind = roomKind(a),
+    col = ROOM_TONES[roomTone(a)][2],
+    still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches,
+    speed = phase == 'live' ? 1.9 : 1,
+    ps = Array.from({ length: phase == 'live' ? 70 : 46 }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: kind == 'water' ? 2 + Math.random() * 5 : 0.8 + Math.random() * 2.2,
+      v: (0.15 + Math.random() * 0.5) * speed,
+      t: Math.random() * 6.3,
+    }));
+  cv.width = W * dpr;
+  cv.height = H * dpr;
+  ctx.scale(dpr, dpr);
+  let raf = 0;
+  const draw = () => {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of ps) {
+      if (!still) {
+        p.y -= p.v;
+        p.t += 0.02;
+        p.x += Math.sin(p.t) * 0.3;
+        if (p.y < -10) (p.y = H + 10), (p.x = Math.random() * W);
+      }
+      const tw = 0.3 + 0.35 * (1 + Math.sin(p.t * 2)) * 0.5;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, 6.3);
+      if (kind == 'water') {
+        ctx.strokeStyle = `rgba(255,255,255,${tw})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      } else {
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = col;
+        ctx.fillStyle = hexA(col, tw + 0.2);
+        ctx.fill();
+      }
+    }
+    if (!still) raf = requestAnimationFrame(draw);
+  };
+  draw();
+  return () => cancelAnimationFrame(raf);
+};
+
+function roomMount(id) {
+  const a = A[id],
+    phase = roomPhase(id);
+  if (roomStopFx) roomStopFx();
+  roomTimers.forEach((t) => (clearInterval(t), clearTimeout(t)));
+  roomTimers = [];
+  roomMounted = true;
+  const cv = $('#rmCanvas');
+  if (cv) roomStopFx = roomParticles(cv, a, phase);
+  if (!S.room.open) return;
+  RoomAudio.play(a, phase);
+  if (phase == 'before')
+    roomTimers.push(
+      setInterval(() => {
+        const el = $('#rmCd');
+        if (el) el.textContent = roomCountdown(id);
+      }, 30000),
+    );
+  if (phase == 'live' && S.room.arriving[id]) {
+    // พิธีมาถึง: คลื่นแสง 3 ระลอก + เสียงกริ๊ง แล้วค่อย ๆ สงบลงใน 5 วินาที
+    [0, 450, 900].forEach((t) =>
+      setTimeout(() => {
+        const ring = $('#rmRing');
+        if (!ring) return;
+        const r = document.createElement('i');
+        r.className = 'rm-ripple';
+        ring.appendChild(r);
+        setTimeout(() => r.remove(), 1700);
+        RoomAudio.chime();
+      }, t),
+    );
+    const calm = setTimeout(() => {
+      S.room.arriving[id] = false;
+      const root = $('.rm'),
+        ar = $('#rmArrive'),
+        sub = $('#rmLiveSub');
+      if (root) root.classList.add('rm-calm');
+      if (ar) ar.classList.add('rm-fade');
+      if (sub) sub.textContent = 'วางมือถือแล้วสนุกกับช่วงเวลานี้ได้เลย · ทุกการเช็คอินคือเสียงหัวใจของห้องนี้';
+      RoomAudio.level(0.32);
+    }, 5000);
+    roomTimers.push(calm);
+  }
+  if (phase == 'live')
+    roomTimers.push(
+      setInterval(() => {
+        let n = S.room.live[id] ?? Math.round(a.going * 0.6);
+        if (n >= a.going + (S.room.here[id] ? 1 : 0)) return;
+        S.room.live[id] = ++n;
+        const c = $('#rmCount'),
+          tk = $('#rmTicker'),
+          ring = $('#rmRing');
+        if (!c) return;
+        c.textContent = n;
+        const who = roomPeople(id, ROOM.liveTicker)[n % 6];
+        if (tk && who) tk.innerHTML = `<b>${who.name}</b> ${tx('checked in', 'เช็คอินแล้ว')} · <span data-ugc>${who.note}</span>`;
+        if (ring) {
+          const r = document.createElement('i');
+          r.className = 'rm-ripple';
+          ring.appendChild(r);
+          setTimeout(() => r.remove(), 1700);
+        }
+        RoomAudio.chime();
+      }, 2600),
+    );
+}
+function roomUnmount() {
+  if (!roomMounted) return;
+  roomMounted = false;
+  if (roomStopFx) roomStopFx();
+  roomStopFx = null;
+  roomTimers.forEach(clearInterval);
+  roomTimers = [];
+  RoomAudio.stop();
+  S.room.open = false;
+  S.room.seen = {};
+}
+const roomAfterRender = (n, p) => (n == 'room' ? roomMount(p) : roomUnmount());
+
+const SPK = (on) =>
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/>${on ? '<path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>' : '<path d="M17 9l5 6M22 9l-5 6"/>'}</svg>`;
+
+SC.room = (id) => {
+  const a = A[id],
+    pi = planItem(id),
+    tone = roomTone(a),
+    T = ROOM_TONES[tone],
+    ph = roomPhase(id),
+    // เช็คอินแล้ว (อยู่ที่สถานที่จริง) → เข้าห้อง Live ได้เลย ไม่ต้องผ่านประตูอีก
+    _live = ph == 'live' && S.room.here[id] && (S.room.open = true),
+    img = activityImg(id),
+    mine = S.room.notes[id] || [],
+    // แอนิเมชันเปิดห้อง/คนลอยเข้ามา เล่นครั้งแรกของแต่ละช่วงเท่านั้น (กดโน้ตหรือเช็คอินแล้วคนไม่หายไปเริ่มใหม่)
+    fresh = S.room.open && !S.room.seen[id + ph];
+  if (S.room.open) S.room.seen[id + ph] = true;
+  const bg = img ? `<img class="rm-bg" src="${img}" alt="">` : '<div class="rm-bg" style="background:linear-gradient(160deg,#2b3f8f,#0d1431)"></div>';
+  const seg = [['before', 'Before'], ['live', 'Live'], ['after', 'After']]
+    .map((x) => `<button role="tab" aria-selected="${ph == x[0]}" data-a="rphase:${id}:${x[0]}" class="${ph == x[0] ? 'on' : ''}">${x[1]}</button>`)
+    .join('');
+  const label = { before: 'Waiting room', live: 'Live · You’re here', after: 'Memories' }[ph];
+  const top = `<div class="rm-top"><button data-a="back" aria-label="Leave room" class="rm-glass rm-ic">‹</button>${S.toggles.demo ? `<div class="rm-seg rm-glass" role="tablist" aria-label="Room moment (presentation mode)">${seg}</div>` : `<div class="rm-pill rm-glass">${label}</div>`}<button data-a="rmute" aria-label="${S.room.muted ? 'Turn sound on' : 'Mute sound'}" class="rm-glass rm-ic">${SPK(!S.room.muted)}</button></div>`;
+  const head = `<div class="rm-head"><div class="rm-meta">${a.day} · ${a.time} · ${a.place}</div><h1 class="rm-title">${a.title}</h1><div class="rm-mood">${ROOM.mood[ph]}</div></div>`;
+  let body = '';
+  if (ph == 'before') {
+    const POS = [[6, 4], [48, 14], [14, 32], [54, 44], [4, 62], [44, 76]],
+      people = roomPeople(id, ROOM.notesBefore);
+    body =
+      `<div class="rm-stage">${people
+        .map(
+          (p, i) =>
+            `<div class="rm-p" style="left:${POS[i][0]}%;top:${POS[i][1]}%;animation-delay:${0.5 + i * 0.8}s"><div class="rm-bob" style="animation-delay:${i * 0.9}s">${avatar(p.color, 38, p.name)}<div class="rm-note" data-ugc><b>${p.name}</b>${p.note}</div></div></div>`,
+        )
+        .join('')}</div>` +
+      `<div class="rm-panel rm-glass"><div class="rm-count" id="rmCd">${roomCountdown(id)}</div><div class="rm-sub">${a.going + mine.length} คนกำลังเตรียมตัว · ${a.solo} คนมาคนเดียวเหมือนคุณ</div>${
+        mine.length ? `<div class="rm-mine">${avatar(USER.color, 26, USER.name)}<span><b>You</b> · ${mine[mine.length - 1]}</span></div>` : ''
+      }<div class="rm-quick" aria-label="Leave a note for the room">${ROOM.quick.map((q, i) => `<button data-a="rnote:${id}:${i}">${q}</button>`).join('')}</div><div class="rm-row">${
+        pi
+          ? `<button data-go="chat:${id}" class="rm-btn">Group chat</button><button data-go="route:${id}" class="rm-btn rm-btn-y">Route</button>`
+          : `<button data-a="join:${id}" class="rm-btn rm-btn-y">Join to be part of this</button>`
+      }</div></div>`;
+  } else if (ph == 'live') {
+    const n = S.room.live[id] ?? Math.round(a.going * 0.6),
+      here = S.room.here[id],
+      arriving = S.room.arriving[id],
+      first = roomPeople(id, ROOM.liveTicker)[0];
+    body =
+      `<div class="rm-live">${arriving ? `<div class="rm-arrive" id="rmArrive">You’re #${S.room.rank[id]} to arrive</div>` : ''}<div class="rm-ring" id="rmRing"><div class="rm-ring-core"><b id="rmCount">${n}</b><span>of ${a.going + (here ? 1 : 0)} here</span></div></div><div class="rm-ticker" id="rmTicker" aria-live="polite"><b>${first.name}</b> ${tx('checked in', 'เช็คอินแล้ว')} · <span data-ugc>${first.note}</span></div></div>` +
+      `<div class="rm-panel rm-glass"><div class="rm-sub" id="rmLiveSub">${
+        arriving ? 'ยินดีต้อนรับ! ทุกคนในห้องเห็นแล้วว่าคุณมาถึง' : here ? 'วางมือถือแล้วสนุกกับช่วงเวลานี้ได้เลย · ทุกการเช็คอินคือเสียงหัวใจของห้องนี้' : 'ทุกการเช็คอินคือเสียงหัวใจของห้องนี้'
+      }</div><div class="rm-row">${
+        here ? `<button data-a="rfinish:${id}" class="rm-btn rm-btn-y">Finish · See memories</button>` : `<button data-a="rcheck:${id}" class="rm-btn rm-btn-y">I’m here · Check in</button>`
+      }<button data-go="chat:${id}" class="rm-btn">Group chat</button></div></div>`;
+  } else {
+    const people = roomPeople(id, ROOM.notesAfter),
+      pos = ['50% 30%', '20% 60%', '80% 40%', '35% 80%', '65% 20%', '50% 70%'],
+      rot = [-3, 2.5, 1.5, -2, -1.5, 3];
+    body =
+      `<div class="rm-wall">${people
+        .map(
+          (p, i) =>
+            `<figure class="rm-tile" style="--r:${rot[i]}deg;animation-delay:${0.3 + i * 0.22}s">${img ? `<img src="${img}" alt="" style="object-position:${pos[i]}">` : '<div class="rm-ph"></div>'}<figcaption>${avatar(p.color, 20, p.name)}<span data-ugc>${p.note}</span></figcaption></figure>`,
+        )
+        .join('')}</div>` +
+      `<div class="rm-panel rm-glass"><div class="rm-stats"><div><b>${a.going}</b><span>คนมาด้วยกัน</span></div><div><b>${a.duration}</b><span>ที่ใช้ร่วมกัน</span></div><div><b>${2 + (a.solo % 4)}</b><span>เพื่อนใหม่</span></div></div><div class="rm-row"><button data-a="rrecap:${id}" class="rm-btn rm-btn-y">Share Recap</button><button data-go="club:${a.club}" class="rm-btn">Next from club</button></div></div>`;
+  }
+  const gate = S.room.open
+    ? ''
+    : `<button class="rm-gate" data-a="roomenter:${id}" aria-label="Step inside ${a.title}"><span class="rm-gate-glow"></span><span class="rm-gate-k">VYBE ROOM</span><span class="rm-gate-t">${a.title}</span><span class="rm-gate-s">แตะเพื่อก้าวเข้าไป</span><span class="rm-gate-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg>เปิดเสียงเพื่อสัมผัสบรรยากาศเต็มรูปแบบ</span></button>`;
+  return `<div class="rm ${fresh ? 'rm-in' : S.room.open ? 'rm-still' : ''} ${ph == 'live' && S.room.here[id] && !S.room.arriving[id] ? 'rm-calm' : ''}" style="--rm-accent:${T[2]}">${bg}<div class="rm-tint" style="background:linear-gradient(180deg,${T[0]} 0%,rgba(0,0,0,.12) 36%,${T[1]} 100%)"></div><canvas id="rmCanvas" class="rm-cv" aria-hidden="true"></canvas>${top}${head}${body}${gate}</div>`;
+};
+
+// ── จุดเข้าห้องในหน้าอื่น ๆ
+const roomDot = '<i style="width:10px;height:10px;border-radius:5px;background:var(--y);box-shadow:0 0 8px var(--y);flex:none"></i>';
+// ป้ายในหน้ารายละเอียดกิจกรรม
+const roomHint = (id) => {
+  const a = A[id],
+    pi = planItem(id),
+    box = 'display:flex;align-items:center;gap:10px;border-radius:14px;padding:10px 12px;font-size:12.5px;line-height:1.45;width:100%;text-align:left;box-sizing:border-box',
+    soft = box + ';background:#F7F9FD;border:1px dashed #C9D6F2',
+    open = box + ';background:var(--b);color:#fff';
+  if (!pi || pi.status == 'Unpaid') return `<div style="${soft}">${roomDot}<span>จองแล้วจะได้เข้า <b>ห้องของกิจกรรมนี้</b> เจอคนที่ไปด้วยกันก่อนวันจริง</span></div>`;
+  if (pi.status == 'Done') return `<button data-go="room:${id}" style="${open}">${roomDot}<span style="flex:1"><b>Memories from this day</b><br>${a.going} people were here with you</span>›</button>`;
+  if (S.room.here[id]) return `<button data-go="room:${id}" style="${open}">${roomDot}<span style="flex:1"><b>You’re checked in</b><br>Back to the live room</span>›</button>`;
+  if (roomAvailable(id)) return `<button data-go="room:${id}" style="${open}">${roomDot}<span style="flex:1"><b>Waiting room is open</b><br>${a.going} people are getting ready</span>›</button>`;
+  return `<div style="${soft}">${roomDot}<span>ห้องรอของกิจกรรมนี้จะเปิด ${roomOpensLabel(id)} (${ROOM.opensHours} ชม. ก่อนเริ่ม)</span></div>`;
+};
+// ปุ่มในการ์ด Today (My Schedule)
+const todayActions = (id) => {
+  const a = A[id],
+    pi = planItem(id),
+    b = 'padding:9px 14px;border-radius:18px;font-weight:700;font-size:13px',
+    glass = b + ';background:rgba(255,255,255,.25);color:#fff',
+    chat = `<button data-go="chat:${id}" style="${glass}">Group chat</button>`;
+  let row, link = '';
+  if (pi.status == 'Done') row = `<button data-go="room:${id}" class="y" style="${b}">Memories ✦</button>${chat}`;
+  else if (S.room.here[id]) row = `<button data-go="room:${id}" class="y" style="${b}">Back to room ✦</button>${chat}`;
+  else {
+    row =
+      (pi.status == 'Unpaid' ? `<button data-a="pay:${id}" class="y" style="${b}">Pay to check in</button>` : `<button data-a="checkin:${id}" class="y" style="${b}">Check in</button>`) +
+      `<button data-go="route:${id}" style="${glass}">Route</button>${chat}`;
+    if (roomAvailable(id)) link = `<button data-go="room:${id}" class="row" style="margin-top:10px;gap:8px;color:#fff;font-size:12px;font-weight:700">${roomDot}Waiting room is open · ${a.going} inside ›</button>`;
+  }
+  return `<div class="row" style="margin-top:12px;gap:6px;flex-wrap:wrap;padding-right:92px">${row}</div>${link}`;
+};
+// เช็คอิน = สแกน QR ที่สถานที่จริง (จำลอง) → เปิดห้อง Live พร้อมพิธีมาถึง
+const doCheckin = (id) => {
+  const a = A[id],
+    base = S.room.live[id] ?? Math.round(a.going * 0.6);
+  S.room.here[id] = true;
+  S.room.rank[id] = base + 1;
+  S.room.live[id] = base + 1;
+  S.room.arriving[id] = true;
+  S.room.phase[id] = 'live';
+  S.room.seen = {};
+  S.room.open = true;
+  RoomAudio.ensure();
+  buzz([30, 60, 30, 60, 140]);
+};
+
+// ════════════════════════════════════════════════════════════
+// 6c. LANGUAGE — ปุ่มสลับภาษา ไทย / English
+// ════════════════════════════════════════════════════════════
+// หลักการ:
+//   • ข้อความของระบบ (เมนู ปุ่ม คำอธิบาย) เปลี่ยนตามภาษาที่เลือก — แปลอัตโนมัติหลังวาดหน้าจอทุกครั้ง
+//   • ข้อความที่ "คนเขียน" (รีวิว โพสต์ แชท โน้ตในห้อง) อยู่ในภาษาของคนเขียนเสมอ → ใส่ data-ugc
+//     แล้วมีปุ่ม "ดูคำแปล" ให้กดแปลเป็นภาษาของเรา
+//   • ชื่อกิจกรรม สถานที่ ชื่อคลับ และชื่อคน ไม่แปล (เป็นชื่อเฉพาะ)
+// เพิ่มคำแปลใหม่ได้ที่ I18N.th (อังกฤษ → ไทย) และ I18N.en (ไทย → อังกฤษ)
+
+const LANG = { cur: lsGet('vybe.lang', 'th') };
+const L = () => LANG.cur;
+const tx = (en, th) => (LANG.cur == 'th' ? th : en); // ใช้ในโค้ดใหม่เมื่ออยากกำหนดทั้งสองภาษาเอง
+
+const TH_DAY = { Sun: 'อา.', Mon: 'จ.', Tue: 'อ.', Wed: 'พ.', Thu: 'พฤ.', Fri: 'ศ.', Sat: 'ส.' };
+const TH_DAYFULL = { Sun: 'อาทิตย์', Mon: 'จันทร์', Tue: 'อังคาร', Wed: 'พุธ', Thu: 'พฤหัสฯ', Fri: 'ศุกร์', Sat: 'เสาร์' };
+const TH_MON = { Jan: 'ม.ค.', Feb: 'ก.พ.', Mar: 'มี.ค.', Apr: 'เม.ย.', May: 'พ.ค.', Jun: 'มิ.ย.', Jul: 'ก.ค.', Aug: 'ส.ค.', Sep: 'ก.ย.', Oct: 'ต.ค.', Nov: 'พ.ย.', Dec: 'ธ.ค.' };
+const TH_MONFULL = { January: 'มกราคม', February: 'กุมภาพันธ์', March: 'มีนาคม', April: 'เมษายน', May: 'พฤษภาคม', June: 'มิถุนายน', July: 'กรกฎาคม', August: 'สิงหาคม', September: 'กันยายน', October: 'ตุลาคม', November: 'พฤศจิกายน', December: 'ธันวาคม' };
+const BE = (y) => +y + 543; // ปี พ.ศ.
+
+const I18N = {
+  // ── อังกฤษ → ไทย
+  th: {
+    'Good morning,': 'สวัสดีตอนเช้า', 'Search activities, places, clubs…': 'ค้นหากิจกรรม สถานที่ คลับ…', All: 'ทั้งหมด',
+    Running: 'วิ่ง', Climbing: 'ปีนผา', Yoga: 'โยคะ', Pilates: 'พิลาทิส', Cycling: 'ปั่นจักรยาน', Hiking: 'เดินป่า', Swimming: 'ว่ายน้ำ',
+    'Ice Bath': 'แช่น้ำแข็ง', 'Muay Thai': 'มวยไทย', Padel: 'พาเดล', Dance: 'เต้น', Meditation: 'สมาธิ', Paddle: 'พายเรือ',
+    'Get picks made for you': 'รับกิจกรรมที่เลือกมาเพื่อคุณ', Start: 'เริ่ม', 'From clubs you follow': 'จากคลับที่คุณติดตาม', 'View all ›': 'ดูทั้งหมด ›',
+    'Upcoming Activities': 'กิจกรรมที่กำลังจะมาถึง', 'Upcoming activities': 'กิจกรรมที่กำลังจะมาถึง', Free: 'ฟรี', Beginner: 'มือใหม่', 'All levels': 'ทุกระดับ', Indoor: 'ในร่ม', Outdoor: 'กลางแจ้ง',
+    Intermediate: 'ระดับกลาง', Advanced: 'ระดับสูง', Join: 'เข้าร่วม', Home: 'หน้าหลัก', 'My Schedule': 'แผนของฉัน', Community: 'คอมมูนิตี้', Profile: 'โปรไฟล์',
+    Notifications: 'การแจ้งเตือน', Search: 'ค้นหา', Today: 'วันนี้', 'Check in': 'เช็คอิน', Route: 'เส้นทาง', 'Group chat': 'แชทกลุ่ม',
+    'Waiting room is open': 'ห้องรอเปิดแล้ว', 'Consider changing your plan': 'ลองพิจารณาเปลี่ยนแผน', Replan: 'วางแผนใหม่', Booked: 'จองแล้ว',
+    'Room open': 'ห้องเปิดแล้ว', Ticket: 'ตั๋ว', Unpaid: 'ยังไม่ชำระ', 'Pay now': 'ชำระเลย', 'Estimated budget': 'งบประมาณโดยประมาณ', Calendar: 'ปฏิทิน',
+    'Add activity': 'เพิ่มกิจกรรม', 'Open ticket': 'เปิดตั๋ว', 'Check-in QR': 'QR เช็คอิน', Feed: 'ฟีด', Buddies: 'บัดดี้', Clubs: 'คลับ',
+    'Looking for buddy': 'หาเพื่อนไปด้วย', Chat: 'แชท', Shared: 'แชร์ประสบการณ์', 'View activity ›': 'ดูกิจกรรม ›', Yesterday: 'เมื่อวาน', '+ Post': '+ โพสต์',
+    'My profile': 'โปรไฟล์ของฉัน', 'Find friends, clubs or posts': 'ค้นหาเพื่อน คลับ หรือโพสต์', 'Find friends or clubs': 'ค้นหาเพื่อนหรือคลับ', Messages: 'ข้อความ',
+    Activities: 'กิจกรรม', Friends: 'เพื่อน', Recap: 'รีแคป', Menu: 'เมนู', 'Change profile photo': 'เปลี่ยนรูปโปรไฟล์', Connect: 'เชื่อมต่อ', 'Connected ✓': 'เชื่อมต่อแล้ว ✓', Connected: 'เชื่อมต่อแล้ว',
+    Following: 'กำลังติดตาม', Follow: 'ติดตาม', 'Following ✓': 'กำลังติดตาม ✓', 'Create an account': 'สร้างบัญชี',
+    'Enter your phone number to sign up for this app': 'กรอกเบอร์โทรศัพท์เพื่อสมัครใช้งาน', Continue: 'ดำเนินการต่อ', or: 'หรือ',
+    'Continue with Google': 'ดำเนินการต่อด้วย Google', 'Continue with Apple': 'ดำเนินการต่อด้วย Apple',
+    'By clicking continue, you agree to our Terms of Service and Privacy Policy': 'เมื่อกดดำเนินการต่อ แสดงว่าคุณยอมรับข้อกำหนดการใช้งานและนโยบายความเป็นส่วนตัว',
+    'Phone number': 'เบอร์โทรศัพท์', 'Verify your': 'ยืนยัน', 'phone number': 'เบอร์โทรศัพท์ของคุณ', 'Verify and continue': 'ยืนยันและดำเนินการต่อ', Back: 'ย้อนกลับ',
+    'OTP digit': 'รหัส OTP', 'Find friends on Vybe': 'หาเพื่อนบน Vybe', 'from your contacts': 'จากรายชื่อผู้ติดต่อ', 'Allow contact access': 'อนุญาตให้เข้าถึงรายชื่อ',
+    'Not now': 'ไว้ทีหลัง', Contacts: 'รายชื่อผู้ติดต่อ', 'Your friends': 'เพื่อนของคุณ', 'Start using Vybe': 'เริ่มใช้งาน Vybe', 'Set up your profile': 'ตั้งค่าโปรไฟล์',
+    'Your name': 'ชื่อของคุณ', 'Add profile photo': 'เพิ่มรูปโปรไฟล์', 'Beginner Friendly': 'เหมาะกับมือใหม่', 'Beginner friendly': 'เหมาะกับมือใหม่', 'Solo-friendly': 'มาคนเดียวได้',
+    'Bangkok & day trips': 'กรุงเทพฯ และทริปวันเดียว', 'Sort: Soonest': 'เรียง: ใกล้ถึงก่อน', '+ Compare': '+ เปรียบเทียบ', 'Search activities': 'ค้นหากิจกรรม',
+    Compare: 'เปรียบเทียบ', 'Side by side': 'เทียบกันชัด ๆ', Price: 'ราคา', Rating: 'คะแนน', Distance: 'ระยะทาง', Level: 'ระดับ', Setting: 'สถานที่', Length: 'ระยะเวลา',
+    Going: 'คนไป', View: 'ดู', 'Sample data for this prototype': 'ข้อมูลตัวอย่างสำหรับต้นแบบนี้', Saved: 'บันทึกแล้ว', 'Saved activities': 'กิจกรรมที่บันทึกไว้',
+    'Nothing saved yet. Tap the heart on an activity to save it.': 'ยังไม่มีกิจกรรมที่บันทึก แตะรูปหัวใจเพื่อบันทึก', Settings: 'ตั้งค่า', Payments: 'การชำระเงิน',
+    'Saved card': 'บัตรที่บันทึกไว้', 'No saved card. Tick “Save this card” at checkout to add one.': 'ยังไม่มีบัตรที่บันทึก เลือก “บันทึกบัตรนี้” ตอนชำระเงินเพื่อเพิ่ม',
+    Receipts: 'ใบเสร็จ', Sun: 'อา', Mon: 'จ', Tue: 'อ', Wed: 'พ', Thu: 'พฤ', Fri: 'ศ', Sat: 'ส', 'In your plan': 'อยู่ในแผนของคุณ',
+    'Activities available': 'มีกิจกรรมให้เลือก', 'Also happening': 'กิจกรรมอื่นในวันนี้', 'Sync my plan to phone calendar': 'ซิงค์แผนไปยังปฏิทินในมือถือ',
+    'Previous month': 'เดือนก่อน', 'Next month': 'เดือนถัดไป', 'Create a post': 'สร้างโพสต์', 'Find a buddy': 'หาเพื่อนไปด้วย', 'Share an experience': 'แชร์ประสบการณ์',
+    'Every post is linked to an activity, so friends can view it and join in one tap.': 'ทุกโพสต์ผูกกับกิจกรรม เพื่อนจึงดูรายละเอียดและเข้าร่วมได้ในแตะเดียว',
+    'From my plan': 'จากแผนของฉัน', 'Or search all activities': 'หรือค้นหาจากกิจกรรมทั้งหมด', Post: 'โพสต์', 'Post text': 'ข้อความโพสต์',
+    'e.g. Climbing, Padel, Khao Yai': 'เช่น ปีนผา พาเดล เขาใหญ่', 'Search activity to attach': 'ค้นหากิจกรรมที่จะแนบ', 'Weather & air alerts': 'แจ้งเตือนอากาศและฝุ่น',
+    'High PM2.5': 'PM2.5 สูง', '· New': '· ใหม่', New: 'ใหม่', Flooding: 'น้ำท่วม', 'Not a good time for outdoor running this morning.': 'เช้านี้ไม่เหมาะกับการวิ่งกลางแจ้ง',
+    'Roads nearby are flooded. Travel may take longer.': 'ถนนใกล้เคียงมีน้ำท่วม อาจใช้เวลาเดินทางนานขึ้น',
+    'Affects your plan:': 'กระทบแผนของคุณ:', 'See suggested new plan': 'ดูแผนใหม่ที่แนะนำ', 'Manage ›': 'จัดการ ›', 'posted a new activity': 'โพสต์กิจกรรมใหม่',
+    Personalization: 'ปรับให้เหมาะกับคุณ', 'Edit my preferences': 'แก้ไขความชอบของฉัน', 'Not set yet': 'ยังไม่ได้ตั้งค่า', 'Replay app tour': 'ดูทัวร์แนะนำแอปอีกครั้ง',
+    'Notifications & sync': 'การแจ้งเตือนและการซิงค์', 'Sync contacts': 'ซิงค์รายชื่อผู้ติดต่อ', 'Sync plan to phone calendar': 'ซิงค์แผนไปยังปฏิทินในมือถือ',
+    'PM2.5 and flood alerts': 'แจ้งเตือน PM2.5 และน้ำท่วม', 'New activities from clubs I follow': 'กิจกรรมใหม่จากคลับที่ติดตาม', 'Presentation mode': 'โหมดพรีเซนต์',
+    'switch room moments': 'สลับช่วงเวลาในห้อง', 'Log out': 'ออกจากระบบ', 'Restart as a new user (demo)': 'เริ่มใหม่แบบผู้ใช้ใหม่ (เดโม)', Skip: 'ข้าม',
+    'New to this': 'เพิ่งเริ่ม', 'Done it a few times': 'เคยทำมาบ้างแล้ว', 'I train regularly': 'ฝึกเป็นประจำ', Mornings: 'ช่วงเช้า', Evenings: 'ช่วงเย็น', Weekends: 'วันหยุด',
+    Morning: 'ช่วงเช้า', Evening: 'ช่วงเย็น', Weekend: 'วันหยุด',
+    'Free only': 'เฉพาะฟรี', 'No limit': 'ไม่จำกัด', 'On my own': 'ไปคนเดียว', 'Meet new people': 'อยากเจอเพื่อนใหม่', 'With my friends': 'ไปกับเพื่อน', Finish: 'เสร็จสิ้น', Save: 'บันทึก',
+    'What would you like to try?': 'อยากลองทำอะไรบ้าง?', 'How experienced are you?': 'คุณมีประสบการณ์แค่ไหน?', 'When are you usually free?': 'ปกติคุณว่างช่วงไหน?',
+    'Budget per activity': 'งบต่อกิจกรรม', 'How do you like to go?': 'ชอบไปแบบไหน?',
+    'Activity Details': 'รายละเอียดกิจกรรม', 'Hosted by': 'จัดโดย', Map: 'แผนที่', Details: 'รายละเอียด', Description: 'รายละเอียด', 'Your plan': 'แผนของคุณ', 'Booked ✓': 'จองแล้ว ✓',
+    'View ticket': 'ดูตั๋ว', Share: 'แชร์', 'Save activity': 'บันทึกกิจกรรม', 'Ask the club': 'ถามคลับ', 'Official partner': 'พาร์ทเนอร์ทางการ',
+    'Complete payment': 'ชำระเงินให้เสร็จ', 'Completed ✓': 'เสร็จแล้ว ✓', Payment: 'ชำระเงิน', Checkout: 'ชำระเงิน', Tickets: 'จำนวนตั๋ว', 'Free each': 'ฟรีต่อคน',
+    'Payment method': 'วิธีชำระเงิน', 'Scan with any Thai banking app': 'สแกนด้วยแอปธนาคารไทยได้ทุกแอป', 'Visa, Mastercard, JCB': 'Visa, Mastercard, JCB',
+    'Confirm in the TrueMoney app': 'ยืนยันในแอป TrueMoney', 'Open your bank app to confirm': 'เปิดแอปธนาคารเพื่อยืนยัน', 'Credit / debit card': 'บัตรเครดิต / เดบิต',
+    'Mobile banking': 'โมบายแบงก์กิ้ง', 'Promo code': 'โค้ดส่วนลด', Apply: 'ใช้โค้ด', Subtotal: 'ยอดรวม', 'Service fee': 'ค่าบริการ', Total: 'ยอดชำระ', 'Pay Free': 'ยืนยัน (ฟรี)',
+    'Fewer tickets': 'ลดจำนวนตั๋ว', 'More tickets': 'เพิ่มจำนวนตั๋ว', 'Scan to pay': 'สแกนเพื่อชำระ', 'QR expires in': 'QR หมดอายุใน', 'Open any Thai banking app': 'เปิดแอปธนาคาร',
+    'Scan this QR code or save it and upload': 'สแกน QR นี้ หรือบันทึกรูปแล้วอัปโหลด', 'Check the amount, then confirm': 'ตรวจยอดเงิน แล้วกดยืนยัน', 'I’ve paid': 'ชำระแล้ว',
+    'Save QR code': 'บันทึก QR', 'Show this QR to the club at check-in': 'แสดง QR นี้กับคลับตอนเช็คอิน', 'Add to calendar': 'เพิ่มลงปฏิทิน', 'Check-in QR code': 'QR สำหรับเช็คอิน',
+    'Your location': 'ตำแหน่งของคุณ', 'Parking fee': 'ค่าจอดรถ', 'Travel times are sample estimates': 'เวลาเดินทางเป็นค่าประมาณตัวอย่าง', 'Open in Google Maps': 'เปิดใน Google Maps',
+    'Share meeting point in group chat': 'แชร์จุดนัดพบในแชทกลุ่ม', 'In your plan ✓': 'อยู่ในแผนแล้ว ✓', 'Find a buddy for': 'หาเพื่อนไป',
+    'Posting to: your followers on Vybe and this activity’s page': 'โพสต์ไปยัง: ผู้ติดตามของคุณบน Vybe และหน้ากิจกรรมนี้', 'Post and find a buddy': 'โพสต์และหาเพื่อน',
+    'Skip for now': 'ข้ามไปก่อน', 'No ticket yet. Complete payment to get your ticket.': 'ยังไม่มีตั๋ว ชำระเงินให้เสร็จเพื่อรับตั๋ว', 'Skip and pay now': 'ข้ามและชำระเลย',
+    'View receipt': 'ดูใบเสร็จ', Receipt: 'ใบเสร็จ', 'Booking ref': 'เลขที่การจอง', Activity: 'กิจกรรม', Date: 'วันที่', Place: 'สถานที่', 'Total paid': 'ยอดที่ชำระ',
+    'Paid with': 'ชำระด้วย', 'Paid at': 'ชำระเมื่อ', 'Room ✦': 'ห้อง ✦', Send: 'ส่ง', 'Type a message…': 'พิมพ์ข้อความ…', Message: 'ข้อความ', 'Direct message': 'ข้อความส่วนตัว',
+    'Club chat': 'แชทกับคลับ', 'usually replies within an hour': 'มักตอบกลับภายใน 1 ชั่วโมง', 'Next activity': 'กิจกรรมถัดไป', 'Community club': 'คลับชุมชน', Studio: 'สตูดิโอ',
+    'You’ll get a notification when this club posts a new activity.': 'คุณจะได้รับแจ้งเตือนเมื่อคลับนี้โพสต์กิจกรรมใหม่', Members: 'สมาชิก', Upcoming: 'กำลังจะมาถึง',
+    'Follow to get notified when this club posts a new activity.': 'ติดตามเพื่อรับแจ้งเตือนเมื่อคลับนี้โพสต์กิจกรรมใหม่', 'No open activities yet': 'ยังไม่มีกิจกรรมที่เปิดรับ',
+    'is affected': 'ได้รับผลกระทบ', 'Vybe suggests instead': 'Vybe แนะนำกิจกรรมแทน', 'We’ll let everyone going with you know': 'เราจะแจ้งทุกคนที่ไปกับคุณ',
+    'A message goes to the group chat inviting them to the new plan': 'ระบบจะส่งข้อความชวนทุกคนในแชทกลุ่มไปแผนใหม่', 'Use new plan': 'ใช้แผนใหม่', 'Keep original': 'ใช้แผนเดิม',
+    'No indoor activities that day': 'วันนั้นไม่มีกิจกรรมในร่ม', Time: 'เวลา', Together: 'ไปด้วยกัน', 'Share Recap': 'แชร์รีแคป', 'Post to Community': 'โพสต์ลงคอมมูนิตี้',
+    Before: 'ก่อน', Live: 'ระหว่าง', After: 'หลัง', 'Leave room': 'ออกจากห้อง', 'Room moment (presentation mode)': 'ช่วงเวลาในห้อง (โหมดพรีเซนต์)', 'Mute sound': 'ปิดเสียง',
+    'Leave a note for the room': 'ฝากข้อความไว้ในห้อง', 'Skip tour': 'ข้ามทัวร์', Next: 'ถัดไป', 'App tour': 'ทัวร์แนะนำแอป', 'Got it': 'เข้าใจแล้ว',
+    'Personalized for you': 'เลือกมาเพื่อคุณ', 'Edit ›': 'แก้ไข ›', 'Search everything': 'ค้นหาได้ทุกอย่าง', 'Browse by category': 'เลือกดูตามหมวด',
+    'Your plan lives here': 'แผนทั้งหมดอยู่ที่นี่', 'Find people to go with': 'หาคนไปด้วยกัน', 'Social club': 'คลับเจอเพื่อน', 'Friends going': 'เพื่อนไปด้วย',
+    'No activities in this category yet': 'ยังไม่มีกิจกรรมในหมวดนี้', 'No activities found': 'ไม่พบกิจกรรม', 'No friends found': 'ไม่พบเพื่อน', 'No clubs found': 'ไม่พบคลับ',
+    'No matching posts yet': 'ยังไม่มีโพสต์ที่ตรงกัน', 'Waiting for replies…': 'รอคนตอบกลับ…', 'Joined ✓ Group chat': 'เข้าร่วมแล้ว ✓ แชทกลุ่ม', 'Requested…': 'ส่งคำขอแล้ว…',
+    'Joined ✓': 'เข้าร่วมแล้ว ✓', 'See who ›': 'ดูว่าใคร ›', 'Your post': 'โพสต์ของคุณ', 'No one yet. Check back in a moment.': 'ยังไม่มีใคร ลองกลับมาดูอีกครั้ง',
+    Accept: 'ตอบรับ', 'Accepted ✓': 'ตอบรับแล้ว ✓', 'No one is looking yet. Post first and find someone to go with.': 'ยังไม่มีใครหาเพื่อน โพสต์ก่อนเลยแล้วหาคนไปด้วยกัน',
+    '+ Post to find a buddy': '+ โพสต์หาเพื่อนไปด้วย', 'Follow clubs to hear about their new activities.': 'ติดตามคลับเพื่อรับข่าวกิจกรรมใหม่',
+    'Activity link copied': 'คัดลอกลิงก์กิจกรรมแล้ว', 'Sharing isn’t available here': 'ยังแชร์จากที่นี่ไม่ได้', 'Added to your plan': 'เพิ่มลงแผนแล้ว',
+    'complete payment to confirm': 'ชำระเงินเพื่อยืนยัน', 'now find a buddy': 'ไปหาเพื่อนไปด้วยกันเลย', 'Attach an activity first': 'แนบกิจกรรมก่อน', 'Card removed': 'ลบบัตรแล้ว',
+    'Choose an image file': 'เลือกไฟล์รูปภาพ', 'Complete payment first to check in': 'ชำระเงินก่อนจึงจะเช็คอินได้', 'Enter your name to continue': 'กรอกชื่อเพื่อดำเนินการต่อ',
+    'No alternative selected': 'ยังไม่ได้เลือกกิจกรรมแทน', 'Preferences saved': 'บันทึกความชอบแล้ว', 'Home updated': 'อัปเดตหน้าหลักแล้ว', 'Profile photo updated': 'อัปเดตรูปโปรไฟล์แล้ว',
+    'QR scanned at the venue (simulated)': 'สแกน QR ที่สถานที่แล้ว (จำลอง)', 'welcome!': 'ยินดีต้อนรับ!', 'Recap created': 'สร้างรีแคปแล้ว', 'added to your profile': 'เพิ่มในโปรไฟล์แล้ว',
+    'Recap text copied': 'คัดลอกข้อความรีแคปแล้ว', 'Reset': 'รีเซ็ตแล้ว', 'sign up again to see the new-user flow': 'สมัครใหม่เพื่อดูขั้นตอนผู้ใช้ใหม่', 'You can compare up to 3': 'เปรียบเทียบได้สูงสุด 3 รายการ',
+    'Calendar sync turned off': 'ปิดการซิงค์ปฏิทินแล้ว', Posted: 'โพสต์แล้ว', 'added to My Schedule': 'เพิ่มลงแผนของฉันแล้ว', 'Your note is in the room and the group chat': 'ข้อความของคุณอยู่ในห้องและแชทกลุ่มแล้ว',
+    'Your note is in the room': 'ข้อความของคุณอยู่ในห้องแล้ว', 'Removed from saved': 'นำออกจากรายการที่บันทึกแล้ว', 'you’ll be notified about new activities': 'คุณจะได้รับแจ้งเตือนกิจกรรมใหม่',
+    'added to My Schedule and group chat': 'เพิ่มลงแผนและแชทกลุ่มแล้ว', 'Payment successful': 'ชำระเงินสำเร็จ', 'Processing payment…': 'กำลังดำเนินการชำระเงิน…',
+    'Card number': 'หมายเลขบัตร', 'Name on card': 'ชื่อบนบัตร', Expiry: 'วันหมดอายุ', 'Save this card': 'บันทึกบัตรนี้', Remove: 'ลบ', Done: 'เสร็จแล้ว', Cancel: 'ยกเลิก', Close: 'ปิด',
+    'Starting now': 'กำลังเริ่ม', 'Starts in': 'เริ่มใน', 'Notes from the room': 'ข้อความจากห้อง', 'Waiting room': 'ห้องรอ', 'Memories': 'ความทรงจำ', 'VYBE ROOM': 'VYBE ROOM',
+    'Make recap': 'สร้างรีแคป', 'Finish activity': 'จบกิจกรรม', 'I’m here': 'ฉันมาถึงแล้ว', 'Open room': 'เข้าห้อง', 'Enter room': 'เข้าห้อง', Room: 'ห้อง',
+    // ใหม่: ความปลอดภัย การยืนยันตัวตน และหน้า Home ใหม่
+    'ID verified': 'ยืนยันตัวตนแล้ว', 'Verified club': 'คลับที่ยืนยันแล้ว', 'Not verified yet': 'ยังไม่ยืนยันตัวตน', 'Verification pending': 'กำลังตรวจสอบ',
+    'Verify your identity': 'ยืนยันตัวตนของคุณ', 'Safety': 'ความปลอดภัย', 'Safety center': 'ศูนย์ความปลอดภัย', 'Safety tips': 'คำแนะนำด้านความปลอดภัย',
+    'Report': 'รายงาน', 'Block': 'บล็อก', 'Report or block': 'รายงานหรือบล็อก', 'Trusted contact': 'ผู้ติดต่อที่ไว้ใจ', 'Add trusted contact': 'เพิ่มผู้ติดต่อที่ไว้ใจ',
+    'Bangkok right now': 'กรุงเทพฯ ตอนนี้', 'Friends are going': 'เพื่อนกำลังจะไป', 'Going solo? You won’t be alone': 'ไปคนเดียว? ไม่ได้อยู่คนเดียวแน่นอน',
+    Reviews: 'รีวิว', 'Payments & receipts': 'การชำระเงินและใบเสร็จ', Group: 'กลุ่ม', Club: 'คลับ', 'PromptPay QR code': 'QR โค้ด PromptPay', Added: 'เพิ่มแล้ว',
+    'Turn sound on': 'เปิดเสียง', 'Enter a promo code first.': 'กรอกโค้ดส่วนลดก่อน', 'Your picks are ready': 'กิจกรรมที่เลือกมาเพื่อคุณพร้อมแล้ว', 'group notified': 'แจ้งกลุ่มแล้ว',
+    'Join to be part of this': 'เข้าร่วมเพื่อเป็นส่วนหนึ่งของห้องนี้', 'Next from club': 'ถัดไปจากคลับ', 'Memories from this day': 'ความทรงจำจากวันนี้', 'Back to the live room': 'กลับไปห้องสด',
+    'Memories ✦': 'ความทรงจำ ✦', 'Back to room ✦': 'กลับเข้าห้อง ✦', 'Pay to check in': 'ชำระเงินเพื่อเช็คอิน', 'You’re here': 'คุณอยู่ที่นี่แล้ว', 'You’re checked in': 'เช็คอินแล้ว',
+    'Checked in': 'เช็คอินแล้ว', 'Next up': 'ถัดไป', 'Room open ✦': 'ห้องเปิดแล้ว ✦',
+    'What’s your': 'วันนี้อยาก', 'vybe today?': 'ไปทำอะไรดี?', 'Activities, places, clubs…': 'กิจกรรม สถานที่ คลับ…', Explore: 'สำรวจ',
+    'Just for you': 'สำหรับคุณ', '✓ In plan': '✓ อยู่ในแผน',
+    'See translation': 'ดูคำแปล', 'See original': 'ดูต้นฉบับ', Language: 'ภาษา',
+  },
+
+  // ── ไทย → อังกฤษ (ข้อความของระบบที่เขียนเป็นภาษาไทย)
+  en: {
+    'ตอบคำถามสั้น ๆ 5 ข้อ': 'Answer 5 quick questions',
+    'ดูว่าเพื่อนของคุณกำลังจะไปงานหรือกิจกรรมอะไรบ้าง': 'See which events and activities your friends are going to',
+    'ช่วยให้คุณชวนกันไปได้ง่ายขึ้น': 'so it’s easier to go together',
+    'แนะนำเพื่อนที่สนใจเหมือนกัน': 'Suggests friends with similar interests',
+    'จากเบอร์ที่ลงทะเบียนตรงกัน': 'based on matching registered numbers',
+    'เราจะไม่ส่งข้อความหาใครแทนคุณ': 'We never message anyone on your behalf',
+    'ถ้าคุณไม่กดเชิญเอง': 'unless you tap invite yourself',
+    'คุณเป็นคนควบคุมทุกอย่างได้': 'You’re in control',
+    'เพื่อน ๆ จะเห็นชื่อและรูปนี้บน Vybe': 'Friends will see this name and photo on Vybe',
+    'แตะเพื่อเพิ่มรูป (ไม่ใส่ก็ได้)': 'Tap to add a photo (optional)',
+    'เลือกได้หลายอย่าง เราจะแสดงหมวดเหล่านี้ก่อน': 'Pick as many as you like. We’ll show these first',
+    'เพื่อแนะนำกิจกรรมที่ระดับเหมาะกับคุณ': 'So we suggest activities at the right level',
+    'เพิ่งเริ่มต้น': 'Just starting out', 'พอรู้พื้นฐานแล้ว': 'I know the basics', 'พร้อมลองคลาสที่ยากขึ้น': 'Ready for harder classes',
+    'เลือกได้มากกว่า 1 ข้อ': 'Pick more than one', 'ก่อน 10:00 น.': 'Before 10:00', 'ตั้งแต่ 17:00 น.': 'From 17:00', 'เสาร์–อาทิตย์': 'Sat–Sun',
+    'กิจกรรมที่แนะนำจะไม่เกินงบนี้': 'Suggestions will stay within this budget', 'เราจะเน้นกิจกรรมที่เข้ากับสไตล์คุณ': 'We’ll favour activities that suit your style',
+    'มีคนมาคนเดียวเหมือนกัน': 'Others come solo too', 'คลับและกลุ่มที่เน้นเจอเพื่อนใหม่': 'Clubs and groups made for meeting people',
+    'กิจกรรมที่เพื่อนของคุณไป': 'Activities your friends are going to',
+    'จองแล้วจะได้เข้า': 'Book to enter', 'ห้องของกิจกรรมนี้': 'this activity’s room', 'เจอคนที่ไปด้วยกันก่อนวันจริง': 'and meet the people going before the day',
+    'คุณไม่ได้มาคนเดียว ทุกคนกำลังเตรียมตัวเหมือนคุณ': 'You’re not alone. Everyone is getting ready, just like you',
+    'ตอนนี้ทุกคนอยู่ตรงนี้ด้วยกัน': 'Everyone is here together now', 'ความทรงจำที่สร้างด้วยกัน': 'Memories made together',
+    'ยินดีต้อนรับ! ทุกคนในห้องเห็นแล้วว่าคุณมาถึง': 'Welcome! Everyone in the room can see you’ve arrived',
+    'วางมือถือแล้วสนุกกับช่วงเวลานี้ได้เลย': 'Put your phone down and enjoy the moment', 'ทุกการเช็คอินคือเสียงหัวใจของห้องนี้': 'Every check-in is a heartbeat of this room',
+    'คนมาด้วยกัน': 'came together', 'ที่ใช้ร่วมกัน': 'shared', 'เพื่อนใหม่': 'new friends', 'แตะเพื่อเข้าห้อง': 'Tap to step inside', 'แตะเพื่อเข้าไป': 'Tap to step inside',
+    'กิจกรรมที่ตรงกับคำตอบของคุณ แก้คำตอบได้ทุกเมื่อในหน้าตั้งค่า': 'Activities that match your answers. Change them anytime in Settings',
+    'ค้นหากิจกรรม สถานที่ และคลับ ลองพิมพ์ “yoga” หรือ “Lumpini” ดูสิ': 'Search activities, places and clubs. Try “yoga” or “Lumpini”',
+    'กดหมวดเพื่อกรองกิจกรรม หมวดที่คุณเลือกไว้จะขึ้นก่อน': 'Tap a category to filter. Your picks come first',
+    'การจอง ตั๋ว เส้นทาง และแชทกลุ่ม อยู่ที่แผนของฉันทั้งหมด': 'Bookings, tickets, routes and group chats all live in My Schedule',
+    'โพสต์หาเพื่อนไปด้วย เข้าร่วมแผนของคนอื่น และติดตามคลับ': 'Post to find a buddy, join other people’s plans and follow clubs',
+    'ยังไม่มีกิจกรรมที่ตรงทุกข้อ นี่คือกิจกรรมที่ใกล้เคียงที่สุด': 'Nothing matches every answer yet. Here are the closest',
+    'ยังไม่มีกิจกรรมในหมวดนี้ที่ตรงกับคำตอบ ลองเลือกหมวด All หรือแก้คำตอบ': 'Nothing in this category matches your answers. Try All or edit your answers',
+    'หาเพื่อนไป Climbing วันเสาร์นี้…': 'Looking for a climbing buddy this Saturday…',
+    'ตื่นเต้นมาก!': 'So excited!', 'มาคนเดียวครั้งแรก': 'First time coming solo', 'ใครไปทางเดียวกันบ้าง': 'Anyone heading the same way?', 'เจอกันหน้าทางเข้านะ': 'See you at the entrance!',
+    'แตะเพื่อก้าวเข้าไป': 'Tap to step inside', 'เปิดเสียงเพื่อสัมผัสบรรยากาศเต็มรูปแบบ': 'Turn the sound on for the full experience', 'เช็คอินแล้ว': 'Checked in',
+    'ตอบคำถามสั้น ๆ 5 ข้อ แล้วเราจะคัดกิจกรรมที่ใช่ให้': 'Answer 5 quick questions and we’ll pick the right activities for you',
+    'มือใหม่ไปได้ไหมคะ': 'Can beginners join?', 'ต้องเตรียมอะไรไปบ้าง': 'What should I bring?', 'มีที่จอดรถไหม': 'Is there parking?', 'ยกเลิกแล้วได้เงินคืนไหม': 'Can I get a refund if I cancel?',
+  },
+};
+
+// รูปแบบที่มีตัวเลข/ชื่อ (ลองทีละข้อ ข้อแรกที่ตรงจะถูกใช้) — T() = แปลส่วนย่อยต่อ
+const I18N_RE = {
+  th: [
+    [/^(\d+) activities planned$/, (m) => `วางแผนไว้ ${m[1]} กิจกรรม`],
+    [/^(\d+) inside ›$/, (m) => `อยู่ในห้อง ${m[1]} คน ›`],
+    [/^High PM2\.5 \((\d+)\): (.+)$/, (m) => `PM2.5 สูง (${m[1]}): ${m[2]}`],
+    [/^High PM2\.5 at (.+)$/, (m) => `PM2.5 สูงที่ ${m[1]}`],
+    [/^Flooding near (.+)$/, (m) => `น้ำท่วมใกล้ ${m[1]}`],
+    [/^(\d+) min ago$/, (m) => `${m[1]} นาทีที่แล้ว`],
+    [/^(\d+) hr ago$/, (m) => `${m[1]} ชม. ที่แล้ว`],
+    [/^(\d+) days? ago$/, (m) => `${m[1]} วันที่แล้ว`],
+    [/^Just now$/, () => 'เมื่อสักครู่'],
+    [/^Recap (.+)$/, (m) => `รีแคป ${m[1]}`],
+    [/^Going to (.+)$/, (m) => `กำลังจะไป ${m[1]}`],
+    [/^([\d,]+) members$/, (m) => `สมาชิก ${m[1]} คน`],
+    [/^(\d+) upcoming$/, (m) => `${m[1]} กิจกรรมที่จะมาถึง`],
+    [/^(.+) logo$/, (m) => `โลโก้ ${m[1]}`],
+    [/^We sent a 6-digit code to (.+)$/, (m) => `เราส่งรหัส 6 หลักไปที่ ${m[1]}`],
+    [/^Resend code in (.+)$/, (m) => `ส่งรหัสอีกครั้งใน ${m[1]}`],
+    [/^Found (\d+) people on Vybe$/, (m) => `พบ ${m[1]} คนบน Vybe`],
+    [/^(\d+) activit(?:y|ies)$/, (m) => `${m[1]} กิจกรรม`],
+    [/^Oct–Nov (\d{4})$/, (m) => `ต.ค.–พ.ย. ${BE(m[1])}`],
+    [/^([\d.]+) km$/, (m) => `${m[1]} กม.`],
+    [/^(\d+) solo$/, (m) => `มาคนเดียว ${m[1]}`],
+    [/^(\d+) hr (\d+) min$/, (m) => `${m[1]} ชม. ${m[2]} นาที`],
+    [/^(\d+) hrs?$/, (m) => `${m[1]} ชม.`],
+    [/^(\d+) mins?$/, (m) => `${m[1]} นาที`],
+    [/^(\d+) (?:people|person)$/, (m) => `${m[1]} คน`],
+    [/^(January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})$/, (m) => `${TH_MONFULL[m[1]]} ${BE(m[2])}`],
+    [/^(.+), has plans$/, (m) => `${T(m[1])} มีแผน`],
+    [/^(\d+) of (\d+)$/, (m) => `${m[1]} จาก ${m[2]}`],
+    [/^Question (\d+) of (\d+)$/, (m) => `คำถามที่ ${m[1]} จาก ${m[2]}`],
+    [/^(\d+) selected$/, (m) => `เลือกแล้ว ${m[1]} ข้อ`],
+    [/^(\d\d:\d\d) – (\d\d:\d\d) \((\d+) mins\)$/, (m) => `${m[1]} – ${m[2]} น. (${m[3]} นาที)`],
+    [/^(\d+) people are getting ready$/, (m) => `${m[1]} คนกำลังเตรียมตัว`],
+    [/^(\d+) going together$/, (m) => `ไปด้วยกัน ${m[1]} คน`],
+    [/^(\d+) going$/, (m) => `ไป ${m[1]} คน`],
+    [/^(\d+) coming solo$/, (m) => `มาคนเดียว ${m[1]} คน`],
+    [/^([\d.]+) \((\d+) reviews\)$/, (m) => `${m[1]} (${m[2]} รีวิว)`],
+    [/^(\d+) reviews \(sample\)$/, (m) => `${m[1]} รีวิว (ตัวอย่าง)`],
+    [/^Free × (\d+)$/, (m) => `ฟรี × ${m[1]}`],
+    [/^Free cancellation up to (\d+) hours before start\. This is a simulated payment\. No money is charged\.$/, (m) => `ยกเลิกฟรีก่อนเริ่ม ${m[1]} ชั่วโมง นี่คือการชำระเงินจำลอง ไม่มีการตัดเงินจริง`],
+    [/^Getting to (.+)$/, (m) => `เดินทางไป ${m[1]}`],
+    [/^Leave by (.+)$/, (m) => `ออกเดินทางภายใน ${m[1]} น.`],
+    [/^to arrive (\d+) minutes early$/, (m) => `เพื่อไปถึงก่อน ${m[1]} นาที`],
+    [/^See you at (.+)$/, (m) => `เจอกันตอน ${m[1]} น.`],
+    [/^Starts in (.+)$/, (m) => 'เริ่มใน ' + m[1].replace(/(\d+)d/, '$1 วัน').replace(/(\d+)h/, '$1 ชม.').replace(/(\d+)m/, '$1 นาที')],
+    [/^(฿[\d,]+) still to pay$/, (m) => `ยังต้องชำระ ${m[1]}`],
+    [/^(฿[\d,]+) \+ (฿\d+) service fee$/, (m) => `${m[1]} + ค่าบริการ ${m[2]}`],
+    [/^Up to (฿[\d,]+)$/, (m) => `ไม่เกิน ${m[1]}`],
+    [/^Under (฿[\d,]+)$/, (m) => `ไม่เกิน ${m[1]}`],
+    [/^(฿[\d,]+) each$/, (m) => `${m[1]} ต่อคน`],
+    [/^Pay (฿[\d,]+)$/, (m) => `ชำระ ${m[1]}`],
+    [/^Your (Sun|Mon|Tue|Wed|Thu|Fri|Sat) plan$/, (m) => `แผนวัน${TH_DAYFULL[m[1]]}ของคุณ`],
+    [/^Good (morning|afternoon|evening), (.+)$/, (m) => `สวัสดีตอน${{ morning: 'เช้า', afternoon: 'บ่าย', evening: 'เย็น' }[m[1]]} ${m[2]}`],
+    [/^Welcome back, (.+)$/, (m) => `ยินดีต้อนรับกลับ ${m[1]}`],
+    [/^Request sent to (.+)$/, (m) => `ส่งคำขอถึง ${m[1]} แล้ว`],
+    [/^Following (.+)$/, (m) => `ติดตาม ${m[1]} แล้ว`],
+    [/^Unfollowed (.+)$/, (m) => `เลิกติดตาม ${m[1]} แล้ว`],
+    [/^(\d+) activities added to your phone calendar \(simulated\)$/, (m) => `เพิ่ม ${m[1]} กิจกรรมลงปฏิทินแล้ว (จำลอง)`],
+    [/^(.+) added to your phone calendar \(simulated\)$/, (m) => `เพิ่ม ${m[1]} ลงปฏิทินแล้ว (จำลอง)`],
+    [/^(.+) and (.+) are interested in your post$/, (m) => `${m[1]} และ ${m[2]} สนใจโพสต์ของคุณ`],
+    [/^(\d+)% off$/, (m) => `ลด ${m[1]}%`],
+    [/^(฿\d+) off$/, (m) => `ลด ${m[1]}`],
+    [/^(\S+) applied$/, (m) => `ใช้โค้ด ${m[1]} แล้ว`],
+    [/^(.+) was added to the group chat$/, (m) => `เพิ่ม ${m[1]} เข้าแชทกลุ่มแล้ว`],
+    [/^(.+) accepted$/, (m) => `${m[1]} ตอบรับแล้ว`],
+    [/^Opening (.+)… \(simulated\)$/, (m) => `กำลังเปิด ${T(m[1])}… (จำลอง)`],
+    [/^(\d+) interested$/, (m) => `สนใจ ${m[1]} คน`],
+    [/^(\d+) interested ›$/, (m) => `สนใจ ${m[1]} คน ›`],
+    [/^(\d+)\/(\d+) ID verified$/, (m) => `ยืนยันตัวตนแล้ว ${m[1]}/${m[2]} คน`],
+    [/^(\d+) people out right now$/, (m) => `${m[1]} คนกำลังออกไปทำกิจกรรม`],
+    [/^(\d+) checked in in the last hour$/, (m) => `${m[1]} คนเช็คอินในชั่วโมงที่ผ่านมา`],
+    [/^(\d+) activities live now$/, (m) => `${m[1]} กิจกรรมกำลังเกิดขึ้น`],
+    [/^(.+) checked in$/, (m) => `${m[1]} เช็คอินแล้ว`],
+    [/^(.+) is going$/, (m) => `${m[1]} กำลังจะไป`],
+    [/^\+(\d+) going$/, (m) => `+${m[1]} คนไป`],
+    [/^Translated from (.+)$/, (m) => `แปลจากภาษา${LANG_NAME_TH[m[1]] || m[1]}`],
+    [/^Blocked (.+)$/, (m) => `บล็อก ${m[1]} แล้ว`],
+    [/^Chat with (.+)$/, (m) => `แชทกับ ${m[1]}`],
+    [/^You’re #(\d+) to arrive$/, (m) => `คุณมาถึงเป็นคนที่ ${m[1]}`],
+    [/^of (\d+) here$/, (m) => `จาก ${m[1]} คนที่มาแล้ว`],
+    [/^You’re booked for (.+)$/, (m) => `คุณจอง ${m[1]} แล้ว`],
+    [/^Switched to (.+)$/, (m) => `เปลี่ยนเป็น ${m[1]} แล้ว`],
+    [/^The code “(.+)” isn’t valid\. Check the spelling and try again\.$/, (m) => `โค้ด “${m[1]}” ใช้ไม่ได้ ลองตรวจตัวสะกดอีกครั้ง`],
+    [/^· (.+)$/, (m) => `· ${T(m[1])}`],
+    [/^(.+) \((\d+)\)$/, (m) => `${T(m[1])} (${m[2]})`],
+    [/^(.+) ›$/, (m) => `${T(m[1])} ›`],
+    [/^(.+)\?$/, (m) => `${T(m[1])}?`],
+    [/^(.+):$/, (m) => `${T(m[1])}:`],
+  ],
+  en: [
+    [/^(\d+) คนกำลังเตรียมตัว$/, (m) => `${m[1]} getting ready`],
+    [/^(\d+) คนมาคนเดียวเหมือนคุณ$/, (m) => `${m[1]} coming solo like you`],
+    [/^มีกิจกรรมที่ตรงทุกข้อ (\d+) รายการ ที่เหลือเป็นกิจกรรมใกล้เคียง$/, (m) => `${m[1]} match every answer. The rest are close matches`],
+    [/^ห้องรอของกิจกรรมนี้จะเปิด (.+) \((\d+) ชม\. ก่อนเริ่ม\)$/, (m) => `This activity’s waiting room opens ${m[1]} (${m[2]} hrs before start)`],
+    [/^เลือกซิงค์รายชื่อผู้ติดต่อหรือข้ามขั้นตอนนี้ก็ได้/, () => 'Sync your contacts or skip this step. You can turn it off anytime in Settings'],
+  ],
+};
+const LANG_NAME_TH = { Thai: 'ไทย', English: 'อังกฤษ', Japanese: 'ญี่ปุ่น', Chinese: 'จีน', French: 'ฝรั่งเศส', Korean: 'เกาหลี' };
+
+// คำอธิบายกิจกรรม (ข้อความของระบบ) เป็นภาษาอังกฤษ — ภาษาไทยอยู่ใน ACTIVITIES.about
+const ABOUT_EN = {
+"fun": "A timed 5K with medals, music and a post-run breakfast.",
+"trail": "Learn uphill and downhill technique on the park’s dirt trails.",
+"track": "400 m repeats under the stadium lights. Bring a watch.",
+"chinarun": "7 km through Chinatown’s street-food lanes, finishing with dessert.",
+"river": "16 km at an easy pace along the river path, with water stops every 4 km.",
+"tread": "A coach-led tempo session on treadmills in an air-conditioned studio.",
+"c25k": "The first session of an 8-week plan for total beginners, using walk-run intervals.",
+"halloween": "Dress up and run a glow-in-the-dark 5K. Best costume wins a free month of classes.",
+"social10": "10 km at a social pace, followed by coffee together.",
+"climb": "Top-rope climbing with belay coaching. Shoes and harness included.",
+"indoor": "A morning auto-belay and top-rope session. A great plan for rainy or smoggy days.",
+"boul": "Social bouldering with new routes every week and music all night.",
+"boul101": "Footwork, falling safely and reading routes for first-timers.",
+"lead": "Learn to clip, fall and lead-belay. Top-rope experience required.",
+"bcomp": "A friendly in-house comp with 30 new problems and prizes.",
+"crag": "A day on limestone sport routes. Transport and gear included.",
+"yoga": "Gentle hatha flow on the lawn by the lake. Mats provided.",
+"yin": "A calm morning flow in a filtered-air studio.",
+"yoga2": "Long, slow holds to unwind after the week.",
+"rooftop": "Vinyasa flow above the city skyline as the sun goes down.",
+"vinyasa": "A strong, sweaty flow to start the work week.",
+"aerial": "Try inversions in a silk hammock with a step-by-step teacher.",
+"freeyoga": "A donation-based class for everyone. Bring your own mat.",
+"runyoga": "Stretch hips, hamstrings and calves after your long run.",
+"pil": "Learn the reformer basics in a small class of eight.",
+"pil2": "Free core-focused mat class under the trees.",
+"jump": "Low-impact cardio intervals on the reformer jump board.",
+"posture": "Fix rounded shoulders and build deep core strength.",
+"desk": "A lunch-hour class for stiff backs and tight shoulders.",
+"wall": "A quick full-body burn using only a wall and a mat.",
+"cyc": "A flat, shady 25 km loop through Bangkok’s green lung.",
+"cyc2": "A 30 km city ride past lit-up temples and bridges.",
+"skylane": "Car-free laps on the 23 km airport bike track. Rentals on site.",
+"spin": "Ride to the beat in a dark room with club lighting.",
+"cafe": "An easy ride between three cafes. Bike rental on site.",
+"hike": "Jungle trails, hornbills and a waterfall. Van from Victory Monument.",
+"hike2": "The Monk’s Trail up to the temple in time for sunrise.",
+"erawan": "Hike all seven tiers and swim in the turquoise pools.",
+"mangrove": "A flat walk through the mangroves with seagull spotting.",
+"ridge": "A steady climb to a ridge viewpoint over the valley.",
+"heritage": "A 10,000-step walk past temples, palaces and old shophouses.",
+"swim": "Practise sighting and drafting before your first open-water race.",
+"swim2": "Shared lanes sorted by pace, with a coach on deck.",
+"learnswim": "Never too late. Small groups in a warm indoor pool.",
+"stroke": "Underwater filming and feedback on your freestyle.",
+"seaswim": "A 2 km guided sea swim with kayak support.",
+"masters": "Structured sets for regular swimmers chasing faster times.",
+"ice": "A guided 3-minute plunge with breathing coaching.",
+"ice2": "Hot and cold rounds with music and herbal tea.",
+"breath": "Learn a breathing method, then put it to the test in the tub.",
+"contrast": "Longer sauna and plunge rounds for regulars.",
+"muay": "Stance, punches and kicks. Gloves and wraps provided.",
+"pads": "Rounds on the pads with trainers, then a conditioning finisher.",
+"womenmt": "A women-only class with female coaches.",
+"fightnight": "Watch live bouts with a coach explaining the action.",
+"shadow": "A free outdoor class. No equipment needed.",
+"padel": "Learn the rules and basic shots. Rackets included.",
+"padel2": "Rotating doubles, so you meet someone new every game.",
+"americano": "A points-based mini tournament with changing partners.",
+"hiphop": "Learn grooves and a short routine. No experience needed.",
+"salsa": "A 45-minute lesson, then open dancing. Come solo, everyone rotates.",
+"kpop": "Learn this month’s chart-topping choreography and film it.",
+"dancefit": "A free, high-energy dance workout on the park plaza.",
+"medi": "A guided sit by the lake before the city wakes up.",
+"soundbath": "Lie back while singing bowls and gongs do the work.",
+"retreat": "A full day of guided sitting and walking meditation. Wear white. Donation-based.",
+"breathe": "A 30-minute reset to calm a busy mind.",
+"sup": "Stand-up paddle past temples at dawn. Board and life vest included.",
+"kayak": "Paddle through old canal communities and stop at a floating cafe.",
+"supyoga": "Yoga poses on a floating board. Expect to get wet.",
+"mangkayak": "Kayak the mangroves, then visit the Maeklong railway market.",
+"run": "An easy 5 km loop around Lumpini Park at a chatty pace, with pacers for every group."
+};
+ACTIVITIES.forEach((a) => ABOUT_EN[a.id] && (I18N.en[a.about] = ABOUT_EN[a.id]));
+QUIZ.forEach((q) => q.options.forEach((o) => o[2] && !I18N.en[o[2]] && 0));
+
+const TR_CACHE = { th: new Map(), en: new Map() };
+const DATE_RE = /\b(Sun|Mon|Tue|Wed|Thu|Fri|Sat)(,?) (\d{1,2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)( \d{4})?\b/g;
+const DATE2_RE = /\b(\d{1,2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)( \d{4})?\b/g;
+function T(t, lang = LANG.cur) {
+  const d = I18N[lang];
+  if (Object.prototype.hasOwnProperty.call(d, t)) return d[t];
+  const C = TR_CACHE[lang];
+  if (C.has(t)) return C.get(t);
+  let w = t, r = t;
+  if (lang == 'th') w = t.replace(DATE_RE, (_, d, c, n, m, y) => `${TH_DAY[d]} ${n} ${TH_MON[m]}${y ? ' ' + BE(y) : ''}`).replace(DATE2_RE, (_, n, m, y) => `${n} ${TH_MON[m]}${y ? ' ' + BE(y) : ''}`);
+  if (w != t && Object.prototype.hasOwnProperty.call(d, w)) r = d[w];
+  else {
+    for (const [re, f] of I18N_RE[lang]) {
+      const m = w.match(re);
+      if (m) {
+        r = f(m);
+        break;
+      }
+    }
+    if (r == t) r = w;
+  }
+  if (r == t && t.includes(' · ')) r = t.split(' · ').map((s) => T(s, lang)).join(' · ');
+  C.set(t, r);
+  return r;
+}
+
+// แปลทุกข้อความในส่วนที่เพิ่งวาด (ข้าม data-ugc = ข้อความที่คนเขียน)
+const TR_ATTRS = ['placeholder', 'aria-label', 'title'];
+function translateNode(root) {
+  const lang = LANG.cur;
+  if (!root) return;
+  if (root.nodeType == 3) return trTextNode(root, lang);
+  if (root.nodeType != 1 || root.closest('[data-ugc],script,style')) return;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, {
+    acceptNode: (n) => (n.nodeType == 1 && (n.hasAttribute('data-ugc') || n.tagName == 'SCRIPT' || n.tagName == 'STYLE') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+  });
+  let n = root;
+  do {
+    if (n.nodeType == 3) trTextNode(n, lang);
+    else for (const k of TR_ATTRS) if (n.hasAttribute(k)) {
+      const v = n.getAttribute(k), r = T(v.trim(), lang);
+      if (r != v.trim()) n.setAttribute(k, r);
+    }
+  } while ((n = w.nextNode()));
+}
+function trTextNode(n, lang) {
+  const v = n.nodeValue, t = v.trim();
+  if (!t || (n.parentElement && n.parentElement.closest('[data-ugc]'))) return;
+  const r = T(t, lang);
+  if (r != t) n.nodeValue = v.replace(t, r);
+}
+const I18N_OBS = new MutationObserver((ms) => {
+  for (const m of ms) {
+    if (m.type == 'characterData') trTextNode(m.target, LANG.cur);
+    else m.addedNodes.forEach(translateNode);
+  }
+});
+function setLang(l) {
+  LANG.cur = l;
+  lsSet('vybe.lang', l);
+  document.documentElement.lang = l;
+  render();
+}
+document.documentElement.lang = LANG.cur;
+
+// ปุ่มสลับภาษา TH | EN (ใช้ในหน้า Home, Signup และ Settings)
+const langToggle = (extra = '') =>
+  `<div class="lang-tg" role="group" aria-label="Language" data-notr style="${extra}">${['th', 'en']
+    .map((l) => `<button data-a="lang:${l}" aria-pressed="${LANG.cur == l}" class="${LANG.cur == l ? 'on' : ''}" data-ugc>${l.toUpperCase()}</button>`)
+    .join('')}</div>`;
+
+// ════════════════════════════════════════════════════════════
+// 6d. PEOPLE · LANGUAGES · SAFETY — คนจากหลายประเทศ ข้อความในภาษาของคนเขียน และการยืนยันตัวตน
+// ════════════════════════════════════════════════════════════
+
+// ── คนที่ไม่ใช่คนไทย: ประเทศ + ภาษาที่ใช้เขียน (คนที่ไม่อยู่ในรายการ = คนไทย เขียนภาษาไทย)
+const PEOPLE_FROM = {
+  Emma: ['UK', 'อังกฤษ', 'en'], Yuki: ['Japan', 'ญี่ปุ่น', 'ja'], Lucas: ['France', 'ฝรั่งเศส', 'fr'], Wei: ['China', 'จีน', 'zh'],
+  Daniel: ['USA', 'สหรัฐฯ', 'en'], Sora: ['Korea', 'เกาหลี', 'ko'],
+};
+const LANG_NAME = { th: 'Thai', en: 'English', ja: 'Japanese', zh: 'Chinese', fr: 'French', ko: 'Korean' };
+const fromTag = (name) => {
+  const f = PEOPLE_FROM[name];
+  return f ? `<span class="from" data-ugc>${tx('From ' + f[0], 'จาก' + f[1])}</span>` : '';
+};
+const detectLang = (t) =>
+  /[฀-๿]/.test(t) ? 'th' : /[぀-ヿ]/.test(t) ? 'ja' : /[가-힯]/.test(t) ? 'ko' : /[一-鿿]/.test(t) ? 'zh' : 'en';
+
+// ── คำแปลของข้อความที่คนเขียน (ต้นฉบับ → { en, th }) · l = ภาษาต้นฉบับ (ใส่เมื่อเดาจากตัวอักษรไม่ได้ เช่น ฝรั่งเศส)
+const UGC_TR = {
+  // โพสต์
+  'อยากไปวิ่งแต่ไม่มีเพื่อนไปด้วย มีใครสนใจไปด้วยกันบ้าง': { en: 'I want to go running but have no one to go with. Anyone keen?' },
+  'หาเพื่อนไป Climbing ด้วยกัน #มือใหม่': { en: 'Looking for a buddy to go climbing with #beginner' },
+  'เพิ่งปั่นจักรยานกลับมา บรรยากาศดีมาก อากาศเย็นสบาย': { en: 'Just got back from the ride. Great vibe and lovely cool weather.' },
+  'ใครอยากลอง Reformer Pilates ครั้งแรกด้วยกันบ้าง': { en: 'Who wants to try Reformer Pilates for the first time together?' },
+  'ขาดอีก 1 คนสำหรับ Padel Mixer Night ใครว่างมาเลย!': { en: 'We need 1 more for Padel Mixer Night. Come if you’re free!' },
+  'ไปเอราวัณ 1 พ.ย. ใครไปด้วยบ้าง รถตู้ยังมีที่ว่าง': { en: 'Going to Erawan on 1 Nov. Who’s in? There are still seats in the van.' },
+  'Sunset Yin ที่ Studio K ดีมาก ผ่อนคลายสุด ๆ หลังทำงานมาทั้งสัปดาห์': { en: 'Sunset Yin at Studio K was so good. Super relaxing after a long work week.' },
+  'คลาสมวยไทยครั้งแรกเสาร์นี้ ตื่นเต้นมาก ใครไปด้วยกันบ้าง': { en: 'My first Muay Thai class is this Saturday. So excited! Who’s coming?' },
+  'ใครไปวิ่งลุมพินีเสาร์นี้บ้าง ไปเป็นแก๊งกัน': { en: 'Who’s running at Lumpini this Saturday? Let’s go as a crew.' },
+  'สายเต้น K-Pop มาคัฟเวอร์ด้วยกันค่ะ มือใหม่ก็มาได้': { en: 'K-Pop dancers, come do a cover with us! Beginners welcome.' },
+  'New in Bangkok and looking for a bouldering buddy this week. Total beginner here!': { th: 'เพิ่งย้ายมากรุงเทพฯ หาเพื่อนไปโบลเดอริงสัปดาห์นี้ มือใหม่สุด ๆ เลย!' },
+  '土曜日のヨガ、一緒に行ける人いますか？タイ語はまだ少ししか話せません。': { en: 'Anyone want to go to Saturday yoga together? I only speak a little Thai.', th: 'มีใครไปโยคะวันเสาร์ด้วยกันไหม? ยังพูดไทยได้นิดหน่อย' },
+  'First Muay Thai class done. Sore everywhere, but the coaches were amazing and so patient.': { th: 'เรียนมวยไทยครั้งแรกจบแล้ว ปวดไปทั้งตัว แต่โค้ชเก่งและใจเย็นมาก' },
+  // รีวิว
+  'บรรยากาศดีมาก เหมาะกับมือใหม่สุด ๆ': { en: 'Lovely vibe, perfect for total beginners.' },
+  'Came on my own and left with three new friends. Everyone was so welcoming!': { th: 'มาคนเดียวแต่กลับไปพร้อมเพื่อนใหม่ 3 คน ทุกคนเป็นกันเองมาก!' },
+  'คนไม่เยอะ จัดเวลาดี เริ่มตรงเวลา': { en: 'Not too crowded, well organised and started on time.' },
+  '初めてでも安心して参加できました。コーチがとても親切です。': { en: 'I felt at ease even on my first time. The coach was really kind.', th: 'มาครั้งแรกก็สบายใจ โค้ชใจดีมาก' },
+  'โค้ชใส่ใจ ช่วยแนะนำตลอดเลย': { en: 'The coach really cared and gave tips the whole time.' },
+  'Super ambiance et très bien organisé. Je reviendrai avec des amis !': { l: 'fr', en: 'Great atmosphere and very well organised. I’ll come back with friends!', th: 'บรรยากาศดีมาก จัดการดีเยี่ยม จะกลับมาอีกพร้อมเพื่อน ๆ!' },
+  'รอบหน้าจะชวนเพื่อนมาด้วยแน่นอน': { en: 'Next time I’m definitely bringing friends.' },
+  '教练很专业，还认识了很多新朋友。': { en: 'Very professional coach, and I made lots of new friends.', th: 'โค้ชเป็นมืออาชีพมาก แถมได้เพื่อนใหม่เยอะเลย' },
+  'ได้เจอเพื่อนใหม่เยอะมาก ประทับใจ': { en: 'Met so many new people. Loved it.' },
+  'Felt safe as a solo traveler. The host checked everyone in by name.': { th: 'มาเที่ยวคนเดียวแต่รู้สึกปลอดภัย ผู้จัดเช็คชื่อทุกคน' },
+  'คุ้มราคา อุปกรณ์ครบ': { en: 'Good value, and all the gear is provided.' },
+  '분위기 최고! 혼자 와도 전혀 어색하지 않았어요.': { en: 'Amazing vibe! It wasn’t awkward at all coming alone.', th: 'บรรยากาศดีสุด ๆ! มาคนเดียวก็ไม่เขินเลย' },
+  // แชท
+  'เจอกันหน้าทางเข้านะ': { en: 'See you at the entrance!' },
+  'อย่าลืมพกน้ำมาด้วยน้า': { en: 'Don’t forget to bring water!' },
+  'อีก 5 นาทีถึง': { en: '5 minutes away.' },
+  'I’ll be in a yellow cap, come say hi!': { th: 'ฉันใส่หมวกสีเหลืองนะ มาทักกันได้เลย!' },
+  'ได้เลย 👍': { en: 'Sure 👍' }, 'โอเค เจอกันนะ': { en: 'OK, see you!' }, 'ขอบคุณที่บอกนะ': { en: 'Thanks for letting me know' },
+  'ถึงแล้ว รออยู่หน้าทางเข้า': { en: 'I’m here, waiting at the entrance' }, 'ยินดีต้อนรับนะ เจอกันที่งาน!': { en: 'Welcome! See you there!' },
+  'Sounds good, see you there!': { th: 'โอเค เจอกันที่งานนะ!' }, 'Great, I’ll meet you at the entrance.': { th: 'ได้เลย เจอกันหน้าทางเข้านะ' },
+  'いいですね！現地で会いましょう。': { en: 'Sounds great! Let’s meet there.', th: 'ดีเลย! เจอกันที่งานนะ' },
+  'ขอบคุณที่ทักมานะคะ แอดมินจะตอบกลับโดยเร็วที่สุดค่ะ 🙏': { en: 'Thanks for your message! An admin will reply as soon as possible 🙏' },
+  'ได้เลยค่ะ ทุกกิจกรรมมีโค้ชดูแลมือใหม่ ไม่ต้องมีประสบการณ์มาก่อน': { en: 'Yes! Every activity has a coach for beginners. No experience needed.' },
+};
+CLUB_FAQ.forEach((f) => (UGC_TR[f[1]] = UGC_TR[f[1]] || { en: { 'ชุดที่ใส่สบาย ขวดน้ำ และผ้าเช็ดตัวค่ะ อุปกรณ์หลักทางคลับเตรียมให้': 'Comfy clothes, a water bottle and a towel. The club provides the main gear.', 'มีที่จอดฟรีจำนวนจำกัดค่ะ แนะนำมา BTS/MRT จะสะดวกกว่า': 'There’s limited free parking. BTS/MRT is easier.', 'ยกเลิกก่อนเริ่มกิจกรรม 24 ชั่วโมง คืนเงินเต็มจำนวนค่ะ': 'Cancel 24 hours before start for a full refund.' }[f[1]] || '' }));
+// ข้อความที่มีชื่อกิจกรรม/คลับอยู่ข้างใน
+const UGC_TR_RE = [
+  [/^สวัสดี! สนใจไป (.+) ด้วยกันไหม\?$/, (m) => ({ en: 'Hi! Want to go to ' + m[1] + ' together?' })],
+  [/^Hi! Want to go to (.+) together\?$/, (m) => ({ th: 'สวัสดี! สนใจไป ' + m[1] + ' ด้วยกันไหม?' })],
+  [/^こんにちは！(.+)に一緒に行きませんか？$/, (m) => ({ en: 'Hi! Want to go to ' + m[1] + ' together?', th: 'สวัสดี! สนใจไป ' + m[1] + ' ด้วยกันไหม?' })],
+  [/^สวัสดีค่ะ ยินดีต้อนรับสู่ (.+) 👋 สอบถามเรื่องกิจกรรมได้เลยนะคะ$/, (m) => ({ en: 'Hi, welcome to ' + m[1] + ' 👋 Ask us anything about our activities.' })],
+  [/^หาเพื่อนไป (.+) ด้วยกัน ใครสนใจทักมาได้เลย$/, (m) => ({ en: 'Looking for a buddy for ' + m[1] + '. Message me if you’re keen!' })],
+  [/^ไป (.+) มาแล้ว ดีมาก แนะนำเลย!$/, (m) => ({ en: 'Went to ' + m[1] + '. So good, highly recommend!' })],
+];
+const ugcInfo = (text) => {
+  let tr = UGC_TR[text];
+  if (!tr) for (const [re, f] of UGC_TR_RE) { const m = text.match(re); if (m) { tr = f(m); break; } }
+  tr = tr || {};
+  return { l: tr.l || detectLang(text), tr };
+};
+const hk = (s) => {
+  let h = 7;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+};
+// ข้อความที่คนเขียน: แสดงในภาษาต้นฉบับ + ปุ่ม "ดูคำแปล" เมื่อไม่ใช่ภาษาเดียวกับแอป
+const ugc = (text, style = '', tag = 'div', cls = '') => {
+  const { l, tr } = ugcInfo(text),
+    ui = LANG.cur,
+    can = l != ui && tr[ui],
+    key = hk(text),
+    on = can && S.trShown[key];
+  const btn = can
+    ? `<button data-a="trx:${key}" class="ugc-tr" data-ugc>${ICON.globe()}${on ? tx('Translated from ' + LANG_NAME[l] + ' · See original', 'แปลจากภาษา' + LANG_NAME_TH[LANG_NAME[l]] + ' · ดูต้นฉบับ') : tx('See translation', 'ดูคำแปล')}</button>`
+    : '';
+  return `<${tag} data-ugc lang="${on ? ui : l}" class="${cls}" style="${style}">${on ? tr[ui] : text}</${tag}>${btn}`;
+};
+ICON.globe = () => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg>';
+ICON.shield = (s = 18, c = 'currentColor') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.4"/></svg>`;
+
+// ── รีวิว: คนไทยเขียนภาษาไทย คนต่างชาติเขียนภาษาของตัวเอง
+const REVIEWS2 = [
+  ['Mint', 5, 'บรรยากาศดีมาก เหมาะกับมือใหม่สุด ๆ'],
+  ['Emma', 5, 'Came on my own and left with three new friends. Everyone was so welcoming!'],
+  ['Ploy', 4, 'คนไม่เยอะ จัดเวลาดี เริ่มตรงเวลา'],
+  ['Yuki', 5, '初めてでも安心して参加できました。コーチがとても親切です。'],
+  ['Beam', 5, 'โค้ชใส่ใจ ช่วยแนะนำตลอดเลย'],
+  ['Lucas', 4, 'Super ambiance et très bien organisé. Je reviendrai avec des amis !'],
+  ['Fern', 4, 'รอบหน้าจะชวนเพื่อนมาด้วยแน่นอน'],
+  ['Wei', 5, '教练很专业，还认识了很多新朋友。'],
+  ['Nam', 5, 'ได้เจอเพื่อนใหม่เยอะมาก ประทับใจ'],
+  ['Daniel', 5, 'Felt safe as a solo traveler. The host checked everyone in by name.'],
+  ['Ton', 4, 'คุ้มราคา อุปกรณ์ครบ'],
+  ['Sora', 5, '분위기 최고! 혼자 와도 전혀 어색하지 않았어요.'],
+];
+const reviewsFor = (id) => {
+  const k = ACTIVITIES.findIndex((x) => x.id == id);
+  return [k, k + 5, k + 10].map((i) => REVIEWS2[i % REVIEWS2.length]);
+};
+const PERSON_COLOR = { Emma: '#A8D8F0', Yuki: '#FFB6D0', Lucas: '#C9E8B8', Wei: '#F5B98A', Daniel: '#B7A6F0', Sora: '#9FD8E8', Mint: '#C9E8B8', Nam: '#9FD8E8', Ploy: '#FF8FA3', Beam: '#8FD3C7', Fern: '#F5B98A', Ton: '#B7A6F0' };
+// คำตอบในแชทตามภาษาของคนนั้น
+const REPLIES_BY_LANG = { en: ['Sounds good, see you there!', 'Great, I’ll meet you at the entrance.'], ja: ['いいですね！現地で会いましょう。'] };
+const personLang = (n) => (PEOPLE_FROM[n] || [, , 'th'])[2];
+
+// ── ยืนยันตัวตน (ID + เซลฟี) — จำลองทั้งหมด ไม่มีการส่งข้อมูลจริง
+// คนที่ยังไม่ยืนยันตัวตน (ที่เหลือยืนยันแล้ว) · คลับที่ยังไม่ผ่านการตรวจสอบ
+const UNVERIFIED = ['Rose', 'Pim', 'Nok'];
+const UNVERIFIED_CLUBS = ['ggt'];
+S.verified = lsGet('vybe.verified', false);
+S.vstep = 0;
+S.vdoc = 'id';
+S.trShown = {};
+S.blocked = {};
+S.trusted = lsGet('vybe.trusted', '');
+S.toggles.vonly = false;
+S.toggles.share = true;
+S.dmMenu = null;
+
+const isVerified = (name) => (name == USER.name || name == 'You' ? S.verified : !UNVERIFIED.includes(name));
+const VB_SVG = (s) =>
+  `<svg width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8l2.5 1.9 3.1.1 1 3 2.5 1.8-1 3 1 3-2.5 1.8-1 3-3.1.1-2.5 1.9-2.5-1.9-3.1-.1-1-3-2.5-1.8 1-3-1-3 2.5-1.8 1-3 3.1-.1z" fill="#5B88D6"/><path d="M8 12.3l2.7 2.7 5.2-5.4" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const vb = (name, s = 14) => (isVerified(name) ? `<span class="vb" role="img" aria-label="ID verified" title="ID verified">${VB_SVG(s)}</span>` : '');
+const cvb = (id, s = 14) => (!UNVERIFIED_CLUBS.includes(id) ? `<span class="vb" role="img" aria-label="Verified club" title="Verified club">${VB_SVG(s)}</span>` : '');
+const verifiedCount = (a) => Math.max(0, a.going - (a.solo % 3));
+const requireVerified = () => {
+  if (S.verified) return true;
+  toast(tx('Verify your ID first · it keeps everyone safe', 'ยืนยันตัวตนก่อนนะ · เพื่อความปลอดภัยของทุกคน'));
+  S.vstep = 0;
+  go('verify');
+  return false;
+};
+
+// ── กลุ่มรูปคนที่ไป (เพื่อนก่อน แล้วตามด้วยคนที่โพสต์ และคนทั่วไป)
+const goingPeople = (id) => {
+  const out = [],
+    seen = new Set(),
+    add = (n, c) => !seen.has(n) && seen.add(n) && out.push([n, c]);
+  FRIENDS.filter((f) => f.going == id).forEach((f) => add(f.name, f.color));
+  S.posts.filter((p) => p.act == id && !p.mine).forEach((p) => add(p.name, p.color));
+  ROOM.crowd.forEach((c) => add(c[0], c[1]));
+  return out;
+};
+const goingStack = (id, n = 3, s = 22) => {
+  const a = A[id],
+    ppl = goingPeople(id).slice(0, n);
+  return `<span class="stk">${ppl.map((p) => `<span style="width:${s}px;height:${s}px">${avatar(p[1], s, p[0])}</span>`).join('')}</span><span class="stk-n" data-ugc>${tx('+' + Math.max(0, a.going - n) + ' going', '+' + Math.max(0, a.going - n) + ' คนไป')}</span>`;
+};
+
+// ── HOME: "กรุงเทพฯ ตอนนี้" การ์ดสด ๆ ที่เห็นว่าเมืองกำลังเคลื่อนไหว
+const LIVE_SPOTS = [
+  // [x%, y%] ตำแหน่งบนแผนที่จำลองของกรุงเทพฯ (ตามย่านโดยประมาณ)
+  [70, 46], [78, 26], [86, 56], [66, 18], [92, 38], [74, 66], [84, 14], [62, 34], [94, 70], [80, 80], [68, 58], [90, 22],
+];
+const liveFeed = () => {
+  const items = [];
+  FRIENDS.forEach((f, i) => items.push([f.name, f.color, i % 2 ? 'going' : 'in', f.going]));
+  S.posts.filter((p) => !p.mine).slice(0, 8).forEach((p, i) => items.push([p.name, p.color, i % 3 ? 'going' : 'in', p.act]));
+  return items.filter((x) => A[x[3]]);
+};
+const liveLine = (x) =>
+  `${avatar(x[1], 26, x[0])}<span style="min-width:0;flex:1"><span style="display:block;font-size:12.5px;font-weight:700">${x[2] == 'in' ? tx(x[0] + ' checked in', x[0] + ' เช็คอินแล้ว') : tx(x[0] + ' is going', x[0] + ' กำลังจะไป')} ${vb(x[0], 12)}</span><span data-ugc style="display:block;font-size:11px;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${A[x[3]].title} · ${A[x[3]].area}</span></span>`;
+const pulseCard = () => {
+  const feed = liveFeed(),
+    now = 128 + (new Date().getMinutes() % 9),
+    liveActs = UPCOMING.filter((i) => A[i].date == TODAY).length;
+  return `<button data-go="discover" class="pulse" aria-label="${tx('Bangkok right now', 'กรุงเทพฯ ตอนนี้')}">
+<svg class="pulse-map" viewBox="0 0 350 190" preserveAspectRatio="none" aria-hidden="true"><path d="M150 -10 C 175 30, 140 60, 170 92 S 205 140, 178 200" fill="none" stroke="rgba(143,178,240,.35)" stroke-width="14" stroke-linecap="round"/><path d="M150 -10 C 175 30, 140 60, 170 92 S 205 140, 178 200" fill="none" stroke="rgba(143,178,240,.5)" stroke-width="2" stroke-dasharray="2 6"/><g stroke="rgba(255,255,255,.06)" stroke-width="1">${[30, 70, 110, 150].map((y) => `<path d="M0 ${y}H350"/>`).join('')}${[50, 100, 230, 280].map((x) => `<path d="M${x} 0V190"/>`).join('')}</g></svg>
+${LIVE_SPOTS.map((p, i) => `<i class="spot" style="left:${p[0]}%;top:${p[1]}%;animation-delay:${(i * 0.37) % 2.6}s"></i>`).join('')}
+<span class="pulse-top"><span class="live"></span>${tx('Bangkok right now', 'กรุงเทพฯ ตอนนี้')}</span>
+<span class="pulse-big"><b id="pcN">${now}</b><span>${tx('people out right now', 'คนกำลังออกไปทำกิจกรรม')}</span></span>
+<span class="pulse-tick" id="pcT">${feed.length ? liveLine(feed[0]) : ''}</span>
+<span class="pulse-foot"><span>${tx(liveActs + ' activities today · everyone ID verified', 'วันนี้มี ' + liveActs + ' กิจกรรม · ทุกคนยืนยันตัวตน')}</span><span class="pulse-go">${tx('Find an activity', 'หากิจกรรมเลย')} ›</span></span></button>`;
+};
+// เปลี่ยนข้อความ "ใครกำลังทำอะไร" ทุก 3 วินาที (หยุดเองเมื่อออกจากหน้า Home)
+let PULSE_T = null;
+function pulseTick() {
+  clearInterval(PULSE_T);
+  const feed = liveFeed();
+  let i = 0;
+  PULSE_T = setInterval(() => {
+    const el = $('#pcT'), n = $('#pcN');
+    if (!el) return clearInterval(PULSE_T);
+    i = (i + 1) % feed.length;
+    el.classList.remove('in');
+    void el.offsetWidth;
+    el.innerHTML = liveLine(feed[i]);
+    el.classList.add('in');
+    if (n && Math.random() < 0.6) n.textContent = +n.textContent + (Math.random() < 0.7 ? 1 : -1);
+  }, 3200);
+}
+
+const friendsGoing = () => {
+  const list = FRIENDS.filter((f) => A[f.going]).sort((x, y) => (sortKey(A[x.going]) < sortKey(A[y.going]) ? -1 : 1));
+  return list.length
+    ? hmSec(tx('Friends are going', 'เพื่อนกำลังจะไป'), `<button data-a="ctab-go:Buddies">${tx('See all', 'ดูทั้งหมด')} ›</button>`) +
+        `<div class="p row fg-row">${list
+          .map((f) => `<div class="fg"><button data-go="person:${f.name}" class="fg-p"><span class="fg-ring">${avatar(f.color, 54, f.name)}<span class="fg-vb">${vb(f.name, 16)}</span></span><b>${f.name}</b></button><button data-go="event:${f.going}" class="fg-e"><span data-ugc>${A[f.going].title}</span><span class="fg-day">${A[f.going].day}</span></button></div>`)
+          .join('')}</div>`
+    : '';
+};
+const soloSection = (pool) => {
+  const ids = pool.filter((i) => A[i].solo >= 4).sort((x, y) => A[y].solo - A[x].solo).slice(0, 6);
+  if (!ids.length) return '';
+  return (
+    hmSec(tx('Going solo? You won’t be alone', 'ไปคนเดียว? ไม่ได้อยู่คนเดียวแน่นอน')) +
+    `<div class="p mu" style="font-size:12px;margin:-6px 0 10px">${tx('Lots of people come on their own here. Hosts and members are ID verified.', 'กิจกรรมที่มีคนมาคนเดียวเยอะ ผู้จัดและสมาชิกยืนยันตัวตนแล้ว')}</div>` +
+    `<div class="hmscroll">${ids.map((i) => hmTile(i, tx(A[i].solo + ' coming solo', 'มาคนเดียว ' + A[i].solo + ' คน'), 160, 200)).join('')}</div>`
+  );
+};
+const verifyNudge = () =>
+  S.verified
+    ? ''
+    : `<button data-a="verify" class="vnudge"><span class="vnudge-i">${ICON.shield(22, '#fff')}</span><span style="flex:1;text-align:left"><b style="display:block;font-size:14px">${tx('Verify your ID to join buddies', 'ยืนยันตัวตนเพื่อไปกับเพื่อนใหม่')}</b><span style="font-size:12px;color:var(--mu)">${tx('1 minute · others see a blue badge, never your ID', 'ใช้เวลา 1 นาที · คนอื่นเห็นแค่เครื่องหมายสีฟ้า ไม่เห็นข้อมูลบัตร')}</span></span><span style="font-weight:800">›</span></button>`;
+
+// ── หน้ายืนยันตัวตน: 0 แนะนำ → 1 ถ่ายบัตร → 2 เซลฟี → 3 เสร็จ
+SC.verify = () => {
+  const st = S.vstep,
+    prog = [0, 1, 2].map((i) => `<span style="flex:1;height:4px;border-radius:2px;background:${i < st || st == 3 ? 'var(--b)' : i == st ? 'var(--y)' : 'var(--bd)'}"></span>`).join('');
+  const top = `<div class="p row" style="padding-top:22px;gap:14px"><button data-a="back" aria-label="Back" style="width:40px;height:40px;border-radius:20px;background:var(--l);font-size:22px;flex:none">‹</button><div class="row" style="flex:1;gap:6px">${prog}</div></div>`;
+  if (st == 0)
+    return (
+      top +
+      `<div class="v-hero">${ICON.shield(46, '#fff')}</div>
+<h1 class="p" style="font-size:26px;font-weight:800;text-align:center;margin-top:16px">${tx('Verify your identity', 'ยืนยันตัวตนของคุณ')}</h1>
+<div class="p mu" style="text-align:center;font-size:13px;margin-top:6px">${tx('So everyone knows the people they meet are real.', 'เพื่อให้ทุกคนมั่นใจว่าคนที่จะไปเจอเป็นคนจริง')}</div>
+<div class="v-list">${[
+        ['id', tx('Scan your Thai ID card or passport', 'ถ่ายบัตรประชาชนหรือพาสปอร์ต'), tx('Passports work for visitors and expats', 'ชาวต่างชาติใช้พาสปอร์ตได้')],
+        ['face', tx('Take a quick selfie', 'ถ่ายเซลฟี่สั้น ๆ'), tx('We match it to your ID photo', 'เพื่อเทียบกับรูปบนบัตร')],
+        ['eye', tx('Only a blue badge is shown', 'คนอื่นเห็นแค่เครื่องหมายสีฟ้า'), tx('Your ID number and photo stay private', 'เลขบัตรและรูปบนบัตรเป็นความลับ')],
+      ]
+        .map((x, i) => `<div class="v-li"><span class="v-n">${i + 1}</span><span><b>${x[1]}</b><span class="mu">${x[2]}</span></span></div>`)
+        .join('')}</div>
+<div style="position:sticky;bottom:0;background:#fff;padding:14px 20px 18px;margin-top:18px"><button data-a="vnext" class="btn y">${tx('Start verification', 'เริ่มยืนยันตัวตน')}</button><div class="mu" style="font-size:11px;text-align:center;margin-top:8px">${tx('Simulated in this prototype · no data leaves your phone', 'จำลองในต้นแบบนี้ · ไม่มีการส่งข้อมูลจริง')}</div></div>`
+    );
+  if (st == 1)
+    return (
+      top +
+      `<h1 class="p" style="font-size:24px;font-weight:800;margin-top:20px">${tx('Scan your document', 'ถ่ายรูปเอกสาร')}</h1>
+<div class="p row" style="margin-top:12px">${[['id', tx('Thai ID card', 'บัตรประชาชน')], ['passport', tx('Passport', 'พาสปอร์ต')]].map((d) => `<button data-a="vdoc:${d[0]}" class="chip ${S.vdoc == d[0] ? 'on' : ''}">${d[1]}</button>`).join('')}</div>
+<div class="v-scan ${S.vscan ? 'go' : ''}"><div class="v-card ${S.vdoc}"><span class="v-photo"></span><span class="v-lines"><i></i><i></i><i style="width:50%"></i></span></div><span class="v-c tl"></span><span class="v-c tr"></span><span class="v-c bl"></span><span class="v-c br"></span><span class="v-beam"></span></div>
+<div class="p mu" style="text-align:center;font-size:13px;margin-top:12px">${S.vscan ? tx('Reading your document…', 'กำลังอ่านข้อมูลเอกสาร…') : tx('Place the front of your card inside the frame', 'วางด้านหน้าบัตรให้อยู่ในกรอบ')}</div>
+<div style="padding:18px 20px"><button data-a="vscan" class="btn y" ${S.vscan ? 'disabled style="opacity:.6"' : ''}>${tx('Capture', 'ถ่ายรูป')}</button></div>`
+    );
+  if (st == 2)
+    return (
+      top +
+      `<h1 class="p" style="font-size:24px;font-weight:800;margin-top:20px">${tx('Now a quick selfie', 'ต่อไปถ่ายเซลฟี่')}</h1><div class="p mu" style="font-size:13px;margin-top:4px">${tx('Look at the camera and blink once.', 'มองกล้องแล้วกะพริบตาหนึ่งครั้ง')}</div>
+<div class="v-face ${S.vscan ? 'go' : ''}"><span class="v-ring"></span><span class="v-ring r2"></span><span class="v-head">${personImg(USER.name) ? `<img src="${personImg(USER.name)}" alt="">` : '<svg viewBox="0 0 120 120" width="150" height="150" aria-hidden="true"><circle cx="60" cy="46" r="24" fill="#10328F"/><path d="M16 124Q60 62 104 124Z" fill="#5B88D6"/></svg>'}</span></div>
+<div class="p mu" style="text-align:center;font-size:13px;margin-top:10px">${S.vscan ? tx('Matching with your ID…', 'กำลังเทียบกับรูปบนบัตร…') : tx('Good light helps', 'อยู่ในที่ที่มีแสงสว่าง')}</div>
+<div style="padding:18px 20px"><button data-a="vscan" class="btn y" ${S.vscan ? 'disabled style="opacity:.6"' : ''}>${tx('Take selfie', 'ถ่ายเซลฟี่')}</button></div>`
+    );
+  return (
+    top +
+    `<div class="v-done">${VB_SVG(84)}</div>
+<h1 class="p" style="font-size:26px;font-weight:800;text-align:center;margin-top:14px">${tx('You’re verified', 'ยืนยันตัวตนเรียบร้อย')}</h1>
+<div class="p row" style="justify-content:center;margin-top:10px;gap:8px">${avatar('var(--ys)', 32, USER.name)}<b data-ugc>${USER.name}</b>${vb(USER.name, 16)}</div>
+<div class="p mu" style="text-align:center;font-size:13px;margin-top:10px;line-height:1.6">${tx('People now see the blue badge next to your name. You can join buddy posts and message people who only accept verified members.', 'ตอนนี้ทุกคนจะเห็นเครื่องหมายสีฟ้าหลังชื่อคุณ คุณเข้าร่วมโพสต์หาเพื่อนและส่งข้อความหาคนที่รับเฉพาะคนที่ยืนยันตัวตนได้แล้ว')}</div>
+<div style="padding:22px 20px"><button data-a="vdone" class="btn y">${tx('Done', 'เสร็จแล้ว')}</button><button data-go="safety" class="btn lb" style="margin-top:10px">${tx('Safety tips', 'คำแนะนำด้านความปลอดภัย')}</button></div>`
+  );
+};
+
+// ── ศูนย์ความปลอดภัย
+SC.safety = () =>
+  back +
+  hdr(tx('Safety', 'ความปลอดภัย'), tx('Safety center', 'ศูนย์ความปลอดภัย')) +
+  `<div class="p mu" style="font-size:13px;margin-top:6px">${tx('How Vybe keeps meeting new people safe.', 'Vybe ช่วยให้การเจอคนใหม่ปลอดภัยอย่างไร')}</div>` +
+  [
+    ['shield', tx('Real people, verified', 'คนจริง ยืนยันตัวตนแล้ว'), tx('Members verify with an ID card or passport plus a selfie. Look for the blue badge.', 'สมาชิกยืนยันด้วยบัตรประชาชนหรือพาสปอร์ตและเซลฟี่ สังเกตเครื่องหมายสีฟ้าหลังชื่อ')],
+    ['club', tx('Clubs and hosts are checked', 'คลับและผู้จัดผ่านการตรวจสอบ'), tx('Verified clubs have registered business details and a named host for every activity.', 'คลับที่ยืนยันแล้วมีข้อมูลธุรกิจที่จดทะเบียน และมีผู้รับผิดชอบทุกกิจกรรม')],
+    ['pin', tx('First meet at the venue', 'เจอกันครั้งแรกที่สถานที่จัด'), tx('Every buddy post is tied to a public activity. Meet there, not at someone’s home.', 'โพสต์หาเพื่อนผูกกับกิจกรรมในที่สาธารณะเสมอ นัดเจอที่นั่น ไม่ใช่ที่บ้านใคร')],
+    ['share', tx('Share your plan', 'แชร์แผนให้คนที่ไว้ใจ'), tx('Your trusted contact gets a message when you check in and when you finish.', 'ผู้ติดต่อที่ไว้ใจจะได้รับข้อความเมื่อคุณเช็คอินและเมื่อจบกิจกรรม')],
+    ['flag', tx('Report or block anytime', 'รายงานหรือบล็อกได้ทุกเมื่อ'), tx('From any chat, tap ⋯. Our team reviews reports within 24 hours.', 'ในแชทกด ⋯ ทีมงานตรวจสอบรายงานภายใน 24 ชั่วโมง')],
+  ]
+    .map((x) => `<div class="s-card"><span class="s-i">${ICON.shield(20, 'var(--b)')}</span><span><b>${x[1]}</b><span class="mu">${x[2]}</span></span></div>`)
+    .join('') +
+  `<div class="s-sos"><b>${tx('In an emergency', 'กรณีฉุกเฉิน')}</b><div class="row" style="gap:8px;margin-top:10px">${[['191', tx('Police', 'ตำรวจ')], ['1669', tx('Medical', 'เจ็บป่วยฉุกเฉิน')], ['1155', tx('Tourist police', 'ตำรวจท่องเที่ยว')]].map((x) => `<a href="tel:${x[0]}" class="s-num"><b>${x[0]}</b><span>${x[1]}</span></a>`).join('')}</div></div>` +
+  `<div style="margin:16px 20px 0"><button data-a="verify" class="btn ${S.verified ? 'lb' : 'y'}">${S.verified ? tx('ID verified ✓', 'ยืนยันตัวตนแล้ว ✓') : tx('Verify my ID', 'ยืนยันตัวตนของฉัน')}</button></div>`;
+
+// ── เมนูในแชทส่วนตัว: รายงาน / บล็อก (วาดทับบน #app ไม่เลื่อนตามแชท)
+function drawOverlay() {
+  const old = $('#ovl');
+  if (old) old.remove();
+  if (!S.dmMenu) return;
+  const name = S.dmMenu.split('~')[1],
+    rep = S.dmReport;
+  const html = rep
+    ? `<b style="font-size:17px">${tx('Why are you reporting ' + name + '?', 'รายงาน ' + name + ' เพราะอะไร?')}</b><div class="mu" style="font-size:12px;margin-top:4px">${tx('They won’t know who reported them.', 'อีกฝ่ายจะไม่รู้ว่าใครเป็นคนรายงาน')}</div>${[
+        tx('Fake profile or not who they say', 'โปรไฟล์ปลอม หรือไม่ใช่คนที่อ้าง'),
+        tx('Harassment or made me uncomfortable', 'คุกคาม หรือทำให้รู้สึกไม่สบายใจ'),
+        tx('Asked to meet somewhere private', 'ชวนไปเจอในที่ส่วนตัว'),
+        tx('Spam, scam or asking for money', 'สแปม หลอกลวง หรือขอเงิน'),
+        tx('Something else', 'อื่น ๆ'),
+      ]
+        .map((r, i) => `<button data-a="dmrep:${i}" class="opt" style="margin-top:8px">${r}</button>`)
+        .join('')}`
+    : `<div class="row" style="gap:10px">${avatar(PERSON_COLOR[name] || 'var(--ys)', 40, name)}<span style="flex:1"><b style="font-size:16px">${name}</b> ${vb(name)}<span class="mu" style="display:block;font-size:12px">${isVerified(name) ? tx('ID verified', 'ยืนยันตัวตนแล้ว') : tx('Not verified yet', 'ยังไม่ยืนยันตัวตน')}</span></span></div>
+<button data-a="dmreport" class="opt" style="margin-top:14px">${ICON.shield(18)} ${tx('Report', 'รายงาน')}</button><button data-a="dmblock" class="opt">⛔ ${tx('Block', 'บล็อก') + ' ' + name}</button><button data-a="dmsafety" class="opt">${tx('Safety tips', 'คำแนะนำด้านความปลอดภัย')}</button>`;
+  const d = document.createElement('div');
+  d.id = 'ovl';
+  d.className = 'sheet';
+  d.innerHTML = `<div role="dialog" aria-label="${tx('Report or block', 'รายงานหรือบล็อก')}">${html}<button data-a="dmclose" class="btn gr" style="margin-top:12px">${tx('Cancel', 'ยกเลิก')}</button></div>`;
+  d.addEventListener('click', (e) => e.target == d && ACTIONS.dmclose());
+  $('#app').appendChild(d);
+}
+
+const FEATURE_ACTIONS = {
+  lang: (x) => setLang(x),
+  trx: (k) => {
+    S.trShown[k] = !S.trShown[k];
+    render();
+  },
+  verify: () => {
+    S.vstep = S.verified ? 3 : 0;
+    S.vscan = false;
+    go('verify');
+  },
+  vnext: () => {
+    S.vstep++;
+    S.vscan = false;
+    render();
+  },
+  vdoc: (x) => {
+    S.vdoc = x;
+    render();
+  },
+  vscan: () => {
+    S.vscan = true;
+    render();
+    setTimeout(() => {
+      S.vscan = false;
+      S.vstep++;
+      if (S.vstep == 3) (S.verified = true), lsSet('vybe.verified', true);
+      render();
+    }, 2000);
+  },
+  vdone: () => {
+    S.stack.pop();
+    render();
+    toast(tx('ID verified · your blue badge is live', 'ยืนยันตัวตนแล้ว · เครื่องหมายสีฟ้าแสดงแล้ว'));
+  },
+  trusted: () => {
+    S.trusted = S.trusted ? '' : 'Mom · +66 8X XXX 1234';
+    lsSet('vybe.trusted', S.trusted);
+    render();
+    toast(S.trusted ? tx('Trusted contact added', 'เพิ่มผู้ติดต่อที่ไว้ใจแล้ว') : tx('Trusted contact removed', 'ลบผู้ติดต่อที่ไว้ใจแล้ว'));
+  },
+  dmmenu: (x) => {
+    S.dmMenu = x;
+    S.dmReport = false;
+    drawOverlay();
+  },
+  dmclose: () => {
+    S.dmMenu = null;
+    drawOverlay();
+  },
+  dmreport: () => {
+    S.dmReport = true;
+    drawOverlay();
+  },
+  dmrep: () => {
+    S.dmMenu = null;
+    drawOverlay();
+    toast(tx('Report sent · our safety team reviews within 24 hours', 'ส่งรายงานแล้ว · ทีมความปลอดภัยจะตรวจสอบภายใน 24 ชั่วโมง'));
+  },
+  dmblock: () => {
+    const name = S.dmMenu.split('~')[1];
+    S.blocked[name] = true;
+    S.dmMenu = null;
+    drawOverlay();
+    S.stack.pop();
+    render();
+    toast(tx('Blocked ' + name + ' · they can’t message you or see your posts', 'บล็อก ' + name + ' แล้ว · เขาจะส่งข้อความหรือเห็นโพสต์ของคุณไม่ได้'));
+  },
+  dmsafety: () => {
+    S.dmMenu = null;
+    drawOverlay();
+    go('safety');
+  },
+};
+
+// ── แถบความปลอดภัยในหน้ากิจกรรม และในแชทส่วนตัว
+const safetyStrip = (a) =>
+  `<button data-go="safety" class="safe"><span class="safe-i">${ICON.shield(20, 'var(--b)')}</span><span style="flex:1;text-align:left"><b>${tx(verifiedCount(a) + ' of ' + a.going + ' going are ID verified', 'คนที่ไป ' + a.going + ' คน ยืนยันตัวตนแล้ว ' + verifiedCount(a) + ' คน')}</b><span>${!UNVERIFIED_CLUBS.includes(a.club) ? tx('Verified host · meet-up at a public venue', 'ผู้จัดยืนยันแล้ว · นัดเจอในที่สาธารณะ') : tx('Host not verified yet · take extra care', 'ผู้จัดยังไม่ยืนยัน · โปรดระวังเป็นพิเศษ')}</span></span><span style="font-weight:800">›</span></button>`;
+const dmSafety = (name) =>
+  `<div class="safe" style="margin:10px 20px 0"><span class="safe-i">${ICON.shield(20, 'var(--b)')}</span><span style="flex:1"><b>${isVerified(name) ? tx(name + ' is ID verified', name + ' ยืนยันตัวตนแล้ว') : tx(name + ' hasn’t verified their ID yet', name + ' ยังไม่ได้ยืนยันตัวตน')}</b><span>${isVerified(name) ? tx('First time meeting? Meet at the activity venue and keep chatting in Vybe.', 'เจอกันครั้งแรก? นัดที่สถานที่จัดกิจกรรม และคุยกันใน Vybe ไปก่อน') : tx('Don’t share personal details. Only meet at the activity venue.', 'อย่าเพิ่งให้ข้อมูลส่วนตัว และนัดเจอเฉพาะที่สถานที่จัดกิจกรรม')}</span></span></div>`;
+
+// ── ในห้องกิจกรรม: คนต่างชาติเขียนโน้ตเป็นภาษาของตัวเอง
+ROOM.crowd.splice(1, 0, ['Emma', '#A8D8F0']);
+ROOM.crowd.splice(3, 0, ['Yuki', '#FFB6D0']);
+ROOM.own = {
+  Emma: { b: 'First time here and I came solo. Say hi!', l: 'Here! Yellow cap 👋', a: 'Made two new friends today!' },
+  Yuki: { b: '一人で参加します。よろしくお願いします！', l: '着きました！', a: '楽しかった！また来ます。' },
+};
+const roomOwnNote = (name, notes) => (ROOM.own[name] || {})[notes === ROOM.notesBefore ? 'b' : notes === ROOM.notesAfter ? 'a' : 'l'];
+
+// ════════════════════════════════════════════════════════════
+// 6e. PERSON PROFILE + TRANSITIONS — ดูโปรไฟล์คนอื่น และการเปลี่ยนหน้าแบบลื่น ๆ
+// ════════════════════════════════════════════════════════════
+
+// แนะนำตัวสั้น ๆ (คนเขียนเอง → อยู่ในภาษาของคนนั้น มีปุ่มดูคำแปล)
+const BIOS = {
+  Ploy: 'วิ่งเช้าวันเสาร์ที่ลุมพินีเป็นประจำ มาคนเดียวก็ทักได้เลยนะ',
+  Beam: 'สายปีนผามือสมัครเล่น ชอบโบลเดอริงตอนกลางคืน',
+  Champ: 'ซ้อมวิ่ง 10K ทุกสัปดาห์ หาเพื่อนซ้อมด้วยกัน',
+  Dao: 'ปั่นจักรยานบางกระเจ้าทุกวันอาทิตย์',
+  Fern: 'เต้นเป็นงานอดิเรก ช่วงนี้ติดพิลาทิส',
+  Ton: 'พาเดลทุกวันศุกร์ มวยไทยวันเสาร์',
+  Lisa: 'เพิ่งเริ่มวิ่ง อยากได้เพื่อนวิ่งช้า ๆ ด้วยกัน',
+  Mint: 'ปั่นจักรยาน ถ่ายรูป และกาแฟ',
+  Jisoo: 'มือใหม่พิลาทิส อยากลองทุกสตูดิโอในกรุงเทพฯ',
+  Pim: 'ชอบเที่ยวน้ำตกและเดินป่า',
+  Nam: 'โยคะหลังเลิกงานช่วยชีวิตมาก',
+  Emma: 'Moved to Bangkok in September. Learning Thai and looking for climbing and running buddies!',
+  Yuki: 'バンコク在住のデザイナーです。ヨガとサウナが好きです。',
+  Daniel: 'Teacher from Ohio, trying every sport in Bangkok at least once.',
+  Lucas: 'Ingénieur à Bangkok. Course le matin, padel le soir.',
+  Wei: '在曼谷工作，喜欢骑车和认识新朋友。',
+  Sora: '방콕에서 일하고 있어요. 주말마다 새로운 운동에 도전해요!',
+};
+Object.assign(UGC_TR, {
+  'วิ่งเช้าวันเสาร์ที่ลุมพินีเป็นประจำ มาคนเดียวก็ทักได้เลยนะ': { en: 'Saturday morning runs at Lumpini are my thing. Coming solo? Say hi!' },
+  'สายปีนผามือสมัครเล่น ชอบโบลเดอริงตอนกลางคืน': { en: 'Amateur climber who loves night bouldering.' },
+  'ซ้อมวิ่ง 10K ทุกสัปดาห์ หาเพื่อนซ้อมด้วยกัน': { en: 'Training for 10K every week. Looking for training buddies.' },
+  'ปั่นจักรยานบางกระเจ้าทุกวันอาทิตย์': { en: 'Cycling in Bang Krachao every Sunday.' },
+  'เต้นเป็นงานอดิเรก ช่วงนี้ติดพิลาทิส': { en: 'Dancing is my hobby. Hooked on Pilates lately.' },
+  'พาเดลทุกวันศุกร์ มวยไทยวันเสาร์': { en: 'Padel on Fridays, Muay Thai on Saturdays.' },
+  'เพิ่งเริ่มวิ่ง อยากได้เพื่อนวิ่งช้า ๆ ด้วยกัน': { en: 'New to running. Looking for slow-pace running buddies.' },
+  'ปั่นจักรยาน ถ่ายรูป และกาแฟ': { en: 'Cycling, photos and coffee.' },
+  'มือใหม่พิลาทิส อยากลองทุกสตูดิโอในกรุงเทพฯ': { en: 'Pilates beginner who wants to try every studio in Bangkok.' },
+  'ชอบเที่ยวน้ำตกและเดินป่า': { en: 'Love waterfalls and hiking.' },
+  'โยคะหลังเลิกงานช่วยชีวิตมาก': { en: 'After-work yoga saves my life.' },
+  'Moved to Bangkok in September. Learning Thai and looking for climbing and running buddies!': { th: 'ย้ายมากรุงเทพฯ ตั้งแต่กันยายน กำลังเรียนภาษาไทย และหาเพื่อนไปปีนผาและวิ่ง!' },
+  'バンコク在住のデザイナーです。ヨガとサウナが好きです。': { en: 'Designer living in Bangkok. I love yoga and saunas.', th: 'นักออกแบบที่อยู่กรุงเทพฯ ชอบโยคะและซาวน่า' },
+  'Teacher from Ohio, trying every sport in Bangkok at least once.': { th: 'ครูจากโอไฮโอ ตั้งใจลองทุกกีฬาในกรุงเทพฯ อย่างน้อยหนึ่งครั้ง' },
+  'Ingénieur à Bangkok. Course le matin, padel le soir.': { l: 'fr', en: 'Engineer in Bangkok. Running in the morning, padel in the evening.', th: 'วิศวกรในกรุงเทพฯ วิ่งตอนเช้า เล่นพาเดลตอนเย็น' },
+  '在曼谷工作，喜欢骑车和认识新朋友。': { en: 'Working in Bangkok. I love cycling and meeting new people.', th: 'ทำงานที่กรุงเทพฯ ชอบปั่นจักรยานและเจอเพื่อนใหม่' },
+  '방콕에서 일하고 있어요. 주말마다 새로운 운동에 도전해요!': { en: 'I work in Bangkok. Every weekend I try a new sport!', th: 'ทำงานที่กรุงเทพฯ ทุกสุดสัปดาห์จะลองกีฬาใหม่ ๆ!' },
+});
+
+// รวมข้อมูลของคนจากทุกที่ในแอป (เพื่อน · คนโพสต์ · คนรีวิว · คนในห้อง)
+const personInfo = (name) => {
+  const f = FRIENDS.find((x) => x.name == name),
+    posts = S.posts.filter((p) => p.name == name && !p.mine),
+    color = (f && f.color) || (posts[0] && posts[0].color) || PERSON_COLOR[name] || (ROOM.crowd.find((c) => c[0] == name) || [])[1] || '#C9D7F5',
+    acts = [...new Set([f && f.going, ...posts.map((p) => p.act)].filter((i) => i && A[i]))],
+    likes = (f && f.likes) || [...new Set(acts.map((i) => A[i].cat))].slice(0, 3),
+    h = parseInt(hk(name), 36),
+    reviews = REVIEWS2.filter((r) => r[0] == name);
+  return { name, color, f, posts, acts, likes, reviews, bio: BIOS[name], joined: 12 + (h % 70), buddies: 3 + (h % 19), since: ['Mar', 'May', 'Jun', 'Aug', 'Sep'][h % 5] + ' 2026' };
+};
+S.pconn = {};
+
+SC.person = (name) => {
+  const P = personInfo(name),
+    ver = isVerified(name),
+    fi = FRIENDS.findIndex((x) => x.name == name),
+    conn = fi > -1 ? S.connected[fi] : S.pconn[name],
+    dmAct = P.acts[0] || 'run',
+    mine = new Set(S.prefs.cats.length ? S.prefs.cats : S.recaps.map((r) => A[r.act].cat)),
+    common = P.likes.filter((c) => mine.has(c));
+  if (S.blocked[name])
+    return back + `<div class="p" style="margin-top:40px;text-align:center"><div style="display:inline-block;opacity:.4">${avatar(P.color, 96, name)}</div><h1 style="font-size:22px;margin-top:12px">${name}</h1><div class="mu" style="font-size:13px;margin-top:6px">${tx('You blocked this person.', 'คุณบล็อกคนนี้แล้ว')}</div><button data-a="unblock:${name}" class="btn lb" style="margin-top:18px">${tx('Unblock', 'เลิกบล็อก')}</button></div>`;
+  return (
+    `<div class="pp-cover" style="--pc:${P.color}"><div class="row" style="justify-content:space-between;padding:20px 20px 0"><button data-a="back" aria-label="Back" class="pp-btn">‹</button><button data-a="dmmenu:dm~${name}~${dmAct}" aria-label="Report or block" class="pp-btn" style="font-size:18px;font-weight:800">⋯</button></div></div>
+<div class="pp-head"><span class="pp-av" style="view-transition-name:pav">${avatar(P.color, 104, name)}</span>
+<h1 class="pp-name">${name}${vb(name, 20)}</h1>
+<div class="row" style="justify-content:center;gap:6px;margin-top:6px;flex-wrap:wrap">${fromTag(name)}<span class="pp-chip ${ver ? 'ok' : 'warn'}">${ver ? ICON.shield(13) + ' ' + tx('ID verified', 'ยืนยันตัวตนแล้ว') : tx('Not verified yet', 'ยังไม่ยืนยันตัวตน')}</span></div>
+${P.bio ? `<div class="pp-bio">${ugc(P.bio, 'font-size:14px;line-height:1.55')}</div>` : ''}
+<div class="pp-stats">${[[P.joined, tx('activities', 'กิจกรรม')], [P.buddies, tx('buddies', 'เพื่อนร่วมทาง')], [tx(P.since, P.since.replace(/(\w+) (\d+)/, (_, m, y) => TH_MON[m] + ' ' + BE(y))), tx('on Vybe since', 'เริ่มใช้ Vybe')]].map((x) => `<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>
+<div class="row" style="gap:10px;margin:16px 20px 0"><button data-a="pconn:${name}" class="btn ${conn ? 'lb' : 'y'}" style="flex:1;height:46px">${conn ? tx('Connected ✓', 'เชื่อมต่อแล้ว ✓') : tx('Connect', 'เชื่อมต่อ')}</button><button data-go="chat:dm~${name}~${dmAct}" class="btn lb" style="flex:1;height:46px">${tx('Message', 'ส่งข้อความ')}</button></div></div>
+${ver ? '' : `<div style="margin:14px 20px 0"><div class="safe" style="background:var(--ys);border-color:var(--y)"><span class="safe-i">${ICON.shield(20, 'var(--yt)')}</span><span><b style="color:var(--yt)">${tx(name + ' hasn’t verified their ID yet', name + ' ยังไม่ได้ยืนยันตัวตน')}</b><span>${tx('Meet only at the activity venue and keep chats in Vybe.', 'นัดเจอเฉพาะที่สถานที่จัดกิจกรรม และคุยกันใน Vybe')}</span></span></div></div>`}` +
+    (P.likes.length
+      ? section(tx('Into', 'ชอบ')) +
+        `<div class="p row" style="margin-top:8px;flex-wrap:wrap;gap:6px">${P.likes.map((c) => `<span class="chip ${common.includes(c) ? 'on' : ''}" style="padding:5px 14px;font-size:12px">${c}</span>`).join('')}</div>` +
+        (common.length ? `<div class="p mu" style="font-size:12px;margin-top:6px">✦ ${tx('You both like ' + common.join(', '), 'คุณชอบ' + common.map((c) => T(c, 'th')).join(' ') + 'เหมือนกัน')}</div>` : '')
+      : '') +
+    (P.acts.length ? section(tx('Going to', 'กำลังจะไป')) + P.acts.map(actRow).join('') : '') +
+    (P.posts.length ? section(tx('Posts', 'โพสต์')) + P.posts.map((p) => postCard(p, true)).join('') : '') +
+    (P.reviews.length
+      ? section(tx('Reviews written', 'รีวิวที่เขียน')) +
+        P.reviews.map((r) => `<div class="card" style="margin:8px 20px 0"><div style="color:#D9A400;font-size:13px">${'★'.repeat(r[1])}</div>${ugc(r[2], 'font-size:14px;line-height:1.5;margin-top:4px')}</div>`).join('')
+      : '') +
+    '<div style="height:24px"></div>'
+  );
+};
+
+// ลิงก์ไปโปรไฟล์ (ใช้ครอบรูป/ชื่อคน)
+const toPerson = (name) => (name && name != 'You' && name != USER.name && !CLUBS.some((c) => c.name == name) ? `data-go="person:${name}"` : '');
+
+// คนที่ไปกิจกรรมนี้ (กดดูโปรไฟล์ได้) — ในหน้ารายละเอียดกิจกรรม
+const whoGoing = (id) => {
+  const a = A[id],
+    ppl = goingPeople(id).slice(0, 7);
+  return `<div><div class="row" style="justify-content:space-between"><b style="font-size:15px">${tx('Who’s going', 'ใครไปบ้าง')}</b><span class="mu" style="font-size:12px">${tx(a.going + ' going · ' + a.solo + ' solo', 'ไป ' + a.going + ' คน · มาคนเดียว ' + a.solo)}</span></div><div class="who-row">${ppl
+    .map((p) => `<button data-go="person:${p[0]}" class="who"><span class="who-av">${avatar(p[1], 50, p[0])}<span class="fg-vb">${vb(p[0], 14)}</span></span><span>${p[0]}</span></button>`)
+    .join('')}${a.going > ppl.length ? `<span class="who more"><span class="who-av"><span class="who-n">+${a.going - ppl.length}</span></span></span>` : ''}</div></div>`;
+};
+
+// ── การเปลี่ยนหน้า: เลื่อนเข้า/ออก และรูปกิจกรรม/รูปคนขยายต่อเนื่องไปหน้าถัดไป (View Transitions)
+// รูปใหญ่ในหน้ากิจกรรม (.evhero) ชื่อ 'hero' · รูปในหน้าโปรไฟล์ (.pp-av) ชื่อ 'pav' (ตั้งไว้ใน CSS)
+let NAV_SRC = null;
+const canVT = () => !!document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PIC_SEL = '.tile-img, .fg-ring, .who-av, img, [data-slot]';
+const picOf = (el) => (el ? (el.matches(PIC_SEL) ? el : el.querySelector(PIC_SEL)) : null);
+const vtName = (go) => (go && go.startsWith('person:') ? 'pav' : go && go.startsWith('event:') ? 'hero' : '');
+function withTransition(update, dir, srcGo, srcEl) {
+  const s = $('#scr');
+  if (!canVT()) {
+    update();
+    s.classList.remove('nav-fwd', 'nav-back');
+    void s.offsetWidth;
+    s.classList.add(dir == 'back' ? 'nav-back' : 'nav-fwd');
+    return;
+  }
+  const name = vtName(srcGo),
+    pic = dir == 'fwd' && name && picOf(srcEl);
+  if (pic) pic.style.viewTransitionName = name;
+  document.documentElement.dataset.nav = dir;
+  let tgt = null;
+  const vt = document.startViewTransition(() => {
+    if (pic) pic.style.viewTransitionName = '';
+    update();
+    if (dir == 'back' && name) {
+      const el = [...document.querySelectorAll(`#scr [data-go="${srcGo}"]`)].find((e) => {
+        const r = e.getBoundingClientRect();
+        return r.bottom > 0 && r.top < innerHeight;
+      });
+      tgt = picOf(el);
+      if (tgt) tgt.style.viewTransitionName = name;
+    }
+  });
+  vt.finished.finally(() => {
+    if (tgt) tgt.style.viewTransitionName = '';
+    delete document.documentElement.dataset.nav;
+  });
+}
+
+
+// ── HOME (สไตล์ใหม่): สีหัวตามช่วงเวลา · สีจุดของแต่ละหมวด · การ์ดภาพเต็มใบ
+const HOME_GLOW = { dawn: '#FFC46B', day: '#FFE39A', dusk: '#FF8C5A', night: '#8B7BFF' };
+const CAT_ACCENT = {
+  Running: '#C8741A', Climbing: '#B8602A', Yoga: '#5E8550', Pilates: '#A85A7A', Cycling: '#2E7F6E', Hiking: '#4E7A3A', Swimming: '#1F78A8',
+  'Ice Bath': '#3A7DA6', 'Muay Thai': '#B03A2E', Padel: '#5A8C2E', Dance: '#7A4BB8', Meditation: '#8C6C3E', Paddle: '#24807B',
+};
+const catAccent = (c) => CAT_ACCENT[c] || '#5B88D6';
+const hmSec = (t, btn = '') => `<div class="hmsec"><h2>${t}</h2>${btn}</div>`;
+const hmTile = (i, sub, w = 196, h = 244) => {
+  const a = A[i],
+    src = activityImg(i);
+  return `<button data-go="event:${i}" class="hmtile" style="width:${w}px;height:${h}px;background:${catAccent(a.cat)}">${src ? `<img src="${src}" alt="${a.title}" loading="lazy">` : ''}<span class="hmshade"></span><span class="hmcat"><i style="background:${catAccent(a.cat)}"></i>${a.cat}</span>${inPlan(i) ? '<span class="hmin">✓ In plan</span>' : ''}<span class="hmtx"><b>${a.title}</b><span>${sub}</span><span class="hmstk">${goingStack(i, 3, 20)}</span></span></button>`;
+};
+// เข้าหน้ากิจกรรม: เล่นแอนิเมชันภาพขยาย + เนื้อหาลอยขึ้น
+function evEnter() {
+  const s = $('#scr');
+  s.classList.remove('ev-enter');
+  void s.offsetWidth;
+  s.classList.add('ev-enter');
+  clearTimeout(evEnter.t);
+  evEnter.t = setTimeout(() => s.classList.remove('ev-enter'), 1300);
+}
+S.evT0 = 0;
 
 // ════════════════════════════════════════════════════════════
 // 7. RUNTIME — วาดหน้าจอ รับการกด และเริ่มแอป
@@ -2254,6 +4080,9 @@ function render() {
     )
     .join('');
   drawTour();
+  roomAfterRender(n, p);
+  drawOverlay();
+  if (n == 'home') pulseTick();
 }
 
 // ── ทัวร์แนะนำการใช้งาน: ไฮไลต์ทีละจุด แล้วมีกล่องข้อความ Next / Skip
@@ -2305,10 +4134,18 @@ function toast(t) {
 }
 
 function go(s) {
-  const i = s.indexOf(':');
+  const i = s.indexOf(':'),
+    src = NAV_SRC;
+  NAV_SRC = null;
   if (s.startsWith('event:')) S.etab = 'details';
   S.stack.push(i < 0 ? { n: s } : { n: s.slice(0, i), p: s.slice(i + 1) });
-  render();
+  if (/^(room|processing)/.test(s)) return render();
+  if (s.startsWith('event:')) {
+    S.evT0 = Date.now();
+    render();
+    return evEnter();
+  }
+  withTransition(render, 'fwd', s, src);
 }
 
 const toTab = (tab, msg) => {
@@ -2332,19 +4169,22 @@ const sendChat = (id, text) => {
   const k = chatKind(id),
     pr = id.split('~');
   if (k == 'club') {
-    const f = CLUB_FAQ.find((x) => x[0] == text);
+    const f = CLUB_FAQ.find((x) => x[0] == text || T(x[0], 'en') == text);
     replyLater(id, CLUB[pr[1]].name, f ? f[1] : CHAT_TEXT.clubFallback);
   } else {
     const who = k == 'dm' ? pr[1] : [FRIENDS[0].name, 'Lisa', FRIENDS[1].name][Math.floor(Math.random() * 3)];
-    replyLater(id, who, CHAT_TEXT.replies[Math.floor(Math.random() * CHAT_TEXT.replies.length)]);
+    const R = REPLIES_BY_LANG[personLang(who)] || CHAT_TEXT.replies;
+    replyLater(id, who, R[Math.floor(Math.random() * R.length)]);
   }
 };
 
 // ทุกปุ่ม data-a="ชื่อ:x:y" มาที่นี่
 const ACTIONS = {
   back: () => {
-    S.stack.pop();
-    render();
+    const c = S.stack.pop(),
+      g = c ? c.n + (c.p != null ? ':' + c.p : '') : '';
+    if (!c || c.n == 'room') return render();
+    withTransition(render, 'back', g);
   },
   done: () => toTab('schedule'),
   conn: (x) => {
@@ -2390,6 +4230,58 @@ const ACTIONS = {
       S.stack = [{ n: 'payment', p: x }];
       render();
     } else toTab('schedule');
+  },
+
+  // ── activity room
+  roomenter: (x) => {
+    S.room.open = true;
+    RoomAudio.ensure();
+    buzz(15);
+    render();
+  },
+  rphase: (x, y) => {
+    S.room.phase[x] = y;
+    render();
+  },
+  rmute: () => {
+    S.room.muted = !S.room.muted;
+    RoomAudio.applyMute();
+    render();
+  },
+  rnote: (x, y) => {
+    const t = ROOM.quick[+y];
+    (S.room.notes[x] = S.room.notes[x] || []).push(t);
+    if (inPlan(x)) getChat(x).push(['You', t, hhmm()]);
+    buzz(20);
+    RoomAudio.chime();
+    render();
+    toast(inPlan(x) ? 'Your note is in the room and the group chat' : 'Your note is in the room');
+  },
+  checkin: (x) => {
+    const pi = planItem(x);
+    if (!pi || pi.status == 'Unpaid') return toast('Complete payment first to check in');
+    doCheckin(x);
+    go('room:' + x);
+    toast('QR scanned at the venue (simulated) · welcome!');
+  },
+  rcheck: (x) => {
+    doCheckin(x);
+    render();
+  },
+  rfinish: (x) => {
+    const a = A[x];
+    if (!S.recaps.find((q) => q.act == x && q.id == 'e' + x)) S.recaps.unshift({ id: 'e' + x, act: x, date: a.date, people: a.going });
+    const p = planItem(x);
+    if (p) p.status = 'Done';
+    S.room.phase[x] = 'after';
+    buzz(20);
+    render();
+    toast('Recap created · added to your profile');
+  },
+  rrecap: (x) => {
+    const r = S.recaps.find((q) => q.id == 'e' + x) || S.recaps.find((q) => q.act == x);
+    if (r) go('recap:' + r.id);
+    else ACTIONS.finish(x);
   },
 
   etab: (x) => {
@@ -2532,6 +4424,7 @@ const ACTIONS = {
     toast(p.interested[y].name + ' was added to the group chat');
   },
   pj: (x) => {
+    if (!requireVerified()) return;
     const p = S.posts.find((q) => q.id == x);
     S.joinReq[x] = 'pending';
     render();
@@ -2551,7 +4444,7 @@ const ACTIONS = {
       v = el && el.value.trim();
     if (v) sendChat(x, v);
   },
-  faq: (x, y) => sendChat(x, CLUB_FAQ[+y][0]),
+  faq: (x, y) => sendChat(x, LANG.cur == 'en' ? T(CLUB_FAQ[+y][0], 'en') : CLUB_FAQ[+y][0]),
 
   // ── schedule, calendar, route
   rt: (x) => {
@@ -2606,7 +4499,20 @@ const ACTIONS = {
     S.toggles[x] = !S.toggles[x];
     render();
   },
+  // หลังยืนยัน OTP / Google / Apple: ผู้ใช้เดิม → Home ทันที · ผู้ใช้ใหม่ → ตั้งค่าโปรไฟล์ + คำถาม
+  auth: () => {
+    if (S.onboarded) {
+      S.loggedIn = true;
+      lsSet('vybe.loggedIn', true);
+      S.stack = [];
+      S.tab = 'home';
+      render();
+      toast('Welcome back, ' + USER.name);
+    } else go('setup');
+  },
   logout: () => {
+    S.loggedIn = false;
+    lsSet('vybe.loggedIn', false);
     S.stack = [{ n: 'signup' }];
     render();
   },
@@ -2662,6 +4568,9 @@ const ACTIONS = {
     render();
   },
   onbdone: () => {
+    S.onboarded = S.loggedIn = true;
+    lsSet('vybe.onboarded', true);
+    lsSet('vybe.loggedIn', true);
     S.stack = [];
     S.tab = 'home';
     S.cat = 'All';
@@ -2686,13 +4595,16 @@ const ACTIONS = {
     render();
   },
   resetdemo: () => {
-    ['vybe.prefs', 'vybe.toured', 'vybe.name', 'vybe.myPhoto'].forEach((k) => {
+    ['vybe.prefs', 'vybe.toured', 'vybe.name', 'vybe.myPhoto', 'vybe.onboarded', 'vybe.loggedIn', 'vybe.verified', 'vybe.trusted'].forEach((k) => {
       try {
         localStorage.removeItem(k);
       } catch (e) {}
     });
     S.prefs = { cats: [], level: '', time: [], budget: '', style: '' };
     S.toured = false;
+    S.onboarded = S.loggedIn = false;
+    S.verified = false;
+    S.trusted = '';
     S.myPhoto = '';
     USER.name = 'Jennie Kim';
     S.stack = [{ n: 'signup' }];
@@ -2714,6 +4626,20 @@ const ACTIONS = {
     toTab('schedule', 'Switched to ' + A[S.alt].title + ' · group notified');
   },
 };
+Object.assign(ACTIONS, FEATURE_ACTIONS, {
+  pconn: (n) => {
+    const fi = FRIENDS.findIndex((x) => x.name == n);
+    if (fi > -1) S.connected[fi] = !S.connected[fi];
+    else S.pconn[n] = !S.pconn[n];
+    render();
+    if (fi > -1 ? S.connected[fi] : S.pconn[n]) toast(tx('Connected with ' + n, 'เชื่อมต่อกับ ' + n + ' แล้ว'));
+  },
+  unblock: (n) => {
+    delete S.blocked[n];
+    render();
+    toast(tx('Unblocked ' + n, 'เลิกบล็อก ' + n + ' แล้ว'));
+  },
+});
 
 document.addEventListener('click', (e) => {
   if (e.target.closest('[data-stop]') && !e.target.closest('[data-a],[data-go]')) return;
@@ -2723,6 +4649,7 @@ document.addEventListener('click', (e) => {
   if (t.dataset.tab) return toTab(t.dataset.tab);
   if (t.dataset.go) {
     e.preventDefault();
+    NAV_SRC = t;
     return go(t.dataset.go);
   }
   const raw = t.dataset.a;
@@ -2788,6 +4715,55 @@ setInterval(() => {
   el.textContent = Math.floor(left / 60) + ':' + pad2(left % 60);
 }, 1000);
 
-S.stack = [{ n: 'signup' }];
+// เปิดแอป: ยังเข้าสู่ระบบอยู่ → Home · ยังไม่เคยใช้ หรือออกจากระบบแล้ว → หน้าสมัคร
+I18N_OBS.observe($('#app'), { childList: true, subtree: true, characterData: true });
+// ── เลื่อนแถวแนวนอนด้วยเมาส์: ลากซ้าย-ขวา หรือหมุนล้อเมาส์ขณะชี้อยู่บนแถว (คอมพิวเตอร์ไม่มีการปัดนิ้ว)
+const HSEL = '.hmscroll, .fg-row, .who-row, #scr [style*="overflow-x:auto"]';
+const hRow = (t) => {
+  const el = t && t.closest && t.closest(HSEL);
+  return el && el.scrollWidth > el.clientWidth + 2 ? el : null;
+};
+let DRAG = null,
+  DRAGGED = false;
+document.addEventListener('pointerdown', (e) => {
+  if (e.pointerType != 'mouse' || e.button) return;
+  const el = hRow(e.target);
+  if (el) DRAG = { el, x: e.clientX, sl: el.scrollLeft, moved: false };
+});
+document.addEventListener('pointermove', (e) => {
+  if (!DRAG) return;
+  const dx = e.clientX - DRAG.x;
+  if (!DRAG.moved && Math.abs(dx) > 5) (DRAG.moved = true), DRAG.el.classList.add('dragging');
+  if (DRAG.moved) DRAG.el.scrollLeft = DRAG.sl - dx;
+});
+const endDrag = () => {
+  if (!DRAG) return;
+  if (DRAG.moved) {
+    DRAGGED = true;
+    setTimeout(() => (DRAGGED = false), 0);
+  }
+  DRAG.el.classList.remove('dragging');
+  DRAG = null;
+};
+document.addEventListener('pointerup', endDrag);
+document.addEventListener('pointercancel', endDrag);
+// ลากเสร็จแล้วไม่นับเป็นการกด (จะได้ไม่เปิดกิจกรรมโดยไม่ตั้งใจ)
+document.addEventListener('click', (e) => DRAGGED && (e.stopPropagation(), e.preventDefault(), (DRAGGED = false)), true);
+document.addEventListener('dragstart', (e) => hRow(e.target) && e.preventDefault());
+// ล้อเมาส์บนแถว → เลื่อนซ้าย-ขวา (สุดแถวแล้วจะเลื่อนหน้าต่อตามปกติ)
+document.addEventListener(
+  'wheel',
+  (e) => {
+    const el = hRow(e.target);
+    if (!el || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    const max = el.scrollWidth - el.clientWidth;
+    if ((e.deltaY < 0 && el.scrollLeft <= 0) || (e.deltaY > 0 && el.scrollLeft >= max - 1)) return;
+    e.preventDefault();
+    el.scrollLeft += e.deltaY;
+  },
+  { passive: false },
+);
+
+S.stack = S.loggedIn ? [] : [{ n: 'signup' }];
 render();
 </script></body></html>
