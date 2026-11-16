@@ -349,7 +349,8 @@ h1, h2, h3 {
 .pulse-tick.in{animation:tick .5s ease}
 @keyframes tick{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .pulse-foot{position:absolute!important;left:18px;right:14px;bottom:12px;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;opacity:.95}
-.pulse-go{background:var(--y);color:var(--n);font-weight:800;font-size:12px;border-radius:14px;padding:6px 12px}
+.pulse-foot>span:first-child{flex:1;min-width:0;padding-right:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pulse-go{flex:none;white-space:nowrap;background:var(--y);color:var(--n);font-weight:800;font-size:12px;border-radius:14px;padding:6px 12px}
 .hm-av{border-radius:50%;box-shadow:0 0 0 3px var(--ys);flex:none;display:block;line-height:0}
 /* เพื่อนกำลังจะไป */
 .fg-row{margin-top:10px;overflow-x:auto;gap:12px;align-items:flex-start}
@@ -1882,10 +1883,10 @@ ${opts}
         .join('');
 
     return (
-      `<div class="hm" style="padding-bottom:12px"><div style="background:linear-gradient(180deg,${glow}3D 0%,#fff 100%);padding:22px 20px 18px">
+      `<div class="hm" style="padding-bottom:12px"><div style="background:linear-gradient(180deg,#F3F6FD 0%,#fff 100%);padding:22px 20px 18px">
 <div class="row" style="justify-content:space-between">${logo(36)}<span class="row" style="gap:8px">${langToggle()}${iconBtn('data-go="notif"', 'Notifications', ICON.bell() + badge(unreadCount()), 'background:#fff')}<button data-tab="profile" aria-label="Profile" class="hm-me">${avatar(USER.color, 42, USER.name)}${S.verified ? `<span class="fg-vb">${vb(USER.name, 14)}</span>` : ''}</button></span></div>
 <div style="margin-top:18px;font-size:13px;font-weight:600;color:var(--mu)">${greet}, ${first}</div>
-<h1 style="font-size:30px;font-weight:800;line-height:1.12;margin-top:4px">What’s your<br>vybe today?</h1>
+<h1 style="font-size:30px;font-weight:800;line-height:1.12;margin-top:4px">${tx('What’s your<br>vybe today?', '<span style="white-space:nowrap;font-size:27px">วันนี้อยากไปทำอะไรดี?</span>')}</h1>
 <button data-go="discover" data-tour="search" aria-label="Search" class="row" style="width:100%;text-align:left;margin-top:16px;height:50px;border-radius:25px;background:#fff;box-shadow:0 6px 20px rgba(16,50,143,.10);border:1.5px solid var(--bd);padding:0 6px 0 16px;font-size:13px;color:var(--mu);gap:10px">${ICON.search('var(--mu)')}<span style="flex:1">Activities, places, clubs…</span><span class="bb" style="height:38px;padding:0 14px;border-radius:19px;display:flex;align-items:center;font-size:12px;font-weight:700">Explore</span></button></div>
 <div class="hmscroll" data-tour="cats" style="gap:8px">${chips}</div>
 <div style="margin:18px 20px 0">${pulseCard()}</div>` +
@@ -3177,7 +3178,7 @@ const I18N = {
     'Join to be part of this': 'เข้าร่วมเพื่อเป็นส่วนหนึ่งของห้องนี้', 'Next from club': 'ถัดไปจากคลับ', 'Memories from this day': 'ความทรงจำจากวันนี้', 'Back to the live room': 'กลับไปห้องสด',
     'Memories ✦': 'ความทรงจำ ✦', 'Back to room ✦': 'กลับเข้าห้อง ✦', 'Pay to check in': 'ชำระเงินเพื่อเช็คอิน', 'You’re here': 'คุณอยู่ที่นี่แล้ว', 'You’re checked in': 'เช็คอินแล้ว',
     'Checked in': 'เช็คอินแล้ว', 'Next up': 'ถัดไป', 'Room open ✦': 'ห้องเปิดแล้ว ✦',
-    'What’s your vybe today?': 'วันนี้อยากไปทำอะไรดี?', 'Activities, places, clubs…': 'กิจกรรม สถานที่ คลับ…', Explore: 'สำรวจ',
+    'What’s your': 'วันนี้อยาก', 'vybe today?': 'ไปทำอะไรดี?', 'Activities, places, clubs…': 'กิจกรรม สถานที่ คลับ…', Explore: 'สำรวจ',
     'Just for you': 'สำหรับคุณ', '✓ In plan': '✓ อยู่ในแผน',
     'See translation': 'ดูคำแปล', 'See original': 'ดูต้นฉบับ', Language: 'ภาษา',
   },
@@ -3657,7 +3658,7 @@ ${LIVE_SPOTS.map((p, i) => `<i class="spot" style="left:${p[0]}%;top:${p[1]}%;an
 <span class="pulse-top"><span class="live"></span>${tx('Bangkok right now', 'กรุงเทพฯ ตอนนี้')}</span>
 <span class="pulse-big"><b id="pcN">${now}</b><span>${tx('people out right now', 'คนกำลังออกไปทำกิจกรรม')}</span></span>
 <span class="pulse-tick" id="pcT">${feed.length ? liveLine(feed[0]) : ''}</span>
-<span class="pulse-foot"><span>${tx(liveActs + ' activities today · everyone ID verified', 'วันนี้มี ' + liveActs + ' กิจกรรม · ทุกคนยืนยันตัวตน')}</span><span class="pulse-go">${tx('Find an activity', 'หากิจกรรมเลย')} ›</span></span></button>`;
+<span class="pulse-foot"><span>${tx(liveActs + ' today · all ID verified', 'วันนี้ ' + liveActs + ' กิจกรรม · ยืนยันตัวตนทุกคน')}</span><span class="pulse-go">${tx('Find an activity', 'หากิจกรรมเลย')} ›</span></span></button>`;
 };
 // เปลี่ยนข้อความ "ใครกำลังทำอะไร" ทุก 3 วินาที (หยุดเองเมื่อออกจากหน้า Home)
 let PULSE_T = null;
